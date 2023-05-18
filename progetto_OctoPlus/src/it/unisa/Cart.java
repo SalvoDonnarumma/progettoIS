@@ -10,7 +10,7 @@ public class Cart {
 	public Cart() {
 		products = new ArrayList<ProductBean>();
 	}
-	
+	//ciao
 	public void addProduct(ProductBean product) {
 		products.add(product);
 	}
