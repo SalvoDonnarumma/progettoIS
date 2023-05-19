@@ -51,6 +51,36 @@ public class ProductDaoDriverMan implements IProductDao {
 	}
 
 	@Override
+	public synchronized void doSaveAdmin(AdminBean admin) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "INSERT INTO " + ProductDaoDriverMan.TABLE_NAME
+				+ " (email, password, cognome) VALUES (?, ?, ?, ?, ?)";
+
+		try {
+			connection = dmcp.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, admin.getEmail());
+			preparedStatement.setString(2, admin.getPassword());
+			preparedStatement.setString(3, admin.getCognome());
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}
+
+	@Override
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -153,4 +183,10 @@ public class ProductDaoDriverMan implements IProductDao {
 		return products;
 	}
 
-}
+
+	@Override
+	public boolean doDeleteAdmin(int code) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}	

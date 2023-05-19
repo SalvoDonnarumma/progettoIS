@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>progetto_OctoPlus</display-name>
   <welcome-file-list>
-    <welcome-file>ProductView.jsp</welcome-file>
+    <welcome-file>Login.jsp</welcome-file>
   </welcome-file-list>
   <resource-ref>
     <description>JNDI reference to a data source</description>
@@ -17,5 +17,6 @@
   <servlet-mapping>
     <servlet-name>ProductControl</servlet-name>
     <url-pattern>/product</url-pattern>
+
   </servlet-mapping>
 </web-app>

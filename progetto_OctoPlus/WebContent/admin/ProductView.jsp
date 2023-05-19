@@ -4,7 +4,7 @@
 <%
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
 	if(products == null) {
-		response.sendRedirect("./product");	
+		response.sendRedirect("../product");	
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
@@ -27,9 +27,13 @@
 	<a href="product">List</a>
 	<table border="1">
 		<tr>
-			<th>Code <a href="product?sort=code">Sort</a></th>
-			<th>Name <a href="product?sort=name">Sort</a></th>
-			<th>Description <a href="product?sort=descrizione">Sort</a></th>
+			<th>IdProdotto <a href="product?sort=idProdotto">Sort</a></th>
+			<th>Categoria<a href="product?sort=categoria">Sort</a></th>
+			<th>Nome <a href="product?sort=nome">Sort</a></th>
+			<th>Prezzo <a href="product?sort=prezzo">Sort</a></th>
+			<th>Descrizione</th>
+			<th>Foto</th>
+			<th>Statistiche</th>
 			<th>Action</th>
 		</tr>
 		<%
@@ -40,11 +44,14 @@
 		%>
 		<tr>
 			<td><%=bean.getCode()%></td>
+			<td><%=bean.getCategoria()%></td>
 			<td><%=bean.getNome()%></td>
+			<td><%=bean.getPrice()%></td>
 			<td><%=bean.getDescrizione()%></td>
+			<td><%=bean.getNome()%></td>
+			<td><%=bean.getNome()%></td>
 			<td><a href="product?driver=drivermanager&action=delete&id=<%=bean.getCode()%>">Delete</a><br>
 				<a href="product?driver=drivermanager&action=read&id=<%=bean.getCode()%>">Details</a><br>
-				<a href="product?driver=drivermanager&action=addC&id=<%=bean.getCode()%>">Add to cart</a>
 				</td>
 		</tr>
 		<%
@@ -82,12 +89,15 @@
 	<%
 		}
 	%>
-	<h2>Insert</h2>
+	<h2>Insert Prodotto</h2>
 	<form action="product" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Name:</label><br> 
 		<input name="nome" type="text" maxlength="20" required placeholder="enter name"><br> 
+		
+		<label for="categoria">Categoria:</label><br> 
+		<input name="categoria" type="text" maxlength="20" required placeholder="enter categoria"><br> 
 		
 		<label for="description">Description:</label><br>
 		<textarea name="descrizione" maxlength="100" rows="3" required placeholder="enter description"></textarea><br>
@@ -97,9 +107,35 @@
 
 		<label for="quantity">Quantity:</label><br> 
 		<input name="quantity" type="number" min="1" value="1" required><br>
+		
+		<label for="Photo">Foto prodotto:</label><br> 
+		<input class="file" type="file" name="talkPhoto" value="" maxlength="255"><br>	
 
-		<input type="submit" value="Add"><input type="reset" value="Reset">
+		<label for="Stats">Foto statistiche:</label><br> 
+		<input class="file" type="file" name="talkPhoto" value="" maxlength="255">
+		<br>
+		<center><input type="submit" value="Add"><input type="reset" value="Reset"></center>
 	</form>
+	
+	<h2>Insert Amministratore</h2>
+	<form action="AdminControl" method="post">
+		<input type="hidden" name="action" value="insert"> 
+		
+		<label for="name">Email:</label><br> 
+		<input name="email" type="email" maxlength="40" required placeholder="enter email"><br> 
+		
+		<label for="password">Password:</label><br> 
+		<input name="password" type="password" maxlength="25" required placeholder="enter a password"><br> 
+		
+		<label for="Foto">Foto profilo:</label><br> 
+		<input class="file" type="file" name="adminPhoto" value="" maxlength="255">
+		<br>
+		<label for="cognome">Cognome:</label>
+		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
+
+		<center> <input type="submit" value="Add"><input type="reset" value="Reset"> </center>
+	</form>
+	
 	<% if(cart != null) { %>
 		<h2>Cart</h2>
 		<table border="1">

@@ -9,6 +9,7 @@ public class ProductBean implements Serializable {
 	int code;
 	String name;
 	String description;
+	String categoria;
 	Double price;
 	int quantity;
 
@@ -19,6 +20,15 @@ public class ProductBean implements Serializable {
 		quantity = 0;
 	}
 
+	
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
+	public String getCategoria() {
+		return this.categoria;
+	}
+	
 	public int getCode() {
 		return code;
 	}

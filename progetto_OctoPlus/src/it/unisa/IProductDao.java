@@ -13,6 +13,9 @@ public interface IProductDao {
 	
 	public Collection<ProductBean> doRetrieveAll(String order) throws SQLException;
 
+	void doSaveAdmin(AdminBean admin) throws SQLException;
+	
+	public boolean doDeleteAdmin(int code) throws SQLException;
 }
 
 

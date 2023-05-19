@@ -57,6 +57,7 @@ public class ProductControl extends HttpServlet {
 					String nome = request.getParameter("nome");
 					String descrizione = request.getParameter("descrizione");
 					Double price = Double.parseDouble(request.getParameter("price"));
+					
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 					ProductBean bean = new ProductBean();
@@ -64,7 +65,7 @@ public class ProductControl extends HttpServlet {
 					bean.setDescrizione(descrizione);
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
-				//	bean.setCategoria(categoria);
+					bean.setCategoria(categoria);
 					productDao.doSave(bean);
 				}
 			}			
@@ -81,7 +82,7 @@ public class ProductControl extends HttpServlet {
 			System.out.println("Error:" + e.getMessage());
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
 		dispatcher.forward(request, response);
 	}
 	
