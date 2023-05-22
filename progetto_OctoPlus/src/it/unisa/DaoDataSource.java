@@ -9,12 +9,12 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
-public class ProductDaoDataSource implements IProductDao {
+public class DaoDataSource implements IProductDao {
 	
 	private static final String TABLE_NAME = "prodotto";
 	private DataSource ds = null;
 
-	public ProductDaoDataSource(DataSource ds) {
+	public DaoDataSource(DataSource ds) {
 		this.ds = ds;
 		
 		System.out.println("DataSource Product Model creation....");
@@ -26,7 +26,7 @@ public class ProductDaoDataSource implements IProductDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductDaoDataSource.TABLE_NAME
+		String insertSQL = "INSERT INTO " + DaoDataSource.TABLE_NAME
 				+ " (NOME, DESCRIZIONE, PRICE, QUANTITY) VALUES (?, ?, ?, ?)";
 
 		try {
@@ -36,7 +36,8 @@ public class ProductDaoDataSource implements IProductDao {
 			preparedStatement.setString(2, product.getDescrizione());
 			preparedStatement.setDouble(3, product.getPrice());
 			preparedStatement.setInt(4, product.getQuantity());
-
+			
+			
 			preparedStatement.executeUpdate();
 
 			connection.commit();
@@ -89,7 +90,7 @@ public class ProductDaoDataSource implements IProductDao {
 		
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "SELECT * FROM " + ProductDaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
+		String selectSQL = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
 
 		try {
 			connection = ds.getConnection();
@@ -125,7 +126,7 @@ public class ProductDaoDataSource implements IProductDao {
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductDaoDataSource.TABLE_NAME + " WHERE idProdotto = ?";
+		String deleteSQL = "DELETE FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -153,7 +154,7 @@ public class ProductDaoDataSource implements IProductDao {
 
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductDaoDataSource.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + DaoDataSource.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

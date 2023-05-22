@@ -8,12 +8,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 
-public class ProductDaoDriverMan implements IProductDao {
+public class DaoDriverMan implements IProductDao {
 
 	private static final String TABLE_NAME = "prodotto";
 	private DriverManagerConnectionPool dmcp = null;	
 
-	public ProductDaoDriverMan(DriverManagerConnectionPool dmcp) {
+	public DaoDriverMan(DriverManagerConnectionPool dmcp) {
 		this.dmcp = dmcp;
 		
 		System.out.println("DriverManager Product Model creation....");
@@ -26,7 +26,7 @@ public class ProductDaoDriverMan implements IProductDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductDaoDriverMan.TABLE_NAME
+		String insertSQL = "INSERT INTO " + DaoDriverMan.TABLE_NAME
 				+ " (nome, descrizione, PRICE, QUANTITY) VALUES (?, ?, ?, ?)";
 
 		try {
@@ -56,7 +56,7 @@ public class ProductDaoDriverMan implements IProductDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ProductDaoDriverMan.TABLE_NAME
+		String insertSQL = "INSERT INTO " + DaoDriverMan.TABLE_NAME
 				+ " (email, password, cognome) VALUES (?, ?, ?, ?, ?)";
 
 		try {
@@ -87,7 +87,7 @@ public class ProductDaoDriverMan implements IProductDao {
 
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "SELECT * FROM " + ProductDaoDriverMan.TABLE_NAME + " WHERE idProdotto = ?";
+		String selectSQL = "SELECT * FROM " + DaoDriverMan.TABLE_NAME + " WHERE idProdotto = ?";
 
 		try {
 			connection = dmcp.getConnection();
@@ -122,7 +122,7 @@ public class ProductDaoDriverMan implements IProductDao {
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductDaoDriverMan.TABLE_NAME + " WHERE idProdotto = ?";
+		String deleteSQL = "DELETE FROM " + DaoDriverMan.TABLE_NAME + " WHERE idProdotto = ?";
 
 		try {
 			connection = dmcp.getConnection();
@@ -149,7 +149,7 @@ public class ProductDaoDriverMan implements IProductDao {
 
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductDaoDriverMan.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + DaoDriverMan.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

@@ -109,10 +109,10 @@
 		<input name="quantity" type="number" min="1" value="1" required><br>
 		
 		<label for="Photo">Foto prodotto:</label><br> 
-		<input class="file" type="file" name="talkPhoto" value="" maxlength="255"><br>	
+		<input class="file" type="file" name="Photo" value="" maxlength="255"><br>	
 
 		<label for="Stats">Foto statistiche:</label><br> 
-		<input class="file" type="file" name="talkPhoto" value="" maxlength="255">
+		<input class="file" type="file" name="Stats" value="" maxlength="255">
 		<br>
 		<center><input type="submit" value="Add"><input type="reset" value="Reset"></center>
 	</form>

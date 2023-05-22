@@ -24,15 +24,15 @@ public class AdminControl extends HttpServlet {
 			isDriverManager = "datasource";
 		}
 		
-		IProductDao productDao = null;
+		IProductDao adminDao = null;
 
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
 					.getAttribute("DriverManager");
-			productDao = new ProductDaoDriverMan(dm);			
+			adminDao = new DaoDriverMan(dm);			
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			productDao = new ProductDaoDataSource(ds);
+			adminDao = new DaoDataSource(ds);
 		}
 		
 		String action = request.getParameter("action");
@@ -42,10 +42,10 @@ public class AdminControl extends HttpServlet {
 				if (action.equalsIgnoreCase("read")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
-					request.setAttribute("product", productDao.doRetrieveByKey(id));
+					request.setAttribute("product", adminDao.doRetrieveByKey(id));
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
-					productDao.doDelete(id);
+					adminDao.doDelete(id);
 				} else if (action.equalsIgnoreCase("insert")) {
 					
 					String email = request.getParameter("email");
@@ -56,7 +56,7 @@ public class AdminControl extends HttpServlet {
 					bean.setEmail(email);
 					bean.setPassword(password);
 					bean.setCognome(cognome);
-					productDao.doSaveAdmin(bean);
+					adminDao.doSaveAdmin(bean);
 				}
 			}			
 		} catch (SQLException e) {
@@ -67,7 +67,7 @@ public class AdminControl extends HttpServlet {
 
 		try {
 			request.removeAttribute("products");
-			request.setAttribute("products", productDao.doRetrieveAll(sort));
+			request.setAttribute("products", adminDao.doRetrieveAll(sort));
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}

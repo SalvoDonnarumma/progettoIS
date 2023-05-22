@@ -1,5 +1,6 @@
 package it.unisa;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 public class ProductBean implements Serializable {
@@ -11,6 +12,9 @@ public class ProductBean implements Serializable {
 	String description;
 	String categoria;
 	Double price;
+	InputStream photo;
+	InputStream stats;
+	//discutere questione taglie
 	int quantity;
 
 	public ProductBean() {
@@ -72,6 +76,26 @@ public class ProductBean implements Serializable {
 	@Override
 	public String toString() {
 		return name + " (" + code + "), " + price + " " + quantity + ". " + description;
+	}
+
+
+	public InputStream getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(InputStream photo) {
+		this.photo = photo;
+	}
+
+
+	public InputStream getStats() {
+		return stats;
+	}
+
+
+	public void setStats(InputStream stats) {
+		this.stats = stats;
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 
@@ -34,10 +35,10 @@ public class ProductControl extends HttpServlet {
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
 					.getAttribute("DriverManager");
-			productDao = new ProductDaoDriverMan(dm);			
+			productDao = new DaoDriverMan(dm);			
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			productDao = new ProductDaoDataSource(ds);
+			productDao = new DaoDataSource(ds);
 		}
 		
 		String action = request.getParameter("action");
@@ -58,6 +59,9 @@ public class ProductControl extends HttpServlet {
 					String descrizione = request.getParameter("descrizione");
 					Double price = Double.parseDouble(request.getParameter("price"));
 					
+					String photo = request.getParameter("photo");	
+					String stats = request.getParameter("stats");
+					
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 					ProductBean bean = new ProductBean();
@@ -66,6 +70,8 @@ public class ProductControl extends HttpServlet {
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
+	//				bean.setPhoto(photo);
+	//				bean.setStats(stats);
 					productDao.doSave(bean);
 				}
 			}			
