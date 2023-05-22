@@ -40,17 +40,15 @@ section{
 }
 
 header{
-	top: 0;
+	top:0;
 	left: 0;
 	z-index: 10;
-	width: 100%;
+	padding: 5px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	color: #fff;
-	padding: 15px 20px 0px; 
-	background-color: grey;
-	opacity: 0.5;
+	color: #000;
+	background-color: lightsteelblue;
 }
 
 header a{
@@ -60,6 +58,12 @@ header a{
 
 header h2{
 	text-transform: uppercase;
+}
+
+header nav{
+	background-color: #000;
+	opacity: 0.5;
+	border-radius: 10px;
 }
 
 nav li{
@@ -162,7 +166,7 @@ header img{
 }
 
 footer{
-	background-color: #000;
+	background-color: black;
 	bottom: 0;
 	z-index: 10;
 	width: 100%;
