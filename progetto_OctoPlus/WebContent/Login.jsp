@@ -4,7 +4,67 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login form</title>
+<title>OctoPlus Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        width: 300px;
+        margin: 150px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #555;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+</style>
+
 </head>
 <body>
 <% 
@@ -16,9 +76,15 @@ if (errors != null){
 	}
 }
 %>
+
 <form action="Login" method="post"> 
 <fieldset>
-     <legend>Login Custom</legend>
+
+
+
+
+	
+     <legend>OctoLogin</legend>
      <label for="username">Email</label>
      <input id="username" type="text" name="username" placeholder="enter email">
      <br>   
