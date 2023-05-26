@@ -5,65 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OctoPlus Login</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    form {
-        width: 300px;
-        margin: 150px auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-        display: block;
-        margin-bottom: 10px;
-        color: #333;
-        font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-top: 20px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #555;
-    }
-
-    p {
-        margin-top: 10px;
-    }
-</style>
+<link rel="stylesheet" href="login-style.css">
 
 </head>
 <body>
@@ -77,23 +19,24 @@ if (errors != null){
 }
 %>
 
-<form action="Login" method="post"> 
-<fieldset>
+<div	class="center">
+ <h1>OctoLogin</h1>
+ <form method="post">
+ 	<div class="txt_field"> 
+ 		<input type= "text" required>
+ 		<label>Email</label>
+</div>
+<div class="txt_field"> 
+ 		<input type= "text" required>
+ 		<label>Password</label>
+</div>
+<div class="pass" >Forgot Password?</div>
+<input type= "submit" value="Login" >
+<div class=".singup_link">
+Not a member? <a href="#"> Singup </a>
+</div>
 
-
-
-
-	
-     <legend>OctoLogin</legend>
-     <label for="username">Email</label>
-     <input id="username" type="text" name="username" placeholder="enter email">
-     <br>   
-     <label for="password">Password</label>
-     <input id="password" type="password" name="password" placeholder="enter password">
-     <br>
-     <input type="submit" value="Login"/>
-     <input type="reset" value="Reset"/>
-</fieldset>
 </form> 
+</div>
 </body>
 </html>
