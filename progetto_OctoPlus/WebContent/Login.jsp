@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login form</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <% 
 List<String> errors = (List<String>) request.getAttribute("errors");
 if (errors != null){
@@ -17,6 +17,7 @@ if (errors != null){
 	}
 }
 %>
+
 <header>
 		<img src="img/octopus.png" class="logo">
 		<nav>
@@ -39,7 +40,7 @@ if (errors != null){
      <input type="submit" value="Login"/>
      <input type="reset" value="Reset"/>
 </fieldset>
-</form> 
+
 <footer>
   		<div class="contact-info">
     	<h4>Contatti</h4>
@@ -81,6 +82,5 @@ if (errors != null){
     	</ul>
   	</div>
 	</footer>
-	
 </body>
 </html>
