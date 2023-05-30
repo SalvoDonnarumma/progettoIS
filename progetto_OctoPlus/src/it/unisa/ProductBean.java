@@ -12,8 +12,7 @@ public class ProductBean implements Serializable {
 	String description;
 	String categoria;
 	Double price;
-	InputStream photo;
-	InputStream stats;
+	String stats;
 	//discutere questione taglie
 	int quantity;
 
@@ -23,7 +22,7 @@ public class ProductBean implements Serializable {
 		description = "";
 		quantity = 0;
 	}
-
+	
 	
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
@@ -79,23 +78,13 @@ public class ProductBean implements Serializable {
 	}
 
 
-	public InputStream getPhoto() {
-		return photo;
-	}
-
-
-	public void setPhoto(InputStream photo) {
-		this.photo = photo;
-	}
-
-
-	public InputStream getStats() {
+	public String getStats() {
 		return stats;
 	}
 
 
-	public void setStats(InputStream stats) {
-		this.stats = stats;
+	public void setStats(String stats2) {
+		this.stats = stats2;
 	}
 
 }

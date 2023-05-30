@@ -32,10 +32,12 @@ public class DaoDriverMan implements IProductDao {
 		try {
 			connection = dmcp.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(2, product.getCategoria());
 			preparedStatement.setString(1, product.getNome());
 			preparedStatement.setString(2, product.getDescrizione());
 			preparedStatement.setDouble(3, product.getPrice());
 			preparedStatement.setInt(4, product.getQuantity());
+			preparedStatement.setString(2, product.getStats());
 
 			preparedStatement.executeUpdate();
 
@@ -98,10 +100,12 @@ public class DaoDriverMan implements IProductDao {
 
 			while (rs.next()) {
 				bean.setCode(rs.getInt("idProdotto"));
-				bean.setNome(rs.getString("nome"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setNome(rs.getString("NOME"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrice(rs.getDouble("PRICE"));
 				bean.setQuantity(rs.getInt("QUANTITY"));
+				bean.setStats(rs.getString("STATS"));
 			}
 
 		} finally {
@@ -165,10 +169,12 @@ public class DaoDriverMan implements IProductDao {
 				ProductBean bean = new ProductBean();
 
 				bean.setCode(rs.getInt("idProdotto"));
-				bean.setNome(rs.getString("nome"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setNome(rs.getString("NOME"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrice(rs.getDouble("PRICE"));
 				bean.setQuantity(rs.getInt("QUANTITY"));
+				bean.setStats(rs.getString("STATS"));
 				products.add(bean);
 			}
 

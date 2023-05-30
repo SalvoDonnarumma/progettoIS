@@ -8,9 +8,10 @@ import java.util.List;
 
 public class DriverManagerConnectionPool  {
 
-	private List<Connection> freeDbConnections;
+	private static List<Connection> freeDbConnections;
 
-	static {	
+	static {
+		freeDbConnections = new LinkedList<Connection>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -22,7 +23,7 @@ public class DriverManagerConnectionPool  {
 		freeDbConnections = new LinkedList<Connection>();
 	}
 	
-	private synchronized Connection createDBConnection() throws SQLException {
+	private static synchronized Connection createDBConnection() throws SQLException {
 		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
@@ -35,7 +36,7 @@ public class DriverManagerConnectionPool  {
 	}
 
 
-	public synchronized Connection getConnection() throws SQLException {
+	public static synchronized Connection getConnection() throws SQLException {
 		Connection connection;
 
 		if (!freeDbConnections.isEmpty()) {
@@ -56,7 +57,7 @@ public class DriverManagerConnectionPool  {
 		return connection;
 	}
 
-	public synchronized void releaseConnection(Connection connection) throws SQLException {
+	public static synchronized void releaseConnection(Connection connection) throws SQLException {
 		if(connection != null) freeDbConnections.add(connection);
 	}
 }

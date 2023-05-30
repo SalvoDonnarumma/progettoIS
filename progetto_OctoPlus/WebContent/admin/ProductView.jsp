@@ -18,11 +18,23 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+	
 	<title>Storage DS/BF</title>
+	<link rel="stylesheet" href="Productstyle.css">
 </head>
 
 <body>
+	<header>
+		<img src="img/octopus.png" class="logo">
+		<nav>
+		<ul>
+			<li> <a href="#"> HOME  </a> </li>
+			<li> <a href="Login.jsp"> LOGIN </a> </li>
+			<li> <a href="#"> CONTACT US </a> </li>
+		</ul>
+		</nav>
+	</header>
+
 	<h2>Products</h2>
 	<a href="product">List</a>
 	<table border="1">
@@ -48,8 +60,8 @@
 			<td><%=bean.getNome()%></td>
 			<td><%=bean.getPrice()%></td>
 			<td><%=bean.getDescrizione()%></td>
-			<td><%=bean.getNome()%></td>
-			<td><%=bean.getNome()%></td>
+			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="width:100px;height:100px"> </td>
+			<td><%=bean.getStats()%></td>
 			<td><a href="product?driver=drivermanager&action=delete&id=<%=bean.getCode()%>">Delete</a><br>
 				<a href="product?driver=drivermanager&action=read&id=<%=bean.getCode()%>">Details</a><br>
 				</td>
@@ -94,29 +106,53 @@
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Name:</label><br> 
-		<input name="nome" type="text" maxlength="20" required placeholder="enter name"><br> 
+		<input name="nome" type="text" maxlength="25" required placeholder="enter name"><br> 
 		
 		<label for="categoria">Categoria:</label><br> 
 		<input name="categoria" type="text" maxlength="20" required placeholder="enter categoria"><br> 
 		
 		<label for="description">Description:</label><br>
-		<textarea name="descrizione" maxlength="100" rows="3" required placeholder="enter description"></textarea><br>
+		<textarea name="descrizione" maxlength="500" rows="10" required placeholder="enter description"></textarea><br>
 		
 		<label for="price">Price:</label><br> 
-		<input name="price" type="number" min="0" value="0" required><br>
+		<input name="price" type="number" min="0" value="0" step="any" required><br>
 
 		<label for="quantity">Quantity:</label><br> 
 		<input name="quantity" type="number" min="1" value="1" required><br>
-		
-		<label for="Photo">Foto prodotto:</label><br> 
-		<input class="file" type="file" name="Photo" value="" maxlength="255"><br>	
 
-		<label for="Stats">Foto statistiche:</label><br> 
-		<input class="file" type="file" name="Stats" value="" maxlength="255">
+		<label for="Stats">Statistiche: </label><br>
+		<textarea name="stats" maxlength="500" rows="10" required placeholder="enter description"></textarea><br>
+		
 		<br>
 		<center><input type="submit" value="Add"><input type="reset" value="Reset"></center>
 	</form>
-	
+<br>
+<hr>
+<br>
+<h3>Upload photo:</h3>
+<form action="UpdatePhoto" enctype="multipart/form-data" method="post">
+	Name-surname:
+	<select name="id">
+<%
+	if(products != null && products.size() > 0) {
+		Iterator<?> it = products.iterator(); 
+		while(it.hasNext()) {
+			ProductBean item = (ProductBean)it.next();
+%>	
+		<option value="<%=item.getCode()%>"> cod: <%=item.getCode()%> nome: <%=item.getNome()%></option>
+<%
+		}
+	}	
+%>		
+	</select>
+	<br>
+	<input class="file" type="file" name="talkPhoto" value="" maxlength="255">	
+	<br>		
+	<input type="submit" value="Upload"><input type="reset">
+</form>
+<br>
+<hr>
+<br>
 	<h2>Insert Amministratore</h2>
 	<form action="AdminControl" method="post">
 		<input type="hidden" name="action" value="insert"> 
@@ -153,5 +189,7 @@
 		<%} %>
 	</table>		
 	<% } %>	
+<br>
+<hr>
 </body>
 </html>

@@ -58,8 +58,7 @@ public class ProductControl extends HttpServlet {
 					String nome = request.getParameter("nome");
 					String descrizione = request.getParameter("descrizione");
 					Double price = Double.parseDouble(request.getParameter("price"));
-					
-					String photo = request.getParameter("photo");	
+						
 					String stats = request.getParameter("stats");
 					
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -71,7 +70,7 @@ public class ProductControl extends HttpServlet {
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
 	//				bean.setPhoto(photo);
-	//				bean.setStats(stats);
+					bean.setStats(stats);
 					productDao.doSave(bean);
 				}
 			}			
