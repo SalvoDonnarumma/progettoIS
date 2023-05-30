@@ -7,8 +7,7 @@
 <title>OctoPlus Login</title>
 <link rel="stylesheet" href="login-style.css">
 
-</head>
-<body>
+	
 <% 
 List<String> errors = (List<String>) request.getAttribute("errors");
 if (errors != null){
