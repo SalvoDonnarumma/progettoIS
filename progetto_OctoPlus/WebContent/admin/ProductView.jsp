@@ -17,26 +17,140 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.unisa.ProductBean, it.unisa.Cart"%>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
-	<title>Storage DS/BF</title>
-	<link rel="stylesheet" href="Productstyle.css">
+	<style>
+	a:link {
+		color: blue;
+		font-weight: bold;
+	}
+
+/* visited link */
+	a:visited {
+		color: blue;
+		font-weight: bold;
+	}
+
+/* mouse over link */
+	a:hover {
+		color: red;
+		font-weight: bold;
+	}
+
+	a:active {
+		color: blue;
+		font-weight: bold;
+	}
+	
+	body{
+		background: 
+			linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
+            linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
+            linear-gradient(336deg, rgba(2, 27, 70, .8), rgba(2, 27, 70, 0) 70.71%);
+	}
+	
+	table {
+		width: 100%;
+	}
+
+	table, th, td {
+		text-align: center;
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+
+	th, td {
+		padding: 5px;
+	}
+
+	label {
+		font-weight: bold;
+	}
+
+	form input[type=text], form input[type=number], form input[type=password],
+	form input[type=date], form input[type=range], form input[type=email],
+	form input[type=url], form input[type=time], form input[list] {
+		width: 500px;
+		font-size: 1em;
+	}
+
+	textarea {
+		width: 500px;
+		height: 60px;
+		font-size: 1em;
+	}
+	
+	input[type="submit"]{
+		  width: 15%;
+		  height: 25%;
+		  border: 1px solid;
+		  background: #2691d9;
+		  border-radius: 10px;
+		  font-size: 18px;
+		  color: #e9f4fb;
+		  font-weight: 700;
+		  cursor: pointer;
+		  outline: none;
+		  position: relative;
+		}
+	input[type="submit"]:hover{
+		  border-color: #2691d9;
+		  transition: .5s;
+		  color: white;
+		  background-color: #51b0f0; 
+		}
+		
+	input[type="reset"]{
+		  width: 15%;
+		  height: 25%;
+		  border: 1px solid;
+		  background: #2691d9;
+		  border-radius: 10px;
+		  font-size: 18px;
+		  color: #e9f4fb;
+		  font-weight: 700;
+		  cursor: pointer;
+		  outline: none;
+		  position:relative;
+		}
+	input[type="reset"]:hover{
+		  border-color: #2691d9;
+		  transition: .5s;
+		  text-align: center;
+		  color: white;
+		  background-color: #51b0f0; 
+		}	
+		
+	.InsertProdotto{
+		width: 50%;
+  		border: 1px solid black;
+  		padding: 20px;
+  		margin-left: auto;
+ 		margin-right: auto;
+	}	
+	
+	.UploadPhoto{
+		width: 50%;
+  		border: 1px solid black;
+  		padding: 20px;
+  		margin-left: auto;
+ 		margin-right: auto;
+	}
+	
+	.InsertAmministratore{
+		width: 50%;
+  		border: 1px solid black;
+  		padding: 20px;
+  		margin-left: auto;
+ 		margin-right: auto;
+	}
+}
+	</style>
 </head>
 
 <body>
-	<header>
-		<img src="img/octopus.png" class="logo">
-		<nav>
-		<ul>
-			<li> <a href="#"> HOME  </a> </li>
-			<li> <a href="Login.jsp"> LOGIN </a> </li>
-			<li> <a href="#"> CONTACT US </a> </li>
-		</ul>
-		</nav>
-	</header>
+	<jsp:include page="../header.jsp" flush="true"/>
 
 	<h2>Products</h2>
-	<a href="product">List</a>
 	<table border="1">
 		<tr>
 			<th>IdProdotto <a href="product?sort=idProdotto">Sort</a></th>
@@ -102,6 +216,7 @@
 		}
 	%>
 	<h2>Insert Prodotto</h2>
+	<div class="InsertProdotto">
 	<form action="product" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
@@ -124,12 +239,14 @@
 		<textarea name="stats" maxlength="500" rows="10" required placeholder="enter description"></textarea><br>
 		
 		<br>
-		<center><input type="submit" value="Add"><input type="reset" value="Reset"></center>
+		<input class="submit" type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
+	</div>
 <br>
 <hr>
 <br>
 <h3>Upload photo:</h3>
+	<div class="UploadPhoto">
 <form action="UpdatePhoto" enctype="multipart/form-data" method="post">
 	Name-surname:
 	<select name="id">
@@ -148,11 +265,13 @@
 	<br>
 	<input class="file" type="file" name="talkPhoto" value="" maxlength="255">	
 	<br>		
-	<input type="submit" value="Upload"><input type="reset">
+	<input type="submit" class="submit" value="Upload"><input type="reset">
 </form>
+	</div>
 <br>
 <hr>
 <br>
+	<div class="InsertAmministratore">
 	<h2>Insert Amministratore</h2>
 	<form action="AdminControl" method="post">
 		<input type="hidden" name="action" value="insert"> 
@@ -169,7 +288,7 @@
 		<label for="cognome">Cognome:</label>
 		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
 
-		<center> <input type="submit" value="Add"><input type="reset" value="Reset"> </center>
+		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
 	
 	<% if(cart != null) { %>
@@ -189,6 +308,7 @@
 		<%} %>
 	</table>		
 	<% } %>	
+	</div>
 <br>
 <hr>
 </body>
