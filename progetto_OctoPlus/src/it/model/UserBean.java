@@ -1,4 +1,4 @@
-package it.unisa;
+package it.model;
 
 import java.io.Serializable;
 
@@ -6,6 +6,7 @@ public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	Integer id;
 	String email;
 	String password;
 	String nome;
@@ -13,8 +14,10 @@ public class UserBean implements Serializable {
 	String indirizzo;
 	String cap;
 	String metodo_pagamento;
+	Boolean admin;
 
 	public UserBean() {
+		id=0;
 		email="";
 		password="";
 		nome="";
@@ -22,6 +25,7 @@ public class UserBean implements Serializable {
 		indirizzo="";
 		cap="";
 		metodo_pagamento="";
+		admin=false;
 	}
 
 	public String getEmail() {
@@ -80,4 +84,26 @@ public class UserBean implements Serializable {
 		this.metodo_pagamento = metodo_pagamento;
 	}
 	
+	public void setAdmin(Boolean val) {
+		this.admin=val;
+	}
+	
+	public Boolean getAdmin() {
+		return this.admin;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "UserBean [id=" + id + ", email=" + email + ", password=" + password + ", nome=" + nome + ", cognome="
+				+ cognome + ", indirizzo=" + indirizzo + ", cap=" + cap + ", metodo_pagamento=" + metodo_pagamento
+				+ ", admin=" + admin + "]";
+	}
 }

@@ -1,7 +1,8 @@
 package it.unisa;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import javax.sql.DataSource;
+import it.model.ProductBean;
+import it.model.UserBean;
 
 public class DaoDataSource implements IProductDao {
 	
@@ -57,15 +60,16 @@ public class DaoDataSource implements IProductDao {
 	}
 	
 	@Override
-	public synchronized void doSaveAdmin(AdminBean admin) throws SQLException {
+	public synchronized void doSaveAdmin(UserBean admin) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String table_name = "amministratore";
+		String table_name = "utente";
 		
 		String insertSQL = "INSERT INTO " + table_name
-				+ " (email, password, cognome) VALUES (?, ?, ?)";
-
+				+ " (email, password, cognome, admin) VALUES (?, ?, ?, true)";
+		
+		admin.setPassword(toHash(admin.getPassword())); //occorre memorizzare direttamente l'hash della pass nel db
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
@@ -197,6 +201,66 @@ public class DaoDataSource implements IProductDao {
 		return products;
 	}
 
+	public synchronized UserBean loginUserOrAdmin(String email, String password) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String selectSQLUser = "SELECT * FROM utente";
+		String selectSQLAdmin = "SELECT * FROM amministratore";
+
+		String hashPassword = toHash(password);
+		String emailToBeMatch = null;
+		String hashPasswordToBeMatch = null;
+		
+		UserBean user = new UserBean();
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQLUser);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				emailToBeMatch = rs.getString("email"); //prelevo tutte le email dal db
+				hashPasswordToBeMatch = rs.getString("password"); //prelevo tutte le password dal db
+				
+				
+				if(emailToBeMatch.equals(email) && hashPasswordToBeMatch.equals(hashPassword)) {
+					System.out.println(" ***** "+hashPasswordToBeMatch+"--"+hashPassword+"\n");
+					boolean admin = rs.getBoolean("admin"); 
+					if(admin) {
+						user.setId(rs.getInt("idutente"));
+						user.setEmail(rs.getString("email"));
+						user.setPassword(rs.getString("password"));
+						user.setCognome(rs.getString("cognome"));
+						user.setAdmin(rs.getBoolean("admin"));
+					} else {
+						user.setId(rs.getInt("idutente"));
+						user.setEmail(rs.getString("email"));
+						user.setPassword(rs.getString("password"));
+						user.setCognome(rs.getString("cognome"));
+						user.setNome(rs.getString("nome"));
+						user.setIndirizzo(rs.getString("indirizzo"));
+						user.setCap(rs.getString("cap"));
+						user.setAdmin(rs.getBoolean("admin"));
+					}
+					System.out.println(user);
+					return user;
+				}
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		return null;
+	}
+
 	public synchronized static void updatePhoto(String idA, InputStream photo) 
 			throws SQLException {
 		Connection con = null;
@@ -261,6 +325,23 @@ public class DaoDataSource implements IProductDao {
 		}
 		return bt;
 	}
+	
+	private String toHash(String password) {
+        String hashString = null;
+        try {
+            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            hashString = "";
+            for (int i = 0; i < hash.length; i++) {
+                hashString += Integer.toHexString( 
+                                  (hash[i] & 0xFF) | 0x100 
+                              ).toLowerCase().substring(1,3);
+            }
+        } catch (java.security.NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+        return hashString;
+    }
 	
 	@Override
 	public boolean doDeleteAdmin(int code) throws SQLException {

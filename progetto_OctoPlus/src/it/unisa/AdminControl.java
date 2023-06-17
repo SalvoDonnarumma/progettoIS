@@ -1,6 +1,6 @@
 package it.unisa;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import it.model.UserBean;
 
 /**
  * Servlet implementation class AdminControl
@@ -51,8 +53,8 @@ public class AdminControl extends HttpServlet {
 					String email = request.getParameter("email");
 					String password = request.getParameter("password");
 					String cognome = request.getParameter("cognome");
-
-					AdminBean bean = new AdminBean();
+					
+					UserBean bean = new UserBean();
 					bean.setEmail(email);
 					bean.setPassword(password);
 					bean.setCognome(cognome);

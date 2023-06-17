@@ -1,6 +1,6 @@
+<%@page import="it.model.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
 	if(products == null) {
@@ -14,7 +14,7 @@
 
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.unisa.ProductBean, it.unisa.Cart"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean, it.unisa.Cart"%>
 
 <head>
 	
@@ -142,6 +142,7 @@
   		padding: 20px;
   		margin-left: auto;
  		margin-right: auto;
+ 		padding: auto;
 	}
 }
 	</style>
@@ -192,7 +193,6 @@
 		%>
 	</table>
 	
-	<h2>Details</h2>
 	<%
 		if (product != null) {
 	%>
@@ -245,10 +245,10 @@
 <br>
 <hr>
 <br>
-<h3>Upload photo:</h3>
+<h2>Upload photo:</h2>
 	<div class="UploadPhoto">
 <form action="UpdatePhoto" enctype="multipart/form-data" method="post">
-	Name-surname:
+	Nome file caricato:
 	<select name="id">
 <%
 	if(products != null && products.size() > 0) {
@@ -265,14 +265,15 @@
 	<br>
 	<input class="file" type="file" name="talkPhoto" value="" maxlength="255">	
 	<br>		
-	<input type="submit" class="submit" value="Upload"><input type="reset">
+	<input type="submit" class="submit" value="Upload">      <input type="reset">
+	<br>
 </form>
 	</div>
 <br>
 <hr>
 <br>
+<h2>Insert Amministratore</h2>
 	<div class="InsertAmministratore">
-	<h2>Insert Amministratore</h2>
 	<form action="AdminControl" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
@@ -282,10 +283,7 @@
 		<label for="password">Password:</label><br> 
 		<input name="password" type="password" maxlength="25" required placeholder="enter a password"><br> 
 		
-		<label for="Foto">Foto profilo:</label><br> 
-		<input class="file" type="file" name="adminPhoto" value="" maxlength="255">
-		<br>
-		<label for="cognome">Cognome:</label>
+		<label for="cognome">Cognome:</label><br>
 		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
 
 		<input type="submit" value="Add"><input type="reset" value="Reset">

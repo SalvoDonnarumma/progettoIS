@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
+import it.model.ProductBean;
+
 
 /**
  * Servlet implementation class ProductControl

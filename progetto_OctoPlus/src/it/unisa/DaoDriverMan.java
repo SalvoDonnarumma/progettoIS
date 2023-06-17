@@ -1,11 +1,14 @@
 package it.unisa;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+
+import it.model.ProductBean;
+import it.model.UserBean;
 
 
 public class DaoDriverMan implements IProductDao {
@@ -53,7 +56,7 @@ public class DaoDriverMan implements IProductDao {
 	}
 
 	@Override
-	public synchronized void doSaveAdmin(AdminBean admin) throws SQLException {
+	public synchronized void doSaveAdmin(UserBean admin) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -194,5 +197,12 @@ public class DaoDriverMan implements IProductDao {
 	public boolean doDeleteAdmin(int code) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public UserBean loginUserOrAdmin(String email, String password) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }	
