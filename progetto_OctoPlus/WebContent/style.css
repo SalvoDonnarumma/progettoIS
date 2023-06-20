@@ -43,12 +43,61 @@ header{
 	top:0;
 	left: 0;
 	z-index: 10;
-	padding:  5px;
+	padding:  25px 8%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	color: #000;
 	background-color: #408080;
+	box-shadow: 0px 2px 18px 0 rgb(129 162 182 / 20%);
+	transition: .3s;
+}
+
+.logo{
+	color: #121212;
+	font-size: 2.2rem;
+	font-weight: 600;
+	line-height: 0.8;
+}
+
+#menu-icon{
+	font-size: 38px;
+	color: #121212;
+	z-index: 10001;
+	display: none;
+}
+
+.navbar{
+	display: flex;
+}
+
+.navbar a{
+	font-size: 1.1rem;
+	color: #121212;
+	font-weight: 600;
+	padding: 10px 15px;
+	margin: 0 10px;
+	transition: all .40s ease;
+}
+
+.navbar a:hover{
+	background: #121212;
+	color: #fff;
+}
+
+.icons{
+	display: inline-black;
+	margin: 2px;
+}
+
+.icons i{
+	color: #121212;
+	font-size: 24px;
+	margin-left: 15px;
+}
+
+.icons i:hover{
+	opacity: 0.7;
 }
 
 header a{

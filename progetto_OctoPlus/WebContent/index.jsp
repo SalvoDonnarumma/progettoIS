@@ -15,7 +15,7 @@
 		<h1> OctoPlus </h1>
 		<h4> Cerca gli articoli di cui hai bisogno </h4>
 		<br>
-		<a href="#" class="boxBtn"> Entra nello store </a>
+		<a href="store.jsp" class="boxBtn"> Entra nello store </a>
 	</section>
 	
 	<jsp:include page="footer.jsp" flush="true"/>	
