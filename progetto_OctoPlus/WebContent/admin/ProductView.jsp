@@ -3,12 +3,14 @@
 	pageEncoding="UTF-8"%>
 <%
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
+	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(products == null) {
-		response.sendRedirect("../product");	
+		response.sendRedirect("../product?fromStore=false");	
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
-	
+	UserBean user = (UserBean) request.getSession().getAttribute("logged");
+	System.out.println("ti sei loggato con le credenziali di: "+user.toString());
 	Cart cart = (Cart) request.getAttribute("cart");
 %>
 

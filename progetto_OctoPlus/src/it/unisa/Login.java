@@ -37,10 +37,10 @@ public class Login extends HttpServlet {
 				productDao = new DaoDataSource(ds);
 			}
 		
-			String username = request.getParameter("username");
+			String username = request.getParameter("email");
 			String password = request.getParameter("password");
 			List<String> errors = new ArrayList<>();
-        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("Login.jsp");
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("login.jsp");
 
 			
 			if(username == null || username.trim().isEmpty()) {
@@ -63,7 +63,6 @@ public class Login extends HttpServlet {
 			
 			*/
 			
-			
 			UserBean match=null;
 			try {
 				match=productDao.loginUserOrAdmin(username, password);
@@ -82,7 +81,7 @@ public class Login extends HttpServlet {
 			} else if( !match.getAdmin() && match!=null ) { //sono state usate credenziali di un utente
 				request.getSession().setAttribute("isAdmin", Boolean.FALSE); //inserisco il token nella sessione
 				request.getSession().setAttribute("logged", match);
-				response.sendRedirect("common/protected.jsp");
+				response.sendRedirect("store.jsp");
 			}
 			/*
 		
@@ -100,23 +99,6 @@ public class Login extends HttpServlet {
 			*/
 			
 	}
-	
-	private String toHash(String password) {
-        String hashString = null;
-        try {
-            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
-            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            hashString = "";
-            for (int i = 0; i < hash.length; i++) {
-                hashString += Integer.toHexString( 
-                                  (hash[i] & 0xFF) | 0x100 
-                              ).toLowerCase().substring(1,3);
-            }
-        } catch (java.security.NoSuchAlgorithmException e) {
-            System.out.println(e);
-        }
-        return hashString;
-    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

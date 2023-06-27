@@ -2,6 +2,7 @@ package it.unisa;
 
 import java.io.IOException; 
 import java.sql.SQLException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,6 +52,7 @@ public class ProductControl extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
 					request.setAttribute("product", productDao.doRetrieveByKey(id));
+					
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					productDao.doDelete(id);
@@ -71,7 +73,6 @@ public class ProductControl extends HttpServlet {
 					bean.setPrice(price);
 					bean.setQuantity(quantity);
 					bean.setCategoria(categoria);
-	//				bean.setPhoto(photo);
 					bean.setStats(stats);
 					productDao.doSave(bean);
 				}
@@ -88,11 +89,22 @@ public class ProductControl extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
+		
+		String fromStore = request.getParameter("fromStore");
+		System.out.println(fromStore);
+		
+		RequestDispatcher dispatcher = null;
+		
+		if(  fromStore.equalsIgnoreCase("get")) {
+			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
+		}	
+		else if ( Boolean.parseBoolean(fromStore) )    
+				dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
+         	else
+         		dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+	 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
