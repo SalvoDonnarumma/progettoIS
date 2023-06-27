@@ -90,6 +90,39 @@ public class DaoDataSource implements IProductDao {
 			}
 		}
 	}
+	
+	@Override
+	public synchronized void doSaveUser(UserBean user) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		String table_name = "utente";
+		
+		String insertSQL = "INSERT INTO " + table_name
+				+ " (email, password, nome, cognome, admin) VALUES (?, ?, ?, ?, false)";
+		
+		user.setPassword(toHash(user.getPassword()));
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, user.getEmail());
+			preparedStatement.setString(2, user.getPassword());
+			preparedStatement.setString(3, user.getNome());
+			preparedStatement.setString(4, user.getCognome());
+		
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}
 
 	@Override
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {

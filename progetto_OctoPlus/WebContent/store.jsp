@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+	Collection<?> products = (Collection<?>) request.getAttribute("products");
+	UserBean user = (UserBean) request.getSession().getAttribute("logged");
+	if( user != null )
+		System.out.println("Ti sei loggato come: "+user);
+	else
+		System.out.println("Ti sei loggato come utente ospite");
+	
+	if(products == null) {
+		response.sendRedirect("./product?fromStore=true");
+		return;
+	}
+	ProductBean product = (ProductBean) request.getAttribute("product");
+	
+	Cart cart = (Cart) request.getAttribute("cart");
+%>     
 <!DOCTYPE html>
 <html>
+<%@ page import="java.util.*,it.model.ProductBean,it.model.UserBean, it.unisa.Cart"%>
 <head>
 <meta charset="ISO-8859-1">
 	<title>OCTOPLUS</title>
@@ -15,95 +32,30 @@
  	
  	
  	<!-- shop start -->
- 	
- <!-- 	<section class="shop" id="shop">
-  <div class="container">
-    <% for (int i = 1; i <= 7; i++) { %>
-    <div class="box1">
-      <img src="img/nophoto.png">
-      <h4>I'm a product</h4>
-      <h5>$15.50</h5>
-      <div class="cart">
-        <a href="#"><i class='bx bx-cart-add'></i></a>
-      </div>
-    </div>
-    <% } %>
-  </div>
--->
- 	
- 	
  	<section class="shop" id="shop">
- 		<div class="container">
+ 		<div class="container"> 		
+ 			<%
+			if (products != null && products.size() != 0) {
+				Iterator<?> it = products.iterator();
+				while (it.hasNext()) {
+					ProductBean bean = (ProductBean) it.next();
+		%>
  			<div class="box1">
- 			<a href="#">    <!-- si collegherÃ  alla pagina di visualizzazione dettagliata -->
- 				<img src="img/nophoto.png">
+ 			<a href="#">    <!-- si collegherà alla pagina di visualizzazione dettagliata -->
+ 				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
  					</a>
- 				<h4>Product 1</h4>
- 				<h5>$15.50</h5>
+ 				<h4><%=bean.getNome()%></h4>
+ 				<h5><%=bean.getPrice()%></h5>
  				<div class="cart">
  					<a href="#"><i class='bx bx-cart-add'></i></a>
  				</div>
- 			
- 			</div>
- 		
- 			<div class="box1">
- 				<a href="#">
- 				<img src="img/nophoto.png">
- 					</a>
- 				<h4>Product 2</h4>
- 				<h5>$19.99</h5>
- 				<div class="cart">
- 					<a href="#"><i class='bx bx-cart-add'></i></a>
- 				</div>
- 			</div>
- 			
- 			<div class="box1">
- 				<a href="#">
- 				<img src="img/nophoto.png">
- 					</a>
- 				<h4>Product 3</h4>
- 				<h5>$12.99</h5>
- 				<div class="cart">
- 					<a href="#"><i class='bx bx-cart-add'></i></a>
- 				</div>
- 			</div>
- 			
- 			<div class="box1">
- 				<img src="img/nophoto.png">
- 				<h4>Product 4</h4>
- 				<h5>$24.99</h5>
- 				<div class="cart">
- 					<a href="#"><i class='bx bx-cart-add'></i></a>
- 				</div>
- 			</div>
- 			
- 			<div class="box1">
- 				<img src="img/nophoto.png">
- 				<h4>Product 5</h4>
- 				<h5>$9.99</h5>
- 				<div class="cart">
- 					<a href="#"><i class='bx bx-cart-add'></i></a>
- 				</div>
- 			</div>
- 			
- 			<div class="box1">
- 				<img src="img/nophoto.png">
- 				<h4>Product 6</h4>
- 				<h5>$17.99</h5>
- 				<div class="cart">
- 					<a href="#"><i class='bx bx-cart-add'></i></a>
- 				</div>
- 			</div>
- 			
- 			<div class="box1">
- 				<img src="img/nophoto.png">
- 				<h4>Product 7</h4>
- 				<h5>$14.99</h5>
- 				<div class="cart">
- 					<a href="#"><i class='bx bx-cart-add'></i></a>
- 				</div>
- 			</div>
- 		  </div>		
+ 			</div>	
+ 		<%
+				}
+			} 
+ 		%>
+
+ 		</div>		
 
 	</section>
 	

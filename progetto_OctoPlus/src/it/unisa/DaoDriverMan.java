@@ -205,4 +205,11 @@ public class DaoDriverMan implements IProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public void doSaveUser(UserBean user) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }	
