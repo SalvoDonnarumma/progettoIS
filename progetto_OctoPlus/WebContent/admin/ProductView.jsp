@@ -274,23 +274,6 @@
 <br>
 <hr>
 <br>
-<h2>Insert Amministratore</h2>
-	<div class="InsertAmministratore">
-	<form action="AdminControl" method="post">
-		<input type="hidden" name="action" value="insert"> 
-		
-		<label for="name">Email:</label><br> 
-		<input name="email" type="email" maxlength="40" required placeholder="enter email"><br> 
-		
-		<label for="password">Password:</label><br> 
-		<input name="password" type="password" maxlength="25" required placeholder="enter a password"><br> 
-		
-		<label for="cognome">Cognome:</label><br>
-		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
-
-		<input type="submit" value="Add"><input type="reset" value="Reset">
-	</form>
-	
 	<% if(cart != null) { %>
 		<h2>Cart</h2>
 		<table border="1">
@@ -308,8 +291,15 @@
 		<%} %>
 	</table>		
 	<% } %>	
-	</div>
+
+	<br>
+	<br>
+	Vuoi vedere la pagina della visualizzazione utenti?
+	<a href="admin/UserView.jsp"> Clicca qui! </a>
+	<br>
+	<br>
+	Vuoi vedere la pagina della visualizzazione ordini?
+	<a href="#"> Clicca qui! </a>
 <br>
-<hr>
 </body>
 </html>

@@ -17,11 +17,13 @@ public interface IProductDao {
 
 	void doSaveAdmin(UserBean admin) throws SQLException;
 	
-	void doSaveUser(UserBean user) throws SQLException;
+	String doSaveUser(UserBean user) throws SQLException;
 	
 	public boolean doDeleteAdmin(int code) throws SQLException;
 	
 	public UserBean loginUserOrAdmin(String email, String password) throws SQLException;
+
+	Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException;
 }
 
 

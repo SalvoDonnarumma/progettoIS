@@ -92,7 +92,7 @@ public class DaoDataSource implements IProductDao {
 	}
 	
 	@Override
-	public synchronized void doSaveUser(UserBean user) throws SQLException {
+	public synchronized String doSaveUser(UserBean user) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -122,6 +122,8 @@ public class DaoDataSource implements IProductDao {
 					connection.close();
 			}
 		}
+		
+		return user.getEmail();
 	}
 
 	@Override
@@ -234,6 +236,52 @@ public class DaoDataSource implements IProductDao {
 		return products;
 	}
 
+	
+	@Override
+	public synchronized Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<UserBean> users = new LinkedList<UserBean>();
+
+		String selectSQL = "SELECT * FROM utente" ;
+
+		if (order != null && !order.equals("")) {
+			selectSQL += " ORDER BY " + order;
+		}
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				UserBean bean = new UserBean();
+
+				bean.setId(rs.getInt("idutente"));
+				bean.setEmail(rs.getString("email"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setPassword(rs.getString("password"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
+				bean.setMetodo_pagamento(rs.getString("metodo_pagamento"));
+				bean.setAdmin(rs.getBoolean("admin"));
+				users.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return users;
+	}
+	
 	public synchronized UserBean loginUserOrAdmin(String email, String password) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

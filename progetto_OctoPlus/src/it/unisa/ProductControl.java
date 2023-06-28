@@ -38,7 +38,7 @@ public class ProductControl extends HttpServlet {
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
 					.getAttribute("DriverManager");
-			productDao = new DaoDriverMan(dm);			
+		//	productDao = new DaoDriverMan(dm);			
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			productDao = new DaoDataSource(ds);

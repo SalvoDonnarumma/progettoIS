@@ -17,7 +17,7 @@ import it.model.UserBean;
  * Servlet implementation class AdminControl
  */
 @WebServlet("/AdminControl")
-public class AdminControl extends HttpServlet {
+public class UserControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class AdminControl extends HttpServlet {
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
 					.getAttribute("DriverManager");
-			adminDao = new DaoDriverMan(dm);			
+		//	adminDao = new DaoDriverMan(dm);			
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			adminDao = new DaoDataSource(ds);
@@ -66,15 +66,15 @@ public class AdminControl extends HttpServlet {
 		}
 		
 		String sort = request.getParameter("sort");
-
+		
 		try {
-			request.removeAttribute("products");
-			request.setAttribute("products", adminDao.doRetrieveAll(sort));
+			request.removeAttribute("users");
+			request.setAttribute("users", adminDao.doRetrieveAllUsers(sort));
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/UserView.jsp");
 		dispatcher.forward(request, response);
 	}
 
