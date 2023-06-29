@@ -20,7 +20,7 @@
 		</ul>
 		<div class="icons">
 			<a href="login.jsp"><i class='bx bxs-user'></i></a>
-		<!--<a href="#"><i class='bx bxs-basket'></i></a>  commento perché non ho capito che cazzo è-->
+		<!--<a href="#"><i class='bx bxs-basket'></i></a>  commento perchï¿½ non ho capito che cazzo ï¿½-->
 			<a href="#"><i class='bx bx-cart' ></i></a> 
 			
 			

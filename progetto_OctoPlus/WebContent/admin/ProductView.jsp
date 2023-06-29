@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
+	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(products == null) {
 		response.sendRedirect("../product?fromStore=false");	
 		return;

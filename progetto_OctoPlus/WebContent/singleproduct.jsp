@@ -8,7 +8,6 @@
 <%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
 <head>
 <link rel="stylesheet" href="product.css">
-<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <jsp:include page="header.jsp" flush="true"/>
 
@@ -46,7 +45,7 @@
 			<br>
 			<br>
 			<div class="quantiy">
-				<p> Quantità: 
+				<p> Quantitï¿½: 
 				<input id="quantity" type="number" min="1" max="100" value="1" onChange="getQuantityValue()">
 				</p>
 			</div>
