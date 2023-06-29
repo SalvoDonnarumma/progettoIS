@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
-	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(products == null) {
 		response.sendRedirect("../product?fromStore=false");	
 		return;
@@ -156,10 +155,10 @@
 	<h2>Products</h2>
 	<table border="1">
 		<tr>
-			<th>IdProdotto <a href="product?sort=idProdotto">Sort</a></th>
-			<th>Categoria<a href="product?sort=categoria">Sort</a></th>
-			<th>Nome <a href="product?sort=nome">Sort</a></th>
-			<th>Prezzo <a href="product?sort=prezzo">Sort</a></th>
+			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto">Sort</a></th>
+			<th>Categoria<a href="product?fromStore=false&sort=categoria">Sort</a></th>
+			<th>Nome <a href="product?fromStore=false&sort=nome">Sort</a></th>
+			<th>Prezzo <a href="product?&sort=prezzo">Sort</a></th>
 			<th>Descrizione</th>
 			<th>Foto</th>
 			<th>Statistiche</th>
@@ -179,8 +178,8 @@
 			<td><%=bean.getDescrizione()%></td>
 			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="width:100px;height:100px"> </td>
 			<td><%=bean.getStats()%></td>
-			<td><a href="product?driver=drivermanager&action=delete&id=<%=bean.getCode()%>">Delete</a><br>
-				<a href="product?driver=drivermanager&action=read&id=<%=bean.getCode()%>">Details</a><br>
+			<td><a href="product?fromStore=false&action=delete&id=<%=bean.getCode()%>">Delete</a><br>
+				<a href="product?fromStore=false&action=read&id=<%=bean.getCode()%>">Details</a><br>
 				</td>
 		</tr>
 		<%
@@ -219,7 +218,7 @@
 	%>
 	<h2>Insert Prodotto</h2>
 	<div class="InsertProdotto">
-	<form action="product" method="post">
+	<form action="product?fromStore=false" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Name:</label><br> 
@@ -286,7 +285,7 @@
 		%>
 		<tr>
 			<td><%=beancart.getNome()%></td>
-			<td><a href="product?action=deleteC&id=<%=beancart.getCode()%>">Delete from cart</a></td>
+			<td><a href="product?fromStore=false&action=deleteC&id=<%=beancart.getCode()%>">Delete from cart</a></td>
 		</tr>
 		<%} %>
 	</table>		

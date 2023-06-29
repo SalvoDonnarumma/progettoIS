@@ -156,9 +156,9 @@
 	<h2>Users</h2>
 	<table border="1">
 		<tr>
-			<th> Email <a href="AdminControl?sort=idProdotto">Sort</a></th>
-			<th> Nome <a href="AdminControl?sort=nome">Sort</a></th>
-			<th> Cognome <a href="AdminControl?sort=prezzo">Sort</a></th>
+			<th> Email <a href="AdminControl?fromStore=false&sort=idProdotto">Sort</a></th>
+			<th> Nome <a href="AdminControl?fromStore=false&sort=nome">Sort</a></th>
+			<th> Cognome <a href="AdminControl?fromStore=false&sort=prezzo">Sort</a></th>
 			<th> Indirizzo</th>
 			<th> Metodo Pagamento </th>
 			<th> Admin </th>
@@ -177,7 +177,7 @@
 			<td><%=bean.getIndirizzo()%></td>
 			<td><%=bean.getMetodo_pagamento()%></td>
 			<td><%=bean.getAdmin()%></td>
-			<td><a href="AdminControl?driver=drivermanager&action=delete&id=<%=bean.getEmail()%>">Delete</a><br>
+			<td><a href="AdminControl?fromStore=false&action=delete&email=<%=bean.getEmail()%>">Delete</a><br>
 				</td>
 		</tr>
 		<%

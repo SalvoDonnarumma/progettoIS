@@ -13,35 +13,35 @@
 <body>
 <div class="center">
  <h1>OctoLogin</h1>
- 	<form action="Login" method="post">
- 		
- 		<div class="txt_field">
-			<input type="email" name="email" required 
-			onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)"	id="email">
-			<span id="errorEmail"></span> <label>Email</label>
-		</div>
-		
-		<div class="txt_field"> 
- 			<input type= "password" name="password" required> <label>Password</label>
-		</div>
-		
-		<div class="pass" >Password dimenticata?</div>
-		<input type= "submit" value="Login" >
-		                             
-		Non sei un membro? 
-		<a href="registrazione.jsp" color="black"> Registrami </a>
-		
-		<% 
-			List<String> errors = (List<String>) request.getAttribute("errors");
-			if (errors != null){
-				for (String error: errors){ %>
-					<%=error %>		
-				<%
-				}
-			}
-		%>
-	
-	</form> 
+   <form action="Login" method="post">
+     
+     <div class="txt_field email-field">
+    <input type="email" name="email" required 
+        onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" id="email">
+    <span id="errorEmail" class="error-text"></span>
+    <label>Email</label>
+</div>
+    <div class="txt_field"> 
+       <input type="password" name="password" required> <label>Password</label>
+    </div>
+    
+    <div class="pass">Password dimenticata?</div>
+    <input type="submit" value="Login">
+                                 
+    Non sei un membro? 
+    <a href="registrazione.jsp" color="black">Registrami</a>
+    
+    <% 
+      List<String> errors = (List<String>) request.getAttribute("errors");
+      if (errors != null){
+        for (String error: errors){ %>
+          <%=error %>    
+        <%
+        }
+      }
+    %>
+  
+  </form> 
 </div>
 </body>
 </html>

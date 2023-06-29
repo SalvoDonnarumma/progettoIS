@@ -77,7 +77,7 @@ public class Login extends HttpServlet {
 			} else if( match.getAdmin() ) { //sono state usate credenziali di admin
 				request.getSession().setAttribute("isAdmin", Boolean.TRUE); //inserisco il token nella sessione
 				request.getSession().setAttribute("logged", match);
-				response.sendRedirect("admin/ProductView.jsp");			
+				response.sendRedirect("store.jsp");			
 			} else if( !match.getAdmin() && match!=null ) { //sono state usate credenziali di un utente
 				request.getSession().setAttribute("isAdmin", Boolean.FALSE); //inserisco il token nella sessione
 				request.getSession().setAttribute("logged", match);

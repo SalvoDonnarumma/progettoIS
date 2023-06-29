@@ -287,7 +287,6 @@ public class DaoDataSource implements IProductDao {
 		PreparedStatement preparedStatement = null;
 
 		String selectSQLUser = "SELECT * FROM utente";
-		String selectSQLAdmin = "SELECT * FROM amministratore";
 
 		String hashPassword = toHash(password);
 		String emailToBeMatch = null;
@@ -425,8 +424,30 @@ public class DaoDataSource implements IProductDao {
     }
 	
 	@Override
-	public boolean doDeleteAdmin(int code) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean doDeleteUser(String email) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String deleteSQL = "DELETE FROM utente WHERE email = ?";
+		int result = 0;
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setString(1, email);
+
+			result = preparedStatement.executeUpdate();
+			connection.commit();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return (result != 0);
+		
 	}
 }

@@ -44,11 +44,14 @@
 				<option value="XL"> XL </option>
 				<option value="XXL"> XXL </option>
 			</select>
+			<br>
+			<br>
 			<div class="quantiy">
 				<p> Quantità: 
 				<input id="quantity" type="number" min="1" max="100" value="1" onChange="getQuantityValue()">
 				</p>
 			</div>
+			<br>
 			<div class="btn-box">
 				<button class="cart-btn" onClick="#"> Aggiungi al Carrello </button>
 				<button class="buy-btn"> Compra adesso </button>

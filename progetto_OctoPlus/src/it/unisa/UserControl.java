@@ -46,8 +46,9 @@ public class UserControl extends HttpServlet {
 					request.removeAttribute("product");
 					request.setAttribute("product", adminDao.doRetrieveByKey(id));
 				} else if (action.equalsIgnoreCase("delete")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					adminDao.doDelete(id);
+					String email = request.getParameter("email");
+					System.out.println("email da cancellare: "+email);
+					adminDao.doDeleteUser(email);
 				} else if (action.equalsIgnoreCase("insert")) {
 					
 					String email = request.getParameter("email");
@@ -74,7 +75,17 @@ public class UserControl extends HttpServlet {
 			System.out.println("Error:" + e.getMessage());
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/UserView.jsp");
+		String fromStore = request.getParameter("fromStore");
+		
+		RequestDispatcher dispatcher = null;
+		
+		if(  fromStore.equalsIgnoreCase("get")) {
+			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
+		}	
+		else if ( Boolean.parseBoolean(fromStore) )    
+				dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
+         	else
+         		dispatcher = getServletContext().getRequestDispatcher("/admin/UserView.jsp");
 		dispatcher.forward(request, response);
 	}
 

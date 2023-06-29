@@ -19,11 +19,11 @@ public interface IProductDao {
 	
 	String doSaveUser(UserBean user) throws SQLException;
 	
-	public boolean doDeleteAdmin(int code) throws SQLException;
-	
 	public UserBean loginUserOrAdmin(String email, String password) throws SQLException;
 
 	Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException;
+
+	public boolean doDeleteUser(String email) throws SQLException;
 }
 
 
