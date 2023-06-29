@@ -17,7 +17,6 @@
 		var selectedValue = document.getElementById("selectDaVerificare").value;
 		console.log(selectedValue);	
 	}
-	
 	function getQuantityValue(){
 		var selectedValue = document.getElementById("quantity").value;
 		console.log(selectedValue);		
