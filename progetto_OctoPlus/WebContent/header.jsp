@@ -19,34 +19,38 @@
 			<li> <a href="#"> CONTACT US </a> </li>
 		</ul>
 		<div class="icons">
-			<a href="login.jsp"><i class='bx bxs-user'></i></a>
 		<!--<a href="#"><i class='bx bxs-basket'></i></a>  commento perch� non ho capito che cazzo �-->
-			<a href="#"><i class='bx bx-cart' ></i></a> 
-			
-			
 			<%
 			Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
-			System.out.println(request.getContextPath());
+			System.out.println("----");
 			String inStore =request.getParameter("fromStore");
+			System.out.println(isAdmin);
 			System.out.println(inStore);
 			
 			if( isAdmin == null ){ //sezione utente ospite
-				%>																					
-						<a href="#"><i class='bx bx-search'></i></a>				
-<%		
-			} else if( isAdmin == true ){ //sezione admin%> 
-				<a href="admin/ProductView.jsp"><i class='bx bx-library'></i></a>
-				<a href="Logout"><i class='bx bx-exit'></i></a>
-<% 
+				if( inStore == null);
+				else if (inStore.equals("true") && inStore != null) {%>																					
+						<a href="#"><i class='bx bx-search'></i></a>			
+<%						}
+			%>	<a href="login.jsp"><i class='bx bxs-user'></i></a>	<%
+			} else if( isAdmin == true ){ //sezione admin
 					if( inStore == null );
 					else if( inStore.equals("true") ) { %>																					
-							<a href="#"><i class='bx bx-search'></i></a>	
-								
-<%			}	} else { //sezione utente normale%>
-							<a href="Logout"><i class='bx bx-exit'></i></a> 
-<%							
-				} %>	
-			
+							<a href="#"><i class='bx bx-search'></i></a>													
+<%						}	
+				%>	<a href="admin/ProductView.jsp"><i class='bx bx-library'></i></a>
+					<a href="login.jsp"><i class='bx bxs-user'></i></a>		
+					<a href="Logout"><i class='bx bx-exit'></i></a>	
+				<%	
+			} else { //sezione utente normale 
+						 if( inStore == null);
+						 else if( inStore.equals("true")) {%>	
+							<a href="#"><i class='bx bx-search'></i></a>		
+<%							} %>
+						<a href="login.jsp"><i class='bx bxs-user'></i></a>	
+						<a href="Logout"><i class='bx bx-exit'></i></a>	
+					<%  } %>	
+		<a href="#"><i class='bx bx-cart' ></i></a> 
 		<!--  
 			<ul id="menu">
 			<li> <a href="#"> <i class='bx bxs-user'></i> </a>
@@ -68,8 +72,6 @@
 			</li>
 			</ul>
 		-->
-		
-			
 		</div>
 </header>
 </body>
