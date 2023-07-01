@@ -13,7 +13,8 @@ public class ProductBean implements Serializable {
 	String categoria;
 	Double price;
 	String stats;
-	//discutere questione taglie
+	SizesBean taglie;
+	
 	int quantity;
 
 	public ProductBean() {
@@ -85,6 +86,16 @@ public class ProductBean implements Serializable {
 
 	public void setStats(String stats2) {
 		this.stats = stats2;
+	}
+
+
+	public SizesBean getTaglie() {
+		return taglie;
+	}
+
+
+	public void setTaglie(SizesBean taglie) {
+		this.taglie = taglie;
 	}
 
 }

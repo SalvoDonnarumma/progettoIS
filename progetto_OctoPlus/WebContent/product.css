@@ -11,21 +11,22 @@
 
 .right{
 	padding-top: 5%;
+	padding-left: 3%;
+	position: relative;
 }
 
 .img{
-	width: 100px;
- /* cursor: pointer;  momentaneamente commentato altrimenti succedere un borderllo, tvb <3*/
+  cursor: pointer;
 }
 
 img img{	
 	transition: all 0.3 ease;
-	width: auto; height: 200px;
+	width: 500px;
 }
 
 
 .img:hover img{
-/* transform: scale(1.2); come prima ma peggio :c*/
+ transform: scale(1.2); 
 }
 
 .url{

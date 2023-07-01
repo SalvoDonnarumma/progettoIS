@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 import it.model.ProductBean;
+import it.model.SizesBean;
 import it.model.UserBean;
 
 public class DaoDataSource implements IProductDao {
@@ -134,14 +135,11 @@ public class DaoDataSource implements IProductDao {
 		ProductBean bean = new ProductBean();
 
 		String selectSQL = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
-
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, code);
-
 			ResultSet rs = preparedStatement.executeQuery();
-
 			while (rs.next()) { 
 				bean.setCode(rs.getInt("IDPRODOTTO"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
@@ -151,7 +149,6 @@ public class DaoDataSource implements IProductDao {
 				bean.setQuantity(rs.getInt("QUANTITY"));
 				bean.setStats(rs.getString("STATS"));
 			}
-
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -161,6 +158,31 @@ public class DaoDataSource implements IProductDao {
 					connection.close();
 			}
 		}
+		
+		SizesBean taglie = new SizesBean();
+		selectSQL = "SELECT * FROM " + "taglie" + " WHERE idProdotto= ?";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) { 
+				taglie.setIdProdotto(rs.getInt("idProdotto"));
+				taglie.setQuantitaM(rs.getInt("tagliaM"));
+				taglie.setQuantitaL(rs.getInt("tagliaL"));
+				taglie.setQuantitaX(rs.getInt("tagliaX"));
+				taglie.setQuantitaXXL(rs.getInt("taglieXXL"));
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}		
+		bean.setTaglie(taglie);
 		return bean;
 	}
 
@@ -235,7 +257,6 @@ public class DaoDataSource implements IProductDao {
 		}
 		return products;
 	}
-
 	
 	@Override
 	public synchronized Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException {

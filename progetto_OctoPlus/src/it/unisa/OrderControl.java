@@ -1,33 +1,31 @@
 package it.unisa;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import it.model.ProductBean;
 
-
 /**
- * Servlet implementation class ProductControl
+ * Servlet implementation class OrderControl
  */
-public class ProductControl extends HttpServlet {
+@WebServlet("/OrderControl")
+public class OrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-		
-	public ProductControl() {
-		super();
-	}
+       
+    public OrderControl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String isDriverManager = request.getParameter("driver");
 		if(isDriverManager == null || isDriverManager.equals("")) {
 			isDriverManager = "datasource";
@@ -91,23 +89,22 @@ public class ProductControl extends HttpServlet {
 		}
 		
 		String fromStore = request.getParameter("fromStore");
+		System.out.println(fromStore);
 		
 		RequestDispatcher dispatcher = null;
 		
 		if(  fromStore.equalsIgnoreCase("get")) {
 			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
-		}else if( fromStore.equalsIgnoreCase("get2")) {
-				dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
-			   }else if ( Boolean.parseBoolean(fromStore) )    
-					dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
-         		else
-         			dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
+		}	
+		else if ( Boolean.parseBoolean(fromStore) )    
+				dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
+         	else
+         		dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
 		dispatcher.forward(request, response);
 	}
-	 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

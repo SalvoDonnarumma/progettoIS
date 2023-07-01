@@ -8,25 +8,36 @@
 <%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
 <head>
 <link rel="stylesheet" href="product.css">
-<title>Insert title here</title>
-<jsp:include page="header.jsp" flush="true"/>
-
+<title>Visualizzazione prodotto</title>
 <script> 
-	function getSelectedValue(){
-		var selectedValue = document.getElementById("selectDaVerificare").value;
+	function getSizeValue(){
+		var selectedValue = document.getElementById("size").value;
 		console.log(selectedValue);	
+		return selectedValue;
 	}
 	function getQuantityValue(){
 		var selectedValue = document.getElementById("quantity").value;
-		console.log(selectedValue);		
+		console.log(selectedValue);	
+		return selectedValue;
+	}
+	
+	function addValuesToLink(){
+		var link = document.getElementById("link");	
+		link.href=link.href.substring(0, 75);
+		console.log(link.href+="&quantity=");
+		console.log(link.href+=document.getElementById("quantity").value);
+		console.log(link.href+="&size=");
+		console.log(link.href+=document.getElementById("size").value);
 	}
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"/>
 	<div class="flex-box">
 		<div class="left">
 			<div class="img">
-				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
+				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="
+    width: 450px;">
 			</div>
 		</div>
 		<div class="right">
@@ -36,7 +47,7 @@
 			<h2> <%=bean.getCategoria()%> </h2>
 			<br>
 			<div class="price"> $<%=bean.getPrice()%> </div>
-			Seleziona taglia: <select id="selectDaVerificare" onChange="getSelectedValue();">
+			Seleziona taglia: <select id="size" onChange="getSizeValue();">
 				<option value="M"> M </option>
 				<option value="L"> L </option>
 				<option value="XL"> XL </option>
@@ -45,14 +56,14 @@
 			<br>
 			<br>
 			<div class="quantiy">
-				<p> Quantit�: 
+				<p> Quantita': 
 				<input id="quantity" type="number" min="1" max="100" value="1" onChange="getQuantityValue()">
 				</p>
 			</div>
 			<br>
 			<div class="btn-box">
-				<button class="cart-btn" onClick="#"> Aggiungi al Carrello </button>
-				<button class="buy-btn"> Compra adesso </button>
+				<a href="#" class="cart-btn" onClick="#"> Aggiungi al Carrello </a>
+				<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
 			</div>
 			<br>
 			<div>
@@ -67,6 +78,9 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
 	<jsp:include page="footer.jsp" flush="true"/>	
 </body>
 </html>

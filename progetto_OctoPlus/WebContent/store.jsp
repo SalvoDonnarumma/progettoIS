@@ -43,7 +43,7 @@
  			<div class="box1">
  			
  				<h3><%=bean.getNome()%></h3>
- 			<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>">
+ 				<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>">
  				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
  					</a>
  				<h4> Categoria: <%=bean.getCategoria()%> </h4>
