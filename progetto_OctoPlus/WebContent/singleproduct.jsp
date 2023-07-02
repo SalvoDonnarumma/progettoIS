@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%
-	ProductBean bean = (ProductBean) request.getAttribute("product"); 		
+	ProductBean bean = (ProductBean) request.getAttribute("product"); 
+ 	System.out.println(bean);
 %>
 <!DOCTYPE html>
 <html>
@@ -36,8 +37,7 @@
 	<div class="flex-box">
 		<div class="left">
 			<div class="img">
-				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="
-    width: 450px;">
+				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style=" width: 450px;">
 			</div>
 		</div>
 		<div class="right">

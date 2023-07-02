@@ -67,8 +67,8 @@ public class DaoDataSource implements IProductDao {
 		PreparedStatement preparedStatement = null;
 		String table_name = "utente";
 		
-		String insertSQL = "INSERT INTO " + table_name
-				+ " (email, password, cognome, admin) VALUES (?, ?, ?, true)";
+		String insertSQL = "INSERT INTO utente"
+				+ " (email, password, cognome, admin) VALUES (?, ?, ?, ?)";
 		
 		admin.setPassword(toHash(admin.getPassword())); //occorre memorizzare direttamente l'hash della pass nel db
 		try {
@@ -77,6 +77,7 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setString(1, admin.getEmail());
 			preparedStatement.setString(2, admin.getPassword());
 			preparedStatement.setString(3, admin.getCognome());
+			preparedStatement.setBoolean(4, true);
 
 			preparedStatement.executeUpdate();
 
@@ -97,10 +98,9 @@ public class DaoDataSource implements IProductDao {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String table_name = "utente";
 		
-		String insertSQL = "INSERT INTO " + table_name
-				+ " (email, password, nome, cognome, admin) VALUES (?, ?, ?, ?, false)";
+		String insertSQL = "INSERT INTO utente"
+				+ " (email, password, nome, cognome, admin) VALUES (?, ?, ?, ?, ?)";
 		
 		user.setPassword(toHash(user.getPassword()));
 		try {
@@ -110,6 +110,7 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setString(2, user.getPassword());
 			preparedStatement.setString(3, user.getNome());
 			preparedStatement.setString(4, user.getCognome());
+			preparedStatement.setBoolean(5, false);
 		
 			preparedStatement.executeUpdate();
 
@@ -158,7 +159,7 @@ public class DaoDataSource implements IProductDao {
 					connection.close();
 			}
 		}
-		
+		 /*
 		SizesBean taglie = new SizesBean();
 		selectSQL = "SELECT * FROM " + "taglie" + " WHERE idProdotto= ?";
 		try {
@@ -181,8 +182,11 @@ public class DaoDataSource implements IProductDao {
 				if (connection != null)
 					connection.close();
 			}
-		}		
+		}	
+			
 		bean.setTaglie(taglie);
+		
+		*/
 		return bean;
 	}
 
