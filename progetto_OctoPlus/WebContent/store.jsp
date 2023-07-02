@@ -18,7 +18,7 @@
 %>     
 <!DOCTYPE html>
 <html>
-<%@ page import="java.util.*,it.model.ProductBean,it.model.UserBean, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean,it.model.UserBean, it.model.SizesBean, it.unisa.Cart"%>
 <head>
 <meta charset="ISO-8859-1">
 	<title>OCTOPLUS</title>
@@ -39,6 +39,7 @@
 				Iterator<?> it = products.iterator();
 				while (it.hasNext()) {
 					ProductBean bean = (ProductBean) it.next();
+					SizesBean sizes = (SizesBean) bean.getTaglie();
 		%>
  			<div class="box1">
  			
@@ -47,10 +48,14 @@
  				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
  					</a>
  				<h4> Categoria: <%=bean.getCategoria()%> </h4>
- 				<h5><%=bean.getPrice()%></h5>
- 				<div class="cart">
+ 				<h5> Costo: <%=bean.getPrice()%> &euro; </h5>
+ 			<% if( (sizes.getQuantitaM() == 0 && sizes.getQuantitaM() == 0 && sizes.getQuantitaXL() == 0 && sizes.getQuantitaXXL() == 0) || sizes == null){ %>
+				<p style="color: red"> Prodotto Esaurito! </p>
+			<% } else {%>
+				<div class="cart">
  					<a href="#"><i class='bx bx-cart-add'></i></a>
  				</div>
+				<%}%>	
  			</div>	
  		<%
 				}

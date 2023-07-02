@@ -11,6 +11,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import javax.sql.DataSource;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
 import it.model.ProductBean;
 import it.model.SizesBean;
 import it.model.UserBean;
@@ -45,7 +48,6 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setInt(5, product.getQuantity());
 			preparedStatement.setString(6, product.getStats());
 			
-			
 			preparedStatement.executeUpdate();
 
 			connection.commit();
@@ -65,10 +67,8 @@ public class DaoDataSource implements IProductDao {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String table_name = "utente";
 		
-		String insertSQL = "INSERT INTO utente"
-				+ " (email, password, cognome, admin) VALUES (?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO utente (email, password, cognome, admin) VALUES (?, ?, ?, ?)";
 		
 		admin.setPassword(toHash(admin.getPassword())); //occorre memorizzare direttamente l'hash della pass nel db
 		try {
@@ -99,12 +99,12 @@ public class DaoDataSource implements IProductDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO utente"
-				+ " (email, password, nome, cognome, admin) VALUES (?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO utente (email, password, nome, cognome, admin) VALUES (?, ?, ?, ?, ?)";
 		
 		user.setPassword(toHash(user.getPassword()));
 		try {
 			connection = ds.getConnection();
+			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setString(1, user.getEmail());
 			preparedStatement.setString(2, user.getPassword());
@@ -129,16 +129,46 @@ public class DaoDataSource implements IProductDao {
 	}
 
 	@Override
+	public synchronized SizesBean getSizesByKey(int code) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		SizesBean taglie = new SizesBean();
+		String selectSQL = "SELECT * FROM taglie WHERE idProdotto= ?";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) { 
+				taglie.setIdProdotto(rs.getInt("idProdotto"));
+				taglie.setQuantitaM(rs.getInt("tagliaM"));
+				taglie.setQuantitaL(rs.getInt("tagliaL"));
+				taglie.setQuantitaXL(rs.getInt("tagliaXL"));
+				taglie.setQuantitaXXL(rs.getInt("taglieXXL"));
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}	
+		return taglie;
+	}
+	
+	@Override
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		ProductBean bean = new ProductBean();
 
-		String selectSQL = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
+		String query = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
 		try {
 			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, code);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) { 
@@ -159,34 +189,9 @@ public class DaoDataSource implements IProductDao {
 					connection.close();
 			}
 		}
-		 /*
-		SizesBean taglie = new SizesBean();
-		selectSQL = "SELECT * FROM " + "taglie" + " WHERE idProdotto= ?";
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, code);
-			ResultSet rs = preparedStatement.executeQuery();
-			while (rs.next()) { 
-				taglie.setIdProdotto(rs.getInt("idProdotto"));
-				taglie.setQuantitaM(rs.getInt("tagliaM"));
-				taglie.setQuantitaL(rs.getInt("tagliaL"));
-				taglie.setQuantitaX(rs.getInt("tagliaX"));
-				taglie.setQuantitaXXL(rs.getInt("taglieXXL"));
-			}
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}	
-			
-		bean.setTaglie(taglie);
 		
-		*/
+		SizesBean taglie = this.getSizesByKey(code);
+		bean.setTaglie(taglie);
 		return bean;
 	}
 
@@ -218,6 +223,8 @@ public class DaoDataSource implements IProductDao {
 		return (result != 0);
 	}
 
+	
+	
 	@Override
 	public synchronized Collection<ProductBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
@@ -239,14 +246,16 @@ public class DaoDataSource implements IProductDao {
 
 			while (rs.next()) {
 				ProductBean bean = new ProductBean();
-
-				bean.setCode(rs.getInt("idProdotto"));
+				int code = rs.getInt("idProdotto");
+				bean.setCode(code);
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setNome(rs.getString("NOME"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrice(rs.getDouble("PRICE"));
 				bean.setQuantity(rs.getInt("QUANTITY"));
 				bean.setStats(rs.getString("STATS"));
+				SizesBean taglie = this.getSizesByKey(code);
+				bean.setTaglie(taglie);
 				products.add(bean);
 			}
 

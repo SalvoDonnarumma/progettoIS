@@ -3,6 +3,7 @@ package it.unisa;
 import java.sql.SQLException; 
 import java.util.Collection;
 import it.model.ProductBean;
+import it.model.SizesBean;
 import it.model.UserBean;
 
 public interface IProductDao {
@@ -24,6 +25,8 @@ public interface IProductDao {
 	Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException;
 
 	public boolean doDeleteUser(String email) throws SQLException;
+
+	SizesBean getSizesByKey(int code) throws SQLException;
 }
 
 
