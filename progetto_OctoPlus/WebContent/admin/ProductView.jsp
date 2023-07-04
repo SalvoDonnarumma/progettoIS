@@ -163,6 +163,7 @@
 			<th>Descrizione</th>
 			<th>Foto</th>
 			<th>Statistiche</th>
+			<th>Taglie Disponibili</th>
 			<th>Action</th>
 		</tr>
 		<%
@@ -179,6 +180,7 @@
 			<td><%=bean.getDescrizione()%></td>
 			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="width:100px;height:100px"> </td>
 			<td><%=bean.getStats()%></td>
+			<td><p> <%=bean.getTaglie()%> </p> </td>
 			<td><a href="product?fromStore=false&action=delete&id=<%=bean.getCode()%>">Delete</a><br>
 				<a href="product?fromStore=false&action=read&id=<%=bean.getCode()%>">Details</a><br>
 				</td>

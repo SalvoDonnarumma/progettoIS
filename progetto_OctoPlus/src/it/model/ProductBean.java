@@ -22,6 +22,7 @@ public class ProductBean implements Serializable {
 		name = "";
 		description = "";
 		quantity = 0;
+		taglie = new SizesBean();
 	}
 	
 	

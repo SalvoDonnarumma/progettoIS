@@ -2,11 +2,12 @@
     pageEncoding="ISO-8859-1"%>
  <%
 	ProductBean bean = (ProductBean) request.getAttribute("product"); 
- 	System.out.println(bean);
+ 	SizesBean sizes = (SizesBean) bean.getTaglie();
+ 	boolean nondisponibile = false;
 %>
 <!DOCTYPE html>
 <html>
-<%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
 <head>
 <link rel="stylesheet" href="product.css">
 <title>Visualizzazione prodotto</title>
@@ -46,25 +47,42 @@
 			<br>
 			<h2> <%=bean.getCategoria()%> </h2>
 			<br>
-			<div class="price"> $<%=bean.getPrice()%> </div>
-			Seleziona taglia: <select id="size" onChange="getSizeValue();">
-				<option value="M"> M </option>
-				<option value="L"> L </option>
-				<option value="XL"> XL </option>
-				<option value="XXL"> XXL </option>
+			<div class="price"> $<%=bean.getPrice()%> </div> 
+			<% if( (sizes.getQuantitaM() == 0 && sizes.getQuantitaM() == 0 && sizes.getQuantitaXL() == 0 && sizes.getQuantitaXXL() == 0) || sizes == null) {
+				nondisponibile = true;%>
+				<p style="color: red"> Prodotto momentaneamente non disponibile! </p>
+			<% } else {%>
+			Seleziona taglia:
+			<select id="size" onChange="getSizeValue();">	
+				<% if( sizes.getQuantitaM() > 0 ){ %>
+					<option value="M"> M </option>
+				<%} %>	
+				<% if( sizes.getQuantitaL() >0 ){ %>
+					<option value="L"> L </option>
+				<%} %>	
+				<% if( sizes.getQuantitaXL()>0 ){ %>
+					<option value="XL"> XL </option>
+				<%} %>	
+				<% if( sizes.getQuantitaXXL()>0 ){ %>
+					<option value="XXL"> XXL </option>
+				<%} }%>	
 			</select>
 			<br>
 			<br>
-			<div class="quantiy">
-				<p> Quantita': 
-				<input id="quantity" type="number" min="1" max="100" value="1" onChange="getQuantityValue()">
-				</p>
-			</div>
-			<br>
-			<div class="btn-box">
-				<a href="#" class="cart-btn" onClick="#"> Aggiungi al Carrello </a>
-				<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
-			</div>
+			<% if( nondisponibile ){ %>
+				<p style="color: red"> Acquisto momentaneamente non disponibile! </p>
+			<%} else { %>	
+				<div class="quantiy">	
+					<p> Quantita': 
+					<input id="quantity" type="number" min="1" max="100" value="1" onChange="getQuantityValue()">
+					</p>
+				</div>
+				<br>
+				<div class="btn-box">
+					<a href="#" class="cart-btn" onClick="#"> Aggiungi al Carrello </a>
+					<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
+				</div>
+			<% }%>
 			<br>
 			<div>
 			<h3> Dettagli prodotto</h3>
