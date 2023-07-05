@@ -98,5 +98,4 @@ public class ProductBean implements Serializable {
 	public void setTaglie(SizesBean taglie) {
 		this.taglie = taglie;
 	}
-
 }

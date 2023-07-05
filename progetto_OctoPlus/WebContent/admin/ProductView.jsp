@@ -9,8 +9,6 @@
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
-	UserBean user = (UserBean) request.getSession().getAttribute("logged");
-	System.out.println("ti sei loggato con le credenziali di: "+user.toString());
 	Cart cart = (Cart) request.getAttribute("cart");
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( isSomeoneLogged == null ){
@@ -113,8 +111,13 @@
 		<label for="price">Price:</label><br> 
 		<input name="price" type="number" min="0" value="0" step="any" required><br>
 
-		<label for="quantity">Quantity:</label><br> 
-		<input name="quantity" type="number" min="1" value="1" required><br>
+		<label>
+		Quantit&aacute;: <br>
+			Taglia M: <input style="width:5%;" name="tagliaM" type="number" min="1" ><br>
+			Taglia L: <input style="width:5%;" name="tagliaL" type="number" min="1"><br>
+			Taglia XL: <input style="width:5%;" name="tagliaXL" type="number" min="1"><br>
+			Taglia XXL: <input style="width:5%;" name="tagliaXXL" type="number" min="1"><br>
+		</label>
 
 		<label for="Stats">Statistiche: </label><br>
 		<textarea name="stats" maxlength="500" rows="10" required placeholder="enter description"></textarea><br>

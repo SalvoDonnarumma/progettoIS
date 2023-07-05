@@ -27,6 +27,10 @@ public interface IProductDao {
 	public boolean doDeleteUser(String email) throws SQLException;
 
 	SizesBean getSizesByKey(int code) throws SQLException;
+
+	void setSizesByKey(int code, SizesBean taglie) throws SQLException;
+
+	public int doRetrieveByName(String nome) throws SQLException;
 }
 
 

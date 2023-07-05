@@ -94,7 +94,7 @@
 				<h4>
 					<label>
 						Prezzo: 
-						<input style="width:5%;" name="price" type="number" min="0" value="0" step="any" value=<%=bean.getPrice()%>  required>&euro;
+						<input style="width:5%;" name="price" type="number" min="0" step="any" value=<%=bean.getPrice()%>  required>&euro;
 					</label>
 				</h4>
 				
@@ -110,7 +110,6 @@
 						</h5>
 					</label>
 				</h4>
-				
 
 				<h4>
 					<label>
@@ -123,7 +122,8 @@
 				<br>
 				<br>
 				<div class="buttons">
-				<input class="submitButton" type="submit" value="Add"><input class="resetButton" type="reset" value="Reset">
+				<input class="submitButton" type="submit" value="Modifica">
+				<input type="reset" class="resetButton"  value="Reset">
 				</div>
 			</form>
 	    	</div>

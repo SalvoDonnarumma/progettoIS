@@ -36,7 +36,7 @@ public class DaoDataSource implements IProductDao {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + DaoDataSource.TABLE_NAME
-				+ " (CATEGORIA, NOME, DESCRIZIONE, PRICE, QUANTITY, STATS) VALUES (?, ?, ?, ?, ?, ?)";
+				+ " (CATEGORIA, NOME, DESCRIZIONE, PRICE, STATS) VALUES (?, ?, ?, ?, ?)";
 
 		try {
 			connection = ds.getConnection();
@@ -45,12 +45,9 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setString(2, product.getNome());
 			preparedStatement.setString(3, product.getDescrizione());
 			preparedStatement.setDouble(4, product.getPrice());
-			preparedStatement.setInt(5, product.getQuantity());
-			preparedStatement.setString(6, product.getStats());
+			preparedStatement.setString(5, product.getStats());
 			
 			preparedStatement.executeUpdate();
-
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -80,8 +77,6 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setBoolean(4, true);
 
 			preparedStatement.executeUpdate();
-
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -113,8 +108,6 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setBoolean(5, false);
 		
 			preparedStatement.executeUpdate();
-
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -144,7 +137,7 @@ public class DaoDataSource implements IProductDao {
 				taglie.setQuantitaM(rs.getInt("tagliaM"));
 				taglie.setQuantitaL(rs.getInt("tagliaL"));
 				taglie.setQuantitaXL(rs.getInt("tagliaXL"));
-				taglie.setQuantitaXXL(rs.getInt("taglieXXL"));
+				taglie.setQuantitaXXL(rs.getInt("tagliaXXL"));
 			}
 		} finally {
 			try {
@@ -157,6 +150,32 @@ public class DaoDataSource implements IProductDao {
 		}	
 		return taglie;
 	}
+	
+	@Override
+	public synchronized void setSizesByKey(int code,SizesBean taglie) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		String query = "INSERT INTO taglie (idProdotto, tagliaM, tagliaL, tagliaXL, tagliaXXL) VALUES (?,?,?,?,?)";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, code);
+			preparedStatement.setInt(2, taglie.getQuantitaM());
+			preparedStatement.setInt(3, taglie.getQuantitaL());
+			preparedStatement.setInt(4, taglie.getQuantitaXL());
+			preparedStatement.setInt(5, taglie.getQuantitaXXL());
+			preparedStatement.executeUpdate();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}	
+	}
+	
 	
 	@Override
 	public synchronized ProductBean doRetrieveByKey(int code) throws SQLException {
@@ -177,7 +196,6 @@ public class DaoDataSource implements IProductDao {
 				bean.setNome(rs.getString("NOME"));
 				bean.setDescrizione(rs.getString("DESCRIZIONE"));
 				bean.setPrice(rs.getDouble("PRICE"));
-				bean.setQuantity(rs.getInt("QUANTITY"));
 				bean.setStats(rs.getString("STATS"));
 			}
 		} finally {
@@ -193,6 +211,33 @@ public class DaoDataSource implements IProductDao {
 		SizesBean taglie = this.getSizesByKey(code);
 		bean.setTaglie(taglie);
 		return bean;
+	}
+	
+	@Override
+	public int doRetrieveByName(String nome) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ProductBean bean = new ProductBean();
+
+		String query = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE nome= ?";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, nome);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) { 
+				bean.setCode(rs.getInt("IDPRODOTTO"));
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean.getCode();
 	}
 
 	@Override
@@ -210,7 +255,6 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setInt(1, code);
 
 			result = preparedStatement.executeUpdate();
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -252,7 +296,6 @@ public class DaoDataSource implements IProductDao {
 				bean.setNome(rs.getString("NOME"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setPrice(rs.getDouble("PRICE"));
-				bean.setQuantity(rs.getInt("QUANTITY"));
 				bean.setStats(rs.getString("STATS"));
 				SizesBean taglie = this.getSizesByKey(code);
 				bean.setTaglie(taglie);
@@ -471,7 +514,6 @@ public class DaoDataSource implements IProductDao {
 			preparedStatement.setString(1, email);
 
 			result = preparedStatement.executeUpdate();
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)

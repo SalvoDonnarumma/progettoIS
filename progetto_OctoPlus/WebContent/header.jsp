@@ -19,7 +19,6 @@
 			<li> <a href="#"> CONTACT US </a> </li>
 		</ul>
 		<div class="icons">
-		<!--<a href="#"><i class='bx bxs-basket'></i></a>  commento perch� non ho capito che cazzo �-->
 			<%
 			Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
 			System.out.println("----");
@@ -51,27 +50,6 @@
 						<a href="Logout"><i class='bx bx-exit'></i></a>	
 					<%  } %>	
 		<a href="#"><i class='bx bx-cart' ></i></a> 
-		<!--  
-			<ul id="menu">
-			<li> <a href="#"> <i class='bx bxs-user'></i> </a>
-				<ul> 
-					<li> <a href="login.jsp">ACCEDI</a> </li>
-					<li> <a href="login.jsp">REGISTRAMI</a> </li>
-				</ul>
-			</li>		
-			
-			<li>
-			<a href="#"><i class='bx bx-search'></i></a>
-			</li>
-			
-			<li>
-			<a href="#"><i class='bx bxs-basket'></i></a>
-			</li>
-			<li>
-			<a href="#"><i class='bx bx-cart' ></i></a>
-			</li>
-			</ul>
-		-->
 		</div>
 </header>
 </body>

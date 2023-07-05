@@ -47,7 +47,7 @@ public class SizesBean {
 	@Override
 	public String toString() {
 		return "taglia M=" + quantitaM + "  taglia L=" + quantitaL
-				+ " taglia X=" + quantitaXL + " taglia XXL=" + quantitaXXL;
+				+ " taglia XL=" + quantitaXL + " taglia XXL=" + quantitaXXL;
 	}
 	
 }

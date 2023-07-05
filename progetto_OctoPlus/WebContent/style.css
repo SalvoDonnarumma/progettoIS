@@ -48,6 +48,11 @@ header{
   	box-shadow: 0px 2px 18px 0 rgba(0, 0, 0, 0.2);
  	transition: background-color 0.3s ease;
 }
+
+
+header icons{
+	
+}
  
 @keyframes headerAnimation {
   0% {
@@ -118,7 +123,7 @@ header{
 .icons i:hover{
 	opacity: 0.7;
 	background-color: #121212; /* Aggiungi il colore di sfondo desiderato quando ci passi sopra */
-  color: #fff; /* Cambia il colore del testo quando ci passi sopra */
+	color: #fff; /* Cambia il colore del testo quando ci passi sopra */
 
 }
 
@@ -357,7 +362,6 @@ background: linear-gradient(to bottom right, #77c9d4, #0d4d5e);
   z-index: 3;
 }
 
-
 .header ul {
   margin: 0;
   padding: 0;
@@ -377,16 +381,6 @@ background: linear-gradient(to bottom right, #77c9d4, #0d4d5e);
 .header .menu-btn:hover {
   background-color: #f4f4f4;
 }
-/*
-.header .logo {
-  display: block;
-  float: left;
-  font-size: 2em;
-  padding: 10px 20px;
-  text-decoration: none;
-}
-*/
-/* menu */
 
 .header .menu {
   clear: both;
@@ -477,6 +471,12 @@ background: linear-gradient(to bottom right, #77c9d4, #0d4d5e);
     display: none;
   }
 }*/
+
+@media only screen and (max-width: 600px) {
+  .icons {display: none;}
+}
+
+
 @media (min-width: 48em) {
   .header li {
     float: left;
@@ -492,4 +492,60 @@ background: linear-gradient(to bottom right, #77c9d4, #0d4d5e);
   .header .menu-icon {
     display: none;
   }
+}
+
+
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  vertical-align: middle; 
+
+  margin-top: 10px;
+
+
+}
+
+.search-input {
+  width: 250px;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 16px;
+  transition: width 0.3s ease;
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-button i {
+  color: #121212;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  width: 300px;
+}
+
+.search-input:not(:placeholder-shown) + .search-button i::before {
+  content: "\279C"; /* Codice css per la freccia verso destra */
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.search-input:not(:focus):not(:placeholder-shown) + .search-button i::before {
+  transform: rotate(0deg);
+}
+
+.search-input::placeholder {
+  color: #999999;
 }
