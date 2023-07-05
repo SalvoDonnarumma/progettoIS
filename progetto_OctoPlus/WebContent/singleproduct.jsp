@@ -3,13 +3,14 @@
  <%
 	ProductBean bean = (ProductBean) request.getAttribute("product"); 
  	SizesBean sizes = (SizesBean) bean.getTaglie();
+ 	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
  	boolean nondisponibile = false;
 %>
 <!DOCTYPE html>
 <html>
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
 <head>
-<link rel="stylesheet" href="product.css">
+<link rel="stylesheet" href="./product.css">
 <title>Visualizzazione prodotto</title>
 <script> 
 	function getSizeValue(){
@@ -81,6 +82,11 @@
 				<div class="btn-box">
 					<a href="#" class="cart-btn" onClick="#"> Aggiungi al Carrello </a>
 					<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
+				<%	
+					if( isAdmin == null );
+					else if( isAdmin == true ){ %>
+						<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="modify-btn" onClick="#"> Modifica </a>
+				<%	}	%>	
 				</div>
 			<% }%>
 			<br>

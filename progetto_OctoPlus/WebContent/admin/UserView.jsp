@@ -8,6 +8,11 @@
 		response.sendRedirect("../AdminControl?fromStore=false");	
 		return;
 	}
+ 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( isSomeoneLogged == null ){
+		response.sendRedirect("./login.jsp");	
+		return;
+	}
 	
 	UserBean user = (UserBean) request.getSession().getAttribute("logged");
 	System.out.println("ti sei loggato con le credenziali di: "+user.toString());

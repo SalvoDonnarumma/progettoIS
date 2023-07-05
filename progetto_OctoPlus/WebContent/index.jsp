@@ -5,7 +5,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Homepage</title>
-	<link rel="stylesheet" href="style.css?ts=<?=time()?>&quot">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"/>

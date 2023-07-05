@@ -97,7 +97,7 @@ img img{
 	margin-top: 20px 0;
 }
 
-.btn-box button{
+.btn-box{
 	font-size: 18px;
 	padding: 8px 25px;
 	border: none;
@@ -113,6 +113,12 @@ img img{
 
 .buy-btn{
 	background-color: #00aeff;
+	margin-right: 20px;
+}
+
+.modify-btn{
+	background-color: #008080;
+	margin-right: 20px;
 }
 
 .cart-btn:hover{
@@ -121,6 +127,10 @@ img img{
 
 .buy-btn:hover{
 	background-color: #0066ff;
+}
+
+.modify-btn:hover{
+	background-color: #005959;
 }
 
 

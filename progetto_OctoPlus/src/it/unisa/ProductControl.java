@@ -91,10 +91,13 @@ public class ProductControl extends HttpServlet {
 		}
 		
 		String fromStore = request.getParameter("fromStore");
-		
+		System.out.println("Parametro action: "+fromStore);
 		RequestDispatcher dispatcher = null;
 		
-		if(  fromStore.equalsIgnoreCase("get")) {
+		
+		if( fromStore.equalsIgnoreCase("modify"))
+			dispatcher = getServletContext().getRequestDispatcher("/admin/modifyproduct.jsp");
+		else if(  fromStore.equalsIgnoreCase("get")) {
 			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
 		}else if( fromStore.equalsIgnoreCase("get2")) {
 				dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
