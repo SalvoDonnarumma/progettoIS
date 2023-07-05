@@ -10,8 +10,6 @@ body {
   box-sizing: border-box;
 }
 
-
-
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -182,7 +180,6 @@ span.price {
 	border-radius: 6px;
 	cursor: pointer;
 }
-
 
 
 @media (max-width: 800px) {

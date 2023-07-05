@@ -31,6 +31,10 @@ public interface IProductDao {
 	void setSizesByKey(int code, SizesBean taglie) throws SQLException;
 
 	public int doRetrieveByName(String nome) throws SQLException;
+
+	void doUpdateSizes(int code, SizesBean sizes) throws SQLException;
+
+	void doUpdate(int code, ProductBean product) throws SQLException;
 }
 
 

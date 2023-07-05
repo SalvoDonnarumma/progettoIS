@@ -9,6 +9,7 @@
 		return;
 	}
 %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -19,6 +20,15 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./admin/modifyproduct.css">
+
+<script>
+function addValuesToLink(){
+	var link = document.getElementById("link");	
+	console.log(link.href+="&categoria=");
+	console.log(link.href+=document.getElementById("category").value);
+}
+</script>
+
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
@@ -57,7 +67,7 @@
 		  <div class="col-75"> 
 	    	<div class="container">
 	    	<h2 style="color: red;"> Modifiche al prodotto: </h2> <br>
-	      	<form action="product?fromStore=false" method="post">
+	      	<form action="product?fromStore=false&action=modify&id=<%=bean.getCode()%>" method="post">
 				<input type="hidden" name="action" value="insert"> 
 			
 				<h4>
@@ -69,7 +79,7 @@
 				<h4>
 					<label>
 					Seleziona categoria: 
-					<select style="width:10%;">
+					<select id="category" style="width:10%;">
 					    <option value="1">COLTELLI</option>
 				    	<option value="2">EROGATORI</option>
 				    	<option value="3">GUANTI</option>
@@ -103,10 +113,10 @@
 					<label>
 						Quantit&aacute;: <br>
 						<h5>
-						Taglia M: <input style="width:5%;" name="quantity" type="number" min="1" value=<%=bean.getTaglie().getQuantitaM()%> ><br>
-						Taglia L: <input style="width:5%;" name="quantity" type="number" min="1" value=<%=bean.getTaglie().getQuantitaL()%>><br>
-						Taglia XL: <input style="width:5%;" name="quantity" type="number" min="1" value=<%=bean.getTaglie().getQuantitaXL()%>><br>
-						Taglia XXL: <input style="width:5%;" name="quantity" type="number" min="1" value=<%=bean.getTaglie().getQuantitaXXL()%>><br>
+						Taglia M: <input style="width:5%;" name="tagliaM" type="number" min="0" value=<%=bean.getTaglie().getQuantitaM()%> ><br>
+						Taglia L: <input style="width:5%;" name="tagliaL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaL()%>><br>
+						Taglia XL: <input style="width:5%;" name="tagliaXL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaXL()%>><br>
+						Taglia XXL: <input style="width:5%;" name="tagliaXXL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaXXL()%>><br>
 						</h5>
 					</label>
 				</h4>
@@ -114,7 +124,7 @@
 				<h4>
 					<label>
 						Statistiche: <br>
-						<textarea  style="width:40%;" cols="100" name="descrizione" maxlength="1000" rows="10" required placeholder="enter description">
+						<textarea  style="width:40%;" cols="100" name="stats" maxlength="1000" rows="10" required placeholder="enter description">
 						<%= bean.getStats() %>
 						</textarea><br>
 					</label>

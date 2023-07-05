@@ -12,12 +12,8 @@
 <header>
 		<img src="img/octopus.png" class="logo">
 		<span class="hfont">OctoPlus</span> 
-		<div class="bx bx-menu" id="menu-icon"> </div>
-		<ul class="navbar">
-			<li> <a href="index.jsp"> HOME  </a> </li>
-		<!-- 	<li> <a href="Login.jsp"> LOGIN </a> </li> -->
-			<li> <a href="#"> CONTACT US </a> </li>
-		</ul>
+		<div class="menu_hamburger" id="menu-icon"> 
+		</div>
 		<div class="icons">
 			<%
 			Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
@@ -28,14 +24,21 @@
 			
 			if( isAdmin == null ){ //sezione utente ospite
 				if( inStore == null);
-				else if (inStore.equals("true") && inStore != null) {%>																					
-						<a href="#"><i class='bx bx-search'></i></a>			
+				else if (inStore.equals("true") && inStore != null) {%>	
+						<form action="#" method="get" class="search-form">
+    						<input type="text" name="search" placeholder="Cerca..." class="search-input">
+     						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
+  						</form>																							
 <%						}
-			%>	<a href="login.jsp"><i class='bx bxs-user'></i></a>	<%
+			%>	
+				<a href="login.jsp"><i class='bx bxs-user'></i></a>	<%
 			} else if( isAdmin == true ){ //sezione admin
 					if( inStore == null );
 					else if( inStore.equals("true") ) { %>																					
-							<a href="#"><i class='bx bx-search'></i></a>													
+							<form action="#" method="get" class="search-form">
+    						<input type="text" name="search" placeholder="Cerca..." class="search-input">
+     						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
+  							</form>														
 <%						}	
 				%>	<a href="admin/ProductView.jsp"><i class='bx bx-library'></i></a>
 					<a href="login.jsp"><i class='bx bxs-user'></i></a>		
@@ -44,7 +47,10 @@
 			} else { //sezione utente normale 
 						 if( inStore == null);
 						 else if( inStore.equals("true")) {%>	
-							<a href="#"><i class='bx bx-search'></i></a>		
+							<form action="#" method="get" class="search-form">
+    						<input type="text" name="search" placeholder="Cerca..." class="search-input">
+     						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
+  							</form>			
 <%							} %>
 						<a href="login.jsp"><i class='bx bxs-user'></i></a>	
 						<a href="Logout"><i class='bx bx-exit'></i></a>	

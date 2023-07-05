@@ -1,3 +1,16 @@
+footer{
+	background-color: black;
+	color: white;
+	bottom: 0;
+	z-index: 10;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+	width: 100%;
+}
+
 .site-footer
 {
   background-color:#26272b;

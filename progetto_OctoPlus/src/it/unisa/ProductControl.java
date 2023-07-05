@@ -58,36 +58,32 @@ public class ProductControl extends HttpServlet {
 					String nome = request.getParameter("nome");
 					String descrizione = request.getParameter("descrizione");
 					Double price = Double.parseDouble(request.getParameter("price"));
-					String stats = request.getParameter("stats");
-					
-					SizesBean sizes = new SizesBean();
 					int quantityM = Integer.parseInt(request.getParameter("tagliaM"));
-					int quantityL = Integer.parseInt(request.getParameter("tagliaM"));
-					int quantityXL = Integer.parseInt(request.getParameter("tagliaM"));
-					int quantityXXL = Integer.parseInt(request.getParameter("tagliaM"));
-
+					int quantityL = Integer.parseInt(request.getParameter("tagliaL"));
+					int quantityXL = Integer.parseInt(request.getParameter("tagliaXL"));
+					int quantityXXL = Integer.parseInt(request.getParameter("tagliaXXL"));
+					String stats = request.getParameter("stats");
 					ProductBean bean = new ProductBean();
 					bean.setNome(nome);
 					bean.setDescrizione(descrizione);
 					bean.setCategoria(categoria);
 					bean.setStats(stats);
 					bean.setPrice(price);
-					productDao.doSave(bean);
+					int code = Integer.parseInt(request.getParameter("id"));
+					productDao.doUpdate(code, bean);
 					
-					int code = productDao.doRetrieveByName(nome);
-					
+					SizesBean sizes = new SizesBean();			
 					sizes.setQuantitaM(quantityM);
 					sizes.setQuantitaL(quantityL);
 					sizes.setQuantitaXL(quantityXL);
 					sizes.setQuantitaXXL(quantityXXL);
 					bean.setTaglie(sizes);
-					productDao.setSizesByKey(code, sizes);
+					productDao.doUpdateSizes(code, sizes);
 					
 				} else if (action.equalsIgnoreCase("delete")) {
 						int id = Integer.parseInt(request.getParameter("id"));
 						productDao.doDelete(id);
 						} else if (action.equalsIgnoreCase("insert")) {
-					
 							String categoria = request.getParameter("categoria");
 							String nome = request.getParameter("nome");
 							String descrizione = request.getParameter("descrizione");
