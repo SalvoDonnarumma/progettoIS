@@ -29,7 +29,7 @@ public class SignUp extends HttpServlet {
 			isDriverManager = "datasource";
 		}
 		
-		IProductDao productDao = null;
+		IUserDao userDao = null;
 
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
@@ -37,7 +37,7 @@ public class SignUp extends HttpServlet {
 		//	productDao = new DaoDriverMan(dm);			
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			productDao = new DaoDataSource(ds);
+			userDao = new UserDaoDataSource(ds);
 		}
 	
 		String username = request.getParameter("email");
@@ -45,6 +45,7 @@ public class SignUp extends HttpServlet {
 		String surname = request.getParameter("lastname");
 		String password = request.getParameter("password");
 		String conf_password = request.getParameter("conf_password");
+		String telefono = request.getParameter("phone");
 		
 		List<String> errors = new ArrayList<>();
         if ( !password.equals(conf_password) ) {  //controllo se password e conferma password sono uguali
@@ -58,10 +59,11 @@ public class SignUp extends HttpServlet {
 		try {
 			user.setEmail(username);
 			user.setPassword(password);
-			user.setNome(username);
+			user.setNome(name);
 			user.setCognome(surname);
+			user.setTelefono(telefono);
 			
-			productDao.doSaveUser(user);
+			userDao.doSaveUser(user);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

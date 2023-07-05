@@ -25,12 +25,7 @@
        <input type="password" name="password" required> <label>Password</label>
     </div>
     
-    <div class="pass">Password dimenticata?</div>
-    <input type="submit" value="Login">
-                                 
-    Non sei un membro? 
-    <a href="registrazione.jsp" color="black">Registrami</a>
-    
+    <div class="errors" style="color: red;">
     <% 
       List<String> errors = (List<String>) request.getAttribute("errors");
       if (errors != null){
@@ -40,6 +35,14 @@
         }
       }
     %>
+    </div>
+    
+    <div class="pass">Password dimenticata?</div>
+    <input type="submit" value="Login">
+                                 
+    Non sei un membro? 
+    <a href="registrazione.jsp"> <b> Registrami </b></a>
+    
   
   </form> 
 </div>

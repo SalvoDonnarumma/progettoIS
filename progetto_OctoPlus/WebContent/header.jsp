@@ -31,7 +31,7 @@
   						</form>																							
 <%						}
 			%>	
-				<a href="login.jsp"><i class='bx bxs-user'></i></a>	<%
+				<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>	<%
 			} else if( isAdmin == true ){ //sezione admin
 					if( inStore == null );
 					else if( inStore.equals("true") ) { %>																					
@@ -41,19 +41,21 @@
   							</form>														
 <%						}	
 				%>	<a href="admin/ProductView.jsp"><i class='bx bx-library'></i></a>
-					<a href="login.jsp"><i class='bx bxs-user'></i></a>		
-					<a href="Logout"><i class='bx bx-exit'></i></a>	
+					<a href="userprofile.jsp"><i class='bx bxs-user'></i></a>	
+					<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>		
+					<a href="Logout"><i class='bx bx-log-out-circle'></i></a>	
 				<%	
 			} else { //sezione utente normale 
 						 if( inStore == null);
-						 else if( inStore.equals("true")) {%>	
+						 else if( inStore.equals("true")) { %>	
 							<form action="#" method="get" class="search-form">
-    						<input type="text" name="search" placeholder="Cerca..." class="search-input">
-     						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
+    							<input type="text" name="search" placeholder="Cerca..." class="search-input">
+     							<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
   							</form>			
 <%							} %>
-						<a href="login.jsp"><i class='bx bxs-user'></i></a>	
-						<a href="Logout"><i class='bx bx-exit'></i></a>	
+						<a href="userprofile.jsp"><i class='bx bxs-user'></i></a>	
+						<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>	
+						<a href="Logout"><i class='bx bx-log-out-circle'></i></i></a>	
 					<%  } %>	
 		<a href="#"><i class='bx bx-cart' ></i></a> 
 		</div>

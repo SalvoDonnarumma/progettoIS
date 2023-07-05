@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 				isDriverManager = "datasource";
 			}
 			
-			IProductDao productDao = null;
+			IUserDao userDao = null;
 	
 			if (isDriverManager.equals("drivermanager")) {
 				DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
 		//		productDao = new DaoDriverMan(dm);			
 			} else {
 				DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-				productDao = new DaoDataSource(ds);
+				userDao = new UserDaoDataSource(ds);
 			}
 		
 			String username = request.getParameter("email");
@@ -52,20 +52,12 @@ public class Login extends HttpServlet {
             if (!errors.isEmpty()) {
             	request.setAttribute("errors", errors);
             	dispatcherToLoginPage.forward(request, response);
-            	return; // note the return statement here!!!
+            	return;
             }
-            
-
-            /*
-            String hashPassword = toHash(password);
-			String hashPasswordToBeMatch = 
-					"1c573dfeb388b562b55948af954a7b344dde1cc2099e978a992790429e7c01a4205506a93d9aef3bab32d6f06d75b7777a7ad8859e672fedb6a096ae369254d2";
-			
-			*/
 			
 			UserBean match=null;
 			try {
-				match=productDao.loginUserOrAdmin(username, password);
+				match=userDao.loginUserOrAdmin(username, password);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -83,20 +75,6 @@ public class Login extends HttpServlet {
 				request.getSession().setAttribute("logged", match);
 				response.sendRedirect("store.jsp");
 			}
-			/*
-		
-			if(username.equals("admin") && hashPassword.equals(hashPasswordToBeMatch)){ //admin
-				request.getSession().setAttribute("isAdmin", Boolean.TRUE); //inserisco il token nella sessione
-				response.sendRedirect("admin/ProductView.jsp");
-			} else if (username.equals("user") && hashPassword.equals(hashPasswordToBeMatch)){ //user
-				request.getSession().setAttribute("isAdmin", Boolean.FALSE); //inserisco il token nella sessione
-				response.sendRedirect("common/protected.jsp");
-			} else {
-				errors.add("Username o password non validi!");
-				request.setAttribute("errors", errors);
-				dispatcherToLoginPage.forward(request, response);
-			}
-			*/
 			
 	}
 

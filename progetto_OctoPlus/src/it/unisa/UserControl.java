@@ -26,7 +26,7 @@ public class UserControl extends HttpServlet {
 			isDriverManager = "datasource";
 		}
 		
-		IProductDao adminDao = null;
+		IUserDao adminDao = null;
 
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
@@ -34,7 +34,7 @@ public class UserControl extends HttpServlet {
 		//	adminDao = new DaoDriverMan(dm);			
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			adminDao = new DaoDataSource(ds);
+			adminDao = new UserDaoDataSource(ds);
 		}
 		
 		String action = request.getParameter("action");
@@ -42,9 +42,7 @@ public class UserControl extends HttpServlet {
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					request.removeAttribute("product");
-					request.setAttribute("product", adminDao.doRetrieveByKey(id));
+					;
 				} else if (action.equalsIgnoreCase("delete")) {
 					String email = request.getParameter("email");
 					System.out.println("email da cancellare: "+email);
@@ -54,11 +52,13 @@ public class UserControl extends HttpServlet {
 					String email = request.getParameter("email");
 					String password = request.getParameter("password");
 					String cognome = request.getParameter("cognome");
+					String telefono = request.getParameter("phone");
 					
 					UserBean bean = new UserBean();
 					bean.setEmail(email);
 					bean.setPassword(password);
 					bean.setCognome(cognome);
+					bean.setTelefono(telefono);
 					adminDao.doSaveAdmin(bean);
 				}
 			}			

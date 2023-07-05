@@ -47,13 +47,26 @@ if (errors != null){
 		</div>
 		
 		<div class="txt_field"> 
- 			<input type= "password" name="conf_password" required> <label>Conferma Password</label>
+ 			<input type= "password" name="conf_password" required
+ 			onchange="validateFormElem(this, document.getElementById('errorPass'), wrongconfirmPassErrorMessage)"> <label>Conferma Password</label>
+ 			<span id="errorPass"></span>
+		</div>
+		<span id="errorPhone0"></span>
+		
+		<div id="phones" class="txt_field">
+					<input type="tel" name="phone"
+						id="phone0" required
+						pattern="^([0-9]{3}-[0-9]{7})$"
+						onchange="validateFormElem(this, document.getElementById('errorPhone0'), phoneErrorMessage)">
+				<label>Numero telefono [###-#######]</label>
+				<br>
+				<span id="errorPhone0"></span>
 		</div>
 		
 		<input type= "submit" value="Registrami" >
 		
 		Sei già registrato? 
-		<a href="login.jsp"> Accedi </a>			
+		<a href="login.jsp">  <b> Accedi </b> </a>			
 	</form> 		
 </div>
 </body>

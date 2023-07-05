@@ -164,8 +164,7 @@
 			<th> Email <a href="AdminControl?fromStore=false&sort=idProdotto">Sort</a></th>
 			<th> Nome <a href="AdminControl?fromStore=false&sort=nome">Sort</a></th>
 			<th> Cognome <a href="AdminControl?fromStore=false&sort=prezzo">Sort</a></th>
-			<th> Indirizzo</th>
-			<th> Metodo Pagamento </th>
+			<th> Numero telefono </th>
 			<th> Admin </th>
 			<th> Action </th>
 		</tr>
@@ -179,8 +178,7 @@
 			<td><%=bean.getEmail()%></td>
 			<td><%=bean.getNome()%></td>
 			<td><%=bean.getCognome()%></td>
-			<td><%=bean.getIndirizzo()%></td>
-			<td><%=bean.getMetodo_pagamento()%></td>
+			<td><%=bean.getTelefono()%></td>
 			<td><%=bean.getAdmin()%></td>
 			<td><a href="AdminControl?fromStore=false&action=delete&email=<%=bean.getEmail()%>">Delete</a><br>
 				</td>

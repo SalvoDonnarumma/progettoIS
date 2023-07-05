@@ -1,13 +1,14 @@
 let count = 1;
-const nameOrLastnameErrorMessage = "This field should contain only letters";
-const emailErrorMessage = "The email field should be in the form username@domain.ext";
-const phoneErrorMessage = "The number field should be in the form ###-#######";
-const emptyFieldErrorMessage = "This field cannot be empty"
+const nameOrLastnameErrorMessage = "Questo campo deve avere solo lettere";
+const emailErrorMessage = "L'email deve essere almeno del formato username@domain.ext";
+const phoneErrorMessage = "Il numero telefonico deve essere nel formato ###-#######";
+const emptyFieldErrorMessage = "Il campo non puo' essere vuoto";
+const wrongconfirmPassErrorMessage = "La password non cambacia con la precedente"
 
 function validateFormElem(formElem, span, errorMessage) {
 	if(formElem.checkValidity()){
 		formElem.classList.remove("error");
-		span.style.color = "black";
+		span.style.color = "red";
 		span.innerHTML = "";
 		return true;
 	}

@@ -16,16 +16,6 @@ public interface IProductDao {
 	
 	public Collection<ProductBean> doRetrieveAll(String order) throws SQLException;
 
-	void doSaveAdmin(UserBean admin) throws SQLException;
-	
-	String doSaveUser(UserBean user) throws SQLException;
-	
-	public UserBean loginUserOrAdmin(String email, String password) throws SQLException;
-
-	Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException;
-
-	public boolean doDeleteUser(String email) throws SQLException;
-
 	SizesBean getSizesByKey(int code) throws SQLException;
 
 	void setSizesByKey(int code, SizesBean taglie) throws SQLException;
