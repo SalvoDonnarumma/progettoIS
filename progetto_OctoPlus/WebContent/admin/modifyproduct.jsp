@@ -66,7 +66,7 @@ function addValuesToLink(){
 		<div class="row">
 		  <div class="col-75"> 
 	    	<div class="container">
-	    	<h2 style="color: red;"> Modifiche al prodotto: </h2> <br>
+	    	<h2> Modifiche al prodotto: </h2> <br>
 	      	<form action="product?fromStore=false&action=modify&id=<%=bean.getCode()%>" method="post">
 				<input type="hidden" name="action" value="insert"> 
 			

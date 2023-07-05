@@ -114,6 +114,8 @@ span.price {
   position: absolute;
   left: 50%;
   margin: -25px 0 0 -25px;
+   top: 60%;
+  transform: translate(-10%, -50%);
 }
 
 .box1 img {
@@ -148,6 +150,7 @@ span.price {
  padding: 10px 20px;
  border: 3px solid #006FE6;
  cursor: pointer;
+  line-height: 1.2;
 }
 .submitButton[type=submit]:hover {
  background-color: #0063CC;
@@ -169,16 +172,29 @@ span.price {
  padding: 10px 20px;
  border: 3px solid #df0000;
  cursor: pointer;
+ background-color: #ff0000;
+  border: 3px solid #df0000;
 }
 .resetButton[type=Reset]:hover {
  background-color: #c40000;
  border-color: #df0000;
+  background-color: #c40000;
+  border-color: #df0000;
 }
 
 .buttons{
 	outline: none;
 	border-radius: 6px;
 	cursor: pointer;
+}
+h2 {
+  color: #333333;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #333333;
+  padding-bottom: 5px;
 }
 
 
