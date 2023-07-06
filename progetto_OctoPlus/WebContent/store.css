@@ -101,4 +101,64 @@ section {
 .box1 a:hover {
   transform: scale(1.1);
 }
+.topnav {
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 
+.dropdown {
+  display: flex;
+  align-items: center;
+  /*border-left: 0.2px solid grey; 
+  border-right: 0.2px solid grey;*/
+  border-radius: 5px; /* Aggiunge i vertici arrotondati al select */
+  transition: background-color 0.3s ease; /* Aggiunge la transizione per l'effetto di sfondo */
+}
+
+.dropdown label {
+  color: white;
+  font-weight: bold; 
+}
+
+.dropdown select {
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  
+}
+
+.dropdown select option {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dropdown:not(:last-child) {
+  margin-right: 50px;
+}
+
+.dropdown:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dropdown:hover label,
+.dropdown:hover select {
+  color: #fff;
+}
+
+.dropdown:hover select option {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dropdown:hover select {
+   background-color: #ccc;
+}
+.dropdown:hover select,
+.dropdown:hover select option {
+  color: #000; 
+}

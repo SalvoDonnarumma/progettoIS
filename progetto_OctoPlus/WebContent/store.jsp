@@ -30,7 +30,38 @@
 	<!-- header start -->
 	<jsp:include page="header.jsp" flush="true"/>
  	
- 	
+ 	<nav class="topnav">
+  <div class="dropdown">
+    <label for="categoria-select">Categoria:</label>
+    <select id="categoria-select">
+      <option value="">Tutte</option>
+      <option value="coltelli">Coltelli</option>
+      <option value="erogatori">Erogatori</option>
+      <option value="guanti">Guanti</option>
+      <option value="maschere">Maschere</option>
+      <option value="mute">Mute</option>
+      <option value="pinne">Pinne</option>
+      <option value="torce">Torce</option>
+    </select>
+  </div>
+
+  <div class="dropdown">
+    <label for="prezzo-select">Prezzo:</label>
+    <select id="prezzo-select">
+      <option value="">Tutti</option>
+      <option value="0-25">0-25</option>
+      <option value="25-50">25-50</option>
+      <option value="50-100">50-100</option>
+      <option value="100-150">100-150</option>
+      <option value="150-200">150-200</option>
+      <option value="200-300">200-300</option>
+      <option value="300+">300+</option>
+    </select>
+  </div>
+</nav>
+
+
+
  	<!-- shop start -->
  	<section class="shop" id="shop">
  		<div class="container"> 		
@@ -63,6 +94,46 @@
  		%>
  		</div>		
 	</section>
+	<script>// Funzione per gestire il cambio selezione delle opzioni->non funziona, rimuove tutti i prodotti
+	function handleSelectChange() {
+		  var categoriaSelect = document.getElementById('categoria');
+		  var prezzoSelect = document.getElementById('prezzo');
+		  
+		  var categoriaValue = categoriaSelect.value;
+		  var prezzoValue = prezzoSelect.value;
+
+		  console.log('Categoria selezionata:', categoriaValue);
+		  console.log('Prezzo selezionato:', prezzoValue);
+
+		
+		  updateResults(categoriaValue, prezzoValue);
+		}
+
+		
+		var categoriaSelect = document.getElementById('categoria-select');
+		categoriaSelect.addEventListener('change', handleSelectChange);
+
+		var prezzoSelect = document.getElementById('prezzo-select');
+		prezzoSelect.addEventListener('change', handleSelectChange);
+
+	
+		function updateResults(categoria, prezzo) {
+		  
+		  var prodotti = document.getElementsByClassName('box1');
+		  for (var i = 0; i < prodotti.length; i++) {
+		    var prodotto = prodotti[i];
+		    var categoriaProdotto = prodotto.getAttribute('categoria');
+		    var prezzoProdotto = prodotto.getAttribute('prezzo');
+
+		    if ((categoria === '' || categoria === categoriaProdotto) &&
+		        (prezzo === '' || prezzo === prezzoProdotto)) {
+		      prodotto.style.display = 'block';
+		    } else {
+		      prodotto.style.display = 'none';
+		    }
+		  }
+		}
+</script>
 	<jsp:include page="footer.jsp" flush="true"/>		
 </body>
 </html>
