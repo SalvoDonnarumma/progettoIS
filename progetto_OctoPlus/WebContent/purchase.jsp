@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <%
 	ProductBean bean = (ProductBean) request.getAttribute("product");
-	System.out.println(request.getParameter("quantity"));
-	System.out.println(request.getParameter("size"));
+	int quantity = Integer.parseInt(request.getParameter("quantity"));
+	String size = (request.getParameter("size"));
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+ 	UserBean user = (UserBean) request.getSession().getAttribute("logged");
 	if( isSomeoneLogged == null ){
 		response.sendRedirect("./login.jsp");	
 		return;
 	}
+	
+	
 %>
-<%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.model.UserBean, it.unisa.Cart"%>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +36,7 @@
 	     --> 
 	     	<div class="box1">
 			     <h3><%=bean.getNome()%></h3>
-		 			<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>">
+		 			<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>&">
 		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
 		 			</a>
 		 			<h4> Categoria: <%=bean.getCategoria()%> </h4>
@@ -48,8 +51,7 @@
 	<div class="row">
 	  <div class="col-75">
 	    <div class="container">
-	      <form action="/action_page.php">
-	      
+	      <form action="OrderControl?fromStore=true&action=purchaseOne&id=<%=bean.getCode()%>&size=<%=size%>&quantity=<%=quantity%>" method="post">
 	        <div class="row">
 	          <div class="col-50">
 	            <h3>Billing Address</h3>
@@ -63,7 +65,7 @@
     			</div>
     			
 	            <label for="adr"><i class="fa fa-address-card-o"></i> Indirizzo </label>
-	            <input type="text" id="adr" name="address" placeholder="Via XXXXXX, YYY">
+	            <input type="text" id="adr" name="indirizzo" placeholder="Via XXXXXX, YYY">
 	            
 	            <label for="city"><i class="fa fa-institution"></i> Citta' </label>
 	            <input type="text" id="city" name="city" placeholder="Morioh Cho">

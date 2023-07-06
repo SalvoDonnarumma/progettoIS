@@ -2,6 +2,8 @@ package it.unisa;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import it.model.OrderBean;
+import it.model.OrderedProduct;
 import it.model.ProductBean;
+import it.model.UserBean;
 
 /**
  * Servlet implementation class OrderControl
@@ -32,7 +37,7 @@ public class OrderControl extends HttpServlet {
 		}
 		
 		IProductDao productDao = null;
-
+		IOrderDao orderDao = null;
 		if (isDriverManager.equals("drivermanager")) {
 			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
 					.getAttribute("DriverManager");
@@ -40,39 +45,37 @@ public class OrderControl extends HttpServlet {
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			productDao = new DaoDataSource(ds);
+			orderDao = new OrderDaoDataSource(ds);
 		}
 		
 		String action = request.getParameter("action");
-
+		String email = request.getParameter("email");
+		String indirizzo = request.getParameter("indirizzo");
+		String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {
-					int id = Integer.parseInt(request.getParameter("id"));
-					request.removeAttribute("product");
-					request.setAttribute("product", productDao.doRetrieveByKey(id));
 					
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					productDao.doDelete(id);
-				} else if (action.equalsIgnoreCase("insert")) {
+				} else if (action.equalsIgnoreCase("purchaseOne")) {
 					
-					String categoria = request.getParameter("categoria");
-					String nome = request.getParameter("nome");
-					String descrizione = request.getParameter("descrizione");
-					Double price = Double.parseDouble(request.getParameter("price"));
-						
-					String stats = request.getParameter("stats");
-					
+					int id = Integer.parseInt(request.getParameter("id"));
+					OrderedProduct product = productDao.doRetrieveByKeyO(id);	
+					System.out.println(product);
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
+					String size = request.getParameter("size");
+					product.setQnt(quantity);
+					productDao.decreaseSize(product.getTaglie(), quantity, size, product.getCode());
+					OrderBean order = new OrderBean();
+					order.addOrder(product);
+					order.setEmailUtente(email);
+					order.setStato("IN CONSEGNA");
+					order.setData(dateTime);
+					order.setIndirizzo(indirizzo);
 
-					ProductBean bean = new ProductBean();
-					bean.setNome(nome);
-					bean.setDescrizione(descrizione);
-					bean.setPrice(price);
-					bean.setQuantity(quantity);
-					bean.setCategoria(categoria);
-					bean.setStats(stats);
-					productDao.doSave(bean);
+					orderDao.doSave(order);
 				}
 			}			
 		} catch (SQLException e) {

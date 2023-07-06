@@ -67,7 +67,7 @@ function addValuesToLink(){
 		  <div class="col-75"> 
 	    	<div class="container">
 	    	<h2> Modifiche al prodotto: </h2> <br>
-	      	<form action="product?fromStore=false&action=modify&id=<%=bean.getCode()%>" method="post">
+	      	<form action="product?fromStore=false&action=modify&id=<%=bean.getCode()%>" method="post" onClick="addValuesToLink();">
 				<input type="hidden" name="action" value="insert"> 
 			
 				<h4>
@@ -79,15 +79,7 @@ function addValuesToLink(){
 				<h4>
 					<label>
 					Seleziona categoria: 
-					<select id="category" style="width:10%;">
-					    <option value="1">COLTELLI</option>
-				    	<option value="2">EROGATORI</option>
-				    	<option value="3">GUANTI</option>
-				    	<option value="4">MASCHERE</option>
-				    	<option value="5">MUTE</option>
-				    	<option value="6">PINNE</option>
-				    	<option value="7">TORCE</option>
- 					</select>
+						<input name="categoria" type="text" maxlength="25" required value="<%=bean.getCategoria()%>"> <br>
  					</label>
 				</h4>
 				<br>
@@ -132,7 +124,7 @@ function addValuesToLink(){
 				<br>
 				<br>
 				<div class="buttons">
-				<input class="submitButton" type="submit" value="Modifica">
+				<input onClick="addValuesToLink();" class="submitButton" type="submit" value="Modifica">
 				<input type="reset" class="resetButton"  value="Reset">
 				</div>
 			</form>

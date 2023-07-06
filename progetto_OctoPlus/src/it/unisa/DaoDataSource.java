@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import it.model.OrderedProduct;
 import it.model.ProductBean;
 import it.model.SizesBean;
 import it.model.UserBean;
@@ -62,9 +63,7 @@ public class DaoDataSource implements IProductDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		String update = "UPDATE " + DaoDataSource.TABLE_NAME
-				+ " SET CATEGORIA=?, NOME=?, DESCRIZIONE=?, PRICE=?, STATS=? WHERE idProdotto=?";
-		System.out.println("*********+STATS: "+product.getStats());
-		
+				+ " SET CATEGORIA=?, NOME=?, DESCRIZIONE=?, PRICE=?, STATS=? WHERE idProdotto=?";		
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(update);
@@ -94,7 +93,7 @@ public class DaoDataSource implements IProductDao {
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(update);
-			preparedStatement.setInt(1, sizes.getQuantitaL());
+			preparedStatement.setInt(1, sizes.getQuantitaM());
 			preparedStatement.setInt(2, sizes.getQuantitaL());
 			preparedStatement.setInt(3, sizes.getQuantitaXL());
 			preparedStatement.setInt(4, sizes.getQuantitaXXL());
@@ -111,7 +110,40 @@ public class DaoDataSource implements IProductDao {
 		}
 	}
 
-
+	@Override
+	public void decreaseSize(SizesBean sizes, int qnt, String size, int code) throws SQLException{
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			String update = null;
+			if( size.equalsIgnoreCase("M") ) {
+				update = "UPDATE taglie SET tagliaM=tagliaM-? WHERE idProdotto=?";
+			} else if( size.equalsIgnoreCase("L")) {
+					update = "UPDATE taglie SET tagliaL=tagliaL-? WHERE idProdotto=?";
+					}
+				else if( size.equalsIgnoreCase("XL")) {
+						update = "UPDATE taglie SET tagliaXL=tagliaXL-? WHERE idProdotto=?";
+					}
+					else if( size.equalsIgnoreCase("XXL")) {
+						update = "UPDATE taglie SET tagliaXXL=tagliaXXL-? WHERE idProdotto=?";	
+			}
+			
+			try {
+				connection = ds.getConnection();
+				preparedStatement = connection.prepareStatement(update);
+				preparedStatement.setInt(1, qnt);
+				preparedStatement.setInt(2, code);
+				preparedStatement.executeUpdate();
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+	}
+	
 	@Override
 	public synchronized SizesBean getSizesByKey(int code) throws SQLException{
 		Connection connection = null;
@@ -174,6 +206,42 @@ public class DaoDataSource implements IProductDao {
 		PreparedStatement preparedStatement = null;
 		
 		ProductBean bean = new ProductBean();
+
+		String query = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, code);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) { 
+				bean.setCode(rs.getInt("IDPRODOTTO"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setNome(rs.getString("NOME"));
+				bean.setDescrizione(rs.getString("DESCRIZIONE"));
+				bean.setPrice(rs.getDouble("PRICE"));
+				bean.setStats(rs.getString("STATS"));
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		SizesBean taglie = this.getSizesByKey(code);
+		bean.setTaglie(taglie);
+		return bean;
+	}
+	
+	@Override
+	public synchronized OrderedProduct doRetrieveByKeyO(int code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		OrderedProduct bean = new OrderedProduct();
 
 		String query = "SELECT * FROM " + DaoDataSource.TABLE_NAME + " WHERE idProdotto= ?";
 		try {

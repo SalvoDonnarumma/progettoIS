@@ -55,6 +55,7 @@ public class ProductControl extends HttpServlet {
 					request.setAttribute("product", productDao.doRetrieveByKey(id));
 				} if (action.equalsIgnoreCase("modify"))	{
 					String categoria = request.getParameter("categoria");
+					System.out.println("Categoria: "+categoria);
 					String nome = request.getParameter("nome");
 					String descrizione = request.getParameter("descrizione");
 					Double price = Double.parseDouble(request.getParameter("price"));

@@ -14,14 +14,11 @@ public class ProductBean implements Serializable {
 	Double price;
 	String stats;
 	SizesBean taglie;
-	
-	int quantity;
 
 	public ProductBean() {
 		code = -1;
 		name = "";
 		description = "";
-		quantity = 0;
 		taglie = new SizesBean();
 	}
 	
@@ -66,17 +63,10 @@ public class ProductBean implements Serializable {
 		this.price = price;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	@Override
 	public String toString() {
-		return name + " (" + code + "), " + price + " " + quantity + ". " + description;
+		return "ProductBean [code=" + code + ", name=" + name + ", description=" + description + ", categoria="
+				+ categoria + ", price=" + price + ", stats=" + stats + ", taglie=" + taglie;
 	}
 
 

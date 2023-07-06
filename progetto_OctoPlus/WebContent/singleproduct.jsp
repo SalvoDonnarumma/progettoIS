@@ -2,6 +2,11 @@
     pageEncoding="ISO-8859-1"%>
  <%
 	ProductBean bean = (ProductBean) request.getAttribute("product"); 
+ 	//./product?action=read&fromStore=get&id=<%=bean.getCode()
+ 	if( bean == null ){
+ 		
+ 		return;
+ 	}
  	SizesBean sizes = (SizesBean) bean.getTaglie();
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
  	boolean nondisponibile = false;

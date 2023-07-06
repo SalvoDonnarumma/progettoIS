@@ -30,7 +30,7 @@ public class UserDaoDataSource implements IUserDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO utente (email, password, cognome, admin) VALUES (?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO utente (email, password, cognome, telefono, admin) VALUES (?, ?, ?, ?, ?)";
 		
 		admin.setPassword(toHash(admin.getPassword())); //occorre memorizzare direttamente l'hash della pass nel db
 		try {
@@ -39,7 +39,8 @@ public class UserDaoDataSource implements IUserDao {
 			preparedStatement.setString(1, admin.getEmail());
 			preparedStatement.setString(2, admin.getPassword());
 			preparedStatement.setString(3, admin.getCognome());
-			preparedStatement.setBoolean(4, true);
+			preparedStatement.setString(4, admin.getTelefono());
+			preparedStatement.setBoolean(5, true);
 
 			preparedStatement.executeUpdate();
 		} finally {
@@ -114,6 +115,7 @@ public class UserDaoDataSource implements IUserDao {
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setPassword(rs.getString("password"));
+				bean.setTelefono(rs.getString("telefono"));
 				bean.setAdmin(rs.getBoolean("admin"));
 				users.add(bean);
 			}
@@ -176,13 +178,16 @@ public class UserDaoDataSource implements IUserDao {
 						user.setId(rs.getInt("idutente"));
 						user.setEmail(rs.getString("email"));
 						user.setPassword(rs.getString("password"));
+						user.setNome("Non disponibile");
 						user.setCognome(rs.getString("cognome"));
+						user.setTelefono(rs.getString("telefono"));
 						user.setAdmin(rs.getBoolean("admin"));
 					} else {
 						user.setId(rs.getInt("idutente"));
 						user.setEmail(rs.getString("email"));
 						user.setPassword(rs.getString("password"));
 						user.setCognome(rs.getString("cognome"));
+						user.setTelefono(rs.getString("telefono"));
 						user.setNome(rs.getString("nome"));
 						user.setAdmin(rs.getBoolean("admin"));
 					}

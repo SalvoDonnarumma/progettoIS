@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	System.out.println("Benvenuto nella pagina UserView");
 	Collection<?> users = (Collection<?>) request.getAttribute("users");
 	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(users == null) {
@@ -15,7 +16,6 @@
 	}
 	
 	UserBean user = (UserBean) request.getSession().getAttribute("logged");
-	System.out.println("ti sei loggato con le credenziali di: "+user.toString());
 	Cart cart = (Cart) request.getAttribute("cart");
 %>
 
@@ -153,6 +153,7 @@
 	}
 }
 	</style>
+<script src="scripts/validate.js"></script>
 </head>
 
 <body>
@@ -178,7 +179,11 @@
 			<td><%=bean.getEmail()%></td>
 			<td><%=bean.getNome()%></td>
 			<td><%=bean.getCognome()%></td>
+			<% if(bean.getTelefono()== null){%>
+			<td>	Non disponibile </td>
+			<%} else {%>
 			<td><%=bean.getTelefono()%></td>
+			<%} %>
 			<td><%=bean.getAdmin()%></td>
 			<td><a href="AdminControl?fromStore=false&action=delete&email=<%=bean.getEmail()%>">Delete</a><br>
 				</td>
@@ -198,17 +203,30 @@
 	<br>
 	<h2>Insert Amministratore</h2>
 	<div class="InsertAmministratore">
-	<form action="AdminControl" method="post">
+	<form action="AdminControl?fromStore=false" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
-		<label for="name">Email:</label><br> 
+		<label for="name">Email </label>
 		<input name="email" type="email" maxlength="40" required placeholder="enter email"><br> 
 		
-		<label for="password">Password:</label><br> 
-		<input name="password" type="password" maxlength="25" required placeholder="enter a password"><br> 
-		
-		<label for="cognome">Cognome:</label><br>
+		<label for="cognome">Cognome </label>
 		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
+		
+		<div class="txt_field"> 
+			<label>Password</label>
+ 			<input type= "password" name="password" required placeholder="enter a password"> 
+		</div>
+		
+		<div id="phones" class="txt_field">
+			<label>Numero telefono</label>
+					<input type="tel" name="phone"
+						id="phone0" required
+						pattern="^([0-9]{3}-[0-9]{7})$"
+						onchange="validateFormElem(this, document.getElementById('errorPhone0'), phoneErrorMessage)"
+						placeholder="[###-#######]">
+				<br>
+				<span id="errorPhone0"></span>
+		</div>
 
 		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>

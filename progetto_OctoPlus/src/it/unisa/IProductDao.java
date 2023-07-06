@@ -2,6 +2,8 @@ package it.unisa;
 
 import java.sql.SQLException; 
 import java.util.Collection;
+
+import it.model.OrderedProduct;
 import it.model.ProductBean;
 import it.model.SizesBean;
 import it.model.UserBean;
@@ -25,6 +27,10 @@ public interface IProductDao {
 	void doUpdateSizes(int code, SizesBean sizes) throws SQLException;
 
 	void doUpdate(int code, ProductBean product) throws SQLException;
+
+	void decreaseSize(SizesBean sizes, int qnt, String size, int code) throws SQLException;
+
+	OrderedProduct doRetrieveByKeyO(int code) throws SQLException;
 }
 
 
