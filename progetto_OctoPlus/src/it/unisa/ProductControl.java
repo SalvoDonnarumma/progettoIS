@@ -45,8 +45,8 @@ public class ProductControl extends HttpServlet {
 			productDao = new DaoDataSource(ds);
 		}
 		
-		String action = request.getParameter("action");
-
+		String action = request.getParameter("action");	
+		
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {

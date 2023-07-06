@@ -8,9 +8,7 @@
 	if( isSomeoneLogged == null ){
 		response.sendRedirect("./login.jsp");	
 		return;
-	}
-	
-	
+	}	
 %>
 <%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.model.UserBean, it.unisa.Cart"%>
 <html>

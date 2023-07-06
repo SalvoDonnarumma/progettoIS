@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,7 +49,7 @@ public class OrderControl extends HttpServlet {
 			productDao = new DaoDataSource(ds);
 			orderDao = new OrderDaoDataSource(ds);
 		}
-		
+		List<String> errors = new ArrayList<>();
 		String action = request.getParameter("action");
 		String email = request.getParameter("email");
 		String indirizzo = request.getParameter("indirizzo");
@@ -61,11 +63,30 @@ public class OrderControl extends HttpServlet {
 					productDao.doDelete(id);
 				} else if (action.equalsIgnoreCase("purchaseOne")) {
 					
-					int id = Integer.parseInt(request.getParameter("id"));
-					OrderedProduct product = productDao.doRetrieveByKeyO(id);	
-					System.out.println(product);
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
 					String size = request.getParameter("size");
+					int id = Integer.parseInt(request.getParameter("id"));
+					OrderedProduct product = productDao.doRetrieveByKeyO(id);
+					//controllo se posso acquistare il prodotto;
+					if( size.equalsIgnoreCase("M") ) {
+						if(quantity > product.getTaglie().getQuantitaM() )
+							errors.add("La quantita' richiesta eccedere quella disponibile!");
+					} else if ( size.equalsIgnoreCase("L") ) {
+						if(quantity > product.getTaglie().getQuantitaL() )
+							errors.add("La quantita' richiesta eccedere quella disponibile!");
+							} else if( size.equalsIgnoreCase("XL")) {
+								if ( quantity > product.getTaglie().getQuantitaXL()) 
+									errors.add("La quantita' richiesta eccedere quella disponibile!");
+							} else if( size.equalsIgnoreCase("XXL")) {
+								if ( quantity > product.getTaglie().getQuantitaXXL()) 
+									errors.add("La quantita' richiesta eccedere quella disponibile!");
+							}
+					RequestDispatcher dispatcherToProductPage = request.getRequestDispatcher("./product?action=read&fromStore=get&id="+product.getCode());
+					if (!errors.isEmpty()) {
+		            	request.setAttribute("errors", errors);
+		            	dispatcherToProductPage.forward(request, response);
+		            	return;
+		            }
 					product.setQnt(quantity);
 					productDao.decreaseSize(product.getTaglie(), quantity, size, product.getCode());
 					OrderBean order = new OrderBean();

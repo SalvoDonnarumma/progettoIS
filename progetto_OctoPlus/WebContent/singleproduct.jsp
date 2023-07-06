@@ -2,11 +2,6 @@
     pageEncoding="ISO-8859-1"%>
  <%
 	ProductBean bean = (ProductBean) request.getAttribute("product"); 
- 	//./product?action=read&fromStore=get&id=<%=bean.getCode()
- 	if( bean == null ){
- 		
- 		return;
- 	}
  	SizesBean sizes = (SizesBean) bean.getTaglie();
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
  	boolean nondisponibile = false;
@@ -95,6 +90,18 @@
 				</div>
 			<% }%>
 			<br>
+			
+			<h3 style="color: red;">
+			<%
+				List<String> errors = (List<String>) request.getAttribute("errors");
+				if (errors != null){
+					for (String error: errors){ %>
+						<%=error %> <br>		
+					<%
+					}
+				}
+			%>
+			</h3>
 			<div>
 			<h3> Dettagli prodotto</h3>
 			<p align="left">
@@ -110,6 +117,9 @@
 	<br>
 	<br>
 	<br>
-	<jsp:include page="footer.jsp" flush="true"/>	
+	<jsp:include page="footer.jsp" flush="true"/>
+	<% if( errors != null)
+			errors.clear();
+	%>	
 </body>
 </html>
