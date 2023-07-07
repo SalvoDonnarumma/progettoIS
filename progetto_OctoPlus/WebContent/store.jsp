@@ -25,18 +25,19 @@
  	
  	<nav class="topnav">
   <div class="dropdown">
-    <label for="categoria-select">Categoria:</label>
-    <select id="categoria-select">
-      <option value="">Tutte</option>
-      <option value="coltelli">Coltelli</option>
-      <option value="erogatori">Erogatori</option>
-      <option value="guanti">Guanti</option>
-      <option value="maschere">Maschere</option>
-      <option value="mute">Mute</option>
-      <option value="pinne">Pinne</option>
-      <option value="torce">Torce</option>
-    </select>
-  </div>
+  <label for="categoria-select">Categoria:</label>
+  <select id="categoria-select" onchange="searchAndFilter()">
+    <option value="">Tutte</option>
+    <option value="coltelli">Coltelli</option>
+    <option value="erogatori">Erogatori</option>
+    <option value="guanti">Guanti</option>
+    <option value="maschere">Maschere</option>
+    <option value="mute">Mute</option>
+    <option value="pinne">Pinne</option>
+    <option value="torce">Torce</option>
+  </select>
+</div>
+
 
   <div class="dropdown">
     <label for="prezzo-select">Prezzo:</label>
