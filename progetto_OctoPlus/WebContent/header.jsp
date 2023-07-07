@@ -20,11 +20,11 @@
 			System.out.println("----");
 			String inStore =request.getParameter("fromStore");
 			System.out.println(isAdmin);
-			System.out.println(inStore);
-			
+			HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+			String path = httpServletRequest.getServletPath();
+			System.out.println(path);
 			if( isAdmin == null ){ //sezione utente ospite
-				if( inStore == null);
-				else if (inStore.equals("true") && inStore != null) {%>	
+					if (path.contains("/store.jsp")) {%>	
 						<form action="#" method="get" class="search-form">
     						<input type="text" name="search" placeholder="Cerca..." class="search-input">
      						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
@@ -34,8 +34,8 @@
 				<a href="index.jsp"><i class='bx bx-home-heart'></i></a>
 				<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>	<%
 			} else if( isAdmin == true ){ //sezione admin
-					if( inStore == null );
-					else if( inStore.equals("true") ) { %>																					
+					
+					if( path.contains("/store.jsp") ) { %>																					
 							<form action="#" method="get" class="search-form">
     						<input type="text" name="search" placeholder="Cerca..." class="search-input">
      						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
@@ -44,13 +44,11 @@
 				%>	
 					<a href="admin/ProductView.jsp"><i class='bx bx-library'></i></a>
 					<a href="userprofile.jsp"><i class='bx bxs-user'></i></a>	
-					<a href="index.jsp"><i class='bx bx-home-heart'></i></a>
-					<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>		
+					<a href="index.jsp"><i class='bx bx-home-heart'></i></a>	
 					<a href="Logout"><i class='bx bx-log-out-circle'></i></a>	
 		
 		<%		} else { //sezione utente normale 
-						 if( inStore == null);
-						 else if( inStore.equals("true")) { %>	
+					 if( path.contains("/store.jsp") ) { %>	
 							<form action="#" method="get" class="search-form">
     							<input type="text" name="search" placeholder="Cerca..." class="search-input">
      							<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
@@ -58,7 +56,6 @@
 <%							} %>
 						<a href="userprofile.jsp"><i class='bx bxs-user'></i></a>	
 						<a href="index.jsp"><i class='bx bx-home-heart'></i></a>
-						<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>	
 						<a href="Logout"><i class='bx bx-log-out-circle'></i></a>	
 					<%  } %>	
 		<a href="cart.jsp"><i class='bx bx-cart' ></i></a> 
