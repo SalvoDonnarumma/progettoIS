@@ -31,6 +31,16 @@ section {
   padding-top: 2rem;
 }
 
+.prodotti {
+  display: flex;
+  flex-wrap: wrap;  /*  Permette ai box di wrapparsi */
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  padding-top: 2rem;
+}
+
 .box1 {
   flex: 0 0 30%;  
   padding: 30px;
@@ -42,7 +52,7 @@ section {
 }
 
 .box1 img {
-  width: 100%;
+  width: 150px;
   height: auto;
 }
 

@@ -81,14 +81,12 @@
 			<th>Name</th>
 			<th>Description</th>
 			<th>Price</th>
-			<th>Quantity</th>
 		</tr>
 		<tr>
 			<td><%=product.getCode()%></td>
 			<td><%=product.getNome()%></td>
 			<td><%=product.getDescrizione()%></td>
 			<td><%=product.getPrice()%></td>
-			<td><%=product.getQuantity()%></td>
 		</tr>
 	</table>
 	<%

@@ -61,7 +61,7 @@
 						<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>	
 						<a href="Logout"><i class='bx bx-log-out-circle'></i></a>	
 					<%  } %>	
-		<a href="#"><i class='bx bx-cart' ></i></a> 
+		<a href="cart.jsp"><i class='bx bx-cart' ></i></a> 
 		</div>
 </header>
 </body>

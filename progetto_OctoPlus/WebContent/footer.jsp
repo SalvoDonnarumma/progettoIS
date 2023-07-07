@@ -24,7 +24,6 @@
     	  <li><a href="/termini-e-condizioni">Termini e condizioni</a></li>
     	  <li><a href="/politica-sulla-privacy">Politica sulla privacy</a></li>
     	  <li><a href="/spedizioni-e-resi">Spedizioni e resi</a></li>
-      	<li><a href="/faq">FAQ</a></li>
     	</ul>
   	</div>
 
