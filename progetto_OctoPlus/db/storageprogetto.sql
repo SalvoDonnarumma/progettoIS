@@ -41,6 +41,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `storageprogetto`.`articoloordinato` (
   `idOrdine` INT NOT NULL,
   `idProdotto` INT NULL DEFAULT NULL,
+  `nome` VARCHAR(45) NULL DEFAULT NULL,
+  `categoria` VARCHAR(45) NULL DEFAULT NULL,
+  `prezzo` FLOAT NULL DEFAULT NULL,
+  `quantita` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idOrdine`),
   INDEX `idProdotto_idx` (`idProdotto` ASC) VISIBLE,
   CONSTRAINT `idProdottoO`
@@ -52,38 +56,19 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `storageprogetto`.`utente`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `storageprogetto`.`utente` (
-  `idutente` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(45) NULL DEFAULT NULL,
-  `password` VARCHAR(130) NULL DEFAULT NULL,
-  `nome` VARCHAR(45) NULL DEFAULT NULL,
-  `cognome` VARCHAR(45) NULL DEFAULT NULL,
-  `indirizzo` VARCHAR(45) NULL DEFAULT NULL,
-  `cap` VARCHAR(45) NULL DEFAULT NULL,
-  `metodo_pagamento` VARCHAR(45) NULL DEFAULT NULL,
-  `admin` TINYINT NULL DEFAULT NULL,
-  PRIMARY KEY (`idutente`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 13
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `storageprogetto`.`ordine`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `storageprogetto`.`ordine` (
   `idOrdine` INT NOT NULL AUTO_INCREMENT,
-  `idUtente` INT NULL DEFAULT NULL,
+  `idUtente` VARCHAR(45) NULL DEFAULT NULL,
   `data` VARCHAR(45) NULL DEFAULT NULL,
+  `stato` VARCHAR(45) NULL DEFAULT NULL,
+  `prezzototale` FLOAT NULL DEFAULT NULL,
+  `indirizzo` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idOrdine`),
-  INDEX `idUtente_idx` (`idUtente` ASC) VISIBLE,
-  CONSTRAINT `idUtente`
-    FOREIGN KEY (`idUtente`)
-    REFERENCES `storageprogetto`.`utente` (`idutente`))
+  INDEX `idUtente_idx` (`idUtente` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -104,6 +89,24 @@ CREATE TABLE IF NOT EXISTS `storageprogetto`.`taglie` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `storageprogetto`.`utente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `storageprogetto`.`utente` (
+  `idutente` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `password` VARCHAR(130) NULL DEFAULT NULL,
+  `nome` VARCHAR(45) NULL DEFAULT NULL,
+  `cognome` VARCHAR(45) NULL DEFAULT NULL,
+  `telefono` VARCHAR(11) NULL DEFAULT NULL,
+  `admin` TINYINT NULL DEFAULT NULL,
+  PRIMARY KEY (`idutente`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
