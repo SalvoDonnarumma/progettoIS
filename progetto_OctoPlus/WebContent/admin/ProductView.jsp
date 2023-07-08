@@ -9,7 +9,6 @@
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
-	Cart cart = (Cart) request.getAttribute("cart");
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( isSomeoneLogged == null ){
 		response.sendRedirect("./login.jsp");	
@@ -19,7 +18,7 @@
 
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean, it.unisa.Cart"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
 	<link rel="stylesheet" type="text/css" href="./admin/productviewstyle.css">
@@ -151,26 +150,6 @@
 	<br>
 </form>
 	</div>
-<br>
-<hr>
-<br>
-	<% if(cart != null) { %>
-		<h2>Cart</h2>
-		<table border="1">
-		<tr>
-			<th>Name</th>
-			<th>Action</th>
-		</tr>
-		<% List<ProductBean> prodcart = cart.getProducts(); 	
-		   for(ProductBean beancart: prodcart) {
-		%>
-		<tr>
-			<td><%=beancart.getNome()%></td>
-			<td><a href="product?fromStore=false&action=deleteC&id=<%=beancart.getCode()%>">Delete from cart</a></td>
-		</tr>
-		<%} %>
-	</table>		
-	<% } %>	
 
 	<br>
 	<br>

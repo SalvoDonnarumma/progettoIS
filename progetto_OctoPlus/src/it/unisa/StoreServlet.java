@@ -25,7 +25,6 @@ public class StoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Connection connection = null;
 		Gson json = new Gson();
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		IProductDao productDao = new DaoDataSource(ds);

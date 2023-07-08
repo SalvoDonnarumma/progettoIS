@@ -6,6 +6,7 @@ function dynamicStore(url){
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHTML = "";
+		console.log(response);
 		
 		for(const bean of response){
 			contenutoHTML += "<div class=\"box1\">";
@@ -18,7 +19,7 @@ function dynamicStore(url){
 					contenutoHTML += "<h3 style=\"color: red\"> Prodotto momentaneamente non disponibile! <h3>";
 			else{
 			contenutoHTML += "<div class=\"cart\">";
- 			contenutoHTML += "<a href=\"#\"><i class='bx bx-cart-add'></i></a> </div> </div>";
+ 			contenutoHTML += "<a href=\"cart.jsp?id="+bean.code+"\"><i class='bx bx-cart-add'></i></a> </div> </div>";
  			}
 		}
 		$("#prodotti").append(contenutoHTML);
