@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 
-<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource"%>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>

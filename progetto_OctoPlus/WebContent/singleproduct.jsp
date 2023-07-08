@@ -8,7 +8,7 @@
 %>
 <!DOCTYPE html>
 <html>
-<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource"%>
 <head>
 <link rel="stylesheet" href="./product.css">
 <title>Visualizzazione prodotto</title>
@@ -80,7 +80,7 @@
 				</div>
 				<br>
 				<div class="btn-box">
-					<a href="#" class="cart-btn" onClick="#"> Aggiungi al Carrello </a>
+					<a href="cart.jsp?id=<%=bean.getCode()%>" class="cart-btn"> Aggiungi al Carrello </a>
 					<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
 				<%	
 					if( isAdmin == null );

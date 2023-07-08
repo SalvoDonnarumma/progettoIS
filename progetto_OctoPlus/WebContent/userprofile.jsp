@@ -6,7 +6,7 @@
 %>
 <!DOCTYPE html>
 <html>
-<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.model.UserBean, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.model.UserBean"%>
 <head>
     <title>Pagina Utente</title>
     <link rel="stylesheet" type="text/css" href="profile.css">

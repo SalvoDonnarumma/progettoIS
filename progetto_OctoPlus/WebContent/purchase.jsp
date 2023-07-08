@@ -10,7 +10,7 @@
 		return;
 	}	
 %>
-<%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.model.UserBean, it.unisa.Cart"%>
+<%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.model.UserBean"%>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -16,12 +16,11 @@
 	}
 	
 	UserBean user = (UserBean) request.getSession().getAttribute("logged");
-	Cart cart = (Cart) request.getAttribute("cart");
 %>
 
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean, it.unisa.Cart"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
 	

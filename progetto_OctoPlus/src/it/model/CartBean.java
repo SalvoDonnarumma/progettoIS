@@ -1,6 +1,7 @@
 package it.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CartBean {
@@ -10,7 +11,22 @@ public class CartBean {
 		cart = new ArrayList<ProductBean>();
 	}
 	
+	public void removeProduct(int code) {
+		Iterator<ProductBean> iterator = cart.iterator();
+		while (iterator.hasNext()) {
+		    ProductBean prod = iterator.next();
+		    if (prod.getCode() == code) {
+		        iterator.remove();
+		    }
+		}
+	}
+	
 	public void addProduct(ProductBean product) {
+		for(ProductBean prod : cart) {
+			if(prod.getCode() == product.getCode()) {
+				return;
+			} 
+		}
 		cart.add(product);
 	}
 	
@@ -22,6 +38,12 @@ public class CartBean {
 			}
 		}
  	}
+	
+	public void printAll() {
+		for(ProductBean prod : cart) {
+			System.out.println(prod);
+		}
+	}
 	
 	public List<ProductBean> getAllProduct(){
 		return cart;

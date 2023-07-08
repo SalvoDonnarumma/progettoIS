@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -17,6 +18,12 @@
 		<div class="icons">
 			<%
 			Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
+			HttpSession session2 = request.getSession(false);
+			if( session2 == null )
+				System.out.println("Nessuna sessione attiva");
+			else
+				System.out.println("sessione attiva: "+session2);
+			
 			System.out.println("----");
 			String inStore =request.getParameter("fromStore");
 			System.out.println(isAdmin);
