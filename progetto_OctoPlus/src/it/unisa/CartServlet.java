@@ -44,9 +44,7 @@ public class CartServlet extends HttpServlet {
 		System.out.println("Il mio id e':"+request.getParameter("id"));
 		String id = request.getParameter("id");
 		
-		System.out.println("Session ID: "+session.getId());
-		
-		if(  !id.equalsIgnoreCase("null") ) {
+		if(  id!=null && !id.equalsIgnoreCase("null") ) {
 			Integer id_i = Integer.parseInt(request.getParameter("id"));
 				ProductBean product = null;
 				try {

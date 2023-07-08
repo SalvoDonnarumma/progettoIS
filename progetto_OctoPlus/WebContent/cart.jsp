@@ -41,9 +41,7 @@
       </tbody>
     </table>         
 
-    <div class="checkout">
-      <a href="store.jsp"> <button >Torna allo store</button> </a>
-      <button>Procedi al pagamento</button>
+    <div class="checkout" id="checkout">
     </div>
   </div>
 

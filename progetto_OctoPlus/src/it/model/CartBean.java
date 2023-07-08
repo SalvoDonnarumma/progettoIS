@@ -1,6 +1,7 @@
 package it.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CartBean {
@@ -8,6 +9,16 @@ public class CartBean {
 	
 	public CartBean() {
 		cart = new ArrayList<ProductBean>();
+	}
+	
+	public void removeProduct(int code) {
+		Iterator<ProductBean> iterator = cart.iterator();
+		while (iterator.hasNext()) {
+		    ProductBean prod = iterator.next();
+		    if (prod.getCode() == code) {
+		        iterator.remove();
+		    }
+		}
 	}
 	
 	public void addProduct(ProductBean product) {

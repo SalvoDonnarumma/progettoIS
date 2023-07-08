@@ -80,7 +80,7 @@
 				</div>
 				<br>
 				<div class="btn-box">
-					<a href="#" class="cart-btn" onClick="#"> Aggiungi al Carrello </a>
+					<a href="cart.jsp?id=<%=bean.getCode()%>" class="cart-btn"> Aggiungi al Carrello </a>
 					<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
 				<%	
 					if( isAdmin == null );

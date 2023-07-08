@@ -66,6 +66,15 @@ tfoot td:first-child {
   font-size: 16px;
 }
 
+.checkout button:hover {
+  padding: 10px 20px;
+  background-color: #0052ac;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 /* Media query per renderizzare il layout responsive */
 @media (max-width: 767px) {
   h1 {

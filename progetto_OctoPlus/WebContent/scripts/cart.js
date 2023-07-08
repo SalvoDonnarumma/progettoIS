@@ -6,11 +6,15 @@ function dynamicCart(url){
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHTML = "";
+		let contenutoHTML2 = "";
 		
 		if( response.length == 0 ){
 			contenutoHTML +=  "<tr>";
 			contenutoHTML +=  "<td colspan=\"6\">No products available</td>";
 			contenutoHTML +=  "</tr>";
+			
+			contenutoHTML2 += "<p> Puoi acquistare articoli dal nostro store! </p>";
+     		contenutoHTML2 +=	 "<a href=\"store.jsp\"> <button >Torna allo store</button> </a>";
 		} else {
 				for(const bean of response){
 				  	contenutoHTML += "<tr>";
@@ -24,9 +28,9 @@ function dynamicCart(url){
 				  	contenutoHTML += "<option value=\"XL\"> XL </option>";
 				  	contenutoHTML += "<option value=\"XXL\"> XXL </option>";
 				  	contenutoHTML += "</select>";
-		          	contenutoHTML += "<td>"+"<p class=price>"+bean.price.toFixed(2)+"</p>"+"</td>";
+		          	contenutoHTML += "<td>"+"<p class=price>"+bean.price.toFixed(2)+"&#8364</p>"+"</td>";
 		          	contenutoHTML += "<td class=totProd>"+"</td>";
-		          	contenutoHTML += "<td> <button data-isbn='" + bean.code + "'onclick=eliminaRiga(this)><i  class='bx bx-trash'></i></button>";
+		          	contenutoHTML += "<td> <button id='" + bean.code + "'onclick=eliminaRiga(this)><i  class='bx bx-trash'></i></button>";
 		         	contenutoHTML += "</tr>"; 
 		      }
 		    		contenutoHTML += "<tr>";
@@ -41,9 +45,15 @@ function dynamicCart(url){
 	 				contenutoHTML += "</div>";
 					contenutoHTML += "</div>"; 
        				contenutoHTML += "</th>";
-     			  	contenutoHTML += "</tr>";
+     			  	contenutoHTML += "</tr>";    
+     			  	
+     				contenutoHTML2 +=	 "<a href=\"store.jsp\"> <button >Torna allo store</button> </a>";
+      				contenutoHTML2 +=	  "<button class=\"pagamento\">Procedi al pagamento</button>";	   
 		} 
+		$("#cart").empty();
 		$("#cart").append(contenutoHTML);
+		$("#checkout").empty();
+		$("#checkout").append(contenutoHTML2);
 		totaleParziale(); 
 	});
 } 
@@ -82,15 +92,16 @@ function totaleParziale(){
 
 function eliminaRiga(button) {
   let row = button.parentNode.parentNode;
-  let idProdotto = button.getAttribute("data-isbn");
+  let idProdotto = button.getAttribute("id");
+  console.log(idProdotto);
   var pathArray = window.location.pathname.split('/');
   var contextPath = '/' + pathArray[1];
-  var url = contextPath + "/RimuoviProdotto";
-
+  var url = contextPath + "/RemoveProductFromCart";
+  console.log(url);
   $.ajax({
     url: url,
     type: 'POST',
-    data: {isbn: idProdotto },
+    data:  { id: idProdotto },
     success: function(response) {
       // Rimuovi la riga del prodotto dal carrello nell'interfaccia utente
       row.parentNode.removeChild(row);
