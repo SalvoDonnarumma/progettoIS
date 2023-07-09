@@ -28,9 +28,9 @@
 	function addValuesToLink(){
 		var link = document.getElementById("link");	
 		link.href=link.href.substring(0, 80);
-		console.log(link.href+="&quantity=");
+		console.log(link.href+="&qnt0=");
 		console.log(link.href+=document.getElementById("quantity").value);
-		console.log(link.href+="&size=");
+		console.log(link.href+="&sz0=");
 		console.log(link.href+=document.getElementById("size").value);
 	}
 </script>

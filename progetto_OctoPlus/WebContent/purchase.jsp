@@ -39,8 +39,6 @@
 	  <% 		}	
 			} %>
 	    <%} else {	
-	    	size = request.getParameter("size");
-	    	quantity = Integer.parseInt(request.getParameter("quantity"));
 			if (products != null && products.size() != 0) {
 				Iterator<?> it = products.iterator();
 				while (it.hasNext()) {
@@ -51,8 +49,8 @@
 		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
 		 			</a>
 		 			<h4> Categoria: <%=bean.getCategoria()%> </h4>
-		 			<h5> <span class="price"> Prezzo: <%=bean.getPrice()*Integer.parseInt(request.getParameter("quantity"))%></span> </h5>
-		 			<h4> Taglia: <%=request.getParameter("size")%> Quantita': <%=request.getParameter("quantity")%> </h4>
+		 			<h5> <span class="price"> Prezzo: <%=bean.getPrice()*Integer.parseInt(request.getParameter("qnt0"))%></span> </h5>
+		 			<h4> Taglia: <%=request.getParameter("sz0")%> Quantita': <%=request.getParameter("qnt0")%> </h4>
 			</div>
 	  <% 		} 
 		   } 
@@ -199,6 +197,5 @@
 	  </div>
 		</div>
 	</div>
-	
 </body>
 </html>

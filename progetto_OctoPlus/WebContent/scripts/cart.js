@@ -67,11 +67,17 @@ function addValuesToLink(){
 		product = document.getElementById("cart");
 		var link = document.getElementById("link");	
 		elem2 = product.getElementsByClassName('quantita');
+		elem1 = product.getElementsByClassName('size');
 		link.href=link.href.substring(0, 77);
 		
 		for(let i = 0; i < elem2.length; i++){
 			console.log(link.href+="&qnt"+i+"=");
 			console.log(link.href+=elem2[i].value);
+		}
+		
+		for(let i = 0; i < elem1.length; i++){
+			console.log(link.href+="&sz"+i+"=");
+			console.log(link.href+=elem1[i].value);
 		}
 }
 
