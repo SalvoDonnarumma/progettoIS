@@ -46,7 +46,7 @@ function dynamicCart(url){
 	 		        contenutoHTML += "<h5>TOTALE</h5>";
 	 			    contenutoHTML += "<div class=\"totale\">";
 	 				contenutoHTML += "<h6> Prodotti: </h6>";
-	 				contenutoHTML += "<p id=\"tot\" class=\"tot\">&#8364 totale</p>";
+	 				contenutoHTML += "<div style=\"display: inline-block;\"> <p id=\"tot\" class=\"tot\">totale</p>&euro; </div>";
 	 				contenutoHTML += "</div>";
 					contenutoHTML += "</div>"; 
        				contenutoHTML += "</th>";
@@ -102,13 +102,13 @@ function totaleParziale(){
 		totParz += costo * quantita;
 		tot += totParz;
 		
-		product.getElementsByClassName("totProd")[i].innerHTML = "&#8364 " + totParz.toFixed(2); 
+		product.getElementsByClassName("totProd")[i].innerHTML = "&euro;" + totParz.toFixed(2); 
 	}
 	
 	let cassa;
 	
 	cassa = document.getElementById("cassa");
-	cassa.getElementsByClassName("tot")[0].innerHTML = "&#8364 " + tot.toFixed(2);
+	cassa.getElementsByClassName("tot")[0].innerHTML = tot.toFixed(2);
 	if(tot == 0) 
 		spedizione = 0;	
 }

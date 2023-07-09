@@ -49,6 +49,7 @@ public class OrderControl extends HttpServlet {
 		}
 		List<String> errors = new ArrayList<>();
 		String action = request.getParameter("action");
+		System.out.println("action: "+action);
 		String email = request.getParameter("email");
 		String indirizzo = request.getParameter("indirizzo");
 		String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
@@ -110,7 +111,49 @@ public class OrderControl extends HttpServlet {
 
 					orderDao.doSave(order);
 				} else if( action.equalsIgnoreCase("purchaseAll")) {
+					Collection <ProductBean> products = new LinkedList<ProductBean>(); 
+					CartBean cart = (CartBean) request.getSession().getAttribute("cart");
 					
+					/* prendo le taglie dei singoli prodotti messi nel carrello */
+					List<String>sizes = (List<String>) request.getSession().getAttribute("sizes");
+					
+					/* prendo le quantità dei singoli prodotti messi nel carrello */
+					List<Integer>qnts = (List<Integer>) request.getSession().getAttribute("qnts");
+					
+					/* devo controllare se ogni prodotto è disponibile per l'acquisto
+					 * sulla quantità e taglia richiesta */
+					OrderedProduct prod_on_db = null;
+					ProductBean p = null;
+					for(int i=0; i<cart.getSize(); i++) {
+						p = cart.getProduct(i);
+						prod_on_db = productDao.doRetrieveByKeyO(p.getCode());
+
+						if( sizes.get(i).equalsIgnoreCase("M") ) {
+							if(qnts.get(i) > prod_on_db.getTaglie().getQuantitaM() )
+								errors.add("La quantita' richiesta di un prodotto presente nel carrello eccedere quella disponibile!");
+						} else if ( sizes.get(i).equalsIgnoreCase("L") ) {
+							if( qnts.get(i) > prod_on_db.getTaglie().getQuantitaL() )
+								errors.add("La quantita' richiesta di un prodotto presente nel carrello eccedere quella disponibile!");
+								} else if( sizes.get(i).equalsIgnoreCase("XL") ) {
+									if ( qnts.get(i) > prod_on_db.getTaglie().getQuantitaXL() ) 
+										errors.add("La quantita' richiesta di un prodotto presente nel carrello eccedere quella disponibile!");
+								} else if( sizes.get(i).equalsIgnoreCase("XXL") ) {
+									if ( qnts.get(i) > prod_on_db.getTaglie().getQuantitaXXL() ) 
+										errors.add("La quantita' richiesta di un prodotto presente nel carrello eccedere quella disponibile!");
+								}
+					}
+					/*Se qualche prodotto non è disponibiile all'acquisto, rimando alla pagina del primo prodotto 
+					 * non disponibile invitando l'utente a modificare la quantità del prodotto desiderato della 
+					 * taglia desiderata: potrà acquistarlo singolarmente o eventualmente entrare nel carrello
+					 * e modificare la quantità da acquistare */
+					RequestDispatcher dispatcherToProductPage = request.getRequestDispatcher("./product?action=read&fromStore=get&id="+prod_on_db.getCode());
+					if (!errors.isEmpty()) {
+		            	request.setAttribute("errors", errors);
+		            	dispatcherToProductPage.forward(request, response);
+		            	return;
+		            }
+					
+					System.out.println("Tutti i prodotti sono disponibili all'acquisto");
 				}
 			}			
 		} catch (SQLException e) {
@@ -134,7 +177,6 @@ public class OrderControl extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

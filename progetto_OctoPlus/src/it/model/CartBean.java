@@ -23,6 +23,14 @@ public class CartBean {
 		}
 	}
 	
+	public int getSize() {
+		return cart.size();
+	}
+	
+	public ProductBean getProduct(int code) {
+		return cart.get(code);		
+	}
+	
 	public void addProduct(ProductBean product) {
 		for(ProductBean prod : cart) {
 			if(prod.getCode() == product.getCode()) {

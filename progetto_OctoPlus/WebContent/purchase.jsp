@@ -4,6 +4,8 @@
 	ProductBean bean = null;
 	String size = null;
 	Integer quantity = null;
+	List<String>sizes = new ArrayList<>();
+	List<Integer>qnts = new ArrayList<>();
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
  	UserBean user = (UserBean) request.getSession().getAttribute("logged");
 	if( isSomeoneLogged == null ){
@@ -29,6 +31,9 @@
 			if (products != null && products.size() != 0) {
 				Iterator<?> it = products.iterator();
 				while (it.hasNext()) {
+					sizes.add((request.getParameter("sz"+i))); /*mi servirà nella servlet per verificare se 
+					l'acquisto di ogni prodotto nel carrello è possbile effettuarlo opppure no*/
+					qnts.add(Integer.parseInt(request.getParameter("qnt"+i)));
 					bean = (ProductBean) it.next(); %>
 			<div class="box1">		
 			     	<h3><%=bean.getNome()%></h3>
@@ -39,6 +44,10 @@
 		 			<h4> Taglia: <%=request.getParameter("sz"+i)%> Quantita': <%=request.getParameter("qnt"+i)%> </h4>
 			</div>
 	  <% 	i++;	}	
+			request.getSession().removeAttribute("sizes");
+			request.getSession().setAttribute("sizes", sizes);
+			request.getSession().removeAttribute("qnts");
+			request.getSession().setAttribute("qnts", qnts);
 			} %>
 	    <%} else {	
 			if (products != null && products.size() != 0) {
@@ -67,7 +76,7 @@
 	  <div class="col-75">
 	    <div class="container">
 		<%if( products.size()>1) {%>
-	    	 <form action="OrderControl?fromStore=true&action=purchaseOne&id=<%=bean.getCode()%>&size=<%=size%>&quantity=<%=quantity%>" method="post">
+	    	 <form action="OrderControl?fromStore=true&action=purchaseAll" method="post">
 	    	 <div class="row">
 	          <div class="col-50">
 	            <h3>Billing Address</h3>
