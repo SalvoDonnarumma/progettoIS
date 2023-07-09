@@ -22,7 +22,7 @@ function dynamicCart(url){
 		          	contenutoHTML += "<img style=\"width: 150px\" src='./getPicture?id="+bean.code+"\" onerror=\"this.src='img/nophoto.png'\">"+"</td>";
 		          	contenutoHTML += "<td>"+ bean.categoria +"</td>";
 		          	contenutoHTML += "<td> <input type=number min=1 max=\"10\" class=quantita onchange=totaleParziale() value=\"1\"> </td>";
-		          	contenutoHTML += "<td> <select id=\"size\">";
+		          	contenutoHTML += "<td> <select class=\"size\">";
 		          	//faccio visualizzare solo le taglie disponibile per ogni specifico prodotto
 			          	if( bean.taglie.quantitaM>0 )
 			          			contenutoHTML += "<option value=\"M\"> M </option>";
@@ -46,7 +46,7 @@ function dynamicCart(url){
 	 		        contenutoHTML += "<h5>TOTALE</h5>";
 	 			    contenutoHTML += "<div class=\"totale\">";
 	 				contenutoHTML += "<h6> Prodotti: </h6>";
-	 				contenutoHTML += "<p class=\"tot\">&#8364 totale</p>";
+	 				contenutoHTML += "<p id=\"tot\" class=\"tot\">&#8364 totale</p>";
 	 				contenutoHTML += "</div>";
 					contenutoHTML += "</div>"; 
        				contenutoHTML += "</th>";
@@ -68,17 +68,18 @@ function addValuesToLink(){
 		var link = document.getElementById("link");	
 		elem2 = product.getElementsByClassName('quantita');
 		elem1 = product.getElementsByClassName('size');
+		totale = document.getElementById("tot");
 		link.href=link.href.substring(0, 77);
+		console.log(totale.textContent.trim());
 		
 		for(let i = 0; i < elem2.length; i++){
 			console.log(link.href+="&qnt"+i+"=");
 			console.log(link.href+=elem2[i].value);
-		}
-		
-		for(let i = 0; i < elem1.length; i++){
 			console.log(link.href+="&sz"+i+"=");
 			console.log(link.href+=elem1[i].value);
 		}
+		
+		link.href+="&tot="+(totale.textContent);
 }
 
 function totaleParziale(){

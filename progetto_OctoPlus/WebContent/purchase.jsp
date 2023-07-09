@@ -25,6 +25,7 @@
 	<br>
 	<div class="col-25">
 	    <%if( products.size()>1) {
+	    	int i = 0;
 			if (products != null && products.size() != 0) {
 				Iterator<?> it = products.iterator();
 				while (it.hasNext()) {
@@ -35,8 +36,9 @@
 		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
 		 			</a>
 		 			<h4> Categoria: <%=bean.getCategoria()%> </h4>
+		 			<h4> Taglia: <%=request.getParameter("sz"+i)%> Quantita': <%=request.getParameter("qnt"+i)%> </h4>
 			</div>
-	  <% 		}	
+	  <% 	i++;	}	
 			} %>
 	    <%} else {	
 			if (products != null && products.size() != 0) {
@@ -55,7 +57,8 @@
 	  <% 		} 
 		   } 
 	     } %>
-	</div>    
+	</div>
+	<h3> Prezzo dell'ordine: <%= request.getParameter("tot")%>&euro; </h3>	    
 	 <br>
 	 <br> 	
 	<h2 style="align: center;">Conferma acquisto</h2>
