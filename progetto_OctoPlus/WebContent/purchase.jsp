@@ -67,7 +67,7 @@
 		   } 
 	     } %>
 	</div>
-	<h3> Prezzo dell'ordine: <%= request.getParameter("tot")%>&euro; </h3>	    
+	<h3> Prezzo dell'ordine: <%= request.getParameter("tot")%>&euro; </h3>	   
 	 <br>
 	 <br> 	
 	<h2 style="align: center;">Conferma acquisto</h2>
@@ -76,7 +76,7 @@
 	  <div class="col-75">
 	    <div class="container">
 		<%if( products.size()>1) {%>
-	    	 <form action="OrderControl?fromStore=true&action=purchaseAll" method="post">
+	    	 <form action="OrderControl?fromStore=true&action=purchaseAll&tot=<%= request.getParameter("tot")%>" method="post">
 	    	 <div class="row">
 	          <div class="col-50">
 	            <h3>Billing Address</h3>
@@ -140,7 +140,7 @@
 	        <input type="submit" value="Continue to checkout" class="btn">
 	      </form>
 	    <%} else { %>
-	    	<form action="OrderControl?fromStore=true&action=purchaseOne&id=<%=bean.getCode()%>" method="post">
+	    	<form action="OrderControl?fromStore=true&action=purchaseOne&id=<%=bean.getCode()%>&sz=<%=request.getParameter("sz0")%>&qnt=<%=request.getParameter("qnt0")%>" method="post">
 	    	<div class="row">
 	          <div class="col-50">
 	            <h3>Billing Address</h3>

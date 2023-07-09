@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import it.model.CartBean;
 import it.model.OrderBean;
 import it.model.OrderedProduct;
 import it.model.ProductBean;
@@ -116,5 +117,58 @@ public class OrderDaoDataSource implements IOrderDao{
 					connection.close();
 			}
 		}
-	}	
+	}
+	
+	public synchronized void doSaveAll(OrderBean bean, Double ptot) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		/* inserimento dell'ordine nel db */
+		String insertSQL1 = "INSERT INTO ordine (idUtente, data, stato, indirizzo, prezzototale) VALUES (?, ?, ?, ?, ?)";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL1);
+			preparedStatement.setString(1, bean.getEmailUtente());
+			preparedStatement.setString(2, bean.getData());
+			preparedStatement.setString(3, bean.getStato());
+			preparedStatement.setString(4, bean.getIndirizzo());
+			preparedStatement.setDouble(5, ptot);
+			
+			preparedStatement.executeUpdate();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		int idOrdine = this.getLastCode(); //prelevo dal db il codice dell'ordine appena inserito
+		
+		String insertSQL2  = "INSERT INTO articoloordinato (idOrdine, idProdotto, nome, categoria, prezzo, quantita) VALUES (?, ?, ?, ?, ?, ?)";
+		List<OrderedProduct> orderedProducts = bean.getOrders();
+		for( OrderedProduct product : orderedProducts) {
+			try {
+				connection = ds.getConnection();
+				preparedStatement = connection.prepareStatement(insertSQL2);
+				preparedStatement.setInt(1, idOrdine);
+				preparedStatement.setInt(2, product.getCode());
+				preparedStatement.setString(3, product.getNome());
+				preparedStatement.setString(4, product.getCategoria());
+				preparedStatement.setDouble(5, product.getPrice());
+				preparedStatement.setInt(6, product.getQnt());
+				preparedStatement.executeUpdate();
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+		}
+	}
 }

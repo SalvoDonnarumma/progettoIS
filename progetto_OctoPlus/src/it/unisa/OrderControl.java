@@ -50,7 +50,8 @@ public class OrderControl extends HttpServlet {
 		List<String> errors = new ArrayList<>();
 		String action = request.getParameter("action");
 		System.out.println("action: "+action);
-		String email = request.getParameter("email");
+		UserBean bean = (UserBean) request.getSession().getAttribute("logged");
+		String email = bean.getEmail();
 		String indirizzo = request.getParameter("indirizzo");
 		String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
 		try {
@@ -76,8 +77,8 @@ public class OrderControl extends HttpServlet {
 					productDao.doDelete(id);
 				} else if (action.equalsIgnoreCase("purchaseOne")) {
 					
-					int quantity = Integer.parseInt(request.getParameter("quantity"));
-					String size = request.getParameter("size");
+					int quantity = Integer.parseInt(request.getParameter("qnt"));
+					String size = request.getParameter("sz");
 					int id = Integer.parseInt(request.getParameter("id"));
 					OrderedProduct product = productDao.doRetrieveByKeyO(id);
 					//controllo se posso acquistare il prodotto;
@@ -100,6 +101,7 @@ public class OrderControl extends HttpServlet {
 		            	dispatcherToProductPage.forward(request, response);
 		            	return;
 		            }
+					
 					product.setQnt(quantity);
 					productDao.decreaseSize(product.getTaglie(), quantity, size, product.getCode());
 					OrderBean order = new OrderBean();
@@ -141,6 +143,8 @@ public class OrderControl extends HttpServlet {
 									if ( qnts.get(i) > prod_on_db.getTaglie().getQuantitaXXL() ) 
 										errors.add("La quantita' richiesta di un prodotto presente nel carrello eccedere quella disponibile!");
 								}
+						if(errors.size()>0)
+							break;
 					}
 					/*Se qualche prodotto non è disponibiile all'acquisto, rimando alla pagina del primo prodotto 
 					 * non disponibile invitando l'utente a modificare la quantità del prodotto desiderato della 
@@ -153,7 +157,30 @@ public class OrderControl extends HttpServlet {
 		            	return;
 		            }
 					
-					System.out.println("Tutti i prodotti sono disponibili all'acquisto");
+					System.out.println("Tutti i prodotti idonei all'acquisto");
+					OrderBean order = new OrderBean();
+					
+					
+					for(int i = 0; i<cart.getSize(); i++) {
+						p = cart.getProduct(i);
+						prod_on_db = productDao.doRetrieveByKeyO(p.getCode());
+						/* salvo il prodotto insieme alla quantità con cui
+						 * lo si vuol comprare, quantità che verrà salvata nel db */
+						prod_on_db.setQnt(qnts.get(i));
+						/* decremento le quantità di determinate taglie dei prodotti acquistati */
+						productDao.decreaseSize(prod_on_db.getTaglie(), qnts.get(i), sizes.get(i), prod_on_db.getCode());
+						/* aggiungo tutti i prodotti nella lista dell'ordine */
+						order.addOrder(prod_on_db);
+					}
+					
+					
+					order.setEmailUtente(email);
+					order.setStato("IN CONSEGNA");
+					order.setData(dateTime);
+					order.setIndirizzo(indirizzo);
+					Double ptot = Double.parseDouble(request.getParameter("tot"));
+					orderDao.doSaveAll(order, ptot);
+					
 				}
 			}			
 		} catch (SQLException e) {
