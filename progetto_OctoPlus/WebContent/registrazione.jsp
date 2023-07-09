@@ -69,5 +69,6 @@ if (errors != null){
 		<a href="login.jsp">  <b> Accedi </b> </a>			
 	</form> 		
 </div>
+ <jsp:include page="footer.jsp" flush="true"/>
 </body>
 </html>
