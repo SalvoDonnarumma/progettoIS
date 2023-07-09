@@ -1,7 +1,9 @@
 package it.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CartBean {
@@ -38,6 +40,14 @@ public class CartBean {
 			}
 		}
  	}
+	
+	public Collection<?> getAll() {
+		Collection <ProductBean> products = new LinkedList<ProductBean>();
+		for( ProductBean bean : this.cart) {
+			products.add(bean);
+		}
+		return products;
+	}
 	
 	public void printAll() {
 		for(ProductBean prod : cart) {

@@ -2,7 +2,9 @@ package it.unisa;
 
 import java.io.IOException; 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Enumeration;
+import java.util.LinkedList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -117,13 +119,15 @@ public class ProductControl extends HttpServlet {
 		}
 		
 		String sort = request.getParameter("sort");
-
-		try {
-			request.removeAttribute("products");
-			request.setAttribute("products", productDao.doRetrieveAll(sort));
-		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
-		}
+		
+		
+			try {
+				request.removeAttribute("products");
+				request.setAttribute("products", productDao.doRetrieveAll(sort));
+			} catch (SQLException e) {
+				System.out.println("Error:" + e.getMessage());
+			}
+		
 		
 		String fromStore = request.getParameter("fromStore");
 		System.out.println("Parametro action: "+fromStore);

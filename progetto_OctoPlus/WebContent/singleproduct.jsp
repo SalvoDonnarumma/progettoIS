@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%
-	ProductBean bean = (ProductBean) request.getAttribute("product"); 
+ 	ProductBean bean = (ProductBean) request.getAttribute("product");
+	
  	SizesBean sizes = (SizesBean) bean.getTaglie();
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
  	boolean nondisponibile = false;
@@ -26,7 +27,7 @@
 	
 	function addValuesToLink(){
 		var link = document.getElementById("link");	
-		link.href=link.href.substring(0, 75);
+		link.href=link.href.substring(0, 80);
 		console.log(link.href+="&quantity=");
 		console.log(link.href+=document.getElementById("quantity").value);
 		console.log(link.href+="&size=");
@@ -81,7 +82,7 @@
 				<br>
 				<div class="btn-box">
 					<a href="cart.jsp?id=<%=bean.getCode()%>" class="cart-btn"> Aggiungi al Carrello </a>
-					<a id="link" onClick="addValuesToLink();" href="product?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
+					<a id="link" onClick="addValuesToLink();" href="OrderControl?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
 				<%	
 					if( isAdmin == null );
 					else if( isAdmin == true ){ %>

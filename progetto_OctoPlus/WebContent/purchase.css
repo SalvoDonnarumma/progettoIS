@@ -19,8 +19,7 @@ body {
 }
 
 .col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
+  display: flex;
 }
 
 .col-50 {
@@ -114,6 +113,7 @@ span.price {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all .35s ease;
   position: relative;
+  flex: 1;
 }
 
 .box1 img {

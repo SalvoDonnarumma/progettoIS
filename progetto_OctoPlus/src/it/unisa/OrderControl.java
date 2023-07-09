@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import it.model.CartBean;
 import it.model.OrderBean;
 import it.model.OrderedProduct;
 import it.model.ProductBean;
@@ -26,12 +29,7 @@ import it.model.UserBean;
 @WebServlet("/OrderControl")
 public class OrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public OrderControl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String isDriverManager = request.getParameter("driver");
 		if(isDriverManager == null || isDriverManager.equals("")) {
@@ -57,6 +55,20 @@ public class OrderControl extends HttpServlet {
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {
+					int id = Integer.parseInt(request.getParameter("id"));
+					request.removeAttribute("products");
+					Collection <ProductBean> products = new LinkedList<ProductBean>(); //creo una lista di prodotti
+					products.add(productDao.doRetrieveByKey(id)); //inserisco solo un prodotto nella lista
+					/* in questo modo nella pagina di acquisto (anche se singolo) si lavora sempre con 
+					 * un lista, mi permette di avere un acquisto omogoneo di uno o più prodotti*/
+					request.setAttribute("products", products);
+				} else if( action.equalsIgnoreCase("readAll")) {
+						Collection <ProductBean> products = new LinkedList<ProductBean>(); //creo una lista di prodotti
+						CartBean cart = (CartBean) request.getSession().getAttribute("cart");
+						products= cart.getAllProduct();
+						
+						request.removeAttribute("products");
+						request.setAttribute("products", products);
 					
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
@@ -97,28 +109,22 @@ public class OrderControl extends HttpServlet {
 					order.setIndirizzo(indirizzo);
 
 					orderDao.doSave(order);
+				} else if( action.equalsIgnoreCase("purchaseAll")) {
+					
 				}
 			}			
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
 		
-		String sort = request.getParameter("sort");
-
-		try {
-			request.removeAttribute("products");
-			request.setAttribute("products", productDao.doRetrieveAll(sort));
-		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
-		}
 		
 		String fromStore = request.getParameter("fromStore");
 		System.out.println(fromStore);
 		
 		RequestDispatcher dispatcher = null;
 		
-		if(  fromStore.equalsIgnoreCase("get")) {
-			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
+		if(  fromStore.equalsIgnoreCase("get2")) {
+			dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
 		}	
 		else if ( Boolean.parseBoolean(fromStore) )    
 				dispatcher = getServletContext().getRequestDispatcher("/store.jsp");

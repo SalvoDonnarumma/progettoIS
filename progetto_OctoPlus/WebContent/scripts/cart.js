@@ -22,11 +22,16 @@ function dynamicCart(url){
 		          	contenutoHTML += "<img style=\"width: 150px\" src='./getPicture?id="+bean.code+"\" onerror=\"this.src='img/nophoto.png'\">"+"</td>";
 		          	contenutoHTML += "<td>"+ bean.categoria +"</td>";
 		          	contenutoHTML += "<td> <input type=number min=1 max=\"10\" class=quantita onchange=totaleParziale() value=\"1\"> </td>";
-		          	contenutoHTML += "<td> <select id=\"size\">";	
-				  	contenutoHTML += "<option value=\"M\"> M </option>";
-				  	contenutoHTML += "<option value=\"L\"> L </option>";
-				  	contenutoHTML += "<option value=\"XL\"> XL </option>";
-				  	contenutoHTML += "<option value=\"XXL\"> XXL </option>";
+		          	contenutoHTML += "<td> <select id=\"size\">";
+		          	//faccio visualizzare solo le taglie disponibile per ogni specifico prodotto
+			          	if( bean.taglie.quantitaM>0 )
+			          			contenutoHTML += "<option value=\"M\"> M </option>";
+			          	if( bean.taglie.quantitaL>0 )
+			          			contenutoHTML += "<option value=\"L\"> L </option>";		
+					  	if( bean.taglie.quantitaXL>0 )
+			          			contenutoHTML += "<option value=\"XL\"> XL </option>";
+					  	if( bean.taglie.quantitaXXL>0)
+					  			contenutoHTML += "<option value=\"XXL\"> XXL </option>";
 				  	contenutoHTML += "</select>";
 		          	contenutoHTML += "<td>"+"<p class=price>"+bean.price.toFixed(2)+"&#8364</p>"+"</td>";
 		          	contenutoHTML += "<td class=totProd>"+"</td>";
@@ -48,7 +53,7 @@ function dynamicCart(url){
      			  	contenutoHTML += "</tr>";    
      			  	
      				contenutoHTML2 +=	 "<a href=\"store.jsp\"> <button >Torna allo store</button> </a>";
-      				contenutoHTML2 +=	  "<button class=\"pagamento\">Procedi al pagamento</button>";	   
+      				contenutoHTML2 +=	 "<a id=\"link\" onClick=\"addValuesToLink()\" href=\"OrderControl?action=readAll&fromStore=get2\"><button class=\"pagamento\">Procedi al pagamento</button> </a>";	   
 		} 
 		$("#cart").empty();
 		$("#cart").append(contenutoHTML);
@@ -58,9 +63,20 @@ function dynamicCart(url){
 	});
 } 
 
+function addValuesToLink(){
+		product = document.getElementById("cart");
+		var link = document.getElementById("link");	
+		elem2 = product.getElementsByClassName('quantita');
+		link.href=link.href.substring(0, 77);
+		
+		for(let i = 0; i < elem2.length; i++){
+			console.log(link.href+="&qnt"+i+"=");
+			console.log(link.href+=elem2[i].value);
+		}
+}
 
 function totaleParziale(){
-	let product, elem1, elem2, costo, quantita, totParz, tot = 0;
+	let product, elem2, costo, quantita, totParz, tot = 0;
 		
 	product = document.getElementById("cart");
 	elem2 = product.getElementsByClassName('quantita');
