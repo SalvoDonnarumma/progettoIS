@@ -14,7 +14,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="scripts/cart.js"></script>
 <script>
-	/* document.addEventListener("DOMContentLoaded", dynamicCart("/CartServlet?isbn=<%=request.getParameter("isbn")%>")); */
 	$(document).ready(function(){
 		dynamicCart("<%=request.getContextPath()%>/CartServlet?id=<%=request.getParameter("id")%>");
 	});	

@@ -338,13 +338,14 @@ public class DaoDataSource implements IProductDao {
 		String selectSQL = "SELECT * FROM " + DaoDataSource.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
+			selectSQL += " ORDER BY ?";
 		}
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-
+			preparedStatement.setString(1, order);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
