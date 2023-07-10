@@ -23,7 +23,7 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
-	
+	<link rel="stylesheet" type="text/css" href="./admin/style.css">
 	<style>
 	a:link {
 		color: blue;
@@ -200,36 +200,7 @@
 	</table>
 	<br>
 	<br>
-	<h2>Insert Amministratore</h2>
-	<div class="InsertAmministratore">
-	<form action="AdminControl?fromStore=false" method="post">
-		<input type="hidden" name="action" value="insert"> 
-		
-		<label for="name">Email </label>
-		<input name="email" type="email" maxlength="40" required placeholder="enter email"><br> 
-		
-		<label for="cognome">Cognome </label>
-		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
-		
-		<div class="txt_field"> 
-			<label>Password</label>
- 			<input type= "password" name="password" required placeholder="enter a password"> 
-		</div>
-		
-		<div id="phones" class="txt_field">
-			<label>Numero telefono</label>
-					<input type="tel" name="phone"
-						id="phone0" required
-						pattern="^([0-9]{3}-[0-9]{7})$"
-						onchange="validateFormElem(this, document.getElementById('errorPhone0'), phoneErrorMessage)"
-						placeholder="[###-#######]">
-				<br>
-				<span id="errorPhone0"></span>
-		</div>
-
-		<input type="submit" value="Add"><input type="reset" value="Reset">
-	</form>
-	</div>
+		<h3>Vuoi inserire un nuovo admin? <a href="insertAmm.jsp"> Clicca qui </a></h3>
 	<br>
 	<br>
 	Vuoi vedere la pagina della visualizzazione prodotti?

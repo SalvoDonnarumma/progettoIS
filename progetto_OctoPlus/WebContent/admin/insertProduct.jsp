@@ -2,14 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-	
-	
-
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
+	<link rel="stylesheet" type="text/css" href="./admin/style.css">
 	<style>@charset "ISO-8859-1";
 	/* Impostazioni dei link */
 a {
@@ -167,13 +165,9 @@ input[type="reset"]:hover {
   background-color:orange;
   margin: 10px 0;
 }
+</style>
 
-
-
-
-
-	</style>
-	
+	<title>Aggiunta prodotto</title>
 </head>
 
 <body>
@@ -210,22 +204,6 @@ input[type="reset"]:hover {
 		<br>
 		<input class="submit" type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
-
-
-<br>
-<br>
-<h2 class="form-title">Inserisci Immagine</h2>
 	
-<form action="UpdatePhoto" enctype="multipart/form-data" method="post">
-	Nome file caricato:
-	<select name="id">
-</select>
-	<br>
-	<input class="file" type="file" name="talkPhoto" value="" maxlength="255">	
-	<br>		
-	<input type="submit" class="submit" value="Upload">      <input type="reset">
-	<br>
-</form>
-	
-	</body>
+</body>
 </html>

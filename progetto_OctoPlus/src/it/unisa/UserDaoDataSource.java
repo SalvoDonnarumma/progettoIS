@@ -104,7 +104,10 @@ public class UserDaoDataSource implements IUserDao {
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, order);
+			if (order != null && !order.equals("")) {
+				preparedStatement.setString(1, order);
+			}
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {

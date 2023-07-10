@@ -5,7 +5,8 @@
 <html>
 <%@ page import="java.util.*, it.model.*"%>
 <script src="scripts/store.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+</script>
 <script>
 	$(document).ready(function(){
 		dynamicStore("<%=request.getContextPath()%>/StoreServlet");

@@ -18,7 +18,7 @@
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource"%>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Modifica prodotto</title>
 <link rel="stylesheet" type="text/css" href="./admin/modifyproduct.css">
 
 <script>
