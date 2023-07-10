@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -119,6 +121,51 @@ public class OrderDaoDataSource implements IOrderDao{
 		}
 	}
 	
+	@Override
+	public synchronized Collection<OrderBean> doRetrieveAllOrders(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+
+		String selectSQL = "SELECT * FROM ordine" ;
+
+		if (order != null && !order.equals("")) {
+			selectSQL += "ORDER BY ?";
+		}
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			if (order != null && !order.equals("")) {
+				preparedStatement.setString(1, order);
+			}
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				OrderBean bean = new OrderBean();
+
+				bean.setIdOrdine(rs.getInt("idOrdine"));
+				bean.setEmailUtente(rs.getString("idUtente"));
+				bean.setData(rs.getString("data"));
+				bean.setStato(rs.getString("stato"));
+				bean.setPrezzototale(rs.getDouble("prezzototale"));
+				orders.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return orders;
+	}
+	
 	public synchronized void doSaveAll(OrderBean bean, Double ptot) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -168,6 +215,30 @@ public class OrderDaoDataSource implements IOrderDao{
 					if (connection != null)
 						connection.close();
 				}
+			}
+		}
+	}
+
+	@Override
+	public void removeOrder(int idOrdine) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		String deleteSQL = "DELETE FROM ordine WHERE idOrdine = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, idOrdine);
+
+			preparedStatement.executeUpdate();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
 			}
 		}
 	}

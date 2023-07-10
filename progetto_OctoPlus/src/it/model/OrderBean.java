@@ -64,17 +64,6 @@ public class OrderBean{
 		this.idOrdine = idOrdine;
 	}
 
-
-	public String getIdUtente() {
-		return idUtente;
-	}
-
-
-	public void setIdUtente(String idUtente) {
-		this.idUtente = idUtente;
-	}
-
-
 	public Double getPrezzototale() {
 		return prezzototale;
 	}

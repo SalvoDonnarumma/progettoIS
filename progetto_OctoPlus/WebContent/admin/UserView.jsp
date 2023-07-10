@@ -208,7 +208,7 @@
 	<br>
 	<br>
 	Vuoi vedere la pagina della visualizzazione ordini?
-	<a href="#"> Clicca qui! </a>
+	<a href="admin/OrderView.jsp"> Clicca qui! </a>
 	
 
 </body>

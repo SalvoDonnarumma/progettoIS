@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 <link rel="stylesheet"
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
 <header>
-		<img src="img/octopus.png" class="logo">
+		<img src="<%=request.getContextPath()%>/img/octopus.png" class="logo">
 		<span class="hfont">OctoPlus</span> 
 		<div class="menu_hamburger" id="menu-icon"> 
 		</div>
@@ -38,8 +38,8 @@
   						</form>																							
 <%						}
 			%>	
-				<a href="index.jsp"><i class='bx bx-home-heart'></i></a>
-				<a href="login.jsp"><i class='bx bx-log-in-circle'></i></a>	<%
+				<a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart'></i></a>
+				<a href="<%=request.getContextPath()%>/login.jsp"><i class='bx bx-log-in-circle'></i></a>	<%
 			} else if( isAdmin == true ){ //sezione admin
 					
 					if( path.contains("/store.jsp") ) { %>																					
@@ -49,10 +49,10 @@
   							</form>														
 <%						}	
 				%>	
-					<a href="admin/ProductView.jsp"><i class='bx bx-library'></i></a>
-					<a href="userprofile.jsp"><i class='bx bxs-user'></i></a>	
-					<a href="index.jsp"><i class='bx bx-home-heart'></i></a>	
-					<a href="Logout"><i class='bx bx-log-out-circle'></i></a>	
+					<a href="<%=request.getContextPath()%>/admin/ProductView.jsp"><i class='bx bx-library'></i></a>
+					<a href="<%=request.getContextPath()%>/userprofile.jsp"><i class='bx bxs-user'></i></a>	
+					<a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart'></i></a>	
+					<a href="<%=request.getContextPath()%>/Logout"><i class='bx bx-log-out-circle'></i></a>	
 		
 		<%		} else { //sezione utente normale 
 					 if( path.contains("/store.jsp") ) { %>	
@@ -61,11 +61,11 @@
      							<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
   							</form>			
 <%							} %>
-						<a href="userprofile.jsp"><i class='bx bxs-user'></i></a>	
-						<a href="index.jsp"><i class='bx bx-home-heart'></i></a>
-						<a href="Logout"><i class='bx bx-log-out-circle'></i></a>	
+					<a href="<%=request.getContextPath()%>/userprofile.jsp"><i class='bx bxs-user'></i></a>	
+					<a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart'></i></a>	
+					<a href="<%=request.getContextPath()%>/Logout"><i class='bx bx-log-out-circle'></i></a>	
 					<%  } %>	
-		<a href="cart.jsp"><i class='bx bx-cart' ></i></a> 
+		<a href="<%=request.getContextPath()%>/cart.jsp"><i class='bx bx-cart' ></i></a> 
 		</div>
 </header>
 </body>

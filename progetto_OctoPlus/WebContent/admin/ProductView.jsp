@@ -11,7 +11,7 @@
 	ProductBean product = (ProductBean) request.getAttribute("product");
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( isSomeoneLogged == null ){
-		response.sendRedirect("./login.jsp");	
+		response.sendRedirect("../login.jsp");		
 		return;
 	}
 %>
@@ -128,7 +128,7 @@
 	<br>
 	<br>
 	Vuoi vedere la pagina della visualizzazione ordini?
-	<a href="#"> Clicca qui! </a>
+	<a href="admin/OrderView.jsp"> Clicca qui! </a>
 <br>
 </body>
 </html>

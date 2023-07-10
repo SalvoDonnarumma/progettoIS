@@ -68,10 +68,13 @@ public class OrderControl extends HttpServlet {
 						Collection <ProductBean> products = new LinkedList<ProductBean>(); //creo una lista di prodotti
 						CartBean cart = (CartBean) request.getSession().getAttribute("cart");
 						products= cart.getAllProduct();
-						
 						request.removeAttribute("products");
 						request.setAttribute("products", products);
-					
+				} else if( action.equalsIgnoreCase("viewAll")) {
+						Collection <OrderBean> orders= new LinkedList<OrderBean>(); //creo una lista di ordini
+						orders = orderDao.doRetrieveAllOrders(null);
+						request.removeAttribute("orders");
+						request.setAttribute("orders",orders);
 				} else if (action.equalsIgnoreCase("delete")) {
 					int id = Integer.parseInt(request.getParameter("id"));
 					productDao.doDelete(id);
@@ -173,14 +176,12 @@ public class OrderControl extends HttpServlet {
 						order.addOrder(prod_on_db);
 					}
 					
-					
 					order.setEmailUtente(email);
 					order.setStato("IN CONSEGNA");
 					order.setData(dateTime);
 					order.setIndirizzo(indirizzo);
 					Double ptot = Double.parseDouble(request.getParameter("tot"));
 					orderDao.doSaveAll(order, ptot);
-					
 				}
 			}			
 		} catch (SQLException e) {
@@ -195,11 +196,10 @@ public class OrderControl extends HttpServlet {
 		
 		if(  fromStore.equalsIgnoreCase("get2")) {
 			dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
-		}	
-		else if ( Boolean.parseBoolean(fromStore) )    
-				dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
-         	else
-         		dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
+		} else if ( Boolean.parseBoolean(fromStore) )    
+					dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
+         		else
+         			dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
 		dispatcher.forward(request, response);
 	}
 
