@@ -1,5 +1,5 @@
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -26,19 +26,11 @@ table {
 }
 
 th, td {
-    padding: 10px;
-    text-align: left;
+    padding: 5px;
+    text-align: center;
     border-bottom: 1px solid#ddd;
 }
 
-a {
-    text-decoration: none;
-    color: #0066cc;
-}
-
-a:hover {
-    text-decoration: underline;
-}
 
 @media (max-width: 600px) {
     h1 {

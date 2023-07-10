@@ -14,6 +14,7 @@ import it.model.CartBean;
 import it.model.OrderBean;
 import it.model.OrderedProduct;
 import it.model.ProductBean;
+import it.model.SizesBean;
 import it.model.UserBean;
 
 public class OrderDaoDataSource implements IOrderDao{
@@ -150,6 +151,7 @@ public class OrderDaoDataSource implements IOrderDao{
 				bean.setEmailUtente(rs.getString("idUtente"));
 				bean.setData(rs.getString("data"));
 				bean.setStato(rs.getString("stato"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
 				bean.setPrezzototale(rs.getDouble("prezzototale"));
 				orders.add(bean);
 			}
@@ -217,6 +219,46 @@ public class OrderDaoDataSource implements IOrderDao{
 				}
 			}
 		}
+	}
+	
+	@Override
+	public synchronized Collection<OrderBean> doRetrieveAllByKey(String email) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+
+		String selectSQL = "SELECT * FROM ordine WHERE idUtente = ?" ;
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, email);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				OrderBean bean = new OrderBean();
+
+				bean.setIdOrdine(rs.getInt("idOrdine"));
+				bean.setEmailUtente(rs.getString("idUtente"));
+				bean.setData(rs.getString("data"));
+				bean.setStato(rs.getString("stato"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
+				bean.setPrezzototale(rs.getDouble("prezzototale"));
+				orders.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return orders;
 	}
 
 	@Override

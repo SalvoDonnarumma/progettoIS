@@ -28,14 +28,23 @@ public class OrderServlet extends HttpServlet {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		IOrderDao orderDao = new OrderDaoDataSource(ds);
-		
 		Collection <OrderBean> orders= new LinkedList<OrderBean>(); //creo una lista di ordini
-		try {
-			orders = orderDao.doRetrieveAllOrders(null);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
+		String idUtente = request.getParameter("idUtente");
+		if( idUtente == null ) {
+			try {
+				orders = orderDao.doRetrieveAllOrders(null);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				orders = orderDao.doRetrieveAllByKey(idUtente);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+			
 		Gson json = new Gson();
 		PrintWriter out = response.getWriter();
 		out.write(json.toJson(orders));	

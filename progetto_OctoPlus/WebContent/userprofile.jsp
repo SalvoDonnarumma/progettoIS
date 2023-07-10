@@ -3,6 +3,10 @@
  <%
 	UserBean bean = (UserBean) request.getSession().getAttribute("logged"); //quando una persona si logga salvo i suoi dati nella sessione
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( bean == null ){
+		response.sendRedirect("./login.jsp");		
+		return;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -10,6 +14,13 @@
 <head>
     <title>Pagina Utente</title>
     <link rel="stylesheet" type="text/css" href="profile.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  	<script src="./scripts/orders.js"></script>
+  	<script>
+		$(document).ready(function(){
+			dynamicOrdersUser("<%=request.getContextPath()%>/OrderServlet?idUtente=<%=bean.getEmail()%>");
+		});	
+  </script> 
 </head>
 <body>
 	<jsp:include page="./header.jsp" flush="true"/>
@@ -26,39 +37,12 @@
             </ul>
         </div>
         
-        <div class="orders">
-            <h2>I tuoi ordini</h2>
-            <table>
-                <tr>
-                    <th>Numero ordine</th>
-                    <th>Data</th>
-                    <th>Stato</th>
-                    <th>Totale</th>
-                </tr>
-                <tr>
-                    <td>[Numero ordine]</td>
-                    <td>[Data ordine]</td>
-                    <td>[Stato ordine]</td>
-                    <td>[Totale ordine]</td>
-                </tr>
-                <tr>
-                    <td>[Numero ordine]</td>
-                    <td>[Data ordine]</td>
-                    <td>[Stato ordine]</td>
-                    <td>[Totale ordine]</td>
-                </tr>
-                <tr>
-                    <td>[Numero ordine]</td>
-                    <td>[Data ordine]</td>
-                    <td>[Stato ordine]</td>
-                    <td>[Totale ordine]</td>
-                </tr>
-            </table>
+        <div class="orders" id="orders">   
         </div>
         
         <div class="password-change">
             <h2>Modifica password</h2>
-            <p>Se desideri cambiare la tua password, puoi farlo <a href="#">qui</a>.</p>
+            <p>Se desideri cambiare la tua password, puoi farlo <a href="./changepass.jsp">qui</a>.</p>
         </div>
         
         <div class="logout">
