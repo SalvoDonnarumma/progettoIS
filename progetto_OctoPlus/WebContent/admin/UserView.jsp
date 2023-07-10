@@ -200,7 +200,7 @@
 	</table>
 	<br>
 	<br>
-		<h3>Vuoi inserire un nuovo admin? <a href="insertAmm.jsp"> Clicca qui </a></h3>
+		<h3>Vuoi inserire un nuovo admin? <a href="admin/insertAmm.jsp"> Clicca qui </a></h3>
 	<br>
 	<br>
 	Vuoi vedere la pagina della visualizzazione prodotti?

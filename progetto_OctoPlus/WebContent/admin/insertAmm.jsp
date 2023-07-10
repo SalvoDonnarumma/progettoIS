@@ -9,133 +9,192 @@
 <head>
 	
 	<style>
-	a:link {
-		color: blue;
-		font-weight: bold;
-	}
-
-/* visited link */
-	a:visited {
-		color: blue;
-		font-weight: bold;
-	}
-
-/* mouse over link */
-	a:hover {
-		color: red;
-		font-weight: bold;
-	}
-
-	a:active {
-		color: blue;
-		font-weight: bold;
-	}
-	
-	body{
-		background: 
-			linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
-            linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
-            linear-gradient(336deg, rgba(2, 27, 70, .8), rgba(2, 27, 70, 0) 70.71%);
-	}
-	
-	table {
-		width: 100%;
-	}
-
-	table, th, td {
-		text-align: center;
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-
-	th, td {
-		padding: 5px;
-	}
-
-	label {
-		font-weight: bold;
-	}
-
-	form input[type=text], form input[type=number], form input[type=password],
-	form input[type=date], form input[type=range], form input[type=email],
-	form input[type=url], form input[type=time], form input[list] {
-		width: 500px;
-		font-size: 1em;
-	}
-
-	textarea {
-		width: 500px;
-		height: 60px;
-		font-size: 1em;
-	}
-	
-	input[type="submit"]{
-		  width: 15%;
-		  height: 25%;
-		  border: 1px solid;
-		  background: #2691d9;
-		  border-radius: 10px;
-		  font-size: 18px;
-		  color: #e9f4fb;
-		  font-weight: 700;
-		  cursor: pointer;
-		  outline: none;
-		  position: relative;
-		}
-	input[type="submit"]:hover{
-		  border-color: #2691d9;
-		  transition: .5s;
-		  color: white;
-		  background-color: #51b0f0; 
-		}
-		
-	input[type="reset"]{
-		  width: 15%;
-		  height: 25%;
-		  border: 1px solid;
-		  background: #2691d9;
-		  border-radius: 10px;
-		  font-size: 18px;
-		  color: #e9f4fb;
-		  font-weight: 700;
-		  cursor: pointer;
-		  outline: none;
-		  position:relative;
-		}
-	input[type="reset"]:hover{
-		  border-color: #2691d9;
-		  transition: .5s;
-		  text-align: center;
-		  color: white;
-		  background-color: #51b0f0; 
-		}	
-		
-	.InsertProdotto{
-		width: 50%;
-  		border: 1px solid black;
-  		padding: 20px;
-  		margin-left: auto;
- 		margin-right: auto;
-	}	
-	
-	.UploadPhoto{
-		width: 50%;
-  		border: 1px solid black;
-  		padding: 20px;
-  		margin-left: auto;
- 		margin-right: auto;
-	}
-	
-	.InsertAmministratore{
-		width: 50%;
-  		border: 1px solid black;
-  		padding: 20px;
-  		margin-left: auto;
- 		margin-right: auto;
- 		padding: auto;
-	}
+	a {
+	color: blue;
+	font-weight: bold;
+	text-decoration: none;
 }
-	</style>
+
+a:visited {
+	color: blue;
+}
+
+a:hover {
+	color: red;
+}
+
+a:active {
+	color: blue;
+}
+
+/* Impostazioni del corpo della pagina */
+body {
+
+ 	background-color: rgb(0, 0, 0);
+	background-image: linear-gradient(135deg, #008080, #16425B, #9BA2FF);
+	background: linear-gradient(to bottom right, #16425B, #9BA2FF);
+	min-height: 100vh;
+	margin: 0;
+}
+
+/* Impostazioni delle tabelle */
+table {
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	text-align: center;
+	padding: 5px;
+	border: 1px solid black;
+}
+/* Stili per il form */
+form {
+	width: 750px;
+	margin: 70px auto 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: #D9DCD6;
+	padding: 25px;
+}
+
+/* Stili per i pulsanti all'interno del form */
+form input[type="submit"],
+form input[type="reset"] {
+	display: inline-block;
+	margin-top: -15px;
+	float: right;
+	
+}
+
+/* Stili per le sezioni del modulo */
+.InsertProdotto,
+.UploadPhoto,
+.InsertAmministratore {
+	width: 50%;
+	border: none;
+	padding: 20px;
+	margin: 0 auto;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: #D9DCD6;
+}
+.InsertAmministratore form {
+	border: none;
+	background-color: transparent;
+}
+
+
+
+/* Stile per gli input del modulo */
+form input[type=text],
+form input[type=number],
+form input[type=password],
+form input[type=date],
+form input[type=range],
+form input[type=email],
+form input[type=url],
+form input[type=time],
+form input[list] {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f5f5f5;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	margin-right: 30px;
+	font-family: "Arial", sans-serif; 
+  color: #606C38;
+}
+form textarea {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f5f5f5;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	resize: vertical; /*fa solo su e giù*/
+	margin-right: 30px;
+	
+}
+
+/* Stile per i pulsanti di invio e reset */
+input[type="submit"],
+input[type="reset"] {
+	width: 15%;
+	height: 25%;
+	border: 1px solid;
+	background: #85756E;
+	border-radius: 10px;
+	font-size: 18px;
+	color: #D9DCD6;
+	font-weight: 700;
+	cursor: pointer;
+	outline: none;
+	position: relative;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+	border-color: #BC2C1A;
+	transition: .5s;
+	color: #D9DCD6;
+	background-color: #BC2C1A;
+}
+
+/* Stili per le sezioni del modulo */
+.InsertProdotto,
+.UploadPhoto,
+.InsertAmministratore {
+	width: 50%;
+	border: 1px solid black;
+	padding: 20px;
+	margin: 0 auto;
+}
+/* Stili per il titolo del form */
+.InsertAmministratore {
+	width: 50%;
+	max-width: 750px;
+	border: 1px solid black;
+	padding: 20px;
+	margin: 0 auto;
+}
+.form-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #85756E;
+  margin-bottom: 40px;
+  text-align: left;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);  /* Aggiungi l'ombra al testo */
+  font-family: "Arial", sans-serif;  /* Cambia il carattere del testo */
+}
+
+/* Stili per la linea decorativa sotto il titolo 
+.form-title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background-color:#91972A;
+  margin: 10px 0;
+}*/
+ label {
+    color: #BC2C1A; /* Colore del testo dell'etichetta */
+  }
+  
+  input[name="email"] {
+    font-family: "Arial", sans-serif; 
+    color: #BC2C1A; 
+  }
+
+</style>
+
 <script src="scripts/validate.js"></script>
 </head>
 
@@ -143,8 +202,8 @@
 	<jsp:include page="../header.jsp" flush="true"/>
 
 	
-	<h2>Insert Amministratore</h2>
-	<div class="InsertAmministratore">
+	<h2 class="form-title">Inserisci Amministratore</h2>
+	
 	<form action="AdminControl?fromStore=false" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
@@ -172,7 +231,7 @@
 
 		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
-	</div>
+	
 	
 </body>
 </html>
