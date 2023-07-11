@@ -152,6 +152,12 @@ public class UserDaoDataSource implements IUserDao {
         return hashString;
     }
 	
+	public synchronized Boolean comparePass(String oldPassHash, String passToBeMatch) {
+		String hashedpassToBeMatch = this.toHash(passToBeMatch);
+		System.out.println("Le pass sono uguali: "+hashedpassToBeMatch.equals(oldPassHash));
+		return hashedpassToBeMatch.equals(oldPassHash);
+	}
+	
 	public synchronized UserBean loginUserOrAdmin(String email, String password) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -208,8 +214,33 @@ public class UserDaoDataSource implements IUserDao {
 					connection.close();
 			}
 		}
-		
 		return null;
+	}
+	
+	@Override
+	public boolean changePass(String pass, int idUtente) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String deleteSQL = "UPDATE utente SET password = ? WHERE idUtente = ?";
+		int result = 0;
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setString(1, this.toHash(pass));
+			preparedStatement.setInt(2, idUtente);
+
+			result = preparedStatement.executeUpdate();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return (result != 0);
 	}
 	
 	@Override
@@ -236,7 +267,6 @@ public class UserDaoDataSource implements IUserDao {
 			}
 		}
 		return (result != 0);
-		
 	}
 
 }

@@ -69,7 +69,7 @@ function dynamicOrdersUser(url){
                     contenutoHTML += "<td>["+bean.data+"]</td>";
                     contenutoHTML += "<td>["+bean.stato+"]</td>";
                     contenutoHTML += "<td>["+bean.prezzototale.toFixed(2)+"&euro;]</td>";
-                    contenutoHTML += "<td> <a href=\"./singleorder.jsp\"> Dettagli prodotti </a> </td>";
+                    contenutoHTML += "<td> <a href=\"./productlist.jsp?id="+bean.idOrdine+"\"> Dettagli prodotti </a> </td>";
                 	contenutoHTML += "</tr>";
 		      }			
 		      contenutoHTML += "</table>";

@@ -16,4 +16,8 @@ public interface IUserDao {
 	Collection<UserBean> doRetrieveAllUsers(String order) throws SQLException;
 	
 	public UserBean loginUserOrAdmin(String email, String password) throws SQLException;
+	
+	public  Boolean comparePass(String oldPassHash, String passToBeMatch);
+
+	boolean changePass(String pass, int idUtente) throws SQLException;
 }

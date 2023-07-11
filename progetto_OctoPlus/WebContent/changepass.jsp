@@ -1,5 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+ <%
+	UserBean bean = (UserBean) request.getSession().getAttribute("logged"); //quando una persona si logga salvo i suoi dati nella sessione
+ 	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( bean == null ){
+		response.sendRedirect("./login.jsp");		
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
+<%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.model.UserBean"%>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,16 +79,27 @@
   <br>
   <div class="container">
     <h2>Cambio password</h2>
-    <form>
+    <form action="AdminControl?fromStore=cgpass&action=cgpass&id=<%=bean.getEmail()%>" method="post">
       <label for="currentPassword">Password attuale</label>
-      <input type="password" id="currentPassword" required>
+      <input name="currentPassword" type="password" id="currentPassword" required>
       
       <label for="newPassword">Nuova password</label>
-      <input type="password" id="newPassword" required>
+      <input name="newPassword" type="password" required>
       
       <label for="confirmPassword">Conferma nuova password</label>
-      <input type="password" id="confirmPassword" required>
+      <input name="confirmPassword" type="password" required>
       
+      <%
+     	 List<String> errors = (List<String>) request.getAttribute("errors");
+			if (errors != null){
+				for (String error: errors){ %>
+				<label style="color: red">	<%=error %> </label>
+				<br>		
+			<%
+			}
+		}
+      %>
+     
       <button type="submit">Cambia password</button>
     </form>
   </div>

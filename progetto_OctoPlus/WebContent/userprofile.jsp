@@ -24,7 +24,9 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp" flush="true"/>
-    <div class="container">
+	<br>
+  	<br>
+    <div class="container_orders">
         <h1>Area personale</h1>
         
         <div class="user-info">
@@ -50,5 +52,9 @@
             <p>Se desideri uscire dalla tua pagina utente, puoi effettuare il logout <a href="Logout">qui</a>.</p>
         </div>
     </div>
+    
+    <br>
+  	<br>
+	<jsp:include page="footer.jsp" flush="true"/>
 </body>
 </html>

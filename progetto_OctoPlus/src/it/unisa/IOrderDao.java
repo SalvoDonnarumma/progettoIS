@@ -5,9 +5,12 @@ import java.util.Collection;
 
 import it.model.CartBean;
 import it.model.OrderBean;
+import it.model.OrderedProduct;
 
 public interface IOrderDao {
 
+	Collection<OrderedProduct> doRetrieveById(String order, int code) throws SQLException; 
+	
 	void doSave(OrderBean order) throws SQLException;
 
 	void doSaveAll(OrderBean order, Double ptotm) throws SQLException;
@@ -17,4 +20,5 @@ public interface IOrderDao {
 	void removeOrder(int parseInt) throws SQLException;
 	
 	Collection<OrderBean> doRetrieveAllByKey(String email) throws SQLException;
+
 }

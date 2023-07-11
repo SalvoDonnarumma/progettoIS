@@ -168,6 +168,51 @@ public class OrderDaoDataSource implements IOrderDao{
 		return orders;
 	}
 	
+	@Override
+	public synchronized Collection<OrderedProduct> doRetrieveById(String order, int code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<OrderedProduct> singleorder = new LinkedList<OrderedProduct>();
+
+		String selectSQL = "SELECT * FROM articoloordinato WHERE idOrdine = ?" ;
+
+		if (order != null && !order.equals("")) {
+			selectSQL += "ORDER BY ?";
+		}
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+			if (order != null && !order.equals("")) {
+				preparedStatement.setString(2, order);
+			}
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				OrderedProduct bean = new OrderedProduct();
+				
+				bean.setNome(rs.getString("nome"));
+				bean.setCategoria(rs.getString("categoria"));
+				bean.setPrice(rs.getDouble("prezzo"));
+				bean.setQnt(rs.getInt("quantita"));
+
+				singleorder.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return singleorder;
+	}
+	
 	public synchronized void doSaveAll(OrderBean bean, Double ptot) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

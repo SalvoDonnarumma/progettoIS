@@ -14,7 +14,6 @@
 <div class="center">
  <h1>OctoLogin</h1>
    <form action="Login" method="post">
-     
      <div class="txt_field email-field">
     <input type="email" name="email" required 
         onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" id="email">

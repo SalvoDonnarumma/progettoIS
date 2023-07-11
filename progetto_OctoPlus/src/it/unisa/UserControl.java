@@ -2,6 +2,8 @@ package it.unisa;
 
 import java.io.IOException; 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,6 +62,35 @@ public class UserControl extends HttpServlet {
 					bean.setCognome(cognome);
 					bean.setTelefono(telefono);
 					adminDao.doSaveAdmin(bean);
+				} else if( action.equalsIgnoreCase("cgpass")) {
+					String oldPass = request.getParameter("currentPassword");
+					String newPass = request.getParameter("newPassword");
+					String confPass = request.getParameter("confirmPassword");
+					UserBean bean = (UserBean) request.getSession().getAttribute("logged");
+					
+					List<String> errors = new ArrayList<>();
+		        	RequestDispatcher dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
+		        	
+		        	
+		        	System.out.println("Le due nuove pass sono uguali: "+newPass.equals(confPass));
+					if( !newPass.equals(confPass) ) {
+						errors.add("La password nuova e la password di conferma non corrispondono!");
+						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
+						request.setAttribute("errors", errors);
+						dispatcherChangePassPage.forward(request, response);
+						return;
+					}
+					
+					if( !adminDao.comparePass(bean.getPassword(), oldPass) ) {
+						errors.add("La vecchia password inserita non e' valida!");
+						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
+						request.setAttribute("errors", errors);
+						dispatcherChangePassPage.forward(request, response);
+						return;
+					}
+					
+					if(adminDao.changePass(confPass, bean.getId()))
+							System.out.println("Password cambiata con successo!");
 				}
 			}			
 		} catch (SQLException e) {
@@ -79,10 +110,11 @@ public class UserControl extends HttpServlet {
 		
 		RequestDispatcher dispatcher = null;
 		
-		if(  fromStore.equalsIgnoreCase("get")) {
+		if( fromStore.equalsIgnoreCase("cgpass")) {
+			dispatcher = getServletContext().getRequestDispatcher("/userprofile.jsp");
+		} else if(  fromStore.equalsIgnoreCase("get")) {
 			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
-		}	
-		else if ( Boolean.parseBoolean(fromStore) )    
+		} else if ( Boolean.parseBoolean(fromStore) )    
 				dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
          	else
          		dispatcher = getServletContext().getRequestDispatcher("/admin/UserView.jsp");
