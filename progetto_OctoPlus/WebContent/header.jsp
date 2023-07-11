@@ -30,22 +30,14 @@
 			String path = httpServletRequest.getServletPath();
 			System.out.println(path);
 			if( isAdmin == null ){ //sezione utente ospite
-					if (path.contains("/store.jsp")) {%>	
-						<form action="#" method="get" class="search-form">
-    						<input type="text" name="search" placeholder="Cerca..." class="search-input">
-     						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
-  						</form>																							
+					if (path.contains("/store.jsp")) {%>																							
 <%						}
 			%>	
 				<a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart'></i></a>
 				<a href="<%=request.getContextPath()%>/login.jsp"><i class='bx bx-log-in-circle'></i></a>	<%
 			} else if( isAdmin == true ){ //sezione admin
 					
-					if( path.contains("/store.jsp") ) { %>																					
-							<form action="#" method="get" class="search-form">
-    						<input type="text" name="search" placeholder="Cerca..." class="search-input">
-     						<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
-  							</form>														
+					if( path.contains("/store.jsp") ) { %>																																		
 <%						}	
 				%>	
 					<a href="<%=request.getContextPath()%>/admin/ProductView.jsp"><i class='bx bx-library'></i></a>
@@ -54,11 +46,7 @@
 					<a href="<%=request.getContextPath()%>/Logout"><i class='bx bx-log-out-circle'></i></a>	
 		
 		<%		} else { //sezione utente normale 
-					 if( path.contains("/store.jsp") ) { %>	
-							<form action="#" method="get" class="search-form">
-    							<input type="text" name="search" placeholder="Cerca..." class="search-input">
-     							<button type="submit" class="search-button"><i class='bx bx-search'></i></button>
-  							</form>			
+					 if( path.contains("/store.jsp") ) { %>			
 <%							} %>
 					<a href="<%=request.getContextPath()%>/userprofile.jsp"><i class='bx bxs-user'></i></a>	
 					<a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart'></i></a>	

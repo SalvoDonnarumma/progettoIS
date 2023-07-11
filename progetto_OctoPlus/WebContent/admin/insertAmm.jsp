@@ -1,3 +1,10 @@
+<%
+ 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( isSomeoneLogged == null || isSomeoneLogged == false  ){
+		response.sendRedirect("../login.jsp");		
+		return;
+	}
+%>
 <%@page import="it.model.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -195,7 +202,7 @@ input[type="reset"]:hover {
 
 </style>
 
-<script src="scripts/validate.js"></script>
+<script src="../scripts/validate.js"></script>
 </head>
 
 <body>
@@ -208,14 +215,18 @@ input[type="reset"]:hover {
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Email </label>
-		<input name="email" type="email" maxlength="40" required placeholder="enter email"><br> 
+		<input type="email" name="email" required placeholder="Inserisci email"
+		onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)"	id="email">
+		<span id="errorEmail"></span> 
 		
 		<label for="cognome">Cognome </label>
-		<input name="cognome" type="text" value="" required placeholder="enter a surname"><br>
+		<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" placeholder="Inserisci il cognome"
+		onchange="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
+		<span id="errorLastname"></span>
 		
 		<div class="txt_field"> 
 			<label>Password</label>
- 			<input type= "password" name="password" required placeholder="enter a password"> 
+ 			<input type= "password" name="password" required placeholder="Inserisci la password"> 
 		</div>
 		
 		<div id="phones" class="txt_field">
@@ -227,8 +238,9 @@ input[type="reset"]:hover {
 						placeholder="[###-#######]">
 				<br>
 				<span id="errorPhone0"></span>
+			
 		</div>
-
+		<br>
 		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
 	

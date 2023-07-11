@@ -9,6 +9,12 @@
   	background-color: #fff;
 }
 
+body {  
+  background-image: url(./img/sfondoutente.png);
+  background-attachment:fixed;
+  background-size: 100% 100%;
+}
+
 h1, h2 {
     margin-bottom: 20px;
     text-align: center;

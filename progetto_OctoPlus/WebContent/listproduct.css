@@ -8,6 +8,12 @@
   background-color: #fff;
 }
 
+body {  
+  background-image: url(./img/sfondoutente.png);
+  background-attachment:fixed;
+  background-size: 100% 100%;
+}
+
 .purchase-list {
   list-style-type: none;
   padding: 0;

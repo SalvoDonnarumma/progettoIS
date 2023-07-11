@@ -1,9 +1,9 @@
 let count = 1;
-const nameOrLastnameErrorMessage = "Questo campo deve avere solo lettere";
-const emailErrorMessage = "L'email deve essere almeno del formato username@domain.ext";
-const phoneErrorMessage = "Il numero telefonico deve essere nel formato ###-#######";
-const emptyFieldErrorMessage = "Il campo non puo' essere vuoto";
-const wrongconfirmPassErrorMessage = "La password non cambacia con la precedente"
+const nameOrLastnameErrorMessage = "Questo campo deve avere solo lettere<br>";
+const emailErrorMessage = "L'email deve essere almeno del formato username@domain.ext<br>";
+const phoneErrorMessage = "Il numero telefonico deve essere nel formato ###-#######<br>";
+const emptyFieldErrorMessage = "Il campo non puo' essere vuoto<br>";
+const wrongconfirmPassErrorMessage = "La password non cambacia con la precedente<br>";
 
 function validateFormElem(formElem, span, errorMessage) {
 	if(formElem.checkValidity()){

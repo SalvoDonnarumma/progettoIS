@@ -11,7 +11,7 @@
 
 
 body {  
-  background-image: url(./img/sfondostore.png);
+  background-image: url(./img/catalogo.jpg);
   background-attachment:fixed;
   background-size: 100% 100%;
 }
@@ -28,7 +28,6 @@ section {
   align-items: center;
   gap: 2rem;
   text-align: center;
-  padding-top: 2rem;
 }
 
 .prodotti {
@@ -112,7 +111,7 @@ section {
   transform: scale(1.1);
 }
 .topnav {
-  background-color: #000;
+  background-color: #373737;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -123,8 +122,6 @@ section {
 .dropdown {
   display: flex;
   align-items: center;
-  /*border-left: 0.2px solid grey; 
-  border-right: 0.2px solid grey;*/
   border-radius: 5px; /* Aggiunge i vertici arrotondati al select */
   transition: background-color 0.3s ease; /* Aggiunge la transizione per l'effetto di sfondo */
 }
@@ -171,4 +168,61 @@ section {
 .dropdown:hover select,
 .dropdown:hover select option {
   color: #000; 
+}
+
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.search-input {
+  width: 250px;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 16px;
+  transition: width 0.3s ease;
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-button i {
+  color: #121212;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+
+.search-input:not(:placeholder-shown) + .search-button i::before {
+  content: "\279C"; /* Codice css per la freccia verso destra */
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.search-input:not(:focus):not(:placeholder-shown) + .search-button i::before {
+  transform: rotate(0deg);
+}
+
+.search-input::placeholder {
+  color: #999999;
+}
+
+@media (max-width: 768px) {
+  .topnav {
+   width: 100%;
+  }
 }

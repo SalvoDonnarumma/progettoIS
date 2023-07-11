@@ -5,6 +5,7 @@
 <html>
 <%@ page import="java.util.*, it.model.*"%>
 <script src="scripts/store.js"></script>
+<script src="scripts/filteredsearch.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js">
 </script>
 <script>
@@ -12,7 +13,6 @@
 		dynamicStore("<%=request.getContextPath()%>/StoreServlet");
 	});	
 </script>
-
 <head>
 <meta charset="ISO-8859-1">
 	<title>OCTOPLUS</title>
@@ -25,35 +25,36 @@
 	<jsp:include page="header.jsp" flush="true"/>
  	
  	<nav class="topnav">
-  <div class="dropdown">
-  <label for="categoria-select">Categoria:</label>
-  <select id="categoria-select" onchange="searchAndFilter()">
-    <option value="">Tutte</option>
-    <option value="coltelli">Coltelli</option>
-    <option value="erogatori">Erogatori</option>
-    <option value="guanti">Guanti</option>
-    <option value="maschere">Maschere</option>
-    <option value="mute">Mute</option>
-    <option value="pinne">Pinne</option>
-    <option value="torce">Torce</option>
-  </select>
-</div>
-
-
-  <div class="dropdown">
-    <label for="prezzo-select">Prezzo:</label>
-    <select id="prezzo-select">
-      <option value="">Tutti</option>
-      <option value="0-25">0-25</option>
-      <option value="25-50">25-50</option>
-      <option value="50-100">50-100</option>
-      <option value="100-150">100-150</option>
-      <option value="150-200">150-200</option>
-      <option value="200-300">200-300</option>
-      <option value="300+">300+</option>
-    </select>
-  </div>
-</nav>
+		<div class="dropdown">
+		  <label for="categoria-select">Categoria:</label>
+		  <select id="categoria-select" onchange="searchAndFilter()">
+		    <option value="">Tutte</option>
+		    <option value="Coltelli">Coltelli</option>
+		    <option value="Erogatori">Erogatori</option>
+		    <option value="Guanti">Guanti</option>
+		    <option value="Maschere">Maschere</option>
+		    <option value="Mute">Mute</option>
+		    <option value="Pinne">Pinne</option>
+		    <option value="Torce">Torce</option>
+		  </select>
+		</div>
+	  <div class="dropdown">
+	    <label for="prezzo-select">Prezzo:</label>
+	    <select id="prezzo-select" onchange="searchAndFilter()">
+	      <option value="">Tutti</option>
+	      <option value="0-50">0 - 50</option>
+	      <option value="50-150">50 - 150</option>
+	      <option value="150-250">150 - 250</option>
+	      <option value="250-400">250 - 400</option>
+	      <option value="400-500">400 - 500</option>
+	      <option value="500-1000000"> 500+ </option>
+	    </select>
+	  </div>
+	  <form action="#" method="get" class="search-form">
+    			<input type="text" id="search-input" onkeyup="searchAndFilter()" placeholder="Cerca..." class="search-input">
+     			<button type="submit" onClick="searchAndFilter()" class="search-button"><i class='bx bx-search'></i></button>
+  	  </form>
+	</nav>
  	<!-- shop start -->
  	<section class="shop" id="shop">
  		<div class="container" id="prodotti"> 		

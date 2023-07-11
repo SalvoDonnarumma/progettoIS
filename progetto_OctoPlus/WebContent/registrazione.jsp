@@ -25,13 +25,13 @@ if (errors != null){
  
  	<form action="SignUp" method="post">
  		<div class="txt_field"> <!-- Nome -->
- 			<input type="text" name="firstname" id="firstname" required pattern="^[A-Za-z]+$"
+ 			<input type="text" name="firstname" id="firstname" required pattern="^[A-Za-z]+$" 
 			 onchange="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
 			 <span id="errorName"> </span> <label>Nome</label>
 		</div>
 		
 		<div class="txt_field">
-			<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$"
+			<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" placeholder="Inserisci il cognome"
 			onchange="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
 			<span id="errorLastname"></span> <label>Cognome</label>
 		</div>

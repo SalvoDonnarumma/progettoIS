@@ -20,7 +20,7 @@ function dynamicOrderView(url){
 				 contenutoHTML += "		</div>";
 				 contenutoHTML += "		<div class=\"purchase-price\">";
 				 contenutoHTML += "			<p>Qnt acquistate: "+bean.qnt+"</p>";
-				 contenutoHTML += "			<p>Prezzo: &euro;"+bean.price+"</p>";
+				 contenutoHTML += "			<p>Prezzo: &euro;"+bean.price.toFixed(2)+"</p>";
 				 contenutoHTML += 		"</div>";
 				 contenutoHTML += 	"</div>";
 				 contenutoHTML += "</li>";

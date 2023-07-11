@@ -1,3 +1,10 @@
+<%
+ 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( isSomeoneLogged == null || isSomeoneLogged == false  ){
+		response.sendRedirect("../login.jsp");		
+		return;
+	}
+%>
 <%@page import="it.model.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

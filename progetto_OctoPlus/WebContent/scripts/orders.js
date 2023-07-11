@@ -18,7 +18,7 @@ function dynamicOrdersView(url){
 					contenutoHTML +=     "<p>Data:"+bean.data+"</p>";
 					contenutoHTML +=     "<p>Stato:"+bean.stato+"</p>";
 					contenutoHTML +=     "<p>Stato:"+bean.indirizzo+"</p>";
-					contenutoHTML +=     "<p>Totale:"+bean.prezzototale+"&euro;</p>";
+					contenutoHTML +=     "<p>Totale:"+bean.prezzototale.toFixed(2)+"&euro;</p>";
 					contenutoHTML +=     "<p>Metodo di pagamento: Carta di credito</p>";
 					contenutoHTML += "	<p> <button id='" + bean.idOrdine + "' onclick=eliminaRiga(this)> Per rimuovere l'ordine clicca qui!</button>";
 					contenutoHTML += "</div>";
