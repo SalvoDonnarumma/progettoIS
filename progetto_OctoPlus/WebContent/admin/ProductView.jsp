@@ -28,13 +28,14 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
 
-	<h2>Products</h2>
+	<h1>Products</h1>
+	<br> <br>
 	<table border="1">
 		<tr>
-			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto">Sort</a></th>
-			<th>Categoria<a href="product?fromStore=false&sort=categoria">Sort</a></th>
-			<th>Nome <a href="product?fromStore=false&sort=nome">Sort</a></th>
-			<th>Prezzo <a href="product?&sort=prezzo">Sort</a></th>
+			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
+			<th>Categoria<a href="product?fromStore=false&sort=categoria" class="no-border-link">Sort</a></th>
+			<th>Nome <a href="product?fromStore=false&sort=nome" class="no-border-link">Sort</a></th>
+			<th>Prezzo <a href="product?&sort=prezzo" class="no-border-link">Sort</a></th>
 			<th>Descrizione</th>
 			<th>Foto</th>
 			<th>Statistiche</th>
@@ -56,9 +57,12 @@
 			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="width:100px;height:100px"> </td>
 			<td><%=bean.getStats()%></td>
 			<td><p> <%=bean.getTaglie()%> </p> </td>
-			<td><a href="product?fromStore=false&action=delete&id=<%=bean.getCode()%>">Cancella</a><br>
-				<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>">Modifica</a> <br>
-				</td>
+			<td>
+				<a href="product?fromStore=false&action=delete&id=<%=bean.getCode()%>" class="delete-link">Cancella</a>
+					<br>	<br>
+				<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="edit-link">Modifica</a>
+					<br>
+		</td>
 		</tr>
 		<%
 				}
@@ -92,12 +96,11 @@
 	<%
 		}
 	%>
-	<h3>Vuoi inserire un nuovo prodotto?</h3> <a href="./admin/insertProduct.jsp"> Clicca qui </a>
-	
+
 <br>
-<hr>
+
 <br>
-<h2>Upload photo:</h2>
+<h1>Upload photo:</h1>
 	<div class="UploadPhoto">
 <form action="UpdatePhoto" enctype="multipart/form-data" method="post">
 	Nome file caricato:
@@ -121,15 +124,19 @@
 	<br>
 </form>
 	</div>
+	<br>
+<a href="./admin/insertProduct.jsp" class="no-border-link" > Inserisci un nuovo prodotto </a>
+	
+	<br>
+	<br>
 
+	<a href="admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
 	<br>
 	<br>
-	Vuoi vedere la pagina della visualizzazione utenti?
-	<a href="admin/UserView.jsp"> Clicca qui! </a>
-	<br>
-	<br>
-	Vuoi vedere la pagina della visualizzazione ordini?
-	<a href="admin/OrderView.jsp"> Clicca qui! </a>
+	
+	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina Ordini </a>
 <br>
+<br>
+	<br>
 </body>
 </html>

@@ -174,7 +174,7 @@ input[type="reset"]:hover {
 .form-title {
   font-size: 32px;
   font-weight: bold;
-  color: #85756E;
+  color: #BC2C1A;
   margin-bottom: 40px;
   text-align: left;
   text-transform: uppercase;

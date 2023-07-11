@@ -76,6 +76,13 @@ form .txt_field {
   height: 2px;
   background: #2691d9;
   transition: .5s;
+}.txt_field.email-field {
+  margin-bottom: 20px; /* Aggiunta */
+}
+
+.txt_field.email-field input:not(:placeholder-shown) ~ label {
+  top: -5px;
+  color: #2691d9;
 }
 
 .txt_field input:focus ~ label,

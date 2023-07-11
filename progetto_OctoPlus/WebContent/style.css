@@ -121,6 +121,7 @@ header{
 	border-radius: 50%; /*rende circolare l'icona*/
   padding: 10px; /* grandezza cerchio */
   background-color: #fff;
+	text-decoration: none;
 }
 
 .icons i:hover{

@@ -24,36 +24,36 @@ if (errors != null){
  <h1>Benvenuto!</h1>
  
  	<form action="SignUp" method="post">
- 		<div class="txt_field"> <!-- Nome -->
+ 		<div class="txt_field email-field"> <!-- Nome -->
  			<input type="text" name="firstname" id="firstname" required pattern="^[A-Za-z]+$" 
 			 onchange="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
 			 <span id="errorName"> </span> <label>Nome</label>
 		</div>
 		
-		<div class="txt_field">
-			<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" placeholder="Inserisci il cognome"
+		<div class="txt_field email-field">
+			<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" 
 			onchange="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
 			<span id="errorLastname"></span> <label>Cognome</label>
 		</div>
 		
-		<div class="txt_field">
+		<div class="txt_field email-field">
 			<input type="email" name="email" required 
 			onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)"	id="email">
 			<span id="errorEmail"></span> <label>Email</label>
 		</div>
 		
-		<div class="txt_field"> 
+		<div class="txt_field email-field"> 
  			<input type= "password" name="password" required> <label>Password</label>
 		</div>
 		
-		<div class="txt_field"> 
+		<div class="txt_field email-field"> 
  			<input type= "password" name="conf_password" required
  			onchange="validateFormElem(this, document.getElementById('errorPass'), wrongconfirmPassErrorMessage)"> <label>Conferma Password</label>
  			<span id="errorPass"></span>
 		</div>
 		<span id="errorPhone0"></span>
 		
-		<div id="phones" class="txt_field">
+		<div id="phones" class="txt_field email-field">
 					<input type="tel" name="phone"
 						id="phone0" required
 						pattern="^([0-9]{3}-[0-9]{7})$"

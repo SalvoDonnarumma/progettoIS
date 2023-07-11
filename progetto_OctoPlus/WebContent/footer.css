@@ -1,3 +1,6 @@
+.a{
+	text-decoration:none;
+}
 .footer {
     background-color: #24262b;
     padding: 70px 0;
@@ -85,6 +88,7 @@
 .footer .footer-col .social-links a:hover {
     color: #4763c0;  /* Cambia il colore delle icone al passaggio del mouse */
     background-color: #ffffff;  /* Cambia il colore di sfondo al passaggio del mouse */
+
 }
 
 /* Responsive */

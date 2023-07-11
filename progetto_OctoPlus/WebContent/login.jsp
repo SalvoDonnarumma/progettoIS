@@ -20,7 +20,7 @@
     <span id="errorEmail" class="error-text"></span>
     <label>Email</label>
 </div>
-    <div class="txt_field"> 
+    <div class="txt_field email-field"> 
        <input type="password" name="password" required> <label>Password</label>
     </div>
     

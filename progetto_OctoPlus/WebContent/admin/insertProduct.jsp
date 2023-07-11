@@ -53,6 +53,7 @@ th, td {
 	text-align: center;
 	padding: 5px;
 	border: 1px solid black;
+	
 }
 /* Stili per il form */
 form {

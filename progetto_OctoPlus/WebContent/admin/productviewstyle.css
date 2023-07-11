@@ -1,125 +1,136 @@
-	a:link {
-		color: blue;
-		font-weight: bold;
-	}
-
-/* visited link */
-	a:visited {
-		color: blue;
-		font-weight: bold;
-	}
-
-/* mouse over link */
-	a:hover {
-		color: red;
-		font-weight: bold;
-	}
-
-	a:active {
-		color: blue;
-		font-weight: bold;
-	}
-	
-	body{
-		background: 
-			linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
-            linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
-            linear-gradient(336deg, rgba(2, 27, 70, .8), rgba(2, 27, 70, 0) 70.71%);
-	}
-	
-	table {
-		width: 100%;
-	}
-
-	table, th, td {
-		text-align: center;
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-
-	th, td {
-		padding: 5px;
-	}
-
-	label {
-		font-weight: bold;
-	}
-
-	form input[type=text], form input[type=number], form input[type=password],
-	form input[type=date], form input[type=range], form input[type=email],
-	form input[type=url], form input[type=time], form input[list] {
-		width: 500px;
-		font-size: 1em;
-	}
-
-	textarea {
-		width: 500px;
-		height: 60px;
-		font-size: 1em;
-	}
-	
-	input[type="submit"]{
-		  width: 15%;
-		  height: 25%;
-		  border: 1px solid;
-		  background: #2691d9;
-		  border-radius: 10px;
-		  font-size: 18px;
-		  color: #e9f4fb;
-		  font-weight: 700;
-		  cursor: pointer;
-		  outline: none;
-		  position: relative;
+	body {
+			background-color: #16425B;
 		}
-	input[type="submit"]:hover{
-		  border-color: #2691d9;
-		  transition: .5s;
-		  color: white;
-		  background-color: #51b0f0; 
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
 		}
-		
-	input[type="reset"]{
-		  width: 15%;
-		  height: 25%;
-		  border: 1px solid;
-		  background: #2691d9;
-		  border-radius: 10px;
-		  font-size: 18px;
-		  color: #e9f4fb;
-		  font-weight: 700;
-		  cursor: pointer;
-		  outline: none;
-		  position:relative;
+
+		table {
+			width: 95%;
+			margin: 0 auto;
+			border-collapse: collapse;
+			background-color: #D9DCD6;
 		}
-	input[type="reset"]:hover{
-		  border-color: #2691d9;
-		  transition: .5s;
-		  text-align: center;
-		  color: white;
-		  background-color: #51b0f0; 
-		}	
-		
-	.InsertProdotto{
-		width: 50%;
-  		border: 1px solid black;
-  		padding: 20px;
-  		margin-left: auto;
- 		margin-right: auto;
-	}	
+
+		th, td {
+			padding: 10px;
+			border: 1px solid black;
+		}
+
+		img {
+			width: 100px;
+			height: 100px;
+		}
+
+		.UploadPhoto {
+			margin: 20px auto;
+			width: 90%;
+			text-align: center;
+		}
+
+		.UploadPhoto form {
+			display: inline-block;
+			text-align: left;
+		}
+
+		.UploadPhoto .file {
+			margin-top: 10px;
+		}
+
+		.UploadPhoto .submit {
+			margin-top: 10px;
+		}
+		a.delete-link,
+a.edit-link {
+	display: inline-block;
+	padding: 5px 8px;
+	margin-right: 5px;
+	background-color: #85756E;
+	color: #FFFFFF;
+	border-radius: 4px;
+	text-decoration: none;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+a.delete-link:hover,
+a.edit-link:hover {
+	background-color: #BC2C1A;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+a.delete-link, a.edit-link {
+	border: none;
+	outline: none;
+}
+
+a.delete-link:focus, a.edit-link:focus {
+	outline: none;
+}
+a.no-border-link {
+	display: inline-block;
+	padding: 5px 8px;
+	margin-right: 10px;
+	background-color: transparent;
+	color: #FFFFFF;
+	text-decoration: none;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+a.no-border-link:hover {
 	
-	.UploadPhoto{
-		width: 50%;
-  		border: 1px solid black;
-  		padding: 20px;
-  		margin-left: auto;
- 		margin-right: auto;
-	}
+	color: #BC2C1A;
+	text-decoration: none;
+}
+.UploadPhoto form {
+	display: inline-block;
+	text-align: left;
+	background-color: #D9DCD6;
+	border-radius: 8px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+}
+
+.UploadPhoto select,
+.UploadPhoto option {
+	padding: 5px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+.UploadPhoto select {
+	width: 100%;
+}
+
+.UploadPhoto .file,
+.UploadPhoto .submit {
+	margin-top: 10px;
+}
+
+.UploadPhoto input[type="submit"],
+.UploadPhoto input[type="reset"] {
+	padding: 5px 10px;
+	background-color: #85756E;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.UploadPhoto input[type="submit"]:hover,
+.UploadPhoto input[type="reset"]:hover {
+	background-color: #BC2C1A;
+}
+h1 {
+	font-size: 28px;
+	font-weight: bold;
+	color: #BC2C1A;
 	
-	.InsertAmministratore{
-		width: 50%;
-  		border: 1px solid black;
-  		padding: 20px;
-  		margin-left: auto;
- 		margin-right: auto;
- 		padding: auto;
-	}
+}
+
+
+
