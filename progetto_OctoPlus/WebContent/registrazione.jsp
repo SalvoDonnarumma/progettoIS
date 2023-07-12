@@ -8,6 +8,17 @@
 <link rel="stylesheet" href="registrazione.css">
 <jsp:include page="header.jsp" flush="true"/>
 <script src="scripts/validate.js"></script>
+<script type="text/javascript">
+function checkPasswords(){
+	var pass = document.getElementById("password");
+	var conf_pass = document.getElementById("conf_password");
+	console.log(pass);
+	console.log(conf_pass);
+	if( pass.value != conf_pass.value ){
+		alert("Le passwords inserite non combaciano!");
+	}	
+}	
+</script>
 
 <% 
 List<String> errors = (List<String>) request.getAttribute("errors");
@@ -26,13 +37,13 @@ if (errors != null){
  	<form action="SignUp" method="post">
  		<div class="txt_field email-field"> <!-- Nome -->
  			<input type="text" name="firstname" id="firstname" required pattern="^[A-Za-z]+$" 
-			 onchange="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
+			 onkeyup="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
 			 <span id="errorName"> </span> <label>Nome</label>
 		</div>
 		
 		<div class="txt_field email-field">
 			<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" 
-			onchange="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
+			 onkeyup="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
 			<span id="errorLastname"></span> <label>Cognome</label>
 		</div>
 		
@@ -43,12 +54,11 @@ if (errors != null){
 		</div>
 		
 		<div class="txt_field email-field"> 
- 			<input type= "password" name="password" required> <label>Password</label>
+ 			<input type= "password" name="password" id="password" required> <label>Password</label>
 		</div>
 		
 		<div class="txt_field email-field"> 
- 			<input type= "password" name="conf_password" required
- 			onchange="validateFormElem(this, document.getElementById('errorPass'), wrongconfirmPassErrorMessage)"> <label>Conferma Password</label>
+ 			<input type= "password" name="conf_password" id="conf_password" required> <label>Conferma Password</label>
  			<span id="errorPass"></span>
 		</div>
 		<span id="errorPhone0"></span>
@@ -63,7 +73,7 @@ if (errors != null){
 				<span id="errorPhone0"></span>
 		</div>
 		
-		<input type= "submit" value="Registrami" >
+		<input type= "submit" onClick="checkPasswords()" value="Registrami" >
 		
 		Sei già registrato? 
 		<a href="login.jsp">  <b> Accedi </b> </a>			

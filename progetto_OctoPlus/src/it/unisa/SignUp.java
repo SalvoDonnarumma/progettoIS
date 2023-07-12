@@ -24,6 +24,9 @@ public class SignUp extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* controllo se le due password combaciano, in caso contrario blocco la registrazione 
+		 * e segnalo all'utente tramite un alert (presente nel .js della registrazione)*/
+		
 		String isDriverManager = request.getParameter("driver");
 		if(isDriverManager == null || isDriverManager.equals("")) {
 			isDriverManager = "datasource";
@@ -50,7 +53,7 @@ public class SignUp extends HttpServlet {
 		List<String> errors = new ArrayList<>();
         if ( !password.equals(conf_password) ) {  //controllo se password e conferma password sono uguali
         	request.setAttribute("errors", errors);
-        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("login.jsp");
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("registrazione.jsp");
         	dispatcherToLoginPage.forward(request, response);
         	return;
         }

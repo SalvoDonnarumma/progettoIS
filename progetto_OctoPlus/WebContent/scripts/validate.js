@@ -25,7 +25,6 @@ function validateFormElem(formElem, span, errorMessage) {
   return false;
 }
 
-
 function validate() {
 	let valid = true;	
 	let form = document.getElementById("regForm");
