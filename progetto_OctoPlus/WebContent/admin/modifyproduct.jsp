@@ -4,8 +4,8 @@
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
  	System.out.println(bean);
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
-	if( isSomeoneLogged == null ){
-		response.sendRedirect("./login.jsp");	
+	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
+		response.sendRedirect("../login.jsp");	
 		return;
 	}
 %>

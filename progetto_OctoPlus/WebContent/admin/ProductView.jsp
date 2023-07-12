@@ -9,9 +9,9 @@
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
- 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
-	if( isSomeoneLogged == null ){
-		response.sendRedirect("../login.jsp");		
+	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
+		response.sendRedirect("../login.jsp");	
 		return;
 	}
 %>

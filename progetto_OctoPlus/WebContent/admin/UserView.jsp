@@ -9,12 +9,11 @@
 		response.sendRedirect("../AdminControl?fromStore=false");	
 		return;
 	}
- 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
-	if( isSomeoneLogged == null ){
-		response.sendRedirect("./login.jsp");	
+	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
+		response.sendRedirect("../login.jsp");	
 		return;
 	}
-	
 	UserBean user = (UserBean) request.getSession().getAttribute("logged");
 %>
 

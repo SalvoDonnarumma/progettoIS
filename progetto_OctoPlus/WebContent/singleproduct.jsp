@@ -87,7 +87,7 @@
 				<%	
 					if( isAdmin == null );
 					else if( isAdmin == true ){ %>
-						<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="modify-btn" onClick="#"> Modifica </a>
+						<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="modify-btn" onClick="functionAlert()"> Modifica </a>
 				<%	}	%>	
 				</div>
 			<% }%>
