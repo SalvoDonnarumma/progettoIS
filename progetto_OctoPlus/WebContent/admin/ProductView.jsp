@@ -5,13 +5,13 @@
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
 	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(products == null) {
-		response.sendRedirect("../product?fromStore=false");	
+		response.sendRedirect(request.getContextPath()+"/product?fromStore=false");	
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
-		response.sendRedirect("../login.jsp");	
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
 %>

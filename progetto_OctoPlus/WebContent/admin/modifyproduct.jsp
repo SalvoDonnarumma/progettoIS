@@ -5,7 +5,7 @@
  	System.out.println(bean);
  	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
-		response.sendRedirect("../login.jsp");	
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
 %>
@@ -79,7 +79,16 @@ function addValuesToLink(){
 				<h4>
 					<label>
 					Seleziona categoria: 
-						<input name="categoria" type="text" maxlength="25" required value="<%=bean.getCategoria()%>"> <br>
+						<select name="categoria" id="categoria-select" onchange="searchAndFilter()">
+						    <option value="<%=bean.getCategoria()%>" selected><%=bean.getCategoria()%></option>
+						    <option value="Coltelli">Coltelli</option>
+						    <option value="Erogatori">Erogatori</option>
+						    <option value="Guanti">Guanti</option>
+						    <option value="Maschere">Maschere</option>
+						    <option value="Mute">Mute</option>
+						    <option value="Pinne">Pinne</option>
+						    <option value="Torce">Torce</option>
+		  				</select>
  					</label>
 				</h4>
 				<br>

@@ -6,12 +6,12 @@
 	Collection<?> users = (Collection<?>) request.getAttribute("users");
 	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(users == null) {
-		response.sendRedirect("../AdminControl?fromStore=false");	
+		response.sendRedirect(request.getContextPath()+"/AdminControl?fromStore=false");	
 		return;
 	}
 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
-		response.sendRedirect("../login.jsp");	
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
 	UserBean user = (UserBean) request.getSession().getAttribute("logged");

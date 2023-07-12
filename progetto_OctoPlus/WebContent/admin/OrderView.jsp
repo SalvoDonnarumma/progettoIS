@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <%
- 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
-		response.sendRedirect("../login.jsp");	
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
 %>

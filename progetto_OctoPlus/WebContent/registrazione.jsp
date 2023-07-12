@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OctoPlus Login</title>
 <link rel="stylesheet" href="registrazione.css">
-<jsp:include page="header.jsp" flush="true"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="scripts/validate.js"></script>
 <script type="text/javascript">
 function checkPasswords(){
@@ -18,7 +18,20 @@ function checkPasswords(){
 		alert("Le passwords inserite non combaciano!");
 	}	
 }	
+
+function checkPassLength(){
+	var pass = document.getElementById("password");
+	if( pass.value.length < 12){
+		console.log("ERRORE");
+		$("#errorPass").empty();
+		$("#errorPass").append("la password deve essere lunga almeno 12 caratteri!");
+	} else {
+		$("#errorPass").empty();
+	}
+		
+}
 </script>
+
 
 <% 
 List<String> errors = (List<String>) request.getAttribute("errors");
@@ -31,6 +44,7 @@ if (errors != null){
 %>
 
 <body>
+<jsp:include page="header.jsp" flush="true"/>
 <div class="center">
  <h1>Benvenuto!</h1>
  
@@ -54,12 +68,12 @@ if (errors != null){
 		</div>
 		
 		<div class="txt_field email-field"> 
- 			<input type= "password" name="password" id="password" required> <label>Password</label>
+ 			<input type= "password" onChange="checkPassLength()" name="password" id="password" required> <label>Password</label>
 		</div>
+		<span style="color:red;" id="errorPass"></span>
 		
 		<div class="txt_field email-field"> 
  			<input type= "password" name="conf_password" id="conf_password" required> <label>Conferma Password</label>
- 			<span id="errorPass"></span>
 		</div>
 		<span id="errorPhone0"></span>
 		
