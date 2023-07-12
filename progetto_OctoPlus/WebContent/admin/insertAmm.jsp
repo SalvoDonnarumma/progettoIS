@@ -227,7 +227,9 @@ input[type="reset"]:hover {
 		
 		<div class="txt_field"> 
 			<label>Password</label>
- 			<input type= "password" name="password" required placeholder="Inserisci la password"> 
+ 			<input type= "password" name="password" required pattern=".{12,}"
+ 			placeholder="Inserisci la password" onchange="validateFormElem(this, document.getElementById('errorPass'), lengthPassErrorMessage)">
+			<span id="errorPass"></span>
 		</div>
 		
 		<div id="phones" class="txt_field">

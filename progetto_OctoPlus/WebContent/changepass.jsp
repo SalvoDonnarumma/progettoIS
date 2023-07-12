@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%
-	UserBean bean = (UserBean) request.getSession().getAttribute("logged"); //quando una persona si logga salvo i suoi dati nella sessione
+//quando una persona si logga salvo i suoi dati nella sessione, in questo modo posso prelevarli con l'operazione duale
+	UserBean bean = (UserBean) request.getSession().getAttribute("logged"); 
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( bean == null ){
 		response.sendRedirect("./login.jsp");		
@@ -72,6 +73,27 @@
       }
     }
   </style>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		function checkPassLength(){
+			var pass = document.getElementById("newpassword");
+			if( pass.value.length < 12){
+				$("#errorPass").empty();
+				$("#errorPass").append("la password deve essere lunga almeno 12 caratteri!");
+			} else {
+				$("#errorPass").empty();
+			}
+			
+			if(  pass.value.length == 0 )
+				$("#errorPass").empty();
+		}
+		
+		function alertLength(){
+			var pass = document.getElementById("newpassword");
+			if( pass.value.length < 12)
+				alert("La password deve essere lunga almeno 12 caratteri!");
+		}
+	</script>
 </head>
 <body>
   <jsp:include page="./header.jsp" flush="true"/>
@@ -79,12 +101,14 @@
   <br>
   <div class="container">
     <h2>Cambio password</h2>
+    <!-- la servlet si chiama UserControl ma è mappata con /AdminControl -->
     <form action="AdminControl?fromStore=cgpass&action=cgpass&id=<%=bean.getEmail()%>" method="post">
       <label for="currentPassword">Password attuale</label>
       <input name="currentPassword" type="password" id="currentPassword" required>
       
       <label for="newPassword">Nuova password</label>
-      <input name="newPassword" type="password" required>
+      <input name="newPassword" onChange="checkPassLength()"  id="newpassword" type="password" required>
+      <span style="color:red;" id="errorPass"></span>
       
       <label for="confirmPassword">Conferma nuova password</label>
       <input name="confirmPassword" type="password" required>
@@ -100,7 +124,7 @@
 		}
       %>
      
-      <button type="submit">Cambia password</button>
+      <button type="submit" onClick="alertLength()" >Cambia password</button>
     </form>
   </div>
 </body>

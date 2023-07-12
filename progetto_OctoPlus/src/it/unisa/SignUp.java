@@ -57,6 +57,12 @@ public class SignUp extends HttpServlet {
         	dispatcherToLoginPage.forward(request, response);
         	return;
         }
+        
+        if( password.length()<12 ) {
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("registrazione.jsp");
+        	dispatcherToLoginPage.forward(request, response);
+			return;
+		}
 		
 		UserBean user= new UserBean();
 		try {

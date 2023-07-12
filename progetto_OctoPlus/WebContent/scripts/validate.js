@@ -1,10 +1,11 @@
 let count = 1;
 const nameOrLastnameErrorMessage = "Questo campo deve avere solo lettere<br>";
+const formatErrorMessage = "Questo campo non &eacute; nel formato giusto<br>";
 const emailErrorMessage = "L'email deve essere almeno del formato username@domain.ext<br>";
 const phoneErrorMessage = "Il numero telefonico deve essere nel formato ###-#######<br>";
 const emptyFieldErrorMessage = "Il campo non puo' essere vuoto<br>";
 const wrongconfirmPassErrorMessage = "La password non cambacia con la precedente<br>";
-const passwordminlenght="La password deve contenere minimo 10 caratteri<br>"
+const lengthPassErrorMessage = "La password deve contenere almeno 12 caratteri!";
 
 function validateFormElem(formElem, span, errorMessage) {
 	if(formElem.checkValidity()){
@@ -14,14 +15,14 @@ function validateFormElem(formElem, span, errorMessage) {
 		return true;
 	}
 	formElem.classList.add("error");
-  span.style.color = "red";
-  if (formElem.validity.valueMissing) {
-    span.innerHTML = emptyFieldErrorMessage;
-  } else if (formElem.id === "password" && formElem.value.length < 10) {
-    span.innerHTML = passwordMinLengthErrorMessage;
-  } else {
-    span.innerHTML = errorMessage;
-  }
+	  span.style.color = "red";
+	  if (formElem.validity.valueMissing) {
+	    span.innerHTML = emptyFieldErrorMessage;
+	  } else if (formElem.id === "password" && formElem.value.length < 10) {
+	    span.innerHTML = passwordMinLengthErrorMessage;
+	  } else {
+	    span.innerHTML = errorMessage;
+	  }
   return false;
 }
 
@@ -42,8 +43,8 @@ function validate() {
 		valid = false;
 	}
 	let spanPassword = document.getElementById("errorPassword");
-  if (!validateFormElem(form.password, spanPassword, passwordErrorMessage)) {
-    valid = false;
-  }
+ 	if (!validateFormElem(form.password, spanPassword, passwordErrorMessage)) {
+    	valid = false;
+  	}
 	return valid;
 }

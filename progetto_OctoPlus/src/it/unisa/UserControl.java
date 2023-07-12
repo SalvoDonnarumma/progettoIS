@@ -82,9 +82,15 @@ public class UserControl extends HttpServlet {
 					}
 					
 					if( !adminDao.comparePass(bean.getPassword(), oldPass) ) {
-						errors.add("La vecchia password inserita non e' valida!");
+						errors.add("La vecchia password inserita non &egrave; valida!");
 						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 						request.setAttribute("errors", errors);
+						dispatcherChangePassPage.forward(request, response);
+						return;
+					}
+					
+					if( newPass.length()<12 ) {
+						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 						dispatcherChangePassPage.forward(request, response);
 						return;
 					}

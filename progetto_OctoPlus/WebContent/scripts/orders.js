@@ -30,7 +30,7 @@ function dynamicOrdersView(url){
 			  contenutoHTML2 += "</span>";
 
 			  contenutoHTML2 += "<span>";
-			  contenutoHTML2 +=   "Vuoi vedere la pagina della visualizzazione ordini?";
+			  contenutoHTML2 +=   "Vuoi vedere la pagina della visualizzazione utenti?";
 			  contenutoHTML2 +=   "<a href=\"./UserView.jsp\"> Clicca qui! </a>";
 			  contenutoHTML2 += "</span>";
 		} 

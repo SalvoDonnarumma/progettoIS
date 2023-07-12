@@ -17,18 +17,24 @@ function checkPasswords(){
 	if( pass.value != conf_pass.value ){
 		alert("Le passwords inserite non combaciano!");
 	}	
+	alertLength();
 }	
 
 function checkPassLength(){
 	var pass = document.getElementById("password");
 	if( pass.value.length < 12){
-		console.log("ERRORE");
 		$("#errorPass").empty();
 		$("#errorPass").append("la password deve essere lunga almeno 12 caratteri!");
-	} else {
+	} else 
 		$("#errorPass").empty();
-	}
-		
+	if(  pass.value.length == 0 )
+		$("#errorPass").empty();
+}
+
+function alertLength(){
+	var pass = document.getElementById("password");
+	if( pass.value.length < 12)
+		alert("La password deve essere lunga almeno 12 caratteri!");
 }
 </script>
 

@@ -20,6 +20,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="purchase.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="scripts/validate.js"></script>
+<script type="text/javascript">
+	function checkCAPLength(){
+		var pass = document.getElementById("cap");
+		if( pass.value.length != 5){
+			$("#errorCAP").empty();
+			$("#errorCAP").append("<style=\"color: red;\">Questo campo deve contenere 5 caratteri</style>");
+		} else 
+			$("#errorCAP").empty();
+		if(  pass.value.length == 0 )
+			$("#errorCAP").empty();
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"/>
@@ -82,28 +96,39 @@
 	          <div class="col-50">
 	            <h3>Billing Address</h3>
 	            <label for="fname"><i class="fa fa-user"></i> Nome completo</label>
-	            <input type="text" id="fname" name="firstname" placeholder="Jonathan Joestar">
+	            <input type="text" id="firstname" name="firstname" placeholder="Jonathan Joestar" required pattern="[A-Za-zÀ-ÿ\s]+"
+	            onkeyup="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
+			 	<span id="errorName"> </span>
 	            
 	            <div class="txt_field email-field">
 	            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-	            <input type="email" id="email" name="email" required onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" id="email" placeholder="killerQueen@gmail.com">
+	            <input type="email" id="email" name="email" required onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" 
+	            id="email" placeholder="killerQueen@gmail.com">
     			<span id="errorEmail" class="error-text"></span>
     			</div>
     			
 	            <label for="adr"><i class="fa fa-address-card-o"></i> Indirizzo </label>
-	            <input type="text" id="adr" name="indirizzo" placeholder="Via XXXXXX, YYY">
+	            <input type="text" id="adr" name="indirizzo" placeholder="Via XXXXXX, YYY" required pattern="^Via .+, \d+$"
+	            onchange="validateFormElem(this, document.getElementById('errorAdr'), formatErrorMessage)" >
+	            <span id="errorAdr" class="error-text"></span>
 	            
 	            <label for="city"><i class="fa fa-institution"></i> Citta' </label>
-	            <input type="text" id="city" name="city" placeholder="Morioh Cho">
-	
+	            <input type="text" id="city" name="city" placeholder="Morioh Cho" required pattern="[A-Za-zÀ-ÿ\s]+"
+	            onkeyup="validateFormElem(this, document.getElementById('errorCity'), nameOrLastnameErrorMessage)">
+			 	<span id="errorCity"> </span>
+				
 	            <div class="row">
 	              <div class="col-50">
 	                <label for="state">Stato</label>
-	                <input type="text" id="state" name="state" placeholder="JJ">
+	                <input type="text" id="state" name="state" placeholder="JJ" required pattern="^[A-Za-z]+$"
+	           		 onkeyup="validateFormElem(this, document.getElementById('errorState'), nameOrLastnameErrorMessage)">
+			 		<span id="errorState"> </span>
 	              </div>
 	              <div class="col-50">
 	                <label for="zip">CAP</label>
-	                <input type="text" id="cap" name="cap" placeholder="10001">
+	                <input type="text" id="cap" name="cap" placeholder="10001" required pattern="\d{5}"
+	                required onChange="checkCAPLength()" onkeyup="validateFormElem(this, document.getElementById('errorCAP'), formatErrorMessage)">
+			 		<span id="errorCAP"> </span>
 	              </div>
 	            </div>
 	          </div>
@@ -118,19 +143,29 @@
 	              <i class="fa fa-cc-discover" style="color:orange;"></i>
 	            </div>
 	            <label for="cname">Nome sulla carta</label>
-	            <input type="text" id="cname" name="cardname" placeholder="Giorno Giovanna">
+	            <input type="text" id="cname" name="cardname" placeholder="Giorno Giovanna" required pattern="[A-Za-zÀ-ÿ\s]+"
+	            onkeyup="validateFormElem(this, document.getElementById('errorNameC'), nameOrLastnameErrorMessage)">
+			 	<span id="errorNameC"> </span>
 	            <label for="ccnum">Numero di carta di credito</label>
-	            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+	            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required
+	            pattern="\d{4}-\d{4}-\d{4}-\d{4}" onChange="validateFormElem(this, document.getElementById('errorNumberC'), formatErrorMessage)">
+			 	<span id="errorNumberC"> </span>
 	            <label for="expmonth">Mese di scadenza</label>
-	            <input type="text" id="expmonth" name="expmonth" placeholder="Settembre">
+	            <input type="text" id="expmonth" name="expmonth" placeholder="Settembre"  required
+	            pattern="[A-Za-z]+" onChange="validateFormElem(this, document.getElementById('errorMonthC'), nameOrLastnameErrorMessage)">
+			 	<span id="errorMonthC"> </span>
 	            <div class="row">
 	              <div class="col-50">
 	                <label for="expyear">Anno di scadenza</label>
-	                <input type="text" id="expyear" name="expyear" placeholder="2018">
+	                <input type="text" id="expyear" name="expyear" placeholder="2018" required pattern="\d{4}"
+	                onChange="validateFormElem(this, document.getElementById('errorEXPC'), formatErrorMessagge)">
+			 		<span id="errorEXPC"> </span>
 	              </div>
 	              <div class="col-50">
 	                <label for="cvv">CVV</label>
-	                <input type="text" id="cvv" name="cvv" placeholder="352">
+	                <input type="text" id="cvv" name="cvv" placeholder="352" required pattern="\d{3}"
+	                onChange="validateFormElem(this, document.getElementById('errorCVV'), formatErrorMessagge)">
+			 		<span id="errorCVV"> </span>
 	              </div>
 	            </div>
 	          </div>
@@ -146,28 +181,39 @@
 	          <div class="col-50">
 	            <h3>Billing Address</h3>
 	            <label for="fname"><i class="fa fa-user"></i> Nome completo</label>
-	            <input type="text" id="fname" name="firstname" placeholder="Jonathan Joestar">
+	            <input type="text" id="firstname" name="firstname" placeholder="Jonathan Joestar" required pattern="[A-Za-zÀ-ÿ\s]+"
+	            onkeyup="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
+			 	<span id="errorName"> </span>
 	            
 	            <div class="txt_field email-field">
 	            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-	            <input type="email" id="email" name="email" required onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" id="email" placeholder="killerQueen@gmail.com">
+	            <input type="email" id="email" name="email" required onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" 
+	            id="email" placeholder="killerQueen@gmail.com">
     			<span id="errorEmail" class="error-text"></span>
     			</div>
     			
 	            <label for="adr"><i class="fa fa-address-card-o"></i> Indirizzo </label>
-	            <input type="text" id="adr" name="indirizzo" placeholder="Via XXXXXX, YYY">
+	            <input type="text" id="adr" name="indirizzo" placeholder="Via XXXXXX, YYY" required pattern="^Via .+, \d+$"
+	            onchange="validateFormElem(this, document.getElementById('errorAdr'), formatErrorMessage)" >
+	            <span id="errorAdr" class="error-text"></span>
 	            
 	            <label for="city"><i class="fa fa-institution"></i> Citta' </label>
-	            <input type="text" id="city" name="city" placeholder="Morioh Cho">
-	
+	            <input type="text" id="city" name="city" placeholder="Morioh Cho" required pattern="[A-Za-zÀ-ÿ\s]+"
+	            onkeyup="validateFormElem(this, document.getElementById('errorCity'), nameOrLastnameErrorMessage)">
+			 	<span id="errorCity"> </span>
+				
 	            <div class="row">
 	              <div class="col-50">
 	                <label for="state">Stato</label>
-	                <input type="text" id="state" name="state" placeholder="JJ">
+	                <input type="text" id="state" name="state" placeholder="JJ" required pattern="^[A-Za-z]+$"
+	           		 onkeyup="validateFormElem(this, document.getElementById('errorState'), nameOrLastnameErrorMessage)">
+			 		<span id="errorState"> </span>
 	              </div>
 	              <div class="col-50">
 	                <label for="zip">CAP</label>
-	                <input type="text" id="cap" name="cap" placeholder="10001">
+	                <input type="text" id="cap" name="cap" placeholder="10001" required pattern="\d{5}"
+	                required onChange="checkCAPLength()" onkeyup="validateFormElem(this, document.getElementById('errorCAP'), formatErrorMessage)">
+			 		<span id="errorCAP"> </span>
 	              </div>
 	            </div>
 	          </div>
@@ -182,19 +228,29 @@
 	              <i class="fa fa-cc-discover" style="color:orange;"></i>
 	            </div>
 	            <label for="cname">Nome sulla carta</label>
-	            <input type="text" id="cname" name="cardname" placeholder="Giorno Giovanna">
+	            <input type="text" id="cname" name="cardname" placeholder="Giorno Giovanna" required pattern="[A-Za-zÀ-ÿ\s]+"
+	            onkeyup="validateFormElem(this, document.getElementById('errorNameC'), nameOrLastnameErrorMessage)">
+			 	<span id="errorNameC"> </span>
 	            <label for="ccnum">Numero di carta di credito</label>
-	            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+	            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required
+	            pattern="\d{4}-\d{4}-\d{4}-\d{4}" onChange="validateFormElem(this, document.getElementById('errorNumberC'), formatErrorMessage)">
+			 	<span id="errorNumberC"> </span>
 	            <label for="expmonth">Mese di scadenza</label>
-	            <input type="text" id="expmonth" name="expmonth" placeholder="Settembre">
+	            <input type="text" id="expmonth" name="expmonth" placeholder="Settembre"  required
+	            pattern="[A-Za-z]+" onChange="validateFormElem(this, document.getElementById('errorMonthC'), nameOrLastnameErrorMessage)">
+			 	<span id="errorMonthC"> </span>
 	            <div class="row">
 	              <div class="col-50">
 	                <label for="expyear">Anno di scadenza</label>
-	                <input type="text" id="expyear" name="expyear" placeholder="2018">
+	                <input type="text" id="expyear" name="expyear" placeholder="2018" required pattern="\d{4}"
+	                onChange="validateFormElem(this, document.getElementById('errorEXPC'), formatErrorMessagge)">
+			 		<span id="errorEXPC"> </span>
 	              </div>
 	              <div class="col-50">
 	                <label for="cvv">CVV</label>
-	                <input type="text" id="cvv" name="cvv" placeholder="352">
+	                <input type="text" id="cvv" name="cvv" placeholder="352" required pattern="\d{3}"
+	                onChange="validateFormElem(this, document.getElementById('errorCVV'), formatErrorMessagge)">
+			 		<span id="errorCVV"> </span>
 	              </div>
 	            </div>
 	          </div>
