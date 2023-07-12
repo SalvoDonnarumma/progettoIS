@@ -51,6 +51,10 @@ public class OrderControl extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("action: "+action);
 		UserBean bean = (UserBean) request.getSession().getAttribute("logged");
+		if( bean == null ){
+			response.sendRedirect("./login.jsp");		
+			return;
+		}
 		String email = bean.getEmail();
 		String indirizzo = request.getParameter("indirizzo");
 		String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
@@ -115,6 +119,11 @@ public class OrderControl extends HttpServlet {
 					order.setIndirizzo(indirizzo);
 
 					orderDao.doSave(order);
+					
+					/* svuoto il carrello */
+					CartBean newcart = new CartBean();
+					request.getSession().removeAttribute("cart");
+					request.getSession().setAttribute("cart", newcart);
 				} else if( action.equalsIgnoreCase("purchaseAll")) {
 					Collection <ProductBean> products = new LinkedList<ProductBean>(); 
 					CartBean cart = (CartBean) request.getSession().getAttribute("cart");
@@ -182,6 +191,11 @@ public class OrderControl extends HttpServlet {
 					order.setIndirizzo(indirizzo);
 					Double ptot = Double.parseDouble(request.getParameter("tot"));
 					orderDao.doSaveAll(order, ptot);
+					
+					/* svuoto il carrello */
+					CartBean newcart = new CartBean();
+					request.getSession().removeAttribute("cart");
+					request.getSession().setAttribute("cart", newcart);
 				}
 			}			
 		} catch (SQLException e) {

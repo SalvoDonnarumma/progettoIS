@@ -49,6 +49,10 @@ public class CartBean {
 		}
  	}
 	
+	public void clearCart() {
+		cart.clear();
+	}
+	
 	public Collection<?> getAll() {
 		Collection <ProductBean> products = new LinkedList<ProductBean>();
 		for( ProductBean bean : this.cart) {

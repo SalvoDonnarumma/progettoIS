@@ -31,7 +31,8 @@ import it.model.UserBean;
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L; 
- 
+	
+	/* Aggiunta di un prodotto specifico nel carrello */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -71,7 +72,6 @@ public class CartServlet extends HttpServlet {
 			request.getSession().setAttribute("cart", cart);
 		}
 		Gson json = new Gson();
-	
 		PrintWriter out = response.getWriter();
 		out.write(json.toJson(cart.getAllProduct()));		
 	}	

@@ -29,7 +29,7 @@ public class DriverManagerConnectionPool  {
 		String port = "3306";
 		String db = "storageprogetto";
 		String username = "root";
-		String password = "#Sql280902";
+		String password = "root1234@Z*";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
 		newConnection.setAutoCommit(false);

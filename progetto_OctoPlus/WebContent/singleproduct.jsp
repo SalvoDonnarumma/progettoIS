@@ -5,6 +5,7 @@
 	
  	SizesBean sizes = (SizesBean) bean.getTaglie();
  	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
+ 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
  	boolean nondisponibile = false;
 %>
 <!DOCTYPE html>

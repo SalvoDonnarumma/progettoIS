@@ -1,17 +1,12 @@
 package it.unisa;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.LinkedList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import it.model.ProductBean;
@@ -142,8 +137,9 @@ public class ProductControl extends HttpServlet {
 				dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
 			   }else if ( Boolean.parseBoolean(fromStore) )    
 					dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
-         		else
+         		else {
          			dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
+        } 			
 		dispatcher.forward(request, response);
 	}
 	 

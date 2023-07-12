@@ -169,7 +169,8 @@ h1 {
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
 
-	<h1>Users</h1>
+	<br>
+	<h2>Lista utenti</h2>
 	<table border="1">
 		<tr>
 			<th> Email <a href="AdminControl?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
