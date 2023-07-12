@@ -26,12 +26,12 @@
 		<div class="dropdown">
 		  <label for="categoria-select">Data inizio:</label>
 		  <input type="date" id="dateinit" onChange="searchAndFilterOrders()">
-		  <label for="categoria-select"> Data fine:</label>
+		  <label for="categoria-select">&nbsp&nbspData fine:</label>
 		  <input type="date" id="dateend" onChange="searchAndFilterOrders()">
 		</div>
 	  
 	  <form action="#" method="get" class="search-form">
-    			<input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Inserisci l'email di un cliente per cercarlo..." class="search-input">
+    			<input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Inserisci l'email di un cliente per cercare il suo ordine..." class="search-input">
      			<button type="submit" onClick="searchAndFilterOrders()" class="search-button"><i class='bx bx-search'></i></button>
   	  </form>
 	</nav>

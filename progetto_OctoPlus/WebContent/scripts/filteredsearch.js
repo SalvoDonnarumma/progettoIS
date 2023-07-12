@@ -24,49 +24,73 @@ function searchAndFilter(){
 		maxprezzo = parseFloat(rangeprezzi[1]);
 	}
 	
-	console.log(minprezzo);
-	console.log(maxprezzo);
-	
     const nameMatches = textValue.toUpperCase().indexOf(filter) > -1;
     const categoryMatches = selectedCategoria.length === 0 || selectedCategoria.includes(prodottoCategoria);
-    const priceMatches = (prodottoPrezzo >= minprezzo && prodottoPrezzo <= maxprezzo);
-	console.log(priceMatches);
+    const priceMatches = selectedPrice.length === 0 || (prodottoPrezzo >= minprezzo && prodottoPrezzo <= maxprezzo);
+    
+    console.log(textValue);
+    console.log("Match col nome: "+textValue.toUpperCase().indexOf(filter));
+    console.log("Match col categoria: "+categoryMatches);
+	console.log("Match col prezzo: "+priceMatches);
 	
+	if( selectedCategoria.length > 0 )
+		console.log("ATTIVO FILTRO PER CATEGORIA");
+	if( selectedPrice.length > 0 )
+		console.log("ATTIVO FILTRO PER PREZZO");
+	if( filter.length > 0 )
+		console.log("ATTIVO FILTRO PER NOME");		
 	
-    if (filter && (selectedCategoria.length > 0 || selectedPrice.length > 0)) {
+    if (filter && selectedCategoria.length > 0 && selectedPrice.length > 0) {
       // Se è presente una ricerca per nome e filtri attivi, considera solo i prodotti che corrispondono a entrambi
-      if (textValue && categoryMatches && prodottoPrezzo >= minprezzo && prodottoPrezzo <= maxprezzo) {
-        bean.style.display = "";
-      } else {
-        bean.style.display = "none";
-      }
-    } else if (filter) {
+     	 if (nameMatches && categoryMatches && priceMatches){  //tutti i filtri sono attivi + ricerca nome
+        	console.log("CASO: TUTTI E 3 I FILTRI FUNZIONANTI");
+        	bean.style.display = "";
+      	}else
+			bean.style.display= "none";							
+    } else if( filter && (selectedCategoria.length > 0) && !(selectedPrice.length>0)) { //attivo solo ricerca con nome e filtro categoria
+		  		if(nameMatches && categoryMatches){
+					  console.log("CASO: SOLO CATEGORIA E SOLO NOME");
+		  			bean.style.display= "";
+		  		}else	
+		  			bean.style.display= "none";	
+	} else if(filter && (selectedPrice.length > 0) && !(selectedCategoria.length > 0)){ //attivo solo ricerca e filtro prezzo
+					if(nameMatches && priceMatches){ 
+						console.log("CASO: SOLO PREZZO E SOLO NOME"); 
+		  				bean.style.display= "";
+		  			}else	
+		  				bean.style.display= "none";	
+	} else if (filter && !(selectedCategoria.length>0) && !(selectedPrice.length>0) ) {
       // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
-      if (nameMatches) {
-        bean.style.display = "";
-      } else {
-        bean.style.display = "none";
-      }
+      	if (nameMatches) {
+			 console.log("CASO: SOLO NOME"); 
+        	bean.style.display = "";
+      	} else {
+        	bean.style.display = "none";
+      	}
       // Se sono presenti solo i filtri attivi, calcolo i 4 casi possibile: 
     } else if(selectedCategoria.length > 0 && selectedPrice.length > 0){ //categorie e prezzi attivi
 		if (categoryMatches && priceMatches) {
+				console.log("CASO: SOLO CATEGORIA E PREZZO"); 
        		 bean.style.display = "";
       } else { 
         	 bean.style.display = "none";
       }
 	} else if (selectedCategoria.length > 0 && !(selectedPrice.length>0) ) { //solo categoria attivi
       		if (categoryMatches) {
+				  console.log("CASO: SOLO CATEGORIA");
         		bean.style.display = "";
       		} else {
         		bean.style.display = "none";
       		}
     }  else if( selectedPrice.length > 0 && !(selectedCategoria.length>0) ) { //solo prezzo attivi
 		   if (priceMatches){
+			   console.log("CASO: PREZZO");
         		bean.style.display = "";
       		} else {
         		bean.style.display = "none";
       		}
     }  else { // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
+    		console.log("CASO: NIENTE");
        bean.style.display = "";
     }
   }
