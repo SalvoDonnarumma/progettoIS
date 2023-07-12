@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="./orderview.css">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../scripts/orders.js"></script>
+  <script src="../scripts/filteredsearch.js"></script>
   <script>
 		$(document).ready(function(){
 			dynamicOrdersView("<%=request.getContextPath()%>/OrderServlet");
@@ -23,22 +24,15 @@
 <body>
 	<nav class="topnav">
 		<div class="dropdown">
-		  <label for="categoria-select">Categoria:</label>
-		  <select id="categoria-select" onchange="searchAndFilter()">
-		    <option value="">Tutte</option>
-		    <option value="Coltelli">Coltelli</option>
-		    <option value="Erogatori">Erogatori</option>
-		    <option value="Guanti">Guanti</option>
-		    <option value="Maschere">Maschere</option>
-		    <option value="Mute">Mute</option>
-		    <option value="Pinne">Pinne</option>
-		    <option value="Torce">Torce</option>
-		  </select>
+		  <label for="categoria-select">Data inizio:</label>
+		  <input type="date" id="dateinit" onChange="searchAndFilterOrders()">
+		  <label for="categoria-select"> Data fine:</label>
+		  <input type="date" id="dateend" onChange="searchAndFilterOrders()">
 		</div>
 	  
 	  <form action="#" method="get" class="search-form">
-    			<input type="text" id="search-input" onkeyup="searchAndFilter()" placeholder="Cerca..." class="search-input">
-     			<button type="submit" onClick="searchAndFilter()" class="search-button"><i class='bx bx-search'></i></button>
+    			<input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Inserisci l'email di un cliente per cercarlo..." class="search-input">
+     			<button type="submit" onClick="searchAndFilterOrders()" class="search-button"><i class='bx bx-search'></i></button>
   	  </form>
 	</nav>
 	

@@ -71,3 +71,98 @@ function searchAndFilter(){
     }
   }
 }
+
+function searchAndFilterOrders(){
+  let input, filter, schede;
+  input = document.getElementById("search-input");
+  filter = input.value.toUpperCase();
+  schede = document.getElementById("orders");
+  orders = schede.querySelectorAll(".order-card");
+  
+  var dateinit = document.getElementById("dateinit").value;
+  var dateend = document.getElementById("dateend").value;
+
+  console.log(dateinit);
+  console.log(dateend);
+  var gg1, mm1, aa1, gg2, mm2, aa2, gg, mm, aa;
+	
+	if( dateinit.length > 0 ){
+		var date = dateinit.split('-');
+		console.log("Data splittata: "+date);
+		gg1 = parseInt(date[0]);
+		mm1 = parseInt(date[1]);
+		aa1 = parseInt(date[2]);
+	}
+	
+	if( dateend.length > 0 ){
+		var date = dateend.split('-');
+		console.log("Data splittata: "+date);
+		gg2 = parseInt(date[0]);
+		mm2 = parseInt(date[1]);
+		aa2 = parseInt(date[2]);
+	}
+  for (const bean of orders) {
+    let textValue = bean.querySelector(".email").textContent.trim();
+    console.log(textValue);
+	console.log(dateinit);
+	
+	var date = bean.querySelector(".data").textContent.trim();
+	if( date.length > 0 ){
+		var subdate = date.substring(0,10);
+		var date = subdate.split('-');
+		gg = parseInt(date[0]);
+		mm = parseInt(date[1]);
+		aa = parseInt(date[2]);
+		console.log(gg);
+		console.log(mm);
+		console.log(aa);
+	}
+	
+    const nameMatches = textValue.toUpperCase().indexOf(filter) > -1;
+    const dateBothMatches = (gg >= gg1 && gg <= gg2) && (mm >= mm1 && mm <= mm2) && (aa >= aa1 && aa <= aa2);
+    const dateInfMatches = (gg >= gg1) && (mm >= mm1) && (aa >= aa1);
+    const dateSupMatches = (gg <= gg2) && (mm <= mm2) && (aa <= aa2);
+	
+	
+    if (filter && (dateinit.length > 0 || dateend.length > 0)) {
+      // Se è presente una ricerca per nome e filtri attivi, considera solo gli ordini che corrispondono a entrambi
+      if (nameMatches && dateBothMatches) {
+        bean.style.display = "";
+      } else if (nameMatches && dateInfMatches) //Caso in cui è presente la ricerca per nome e filtro inferiore 
+       {
+        bean.style.display = "";
+      }  else if (nameMatches && dateSupMatches) { //Caso in cui è presente la ricerca per nome e filtro sup 
+       	 bean.style.display = "";
+      	} else {
+        	bean.style.display = "none";
+      	}
+    } else if (filter) {
+      // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
+      if (nameMatches) {
+        bean.style.display = "";
+      } else {
+        bean.style.display = "none";
+      }
+    } else if (dateinit.length > 0 && (dateend.length > 0) ) { //solo filtri attivi
+      		if( dateBothMatches) {
+        		bean.style.display = "";
+      		} else {
+        		bean.style.display = "none";
+      		}
+    }  else if( dateinit.length > 0 && !(dateend.length > 0) ) { //solo data inf è attivo
+		   if (dateInfMatches){
+        		bean.style.display = "";
+      		} else {
+        		bean.style.display = "none";
+      		}
+    } else if( !(dateinit.length > 0) && (dateend.length > 0) )	{ //solo data sup è attivo
+		   if (dateSupMatches){
+        		bean.style.display = "";
+      		} else {
+        		bean.style.display = "none";
+      		}
+	}	else { // Se non ci sono né ricerca né filtri attivi, mostra tutti gli ordini
+       		bean.style.display = "";
+    }
+  }  
+}

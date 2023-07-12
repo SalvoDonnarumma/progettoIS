@@ -40,7 +40,7 @@
 					if( path.contains("/store.jsp") ) { %>																																		
 <%						}	
 				%>	
-					<a href="<%=request.getContextPath()%>/admin/ProductView.jsp"><i class='bx bx-library'></i></a>
+					<a href="<%=request.getContextPath()%>/admin/OrderView.jsp"><i class='bx bx-library'></i></a>
 					<a href="<%=request.getContextPath()%>/userprofile.jsp"><i class='bx bxs-user'></i></a>	
 					<a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart'></i></a>	
 					<a href="<%=request.getContextPath()%>/Logout"><i class='bx bx-log-out-circle'></i></a>	

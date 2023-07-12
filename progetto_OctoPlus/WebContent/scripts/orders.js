@@ -14,8 +14,8 @@ function dynamicOrdersView(url){
 			 for(const bean of response){
 				 	contenutoHTML += "<div class=\"order-card\">";
 					contenutoHTML +=     "<h2 id=\"idOrdine\"> Ordine:#"+bean.idOrdine+"</h2>";
-					contenutoHTML +=     "<p>Cliente:"+bean.idUtente+"</p>";
-					contenutoHTML +=     "<p>Data:"+bean.data+"</p>";
+					contenutoHTML +=     "<p>Cliente:<div class=\"email\">"+bean.idUtente+"</div></p>";
+					contenutoHTML +=     "<p>Data:<div class=\"data\">"+bean.data+"</div></p>";
 					contenutoHTML +=     "<p>Stato:"+bean.stato+"</p>";
 					contenutoHTML +=     "<p>Stato:"+bean.indirizzo+"</p>";
 					contenutoHTML +=     "<p>Totale:"+bean.prezzototale.toFixed(2)+"&euro;</p>";
