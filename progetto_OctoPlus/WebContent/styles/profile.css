@@ -6,7 +6,7 @@
   	border: 1px solid #ccc;
   	border-radius: 4px;
   	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  	background-color: #fff;
+  	background-color: #D9DCD6;
 }
 
 body {  
@@ -54,4 +54,47 @@ th, td {
     table {
         font-size: 14px;
     }
+}
+h1 {
+	font-size: 28px;
+	font-weight: bold;
+	color: #BC2C1A;
+	text-align: left;
+}
+h1.title{
+	
+	font-size: 34px;
+	font-weight: bold;
+	color: #16425B;
+	text-align: center;
+}
+a.no-border-link {
+	display: inline-block;
+	padding: 5px 8px;
+	margin-right: 10px;
+	background-color: transparent;
+	color: #FFFFFF;
+	text-decoration: none;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+a.no-border-link:hover {
+	
+	color: #BC2C1A;
+	text-decoration: none;
+}
+.logout p {
+    text-align: right;
+}
+
+.logout a {
+    font-size: 24px;
+    font-weight: bold;
+}
+.password-change a {
+  
+    font-weight: bold;
+}
+.password-change p {
+    text-align: right;
 }

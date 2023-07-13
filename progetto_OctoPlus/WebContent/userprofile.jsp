@@ -27,10 +27,10 @@
 	<br>
   	<br>
     <div class="container_orders">
-        <h1>Area personale</h1>
+        <h1 class="title" >Area personale</h1>
         
         <div class="user-info">
-            <h2>Informazioni personali</h2>
+            <h1>Informazioni personali</h1>
             <ul>
                 <li><strong>Nome:</strong> <%=bean.getNome() %></li>
                 <li><strong>Cognome:</strong> <%=bean.getCognome() %></li>
@@ -38,18 +38,19 @@
                 <li><strong>Numero di telefono:</strong> <%=bean.getTelefono() %></li>
             </ul>
         </div>
-        
+          
         <div class="orders" id="orders">   
         </div>
         
-        <div class="password-change">
-            <h2>Modifica password</h2>
-            <p>Se desideri cambiare la tua password, puoi farlo <a href="./changepass.jsp">qui</a>.</p>
-        </div>
+     
         
         <div class="logout">
-            <h2>Esci</h2>
-            <p>Se desideri uscire dalla tua pagina utente, puoi effettuare il logout <a href="Logout">qui</a>.</p>
+           
+            <p> <a href="Logout" class="no-border-link">Logout</a>.</p>
+        </div>
+         <div class="password-change">
+            
+            <p> <a href="./changepass.jsp" class="no-border-link">Cambia password</a></p>
         </div>
     </div>
     

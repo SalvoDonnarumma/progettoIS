@@ -26,18 +26,19 @@ body{
 
 img img{	
 	transition: all 0.3 ease;
-	width: 500px;
+	width: 	450px;
 }
 
 
 .img:hover img{
- transform: scale(1.2); 
+ transform: scale(1.1); 
 }
 
 .url{
 	font-size: 16px;
 	font-weight: 400;
-	color: rgb(255, 102, 0);
+	color: #BC2C1A;
+	
 }
 
 .pname{
@@ -66,7 +67,7 @@ img img{
 .psize{
 	width: 70px;
 	height: 30px;
-	border: 1px solid #ff5e00;
+	border: 1px solid #BC2C1A;
 	color: #000;
 	text-align: center;
 	margin: 0 10px;
@@ -100,6 +101,7 @@ img img{
 	padding-top: 20px;
 	display: flex;
 	margin-top: 20px 0;
+	text-decoration: none; 
 }
 
 .btn-box{
@@ -109,35 +111,69 @@ img img{
 	outline: none;
 	border-radius: 6px;
 	cursor: pointer;
+		text-decoration:none;
 }
 
 .cart-btn{
-	background-color: #ff5e00;
+	background-color: #D9DCD6;
 	margin-right: 20px;
+	text-decoration:none;
 }
 
 .buy-btn{
-	background-color: #00aeff;
+	background-color: #D9DCD6;
 	margin-right: 20px;
 }
 
 .modify-btn{
-	background-color: #008080;
+	background-color: #D9DCD6;
 	margin-right: 20px;
 }
 
 .cart-btn:hover{
-	background-color: #ff3c00;
+	background-color: #BC2C1A;
 }
 
 .buy-btn:hover{
-	background-color: #0066ff;
+	background-color: #BC2C1A;
 }
 
 .modify-btn:hover{
-	background-color: #005959;
+	background-color:red;
 }
 
-
-
+.btn-box,
+.cart-btn,
+.buy-btn,
+.modify-btn {
+    text-decoration: none !important;
+}
+@media (max-width: 768px) {
+  .flex-box {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .left, .right {
+    width: 100%;
+    padding: 0;
+  }
+  
+  img {
+    width: 100%;
+  }
+  
+  .right {
+    padding-top: 20px;
+  }
+  
+  .btn-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .btn-box a {
+    margin-bottom: 10px;
+  }
+}
 

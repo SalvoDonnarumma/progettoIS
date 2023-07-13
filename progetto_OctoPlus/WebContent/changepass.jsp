@@ -16,68 +16,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cambio password</title>
-  <style>
-    /* Stili di base */
-   	*{
-   		background-color: linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
-              linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
-              linear-gradient(336deg, rgba(2, 27, 70, .8), rgba(2, 27, 70, 0) 70.71%);
-   	}
-    
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .container {
-      margin: 0 auto;
-      padding: 50px;
-      background-color: #fff;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      top: 50%;
-  	  left: 50%;
-	  max-width: 400px;
-    }
-    
-    h2 {
-      text-align: center;
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    
-    /* Stili responsive */
-    @media (max-width: 600px) {
-      .container {
-        max-width: 100%;
-        margin: 10px;
-        box-shadow: none;
-        border-radius: 0;
-      }
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/changepass.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		function checkPassLength(){
@@ -105,7 +44,7 @@
   <br>
   <br>
   <div class="container">
-    <h2>Cambio password</h2>
+    <h1 class="title">Cambio password</h1>
     <!-- la servlet si chiama UserControl ma è mappata con /AdminControl -->
     <form action="AdminControl?fromStore=cgpass&action=cgpass&id=<%=bean.getEmail()%>" method="post">
       <label for="currentPassword">Password attuale</label>
