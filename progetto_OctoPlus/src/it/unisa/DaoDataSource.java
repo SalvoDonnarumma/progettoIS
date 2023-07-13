@@ -348,6 +348,8 @@ public class DaoDataSource implements IProductDao {
 				preparedStatement.setString(1, order);
 			}
 			
+			System.out.println(selectSQL);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {

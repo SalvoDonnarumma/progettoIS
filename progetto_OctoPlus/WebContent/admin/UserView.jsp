@@ -71,98 +71,99 @@
 			margin-top: 10px;
 		}
 		a.delete-link,
-a.edit-link {
-	display: inline-block;
-	padding: 5px 8px;
-	margin-right: 5px;
-	background-color: #85756E;
-	color: #FFFFFF;
-	border-radius: 4px;
-	text-decoration: none;
-	transition: background-color 0.3s, color 0.3s;
-}
-
-a.delete-link:hover,
-a.edit-link:hover {
-	background-color: #BC2C1A;
-	text-decoration: none;
-	color: #FFFFFF;
-}
-
-a.delete-link, a.edit-link {
-	border: none;
-	outline: none;
-}
-
-a.delete-link:focus, a.edit-link:focus {
-	outline: none;
-}
-a.no-border-link {
-	display: inline-block;
-	padding: 5px 8px;
-	margin-right: 10px;
-	background-color: transparent;
-	color: #FFFFFF;
-	text-decoration: none;
-	transition: background-color 0.3s, color 0.3s;
-}
-
-a.no-border-link:hover {
-	
-	color: #BC2C1A;
-	text-decoration: none;
-}
-.UploadPhoto form {
-	display: inline-block;
-	text-align: left;
-	background-color: #D9DCD6;
-	border-radius: 8px;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-	padding: 20px;
-}
-
-.UploadPhoto select,
-.UploadPhoto option {
-	padding: 5px;
-	border-radius: 4px;
-	border: 1px solid #ccc;
-}
-
-.UploadPhoto select {
-	width: 100%;
-}
-
-.UploadPhoto .file,
-.UploadPhoto .submit {
-	margin-top: 10px;
-}
-
-.UploadPhoto input[type="submit"],
-.UploadPhoto input[type="reset"] {
-	padding: 5px 10px;
-	background-color: #85756E;
-	color: #FFFFFF;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.UploadPhoto input[type="submit"]:hover,
-.UploadPhoto input[type="reset"]:hover {
-	background-color: #BC2C1A;
-}
-h1 {
-	font-size: 28px;
-	font-weight: bold;
-	color: #BC2C1A;
-	
-}
-
-
-
-
+		a.edit-link {
+			display: inline-block;
+			padding: 5px 8px;
+			margin-right: 5px;
+			background-color: #85756E;
+			color: #FFFFFF;
+			border-radius: 4px;
+			text-decoration: none;
+			transition: background-color 0.3s, color 0.3s;
+		}
+		
+		a.delete-link:hover,
+		a.edit-link:hover {
+			background-color: #BC2C1A;
+			text-decoration: none;
+			color: #FFFFFF;
+		}
+		
+		a.delete-link, a.edit-link {
+			border: none;
+			outline: none;
+		}
+		
+		a.delete-link:focus, a.edit-link:focus {
+			outline: none;
+		}
+		a.no-border-link {
+			display: inline-block;
+			padding: 5px 8px;
+			margin-right: 10px;
+			background-color: transparent;
+			color: #FFFFFF;
+			text-decoration: none;
+			transition: background-color 0.3s, color 0.3s;
+		}
+		
+		a.no-border-link:hover {
+			
+			color: #BC2C1A;
+			text-decoration: none;
+		}
+		.UploadPhoto form {
+			display: inline-block;
+			text-align: left;
+			background-color: #D9DCD6;
+			border-radius: 8px;
+			box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+			padding: 20px;
+		}
+		
+		.UploadPhoto select,
+		.UploadPhoto option {
+			padding: 5px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+		}
+		
+		.UploadPhoto select {
+			width: 100%;
+		}
+		
+		.UploadPhoto .file,
+		.UploadPhoto .submit {
+			margin-top: 10px;
+		}
+		
+		.UploadPhoto input[type="submit"],
+		.UploadPhoto input[type="reset"] {
+			padding: 5px 10px;
+			background-color: #85756E;
+			color: #FFFFFF;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		
+		.UploadPhoto input[type="submit"]:hover,
+		.UploadPhoto input[type="reset"]:hover {
+			background-color: #BC2C1A;
+		}
+		h1 {
+			font-size: 28px;
+			font-weight: bold;
+			color: #BC2C1A;
+			
+		}
 	</style>
 <script src="scripts/validate.js"></script>
+<script type="text/javascript">
+	function confirmAlert(){
+		alert("Eliminazione utente in corso...");
+	}
+</script>
 </head>
 
 <body>
@@ -195,7 +196,7 @@ h1 {
 			<td><%=bean.getTelefono()%></td>
 			<%} %>
 			<td><%=bean.getAdmin()%></td>
-			<td><a href="AdminControl?fromStore=false&action=delete&email=<%=bean.getEmail()%>"class="no-border-link">Delete</a><br>
+			<td><a onClick="confirmAlert();" href="AdminControl?fromStore=false&action=delete&email=<%=bean.getEmail()%>"class="no-border-link">Delete</a><br>
 				</td>
 		</tr>
 		<%

@@ -1,5 +1,4 @@
 package it.unisa;
-
 import java.io.IOException;  
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
@@ -11,8 +10,6 @@ import javax.sql.DataSource;
 
 import it.model.ProductBean;
 import it.model.SizesBean;
-
-
 /**
  * Servlet implementation class ProductControl
  */
@@ -43,14 +40,16 @@ public class ProductControl extends HttpServlet {
 		}
 		
 		String action = request.getParameter("action");	
-		
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {
+					
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
 					request.setAttribute("product", productDao.doRetrieveByKey(id));
+					
 				} if (action.equalsIgnoreCase("modify"))	{
+					
 					String categoria = request.getParameter("categoria");
 					System.out.println("Categoria: "+categoria);
 					String nome = request.getParameter("nome");
@@ -77,10 +76,12 @@ public class ProductControl extends HttpServlet {
 					sizes.setQuantitaXXL(quantityXXL);
 					bean.setTaglie(sizes);
 					productDao.doUpdateSizes(code, sizes);
-					
+				
 				} else if (action.equalsIgnoreCase("delete")) {
+					
 						int id = Integer.parseInt(request.getParameter("id"));
 						productDao.doDelete(id);
+						
 						} else if (action.equalsIgnoreCase("insert")) {
 							String categoria = request.getParameter("categoria");
 							String nome = request.getParameter("nome");
@@ -98,7 +99,6 @@ public class ProductControl extends HttpServlet {
 							bean.setStats(stats);
 							bean.setPrice(price);
 							productDao.doSave(bean);
-							
 							SizesBean sizes = new SizesBean();			
 							int code = productDao.doRetrieveByName(nome);
 							sizes.setQuantitaM(quantityM);
@@ -114,8 +114,6 @@ public class ProductControl extends HttpServlet {
 		}
 		
 		String sort = request.getParameter("sort");
-		
-		
 			try {
 				request.removeAttribute("products");
 				request.setAttribute("products", productDao.doRetrieveAll(sort));
@@ -123,11 +121,10 @@ public class ProductControl extends HttpServlet {
 				System.out.println("Error:" + e.getMessage());
 			}
 		
-		
 		String fromStore = request.getParameter("fromStore");
-		System.out.println("Parametro action: "+fromStore);
+		System.out.println("Parametro fromstore: "+fromStore);
+		System.out.println("Parametro action: "+action);
 		RequestDispatcher dispatcher = null;
-		
 		
 		if( fromStore.equalsIgnoreCase("modify"))
 			dispatcher = getServletContext().getRequestDispatcher("/admin/modifyproduct.jsp");

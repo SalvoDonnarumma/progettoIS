@@ -17,8 +17,7 @@
 <meta charset="ISO-8859-1">
 	<title>OCTOPLUS</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/store.css">	
-	<link rel="stylesheet"
-  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
 	<!-- header start -->

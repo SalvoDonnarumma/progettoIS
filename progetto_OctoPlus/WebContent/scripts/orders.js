@@ -10,6 +10,15 @@ function dynamicOrdersView(url){
 
 		if( response.length == 0 ){
 			contenutoHTML +=  "<span>Nessun ordine disponibile</span>";
+			contenutoHTML2 += "<span>";
+			contenutoHTML2 +=	"<br> Vuoi vedere la pagina della visualizzazione prodotti?";  
+			contenutoHTML2 +=	"<a href=\"./ProductView.jsp\"> Clicca qui! </a>";
+		 	contenutoHTML2 += "</span>";
+
+			contenutoHTML2 += "<span>";
+			contenutoHTML2 +=   "Vuoi vedere la pagina della visualizzazione utenti?";
+			contenutoHTML2 +=   "<a href=\"./UserView.jsp\"> Clicca qui! </a>";
+			contenutoHTML2 += "</span>";
 		} else {
 			 for(const bean of response){
 				 	contenutoHTML += "<div class=\"order-card\">";
@@ -80,22 +89,27 @@ function dynamicOrdersUser(url){
 } 
 
 function eliminaRiga(button) {
-  let row = button.parentNode.parentNode;
-  let idOrdine = button.getAttribute("id");
-  var pathArray = window.location.pathname.split('/');
-  var contextPath = '/' + pathArray[1];
-  var url = contextPath + "/RemoveOrderServlet";
-  console.log(idOrdine);
-  $.ajax({
-    url: url,
-    type: 'POST',
-    data:  { idOrdine: idOrdine },
-    success: function(response) {
-      row.parentNode.removeChild(row);
-	  dynamicOrdersView(contextPath+"/OrderServlet");
+  let text = "Stai per cancellare l'ordine, procedere con l'operazione?";
+  if (confirm(text) == true) {
+    let row = button.parentNode.parentNode;
+  	let idOrdine = button.getAttribute("id");
+  	var pathArray = window.location.pathname.split('/');
+  	var contextPath = '/' + pathArray[1];
+  	var url = contextPath + "/RemoveOrderServlet";
+  	console.log(idOrdine);
+  	$.ajax({
+    	url: url,
+    	type: 'POST',
+    	data:  { idOrdine: idOrdine },
+   	 	success: function(response) {
+     	 row.parentNode.removeChild(row);
+	 	 dynamicOrdersView(contextPath+"/OrderServlet");
     },
-    error: function(xhr, status, error) {
-      console.error(error);
-    }
-  });
+    	error: function(xhr, status, error) {
+    	  console.error(error);
+    	}
+ 	 });
+  	} else {
+    	alert("Hai annullato l'operazione!");
+  }	
 }

@@ -18,11 +18,16 @@
   <title>Cambio password</title>
   <style>
     /* Stili di base */
+   	*{
+   		background-color: linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
+              linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
+              linear-gradient(336deg, rgba(2, 27, 70, .8), rgba(2, 27, 70, 0) 70.71%);
+   	}
+    
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f2f2f2;
     }
     
     .container {

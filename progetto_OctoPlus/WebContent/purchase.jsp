@@ -33,6 +33,10 @@
 		if(  pass.value.length == 0 )
 			$("#errorCAP").empty();
 	}
+	
+	function purchaseAlert(){
+		alert("PAGAMENTO IN CORSO...se l'acquisto è andato a buon fine sarai reindirizzato al nostro catalogo!");
+	}
 </script>
 </head>
 <body>
@@ -132,7 +136,6 @@
 	              </div>
 	            </div>
 	          </div>
-	
 	          <div class="col-50">
 	            <h3>Pagamento</h3>
 	            <label for="fname">Carte Accettate</label>
@@ -173,7 +176,7 @@
 	        <label>
 	          <input type="checkbox" checked="checked" name="sameadr"> Indirizzo di spedizione uguale a quello di fatturazione
 	        </label>
-	        <input type="submit" value="Continue to checkout" class="btn">
+	        <input onClick="purchaseAlert();" type="submit" value="Continue to checkout" class="btn">
 	      </form>
 	    <%} else { %>
 	    	<form action="OrderControl?fromStore=true&action=purchaseOne&id=<%=bean.getCode()%>&sz=<%=request.getParameter("sz0")%>&qnt=<%=request.getParameter("qnt0")%>" method="post">
@@ -258,10 +261,9 @@
 	        <label>
 	          <input type="checkbox" checked="checked" name="sameadr"> Indirizzo di spedizione uguale a quello di fatturazione
 	        </label>
-	        <input type="submit" value="Continue to checkout" class="btn">
+	        <input onClick="purchaseAlert();" type="submit" value="Continue to checkout" class="btn">
 	      </form>
 	    <%       }%>  
-	        
 	    </div>
 	  </div>
 		</div>

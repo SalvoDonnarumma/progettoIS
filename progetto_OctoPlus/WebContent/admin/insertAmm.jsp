@@ -211,7 +211,7 @@
 	
 	<h2 class="form-title">Inserisci Amministratore</h2>
 	
-	<form action="AdminControl?fromStore=false" method="post">
+	<form action="<%=request.getContextPath()%>/AdminControl?fromStore=false" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Email </label>

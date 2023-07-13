@@ -1,4 +1,4 @@
-<%@page import="it.model.UserBean"%>
+ <%@page import="it.model.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -15,7 +15,6 @@
 		return;
 	}
 %>
-
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
@@ -23,6 +22,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/productviewstyle.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript">
+		function confirmDelete(){
+			alert("Cancellazione del prodotto in corso...");
+		}
+	</script>
 </head>
 
 <body>
@@ -35,7 +39,7 @@
 			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
 			<th>Categoria<a href="product?fromStore=false&sort=categoria" class="no-border-link">Sort</a></th>
 			<th>Nome <a href="product?fromStore=false&sort=nome" class="no-border-link">Sort</a></th>
-			<th>Prezzo <a href="product?&sort=prezzo" class="no-border-link">Sort</a></th>
+			<th>Prezzo <a href="product?fromStore=false&sort=prezzo" class="no-border-link">Sort</a></th>
 			<th>Descrizione</th>
 			<th>Foto</th>
 			<th>Statistiche</th>
@@ -54,11 +58,11 @@
 			<td><%=bean.getNome()%></td>
 			<td><%=bean.getPrice()%></td>
 			<td><%=bean.getDescrizione()%></td>
-			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style="width:100px;height:100px"> </td>
+			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" style="width:100px;height:100px"> </td>
 			<td><%=bean.getStats()%></td>
 			<td><p> <%=bean.getTaglie()%> </p> </td>
 			<td>
-				<a href="product?fromStore=false&action=delete&id=<%=bean.getCode()%>" class="delete-link">Cancella</a>
+				<a id="link" href="product?fromStore=false&action=delete&id=<%=bean.getCode()%>" onClick="confirmDelete();" class="delete-link">Cancella</a>
 					<br>	<br>
 				<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="edit-link">Modifica</a>
 					<br>

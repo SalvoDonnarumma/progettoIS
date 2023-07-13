@@ -50,7 +50,7 @@
 			<br>
 			<h2> <%=bean.getCategoria()%> </h2>
 			<br>
-			<div class="price"> $<%=bean.getPrice()%> </div> 
+			<div class="price"> <%=bean.getPrice()%> &euro;</div> 
 			<% if( (sizes.getQuantitaM() == 0 && sizes.getQuantitaM() == 0 && sizes.getQuantitaXL() == 0 && sizes.getQuantitaXXL() == 0) || sizes == null) {
 				nondisponibile = true;%>
 				<p style="color: red"> Prodotto momentaneamente non disponibile! </p>
@@ -73,7 +73,9 @@
 			<br>
 			<br>
 			<% if( nondisponibile ){ %>
-				<p style="color: red"> Acquisto momentaneamente non disponibile! </p>
+				<p style="color: red; text-align: justify;"> Acquisto momentaneamente non disponibile! Il prodotto che stai
+									   cercando attualmente non è disponibile per l'acquisto, riprova
+									   più tardi!</p>
 			<%} else { %>	
 				<div class="quantiy">	
 					<p> Quantita': 

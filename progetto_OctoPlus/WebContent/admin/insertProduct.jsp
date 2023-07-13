@@ -183,7 +183,7 @@ input[type="reset"]:hover {
 	
 	<h2 class="form-title">Inserisci Prodotto</h2>
 	
-	<form action="product?fromStore=false" method="post">
+	<form action="<%=request.getContextPath()%>/product?fromStore=false" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Name:</label><br> 
@@ -196,14 +196,14 @@ input[type="reset"]:hover {
 		<textarea name="descrizione" maxlength="500" rows="10" required placeholder="enter description"></textarea><br>
 		
 		<label for="price">Price:</label><br> 
-		<input name="price" type="number" min="0" value="0" step="any" required><br>
+		<input name="price" style="width:20%;" type="number" min="0" value="0" step="any" required><br>
 
 		<label>
 		Quantit&aacute;: <br>
-			Taglia M: <input style="width:5%;" name="tagliaM" type="number" min="1" ><br>
-			Taglia L: <input style="width:5%;" name="tagliaL" type="number" min="1"><br>
-			Taglia XL: <input style="width:5%;" name="tagliaXL" type="number" min="1"><br>
-			Taglia XXL: <input style="width:5%;" name="tagliaXXL" type="number" min="1"><br>
+			Taglia M: <input style="width:10%;" name="tagliaM" type="number" min="1" ><br>
+			Taglia L: <input style="width:10%;" name="tagliaL" type="number" min="1"><br>
+			Taglia XL: <input style="width:10%;" name="tagliaXL" type="number" min="1"><br>
+			Taglia XXL: <input style="width:10%;" name="tagliaXXL" type="number" min="1"><br>
 		</label>
 
 		<label for="Stats">Statistiche: </label><br>

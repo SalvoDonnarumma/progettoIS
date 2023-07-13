@@ -13,7 +13,7 @@ public interface IOrderDao {
 	
 	void doSave(OrderBean order) throws SQLException;
 
-	void doSaveAll(OrderBean order, Double ptotm) throws SQLException;
+	int doSaveAll(OrderBean order, Double ptotm) throws SQLException;
 
 	Collection<OrderBean> doRetrieveAllOrders(String order) throws SQLException;
 	

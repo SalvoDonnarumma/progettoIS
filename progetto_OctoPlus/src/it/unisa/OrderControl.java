@@ -58,6 +58,7 @@ public class OrderControl extends HttpServlet {
 		String email = bean.getEmail();
 		String indirizzo = request.getParameter("indirizzo");
 		String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+		String success = null;
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {
@@ -172,7 +173,6 @@ public class OrderControl extends HttpServlet {
 					System.out.println("Tutti i prodotti idonei all'acquisto");
 					OrderBean order = new OrderBean();
 					
-					
 					for(int i = 0; i<cart.getSize(); i++) {
 						p = cart.getProduct(i);
 						prod_on_db = productDao.doRetrieveByKeyO(p.getCode());
@@ -191,6 +191,7 @@ public class OrderControl extends HttpServlet {
 					order.setIndirizzo(indirizzo);
 					Double ptot = Double.parseDouble(request.getParameter("tot"));
 					orderDao.doSaveAll(order, ptot);
+
 					
 					/* svuoto il carrello */
 					CartBean newcart = new CartBean();

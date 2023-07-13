@@ -213,7 +213,7 @@ public class OrderDaoDataSource implements IOrderDao{
 		return singleorder;
 	}
 	
-	public synchronized void doSaveAll(OrderBean bean, Double ptot) throws SQLException {
+	public synchronized int doSaveAll(OrderBean bean, Double ptot) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -241,6 +241,7 @@ public class OrderDaoDataSource implements IOrderDao{
 		
 		int idOrdine = this.getLastCode(); //prelevo dal db il codice dell'ordine appena inserito
 		
+		int success = 0;
 		String insertSQL2  = "INSERT INTO articoloordinato (idOrdine, idProdotto, nome, categoria, prezzo, quantita) VALUES (?, ?, ?, ?, ?, ?)";
 		List<OrderedProduct> orderedProducts = bean.getOrders();
 		for( OrderedProduct product : orderedProducts) {
@@ -253,7 +254,9 @@ public class OrderDaoDataSource implements IOrderDao{
 				preparedStatement.setString(4, product.getCategoria());
 				preparedStatement.setDouble(5, product.getPrice());
 				preparedStatement.setInt(6, product.getQnt());
-				preparedStatement.executeUpdate();
+				/* restituisco il numero di righe modificate, se è un numero > 1 vuol dire che la 
+				 * query è riuscita correttamente */
+				success = preparedStatement.executeUpdate();
 			} finally {
 				try {
 					if (preparedStatement != null)
@@ -264,6 +267,7 @@ public class OrderDaoDataSource implements IOrderDao{
 				}
 			}
 		}
+		return success;
 	}
 	
 	@Override
