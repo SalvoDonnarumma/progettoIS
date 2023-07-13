@@ -13,9 +13,9 @@
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.model.UserBean"%>
 <head>
     <title>Pagina Utente</title>
-    <link rel="stylesheet" type="text/css" href="profile.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/profile.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  	<script src="./scripts/orders.js"></script>
+  	<script src="<%=request.getContextPath()%>/scripts/orders.js"></script>
   	<script>
 		$(document).ready(function(){
 			dynamicOrdersUser("<%=request.getContextPath()%>/OrderServlet?idUtente=<%=bean.getEmail()%>");

@@ -11,7 +11,7 @@
 
 
 body {  
-  background-image: url(./img/catalogo.jpg);
+  background-image: url(../images/catalogo.jpg);
   background-attachment:fixed;
   background-size: 100% 100%;
 }

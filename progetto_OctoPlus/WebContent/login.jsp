@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OctoPlus Login</title>
-<link rel="stylesheet" href="login-style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/login-style.css">
 
 <jsp:include page="header.jsp" flush="true"/>
 <script src="scripts/validate.js"></script>

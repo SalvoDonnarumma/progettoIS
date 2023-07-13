@@ -8,7 +8,7 @@
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.model.CartBean, it.unisa.DaoDataSource"%>
 <head>
   <title>Carrello - OctoPlus</title>
-  <link rel="stylesheet" type="text/css" href="cart.css">
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/cart.css">
   <link rel="stylesheet"
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -9,10 +9,10 @@
 <html>
 <head>
   <title>Elenco Ordini</title>
-  <link rel="stylesheet" type="text/css" href="./orderview.css">
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/orderview.css">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../scripts/orders.js"></script>
-  <script src="../scripts/filteredsearch.js"></script>
+  <script src="<%=request.getContextPath()%>/scripts/orders.js"></script>
+  <script src="<%=request.getContextPath()%>/scripts/filteredsearch.js"></script>
   <script>
 		$(document).ready(function(){
 			dynamicOrdersView("<%=request.getContextPath()%>/OrderServlet");

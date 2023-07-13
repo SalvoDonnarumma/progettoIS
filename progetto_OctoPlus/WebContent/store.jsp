@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <%@ page import="java.util.*, it.model.*"%>
-<script src="scripts/store.js"></script>
-<script src="scripts/filteredsearch.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/store.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/filteredsearch.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js">
 </script>
 <script>
@@ -16,7 +16,7 @@
 <head>
 <meta charset="ISO-8859-1">
 	<title>OCTOPLUS</title>
-	<link rel="stylesheet" type="text/css" href="./store.css">	
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/store.css">	
 	<link rel="stylesheet"
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>

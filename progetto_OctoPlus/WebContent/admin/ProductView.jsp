@@ -21,7 +21,7 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="./admin/productviewstyle.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/productviewstyle.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 

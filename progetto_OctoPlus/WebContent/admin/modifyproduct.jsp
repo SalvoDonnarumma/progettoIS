@@ -19,7 +19,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modifica prodotto</title>
-<link rel="stylesheet" type="text/css" href="./admin/modifyproduct.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/modifyproduct.css">
 
 <script>
 function addValuesToLink(){

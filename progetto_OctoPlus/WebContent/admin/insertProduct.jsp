@@ -14,7 +14,7 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="./admin/style.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/style.css">
 	<style>@charset "ISO-8859-1";
 	/* Impostazioni dei link */
 a {

@@ -12,7 +12,7 @@
 <html>
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource"%>
 <head>
-<link rel="stylesheet" href="./product.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/product.css">
 <title>Visualizzazione prodotto</title>
 <script> 
 	function getSizeValue(){
