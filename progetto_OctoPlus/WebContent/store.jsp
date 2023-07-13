@@ -59,6 +59,8 @@
  		<div class="container" id="prodotti"> 		
  		</div>		
 	</section>
+	<footer>
 	<jsp:include page="footer.jsp" flush="true"/>		
+	</footer>
 </body>
 </html>

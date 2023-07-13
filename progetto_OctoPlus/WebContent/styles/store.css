@@ -28,6 +28,7 @@ section {
   align-items: center;
   gap: 2rem;
   text-align: center;
+   overflow-wrap: break-word;
 }
 
 .prodotti {
@@ -225,4 +226,7 @@ section {
   .topnav {
    width: 100%;
   }
+ 
+  
 }
+
