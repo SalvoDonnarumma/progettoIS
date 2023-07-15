@@ -91,7 +91,7 @@ function searchAndFilter(){
       		}
     }  else { // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
     		console.log("CASO: NIENTE");
-			visualizeFirstNine();	
+			bean.style.display = "";
     }
   }
 }
@@ -197,19 +197,19 @@ function searchAndFilterOrders(){
       		}
     }  else { // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
     		console.log("CASO: NIENTE");
-			visualizeFirstNine();	
+    		bean.style.display = "";	
     }
   }  
 }
 
-function visualizeFirstNine(){
+function visualizeFirstXX(){
 	schede = document.getElementById("prodotti");
 	product = schede.querySelectorAll(".box1");
 	let cont = 0;
 	
 	for (const bean of product) {
 		cont++;
-		if( cont > 9)
+		if( cont > 15)
 			bean.style.display = "none";		
 	}	
 }

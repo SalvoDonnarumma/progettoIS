@@ -17,22 +17,22 @@ function dynamicStore(url){
 					contenutoHTML += "<h3 style=\"color: red\"> Prodotto momentaneamente non disponibile! <h3>";
 			else{
 			contenutoHTML += "<div class=\"cart\">";
- 			contenutoHTML += "<a href=\"cart.jsp?id="+bean.code+"\"><i class='bx bx-cart-add'></i></a> </div> </div> <br>";
+ 			contenutoHTML += "<a href=\"cart.jsp?id="+bean.code+"\"><i class='bx bx-cart-add'></i></a> </div> </div>";
  			}
 		}
 		$("#prodotti").append(contenutoHTML);
-		visualizeFirstNine();
+		visualizeFirstXX();
 	});
 } 
 
-function visualizeFirstNine(){
+function visualizeFirstXX(){
 	schede = document.getElementById("prodotti");
 	product = schede.querySelectorAll(".box1");
 	let cont = 0;
 	
 	for (const bean of product) {
 		cont++;
-		if( cont > 9)
+		if( cont > 16)
 			bean.style.display = "none";		
 	}	
 }

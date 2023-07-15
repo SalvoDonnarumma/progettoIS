@@ -26,24 +26,14 @@ section {
   flex-wrap: wrap;  /*  Permette ai box di wrapparsi */
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  text-align: center;
-   overflow-wrap: break-word;
-}
-
-.prodotti {
-  display: flex;
-  flex-wrap: wrap;  /*  Permette ai box di wrapparsi */
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  text-align: center;
-  padding-top: 2rem;
+  gap: 3rem;
+  text-align: left;
+  overflow-wrap: break-word;
 }
 
 .box1 {
-  flex: 0 0 30%;  
-  padding: 30px;
+  flex: 0 0 20%;  
+  padding: 20px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
