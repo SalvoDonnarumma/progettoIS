@@ -7,10 +7,11 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles//style.css">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<title>Header</title>
 </head>
 <body>
 <header>
-		<img src="<%=request.getContextPath()%>/images/octopus.png" class="logo">
+		<img src="<%=request.getContextPath()%>/images/octopus.png" class="logo" alt="Logo sito">
 		<span class="hfont">OctoPlus</span> 
 		<div class="menu_hamburger" id="menu-icon"> 
 		</div>

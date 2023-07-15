@@ -11,11 +11,10 @@
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
-
-<head>
-	
+	<head>
+	<title> Inserimento nuovo admin </title>
 <style>
 	a {
 	color: blue;

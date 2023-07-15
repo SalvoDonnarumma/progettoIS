@@ -154,20 +154,19 @@ function searchAndFilterOrders(){
         	bean.style.display = "";
       	}else
 			bean.style.display= "none";							
-    } else if( filter && (dateinit.length > 0) && !(dateend.length>0)) { //attivo solo ricerca con nome e filtro categoria
+    } else if( filter && (dateinit.length > 0) && !(dateend.length>0)) { 
 		  		if(nameMatches && dateInfMatches){
 					  console.log("CASO: SOLO CATEGORIA E SOLO NOME");
 		  			bean.style.display= "";
 		  		}else	
 		  			bean.style.display= "none";	
-	} else if(filter && (dateinit.length > 0) && !(dateend.length > 0)){ //attivo solo ricerca e filtro prezzo
+	} else if(filter && (dateend.length > 0) && !(dateinit.length > 0)){ 
 					if(nameMatches && dateSupMatches){ 
 						console.log("CASO: SOLO PREZZO E SOLO NOME"); 
 		  				bean.style.display= "";
 		  			}else	
 		  				bean.style.display= "none";	
 	} else if (filter && !(dateinit.length>0) && !(dateend.length>0) ) {
-      // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
       	if (nameMatches) {
 			 console.log("CASO: SOLO NOME"); 
         	bean.style.display = "";

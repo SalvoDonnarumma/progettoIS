@@ -16,7 +16,7 @@
 	}
 %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
@@ -27,6 +27,7 @@
 			alert("Cancellazione del prodotto in corso...");
 		}
 	</script>
+	<title> Lista Prodotti </title>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
 	<h1>Products</h1>
 	<br> <br>
-	<table border="1">
+	<table border="1" title="Tabella prodotti">
 		<tr>
 			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
 			<th>Categoria<a href="product?fromStore=false&sort=categoria" class="no-border-link">Sort</a></th>
@@ -58,7 +59,7 @@
 			<td><%=bean.getNome()%></td>
 			<td><%=bean.getPrice()%></td>
 			<td><%=bean.getDescrizione()%></td>
-			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" style="width:100px;height:100px"> </td>
+			<td> <img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" alt="Immagine del prodotto" style="width:100px;height:100px"> </td>
 			<td><%=bean.getStats()%></td>
 			<td><p> <%=bean.getTaglie()%> </p> </td>
 			<td>
@@ -83,7 +84,7 @@
 	<%
 		if (product != null) {
 	%>
-	<table border="1">
+	<table border="1" title="Tabella prodotti">
 		<tr>
 			<th>Code</th>
 			<th>Name</th>

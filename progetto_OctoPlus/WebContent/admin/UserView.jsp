@@ -18,11 +18,12 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles//style.css">
+	<title> Lista Utenti </title>
 	<style>
 	body {
 			background-color: #16425B;
@@ -171,7 +172,7 @@
 
 	<br>
 	<h2>Lista utenti</h2>
-	<table border="1">
+	<table border="1" title="Tabella utenti">
 		<tr>
 			<th> Email <a href="AdminControl?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
 			<th> Nome <a href="AdminControl?fromStore=false&sort=nome" class="no-border-link">Sort</a></th>

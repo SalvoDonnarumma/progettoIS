@@ -6,7 +6,7 @@
 		return;
 	}
 %>
-<html>
+<html lang="it">
 <head>
   <title>Elenco Ordini</title>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/orderview.css">

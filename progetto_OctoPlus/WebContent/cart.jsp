@@ -26,7 +26,7 @@
 	<jsp:include page="header.jsp" flush="true"/>
 	<h2>Carrello:</h2> <br>
   <div class="container ">
-    <table>
+    <table title="Carrello">
       <thead>
         <tr>
           <th>Prodotto</th>

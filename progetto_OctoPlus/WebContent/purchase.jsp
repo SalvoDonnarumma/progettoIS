@@ -57,7 +57,7 @@
 			<div class="box1">		
 			     	<h3><%=bean.getNome()%></h3>
 		 			<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>&">
-		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'">
+		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" alt="immagine prodotto">
 		 			</a>
 		 			<h4> Categoria: <%=bean.getCategoria()%> </h4>
 		 			<h4> Taglia: <%=request.getParameter("sz"+i)%> Quantita': <%=request.getParameter("qnt"+i)%> </h4>
@@ -76,7 +76,7 @@
 			<div class="box1">		
 			     	<h3><%=bean.getNome()%></h3>
 		 			<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>&">
-		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
+		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" alt="immagine prodotto">
 		 			</a>
 		 			<h4> Categoria: <%=bean.getCategoria()%> </h4>
 		 			<h5> <span class="price"> Prezzo: <%=bean.getPrice()*Integer.parseInt(request.getParameter("qnt0"))%></span> </h5>
