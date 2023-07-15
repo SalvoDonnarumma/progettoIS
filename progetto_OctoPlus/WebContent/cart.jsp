@@ -27,6 +27,7 @@
 	<h2>Carrello:</h2> <br>
   <div class="container ">
     <table title="Carrello">
+    <caption>Carrello prodotti</caption>
       <thead>
         <tr>
           <th>Prodotto</th>

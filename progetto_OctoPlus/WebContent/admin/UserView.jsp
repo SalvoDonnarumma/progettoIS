@@ -173,6 +173,7 @@
 	<br>
 	<h2>Lista utenti</h2>
 	<table border="1" title="Tabella utenti">
+	<caption>Tabella utenti</caption>
 		<tr>
 			<th> Email <a href="AdminControl?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
 			<th> Nome <a href="AdminControl?fromStore=false&sort=nome" class="no-border-link">Sort</a></th>

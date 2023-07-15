@@ -36,6 +36,7 @@
 	<h1>Products</h1>
 	<br> <br>
 	<table border="1" title="Tabella prodotti">
+	<caption>Tabella prodotti</caption>
 		<tr>
 			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
 			<th>Categoria<a href="product?fromStore=false&sort=categoria" class="no-border-link">Sort</a></th>
@@ -85,6 +86,7 @@
 		if (product != null) {
 	%>
 	<table border="1" title="Tabella prodotti">
+	<caption>Tabella prodotti</caption>
 		<tr>
 			<th>Code</th>
 			<th>Name</th>

@@ -152,9 +152,12 @@ public class UserDaoDataSource implements IUserDao {
         return hashString;
     }
 	
+	@SuppressWarnings("null")
 	public synchronized Boolean comparePass(String oldPassHash, String passToBeMatch) {
 		String hashedpassToBeMatch = this.toHash(passToBeMatch);
-		System.out.println("Le pass sono uguali: "+hashedpassToBeMatch.equals(oldPassHash));
+		if( hashedpassToBeMatch == null || hashedpassToBeMatch.equals("null"))
+			return false;
+	//	System.out.println("Le pass sono uguali: "+hashedpassToBeMatch.equals(oldPassHash));
 		return hashedpassToBeMatch.equals(oldPassHash);
 	}
 	

@@ -1,5 +1,5 @@
 body {
-  font-family: Arial;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 17px;
   background: linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
               linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
@@ -113,7 +113,6 @@ span.price {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all .35s ease;
   position: relative;
-  flex: 1;
 }
 
 .box1 img {

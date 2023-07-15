@@ -1,5 +1,5 @@
 body {
-  font-family: Arial;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 17px;
   background: linear-gradient(217deg, rgba(26, 82, 118, .8), rgba(26, 82, 118, 0) 70.71%),
               linear-gradient(127deg, rgba(19, 126, 166, .8), rgba(19, 126, 166, 0) 70.71%),
@@ -150,7 +150,6 @@ span.price {
  padding: 10px 20px;
  border: 3px solid #006FE6;
  cursor: pointer;
-  line-height: 1.2;
 }
 .submitButton[type=submit]:hover {
  background-color: #0063CC;
@@ -167,19 +166,15 @@ span.price {
  font-weight: normal;
  font-family: sans-serif;
  font-size: 18px;
- background-color: #ff0000;
  border-radius: 4px;
  padding: 10px 20px;
  border: 3px solid #df0000;
  cursor: pointer;
  background-color: #ff0000;
-  border: 3px solid #df0000;
 }
 .resetButton[type=Reset]:hover {
  background-color: #c40000;
  border-color: #df0000;
-  background-color: #c40000;
-  border-color: #df0000;
 }
 
 .buttons{
