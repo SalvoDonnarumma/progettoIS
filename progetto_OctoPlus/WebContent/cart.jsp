@@ -13,9 +13,12 @@
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="scripts/cart.js"></script>
+  
 <script>
 	$(document).ready(function(){
-		dynamicCart("<%=request.getContextPath()%>/CartServlet?id=<%=request.getParameter("id")%>");
+		var id = '<%= request.getParameter("id") %>';
+		var encodedId = encodeURIComponent(id);
+		dynamicCart("<%= request.getContextPath() %>/CartServlet?id=" + encodedId);
 	});	
 </script>    
 </head>
