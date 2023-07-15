@@ -21,7 +21,7 @@ function dynamicStore(url){
  			}
 		}
 		$("#prodotti").append(contenutoHTML);
-		visualizeFirstSix();
+		visualizeFirstNine();
 	});
 } 
 

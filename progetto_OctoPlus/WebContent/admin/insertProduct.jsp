@@ -192,8 +192,16 @@ input[type="reset"]:hover {
 		<input name="nome" type="text" maxlength="25" required placeholder="enter name"><br> 
 		
 		<label for="categoria">Categoria:</label><br> 
-		<input name="categoria" type="text" maxlength="20" required placeholder="enter categoria"><br> 
-		
+		<select style="width:20%;" name="categoria" id="categoria-select" onchange="searchAndFilter()">
+						    <option value="Coltelli">Coltelli</option>
+						    <option value="Erogatori">Erogatori</option>
+						    <option value="Guanti">Guanti</option>
+						    <option value="Maschere">Maschere</option>
+						    <option value="Mute">Mute</option>
+						    <option value="Pinne">Pinne</option>
+						    <option value="Torce">Torce</option>
+		</select>
+		<br>
 		<label for="description">Description:</label><br>
 		<textarea name="descrizione" maxlength="500" rows="10" required placeholder="enter description"></textarea><br>
 		

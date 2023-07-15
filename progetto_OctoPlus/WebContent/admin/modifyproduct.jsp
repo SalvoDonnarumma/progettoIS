@@ -38,7 +38,7 @@ function addValuesToLink(){
 	     	<div class="box1">
 	     	<h3 style="color: grey;">Vecchio Prodotto:</h3> <br>
 	     	
-	     	<img src="./getPicture?id=<%=bean.getCode()%>" alt="Immagine del prodotto" onerror="this.src='./img/nophoto.png'" style="width:30%">
+	     	<img src="./getPicture?id=<%=bean.getCode()%>" alt="Immagine del prodotto" onerror="this.src='./images/nophoto.png'" style="width:30%">
 	     	
 			<p class="name">Nome: <%=bean.getNome()%> </p> 
 			

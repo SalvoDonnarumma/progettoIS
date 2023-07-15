@@ -171,7 +171,16 @@
 	<jsp:include page="../header.jsp" flush="true"/>
 
 	<br>
-	<h2>Lista utenti</h2>
+	<br>
+		 <a href="admin/insertAmm.jsp" class="no-border-link"> Inserisci nuovo admin </a>
+	<br>
+	<br>
+	<a href="admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
+	<br>
+	<br>
+	
+	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina visualizzazione ordini </a>
+	<h1 style="color: #BC2C1A;" >Elenco Utenti</h1>
 	<table border="1" title="Tabella utenti">
 	<caption>Tabella utenti</caption>
 		<tr>
@@ -214,15 +223,5 @@
 	</table>
 	<br>
 	<br>
-		 <a href="admin/insertAmm.jsp" class="no-border-link"> Inserisci nuovo admin </a>
-	<br>
-	<br>
-	<a href="admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
-	<br>
-	<br>
-	
-	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina visualizzazione ordini </a>
-	
-
 </body>
 </html>
