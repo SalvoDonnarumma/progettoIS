@@ -41,16 +41,11 @@
           
         <div class="orders" id="orders">   
         </div>
-        
-     
-        
-        <div class="logout">
-           
-            <p> <a href="Logout" class="no-border-link">Logout</a>.</p>
-        </div>
-         <div class="password-change">
-            
+        <div class="password-change"> 
             <p> <a href="./changepass.jsp" class="no-border-link">Cambia password</a></p>
+        </div>
+        <div class="logout">  
+            <p> <a href="Logout" class="no-border-link">Logout</a>.</p>
         </div>
     </div>
     

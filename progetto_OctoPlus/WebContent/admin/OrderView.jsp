@@ -31,8 +31,8 @@
 		</div>
 	  
 	  <form action="#" method="get" class="search-form">
-    			<input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Inserisci l'email di un cliente per cercare il suo ordine..." class="search-input">
-     			<button type="submit" onClick="searchAndFilterOrders()" class="search-button"><i class='bx bx-search'></i></button>
+    	  <input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Inserisci l'email di un cliente per cercare il suo ordine..." class="search-input">
+     	  <button type="submit" onClick="searchAndFilterOrders()" class="search-button"><i class='bx bx-search'></i></button>
   	  </form>
 	</nav>
 	

@@ -5,8 +5,8 @@ public class OrderedProduct extends ProductBean {
 		super();
 		qnt=0;
 	}
-	int qnt;
 	
+	int qnt;
 	public int getQnt() {
 		return qnt;
 	}

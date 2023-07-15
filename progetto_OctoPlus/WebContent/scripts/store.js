@@ -6,7 +6,6 @@ function dynamicStore(url){
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHTML = "";
-		
 		for(const bean of response){
 			contenutoHTML += "<div class=\"box1\">";
 			contenutoHTML += "</a> <h3 class=\"pname\">"+bean.name+"</h3>";
@@ -22,5 +21,18 @@ function dynamicStore(url){
  			}
 		}
 		$("#prodotti").append(contenutoHTML);
+		visualizeFirstSix();
 	});
 } 
+
+function visualizeFirstNine(){
+	schede = document.getElementById("prodotti");
+	product = schede.querySelectorAll(".box1");
+	let cont = 0;
+	
+	for (const bean of product) {
+		cont++;
+		if( cont > 9)
+			bean.style.display = "none";		
+	}	
+}

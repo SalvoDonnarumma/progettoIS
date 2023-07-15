@@ -6,10 +6,10 @@ function dynamicOrderView(url){
 	}).done((response) => {
 		response = JSON.parse(response);
 		var contenutoHTML = "";
+		var contenutoHTML2 = "";
 		
 		contenutoHTML += "<h1>Lista Acquisti</h1>";
-		contenutoHTML += "<ul class=\"purchase-list\" id=\"purchase-list\">";
-		contenutoHTML += "</ul>";
+		contenutoHTML += "<ol class=\"purchase-list\" id=\"purchase-list\">";
 
 			 for(const bean of response){
 				 contenutoHTML += "<li>";
@@ -24,8 +24,8 @@ function dynamicOrderView(url){
 				 contenutoHTML += 		"</div>";
 				 contenutoHTML += 	"</div>";
 				 contenutoHTML += "</li>";
-		      }
-		      
+		      } 
+		 contenutoHTML += "</ol>";             
 		$("#container_products").empty();
 		$("#container_products").append(contenutoHTML);
 	});

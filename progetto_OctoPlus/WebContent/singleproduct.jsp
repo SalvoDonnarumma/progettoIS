@@ -41,7 +41,7 @@
 	<div class="flex-box">
 		<div class="left">
 			<div class="img">
-				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'" style=" width: 450px;">
+				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" style=" width: 450px;">
 			</div>
 		</div>
 		<div class="right">

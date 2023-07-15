@@ -59,7 +59,7 @@ function dynamicOrdersUser(url){
 		response = JSON.parse(response);
 		var contenutoHTML = "";
 		
-		contenutoHTML += "<h2>I tuoi ordini</h2>";
+		contenutoHTML += "<h2 class=\"title\">I tuoi ordini</h2>";
         contenutoHTML += "<table>";
             		
 		if( response.length == 0 ){

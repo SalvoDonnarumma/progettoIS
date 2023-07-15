@@ -91,7 +91,7 @@ function searchAndFilter(){
       		}
     }  else { // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
     		console.log("CASO: NIENTE");
-       bean.style.display = "";
+			visualizeFirstNine();	
     }
   }
 }
@@ -147,46 +147,70 @@ function searchAndFilterOrders(){
     const dateInfMatches = (gg >= gg1) && (mm >= mm1) && (aa >= aa1);
     const dateSupMatches = (gg <= gg2) && (mm <= mm2) && (aa <= aa2);
 	
-	
-    if (filter && (dateinit.length > 0 || dateend.length > 0)) {
-      // Se è presente una ricerca per nome e filtri attivi, considera solo gli ordini che corrispondono a entrambi
-      if (nameMatches && dateBothMatches) {
-        bean.style.display = "";
-      } else if (nameMatches && dateInfMatches) //Caso in cui è presente la ricerca per nome e filtro inferiore 
-       {
-        bean.style.display = "";
-      }  else if (nameMatches && dateSupMatches) { //Caso in cui è presente la ricerca per nome e filtro sup 
-       	 bean.style.display = "";
+	if (filter && dateinit.length > 0 && dateend.length > 0) {
+      // Se è presente una ricerca per nome e filtri attivi, considera solo i prodotti che corrispondono a entrambi
+     	 if (nameMatches && dateBothMatches){  //tutti i filtri sono attivi + ricerca nome
+        	console.log("CASO: TUTTI E 3 I FILTRI FUNZIONANTI");
+        	bean.style.display = "";
+      	}else
+			bean.style.display= "none";							
+    } else if( filter && (dateinit.length > 0) && !(dateend.length>0)) { //attivo solo ricerca con nome e filtro categoria
+		  		if(nameMatches && dateInfMatches){
+					  console.log("CASO: SOLO CATEGORIA E SOLO NOME");
+		  			bean.style.display= "";
+		  		}else	
+		  			bean.style.display= "none";	
+	} else if(filter && (dateinit.length > 0) && !(dateend.length > 0)){ //attivo solo ricerca e filtro prezzo
+					if(nameMatches && dateSupMatches){ 
+						console.log("CASO: SOLO PREZZO E SOLO NOME"); 
+		  				bean.style.display= "";
+		  			}else	
+		  				bean.style.display= "none";	
+	} else if (filter && !(dateinit.length>0) && !(dateend.length>0) ) {
+      // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
+      	if (nameMatches) {
+			 console.log("CASO: SOLO NOME"); 
+        	bean.style.display = "";
       	} else {
         	bean.style.display = "none";
       	}
-    } else if (filter) {
-      // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
-      if (nameMatches) {
-        bean.style.display = "";
-      } else {
-        bean.style.display = "none";
+      // Se sono presenti solo i filtri attivi, calcolo i 4 casi possibile: 
+    } else if(dateinit.length > 0 && dateend.length > 0){ //categorie e prezzi attivi
+		if (dateBothMatches) {
+				console.log("CASO: SOLO CATEGORIA E PREZZO"); 
+       		 bean.style.display = "";
+      } else { 
+        	 bean.style.display = "none";
       }
-    } else if (dateinit.length > 0 && (dateend.length > 0) ) { //solo filtri attivi
-      		if( dateBothMatches) {
+	} else if (dateinit.length > 0 && !(dateend.length>0) ) { //solo categoria attivi
+      		if (dateInfMatches) {
+				  console.log("CASO: SOLO CATEGORIA");
         		bean.style.display = "";
       		} else {
         		bean.style.display = "none";
       		}
-    }  else if( dateinit.length > 0 && !(dateend.length > 0) ) { //solo data inf è attivo
-		   if (dateInfMatches){
-        		bean.style.display = "";
-      		} else {
-        		bean.style.display = "none";
-      		}
-    } else if( !(dateinit.length > 0) && (dateend.length > 0) )	{ //solo data sup è attivo
+    }  else if( dateend > 0 && !(dateinit.length>0) ) { //solo prezzo attivi
 		   if (dateSupMatches){
+			   console.log("CASO: PREZZO");
         		bean.style.display = "";
       		} else {
         		bean.style.display = "none";
       		}
-	}	else { // Se non ci sono né ricerca né filtri attivi, mostra tutti gli ordini
-       		bean.style.display = "";
+    }  else { // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
+    		console.log("CASO: NIENTE");
+			visualizeFirstNine();	
     }
   }  
+}
+
+function visualizeFirstNine(){
+	schede = document.getElementById("prodotti");
+	product = schede.querySelectorAll(".box1");
+	let cont = 0;
+	
+	for (const bean of product) {
+		cont++;
+		if( cont > 9)
+			bean.style.display = "none";		
+	}	
 }

@@ -34,7 +34,7 @@
 		
 		function alertLength(){
 			var pass = document.getElementById("newpassword");
-			if( pass.value.length < 12)
+			if( pass.value.length < 12 )
 				alert("La password deve essere lunga almeno 12 caratteri!");
 		}
 	</script>
@@ -51,7 +51,7 @@
       <input name="currentPassword" type="password" id="currentPassword" required>
       
       <label for="newPassword">Nuova password</label>
-      <input name="newPassword" onChange="checkPassLength()"  id="newpassword" type="password" required>
+      <input name="newPassword" onChange="checkPassLength()"  id="newpassword" type="password" required pattern=".{12,}">
       <span style="color:red;" id="errorPass"></span>
       
       <label for="confirmPassword">Conferma nuova password</label>

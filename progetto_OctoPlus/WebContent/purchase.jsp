@@ -57,7 +57,7 @@
 			<div class="box1">		
 			     	<h3><%=bean.getNome()%></h3>
 		 			<a href="product?action=read&fromStore=get&id=<%=bean.getCode()%>&">
-		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./img/nophoto.png'">
+		 			<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'">
 		 			</a>
 		 			<h4> Categoria: <%=bean.getCategoria()%> </h4>
 		 			<h4> Taglia: <%=request.getParameter("sz"+i)%> Quantita': <%=request.getParameter("qnt"+i)%> </h4>
@@ -86,7 +86,11 @@
 		   } 
 	     } %>
 	</div>
-	<h3> Prezzo dell'ordine: <%= request.getParameter("tot")%>&euro; </h3>	   
+	  <%  if( request.getParameter("tot") == null || request.getParameter("tot").equalsIgnoreCase("null") ) { %>
+	  		<h3> Prezzo dell'ordine: <%=bean.getPrice()*Integer.parseInt(request.getParameter("qnt0"))%>&euro;</h3>
+	  <% } else {%>
+	  		<h3> Prezzo dell'ordine: <%= request.getParameter("tot")%>&euro; </h3>	
+	  <% } %>		   
 	 <br>
 	 <br> 	
 	<h2 style="align: center;">Conferma acquisto</h2>
