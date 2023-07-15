@@ -14,7 +14,7 @@
 	}	
 %>
 <%@ page import="java.util.*,it.model.ProductBean, it.unisa.DaoDataSource, it.model.UserBean"%>
-<html>
+<html lang="it">
 <head>
 <title> Acquisto-OctoPlus </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">

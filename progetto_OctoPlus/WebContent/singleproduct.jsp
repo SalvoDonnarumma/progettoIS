@@ -9,7 +9,7 @@
  	boolean nondisponibile = false;
 %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource"%>
 <head>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/product.css">

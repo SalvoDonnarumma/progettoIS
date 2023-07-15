@@ -9,7 +9,7 @@
 	}
 %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.unisa.DaoDataSource, it.model.UserBean"%>
 <head>
     <title>Pagina Utente</title>

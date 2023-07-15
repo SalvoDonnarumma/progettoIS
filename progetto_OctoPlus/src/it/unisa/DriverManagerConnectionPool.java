@@ -30,11 +30,13 @@ public class DriverManagerConnectionPool  {
 		String db = "storageprogetto";
 		String username = "root";
 		String password = "root1234@Z*";
+		
 		try {
-			  newConnection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + db + "?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
-			} catch (SQLException e) {
+		  newConnection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + db + "?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
+		  newConnection.setAutoCommit(false);
+		} catch (SQLException e) {
+		} finally {  
 		}
-		newConnection.setAutoCommit(false);
 		return newConnection;
 	}
 

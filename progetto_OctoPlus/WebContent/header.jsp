@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 
-<html>
+<html lang="it">
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/styles//style.css">

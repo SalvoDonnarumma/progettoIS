@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
         
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page import="java.util.*, it.model.*"%>
 <script src="<%=request.getContextPath()%>/scripts/store.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/filteredsearch.js"></script>

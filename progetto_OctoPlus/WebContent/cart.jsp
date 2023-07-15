@@ -4,7 +4,7 @@
  	Collection<?> products = (Collection<?>) request.getSession().getAttribute("products");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.model.CartBean, it.unisa.DaoDataSource"%>
 <head>
   <title>Carrello - OctoPlus</title>
