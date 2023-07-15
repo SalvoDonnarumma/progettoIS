@@ -11,7 +11,7 @@ public class DriverManagerConnectionPool  {
 	private static List<Connection> freeDbConnections;
 
 	static {
-		freeDbConnections = new LinkedList<Connection>();
+		freeDbConnections = new LinkedList<>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -20,7 +20,7 @@ public class DriverManagerConnectionPool  {
 	}
 	
 	public DriverManagerConnectionPool() {
-		freeDbConnections = new LinkedList<Connection>();
+		freeDbConnections = new LinkedList<>();
 	}
 	
 	private static synchronized Connection createDBConnection() throws SQLException {
@@ -30,8 +30,10 @@ public class DriverManagerConnectionPool  {
 		String db = "storageprogetto";
 		String username = "root";
 		String password = "root1234@Z*";
-
-		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
+		try {
+			  newConnection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + db + "?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
+			} catch (SQLException e) {
+		}
 		newConnection.setAutoCommit(false);
 		return newConnection;
 	}
@@ -41,7 +43,7 @@ public class DriverManagerConnectionPool  {
 		Connection connection;
 
 		if (!freeDbConnections.isEmpty()) {
-			connection = (Connection) freeDbConnections.get(0);
+			connection = freeDbConnections.get(0);
 			freeDbConnections.remove(0);
 
 			try {
@@ -58,7 +60,7 @@ public class DriverManagerConnectionPool  {
 		return connection;
 	}
 
-	public static synchronized void releaseConnection(Connection connection) throws SQLException {
+	public static synchronized void releaseConnection(Connection connection){
 		if(connection != null) freeDbConnections.add(connection);
 	}
 }
