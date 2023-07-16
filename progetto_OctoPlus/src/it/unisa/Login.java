@@ -17,15 +17,8 @@ import it.model.UserBean;
 public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			
-			String isDriverManager = request.getParameter("driver");
-			if(isDriverManager == null || isDriverManager.equals("")) {
-				isDriverManager = "datasource";
-			}
-			
-			IUserDao userDao = null;
 	
-			
+			IUserDao userDao = null;			
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			userDao = new UserDaoDataSource(ds);
 			
@@ -54,15 +47,19 @@ public class Login extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			if(match==null) {
+			if( match==null ) {
 				errors.add("Username o password non validi!");
 				request.setAttribute("errors", errors);
 				dispatcherToLoginPage.forward(request, response);
-			} else if( match.getAdmin() ) { //sono state usate credenziali di admin
+				return;
+			} 
+			
+			Boolean result = match.getAdmin();
+			if( result ) { //sono state usate credenziali di admin
 				request.getSession().setAttribute("isAdmin", Boolean.TRUE); //inserisco il token nella sessione
 				request.getSession().setAttribute("logged", match);
 				response.sendRedirect("store.jsp");			
-			} else if( !match.getAdmin() && match!=null ) { //sono state usate credenziali di un utente
+			} else if( !result && result!=null ) { //sono state usate credenziali di un utente
 				request.getSession().setAttribute("isAdmin", Boolean.FALSE); //inserisco il token nella sessione
 				request.getSession().setAttribute("logged", match);
 				response.sendRedirect("store.jsp");

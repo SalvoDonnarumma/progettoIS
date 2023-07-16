@@ -1,8 +1,9 @@
 package it.model;
+import java.io.Serializable;
 
-public class SizesBean {
-	
-	
+public class SizesBean implements Serializable {
+	private static final long serialVersionUID = -146315416856526905L;
+
 	public SizesBean() {
 		super();
 		this.idProdotto = 0;

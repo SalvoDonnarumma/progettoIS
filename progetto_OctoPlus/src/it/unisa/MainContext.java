@@ -23,18 +23,10 @@ public class MainContext implements ServletContextListener {
 			ds = (DataSource) envCtx.lookup("jdbc/storageprogetto");
 
 		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
+			/*commento per riempire il try-catch*/
 		}		
 
-		context.setAttribute("DataSource", ds);
-		System.out.println("DataSource creation...."+ds.toString());
-		
-		
-		DriverManagerConnectionPool dm = null;
-		
-		dm = new DriverManagerConnectionPool();
-		context.setAttribute("DriverManager", dm);
-		System.out.println("DriverManager creation...."+dm.toString());		
+		context.setAttribute("DataSource", ds);	
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
