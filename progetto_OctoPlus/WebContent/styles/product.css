@@ -37,7 +37,6 @@ img img{
 	font-size: 16px;
 	font-weight: 400;
 	color: #BC2C1A;
-	
 }
 
 .pname{
@@ -56,6 +55,16 @@ img img{
 	display: flex;
 	align-items: center;
 	margin: 20px 0;
+}
+
+#description{
+	justify-content: left;
+    align-items: left;
+}
+
+#stats{
+	justify-content: right;
+    align-items: right;
 }
 
 .psize p{
@@ -101,16 +110,13 @@ img img{
 	display: flex;
 	margin-top: 20px 0;
 	text-decoration: none; 
-}
-
-.btn-box{
 	font-size: 18px;
 	padding: 8px 25px;
 	border: none;
 	outline: none;
 	border-radius: 6px;
 	cursor: pointer;
-		text-decoration:none;
+	text-decoration:none;
 }
 
 .cart-btn{

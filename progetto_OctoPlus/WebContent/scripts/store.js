@@ -26,8 +26,8 @@ function dynamicStore(url){
 } 
 
 function visualizeFirstXX(){
-	schede = document.getElementById("prodotti");
-	product = schede.querySelectorAll(".box1");
+	let schede = document.getElementById("prodotti");
+	let product = schede.querySelectorAll(".box1");
 	let cont = 0;
 	
 	for (const bean of product) {

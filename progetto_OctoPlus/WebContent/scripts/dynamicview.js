@@ -6,7 +6,6 @@ function dynamicProductView(url){
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHTML = "";
-		let contenutoHTML2 = "";
 		
 		if( response.length == 0 ){
 			contenutoHTML +=  "<tr>";
@@ -38,9 +37,9 @@ function eliminaRiga(button) {
   let row = button.parentNode.parentNode;
   let idProdotto = button.getAttribute("id");
   console.log(idProdotto);
-  var pathArray = window.location.pathname.split('/');
-  var contextPath = '/' + pathArray[1];
-  var url = contextPath + "/RemoveProductFromCart";
+  let pathArray = window.location.pathname.split('/');
+  let contextPath = '/' + pathArray[1];
+  let url = contextPath + "/RemoveProductFromCart";
   console.log(url);
   $.ajax({
     url: url,

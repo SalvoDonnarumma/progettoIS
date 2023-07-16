@@ -40,7 +40,7 @@
     position: absolute;
     left: 0;
     bottom: -10px;
-    background-color: #4763c0;;
+    background-color: #4763c0;
     height: 2px;
     box-sizing: border-box;
     width: 50px;
@@ -62,7 +62,7 @@
 }
 
 .footer .footer-col ul li a:hover {
-    color: #4763c0;;  /* Cambia il colore al passaggio del mouse */
+    color: #4763c0;  /* Cambia il colore al passaggio del mouse */
 }
 
 .footer .footer-col .social-links {

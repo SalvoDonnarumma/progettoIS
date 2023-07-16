@@ -64,11 +64,11 @@ function dynamicCart(url){
 } 
 
 function addValuesToLink(){
-		product = document.getElementById("cart");
-		var link = document.getElementById("link");	
-		elem2 = product.getElementsByClassName('quantita');
-		elem1 = product.getElementsByClassName('size');
-		totale = document.getElementById("tot");
+		let product = document.getElementById("cart");
+		let link = document.getElementById("link");	
+		let elem2 = product.getElementsByClassName('quantita');
+		let elem1 = product.getElementsByClassName('size');
+		let totale = document.getElementById("tot");
 		link.href=link.href.substring(0, 77);
 		console.log(totale.textContent.trim());
 		
@@ -87,7 +87,7 @@ function totaleParziale(){
 		
 	product = document.getElementById("cart");
 	elem2 = product.getElementsByClassName('quantita');
-	var elementi = document.querySelectorAll('p.price');
+	let elementi = document.querySelectorAll('p.price');
 	console.log(elementi);
 	
 	for(let i = 0; i < elementi.length; i++){
@@ -109,17 +109,15 @@ function totaleParziale(){
 	
 	cassa = document.getElementById("cassa");
 	cassa.getElementsByClassName("tot")[0].innerHTML = tot.toFixed(2);
-	if(tot == 0) 
-		spedizione = 0;	
 }
 
 function eliminaRiga(button) {
   let row = button.parentNode.parentNode;
   let idProdotto = button.getAttribute("id");
   console.log(idProdotto);
-  var pathArray = window.location.pathname.split('/');
-  var contextPath = '/' + pathArray[1];
-  var url = contextPath + "/RemoveProductFromCart";
+  let pathArray = window.location.pathname.split('/');
+  let contextPath = '/' + pathArray[1];
+  let url = contextPath + "/RemoveProductFromCart";
   console.log(url);
   $.ajax({
     url: url,

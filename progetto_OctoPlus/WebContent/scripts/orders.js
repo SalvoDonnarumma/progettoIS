@@ -5,8 +5,8 @@ function dynamicOrdersView(url){
 		contentType : 'application/json; charset=utf-8'
 	}).done((response) => {
 		response = JSON.parse(response);
-		var contenutoHTML = "";
-		var contenutoHTML2 = "";
+		let contenutoHTML = "";
+		let contenutoHTML2 = "";
 
 		if( response.length == 0 ){
 			contenutoHTML +=  "<span>Nessun ordine disponibile</span>";
@@ -57,7 +57,7 @@ function dynamicOrdersUser(url){
 		contentType : 'application/json; charset=utf-8'
 	}).done((response) => {
 		response = JSON.parse(response);
-		var contenutoHTML = "";
+		let contenutoHTML = "";
 		
 		contenutoHTML += "<h2 class=\"title\">I tuoi ordini</h2>";
         contenutoHTML += "<table>";
@@ -93,9 +93,9 @@ function eliminaRiga(button) {
   if (confirm(text) == true) {
     let row = button.parentNode.parentNode;
   	let idOrdine = button.getAttribute("id");
-  	var pathArray = window.location.pathname.split('/');
-  	var contextPath = '/' + pathArray[1];
-  	var url = contextPath + "/RemoveOrderServlet";
+  	let pathArray = window.location.pathname.split('/');
+  	let contextPath = '/' + pathArray[1];
+  	let url = contextPath + "/RemoveOrderServlet";
   	console.log(idOrdine);
   	$.ajax({
     	url: url,

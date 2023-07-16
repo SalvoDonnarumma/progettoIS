@@ -5,8 +5,7 @@ function dynamicOrderView(url){
 		contentType : 'application/json; charset=utf-8'
 	}).done((response) => {
 		response = JSON.parse(response);
-		var contenutoHTML = "";
-		var contenutoHTML2 = "";
+		let contenutoHTML = "";
 		
 		contenutoHTML += "<h1>Lista Acquisti</h1>";
 		contenutoHTML += "<ol class=\"purchase-list\" id=\"purchase-list\">";
@@ -25,7 +24,7 @@ function dynamicOrderView(url){
 				 contenutoHTML += 	"</div>";
 				 contenutoHTML += "</li>";
 		      } 
-		 contenutoHTML += "</ol>";             
+		contenutoHTML += "</ol>";             
 		$("#container_products").empty();
 		$("#container_products").append(contenutoHTML);
 	});

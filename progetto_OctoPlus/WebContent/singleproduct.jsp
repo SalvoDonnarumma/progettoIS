@@ -106,16 +106,14 @@
 				}
 			%>
 			</h3>
-			<div>
 			<h3> Dettagli prodotto</h3>
-			<p align="left">
+			<p id="description">
 			<%=bean.getDescrizione()%>		
 			</p>
 			<h3> Statistiche </h3>
-			<p align="right">
+			<p id="stats" >
 			<%=bean.getStats()%>
 			</p>
-			</div>
 		</div>
 	</div>
 	<br>

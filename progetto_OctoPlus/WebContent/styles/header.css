@@ -126,17 +126,14 @@ span.hfont::before {
   margin-bottom: 10px;
 }
 
-/**/
-
+/*Inizio menu hamburger*/
 .menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
-.toggle {
-  order: 1;
-}
+
 .item.button {
   order: 2;
 }
@@ -144,8 +141,8 @@ span.hfont::before {
   width: 100%;
   text-align: center;
   order: 3;
-
 }
+
 .links-nav {
   list-style: none; 
   padding: 0; 
@@ -159,6 +156,7 @@ span.hfont::before {
 /* Toggle */
 .toggle {
   cursor:pointer;
+  order: 1;
 }
 .bars {
   background: #999;
@@ -185,7 +183,7 @@ span.hfont::before {
   top: -5px;
 }
 
-/**/
+/*Hamburger*/
 .hamburger{
 	position: relative;
 	display: block ;
@@ -258,33 +256,25 @@ span.hfont::before {
 	background-color: #c83c54;
 }
 
-@media (min-width: 768px){
-	
+@media (min-width: 768px){	
 	.hamburger{
 		display: none;
 	}
-	
 	.mobile-nav{
 		display: none;
 	}
-	
 	#logo{
 		margin-left: 1rem;
 	}
-	
 }
 
 @media (max-width : 768px){
 	.links-nav{
 		display: none;
 	}
-	
 	header img{
 		width: 10%;
 		height: 10%;
 		margin-left: 3;
 	}
-	
 }
-
-

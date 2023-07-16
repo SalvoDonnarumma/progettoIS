@@ -14,11 +14,11 @@ function searchAndFilter(){
     const prodottoCategoria = bean.querySelector(".categoria").textContent.trim();
     const prodottoPrezzo = parseFloat(bean.querySelector(".prezzo").textContent.trim());
 	
-	var minprezzo = 0;
-	var maxprezzo = 0;
+	let minprezzo = 0;
+	let maxprezzo = 0;
 	
 	if( selectedPrice != null ){
-		var rangeprezzi = selectedPrice.split('-');
+		let rangeprezzi = selectedPrice.split('-');
 		console.log(rangeprezzi);
 		minprezzo = parseFloat(rangeprezzi[0]);
 		maxprezzo = parseFloat(rangeprezzi[1]);
@@ -103,15 +103,15 @@ function searchAndFilterOrders(){
   schede = document.getElementById("orders");
   orders = schede.querySelectorAll(".order-card");
   
-  var dateinit = document.getElementById("dateinit").value;
-  var dateend = document.getElementById("dateend").value;
+  let dateinit = document.getElementById("dateinit").value;
+  let dateend = document.getElementById("dateend").value;
 
   console.log(dateinit);
   console.log(dateend);
-  var gg1, mm1, aa1, gg2, mm2, aa2, gg, mm, aa;
+  let gg1, mm1, aa1, gg2, mm2, aa2, gg, mm, aa;
 	
 	if( dateinit.length > 0 ){
-		var date = dateinit.split('-');
+		let date = dateinit.split('-');
 		console.log("Data splittata: "+date);
 		gg1 = parseInt(date[0]);
 		mm1 = parseInt(date[1]);
@@ -119,21 +119,22 @@ function searchAndFilterOrders(){
 	}
 	
 	if( dateend.length > 0 ){
-		var date = dateend.split('-');
+		let date = dateend.split('-');
 		console.log("Data splittata: "+date);
 		gg2 = parseInt(date[0]);
 		mm2 = parseInt(date[1]);
 		aa2 = parseInt(date[2]);
 	}
+  	
   for (const bean of orders) {
     let textValue = bean.querySelector(".email").textContent.trim();
     console.log(textValue);
 	console.log(dateinit);
 	
-	var date = bean.querySelector(".data").textContent.trim();
+	let date = bean.querySelector(".data").textContent.trim();
 	if( date.length > 0 ){
-		var subdate = date.substring(0,10);
-		var date = subdate.split('-');
+		let subdate = date.substring(0,10);
+		date = subdate.split('-');
 		gg = parseInt(date[0]);
 		mm = parseInt(date[1]);
 		aa = parseInt(date[2]);
@@ -203,8 +204,8 @@ function searchAndFilterOrders(){
 }
 
 function visualizeFirstXX(){
-	schede = document.getElementById("prodotti");
-	product = schede.querySelectorAll(".box1");
+	let schede = document.getElementById("prodotti");
+	let product = schede.querySelectorAll(".box1");
 	let cont = 0;
 	
 	for (const bean of product) {
