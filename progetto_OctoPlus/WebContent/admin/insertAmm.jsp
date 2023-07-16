@@ -201,20 +201,25 @@
 	  }	
 </style>
 
-<script src="../scripts/validate.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/validate.js"></script>
+<script> 
+function disattivaErrore(){
+	let error = document.getElementById("error");
+	error.style.display = "none";
+}
+</script>
 </head>
 
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
 
-	
 	<h2 class="form-title">Inserisci Amministratore</h2>
 	
 	<form action="<%=request.getContextPath()%>/AdminControl?fromStore=false" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
 		<label for="name">Email </label>
-		<input type="email" name="email" required placeholder="Inserisci email"
+		<input type="email" name="email" required placeholder="Inserisci email" onkeyup="disattivaErrore();"
 		onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)"	id="email">
 		<span id="errorEmail"></span> 
 		
@@ -238,10 +243,20 @@
 						onchange="validateFormElem(this, document.getElementById('errorPhone0'), phoneErrorMessage)"
 						placeholder="[###-#######]">
 				<br>
-				<span id="errorPhone0"></span>
-			
+				<span id="errorPhone0"></span>	
 		</div>
 		<br>
+		
+		<% 
+		List<String> errors = (List<String>) request.getAttribute("errors");
+		if (errors != null){
+			for (String error: errors){ %>
+				<h3 id="error" style="color:red"><%=error %></h3>
+			<%
+			}
+		}
+		%>
+	
 		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
 	

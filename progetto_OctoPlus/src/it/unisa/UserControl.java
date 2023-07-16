@@ -53,6 +53,26 @@ public class UserControl extends HttpServlet {
 					bean.setPassword(password);
 					bean.setCognome(cognome);
 					bean.setTelefono(telefono);
+					
+					Boolean result = false;
+					List<String> errors = new ArrayList<>();
+			        try {
+						List<String> emails = adminDao.getAllEmails();
+						for( String emaildb : emails) 
+							if(emaildb.equals(email))
+								result = true;
+					} catch (SQLException e1) {
+						/*commento per riempire il try-catch*/
+					}
+			        
+			        if( result ) {
+			        	errors.add("L'email che hai inserito non è disponibile!");
+			        	request.setAttribute("errors", errors);
+			        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("/admin/insertAmm.jsp");
+			        	dispatcherToLoginPage.forward(request, response);
+						return;
+					}
+					
 					adminDao.doSaveAdmin(bean);
 				} else if( action.equalsIgnoreCase("cgpass")) {
 					String oldPass = request.getParameter("currentPassword");

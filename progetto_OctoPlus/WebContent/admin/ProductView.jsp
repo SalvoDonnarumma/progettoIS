@@ -43,7 +43,7 @@
 	<br>
 	<br>
 
-	<h1>Elenco prodotti</h1>
+	<h1 style="color: #853411;">Elenco prodotti</h1>
 	<br> <br>
 	<table border="1" title="Tabella prodotti">
 	<caption>Tabella prodotti</caption>

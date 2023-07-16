@@ -36,7 +36,7 @@
   	  </form>
 	</nav>
 	
-  <h1 style="color: #BC2C1A;" >Elenco Ordini</h1>
+  <h1 style="color: #853411;" >Elenco Ordini</h1>
   <div class="orders-container" id="orders">   
   </div>
   <div id="bottom">

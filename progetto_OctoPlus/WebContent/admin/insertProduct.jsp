@@ -172,7 +172,7 @@ input[type="reset"]:hover {
   display: block;
   width: 100px;
   height: 3px;
-  background-color:#91972A;
+  background-color:#853411;
   margin: 10px 0;
 }
 </style>
@@ -210,10 +210,10 @@ input[type="reset"]:hover {
 
 		<label>
 		Quantit&aacute;: <br>
-			Taglia M: <input style="width:10%;" name="tagliaM" type="number" min="1" ><br>
-			Taglia L: <input style="width:10%;" name="tagliaL" type="number" min="1"><br>
-			Taglia XL: <input style="width:10%;" name="tagliaXL" type="number" min="1"><br>
-			Taglia XXL: <input style="width:10%;" name="tagliaXXL" type="number" min="1"><br>
+			Taglia M: <input style="width:10%;" name="tagliaM" type="number" min="0" ><br>
+			Taglia L: <input style="width:10%;" name="tagliaL" type="number" min="0"><br>
+			Taglia XL: <input style="width:10%;" name="tagliaXL" type="number" min="0"><br>
+			Taglia XXL: <input style="width:10%;" name="tagliaXXL" type="number" min="0"><br>
 		</label>
 
 		<label for="Stats">Statistiche: </label><br>
