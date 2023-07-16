@@ -1,9 +1,7 @@
 package it.unisa;
 
-import java.sql.SQLException;
+import java.sql.SQLException; 
 import java.util.Collection;
-
-import it.model.CartBean;
 import it.model.OrderBean;
 import it.model.OrderedProduct;
 

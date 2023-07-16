@@ -34,14 +34,9 @@ public class SignUp extends HttpServlet {
 		
 		IUserDao userDao = null;
 
-		if (isDriverManager.equals("drivermanager")) {
-			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
-					.getAttribute("DriverManager");
-		//	productDao = new DaoDriverMan(dm);			
-		} else {
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			userDao = new UserDaoDataSource(ds);
-		}
+		
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		userDao = new UserDaoDataSource(ds);
 	
 		String username = request.getParameter("email");
 		String name = request.getParameter("firstname");

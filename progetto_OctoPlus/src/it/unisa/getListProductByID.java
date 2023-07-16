@@ -1,6 +1,6 @@
 package it.unisa;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.google.gson.Gson;
-
-import it.model.OrderBean;
 import it.model.OrderedProduct;
 
 /**

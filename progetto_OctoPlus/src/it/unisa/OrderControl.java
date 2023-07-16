@@ -1,6 +1,6 @@
 package it.unisa;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,15 +38,11 @@ public class OrderControl extends HttpServlet {
 		
 		IProductDao productDao = null;
 		IOrderDao orderDao = null;
-		if (isDriverManager.equals("drivermanager")) {
-			DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
-					.getAttribute("DriverManager");
-		//	productDao = new DaoDriverMan(dm);			
-		} else {
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			productDao = new DaoDataSource(ds);
-			orderDao = new OrderDaoDataSource(ds);
-		}
+	
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		productDao = new DaoDataSource(ds);
+		orderDao = new OrderDaoDataSource(ds);
+		
 		List<String> errors = new ArrayList<>();
 		String action = request.getParameter("action");
 		System.out.println("action: "+action);
@@ -58,7 +54,6 @@ public class OrderControl extends HttpServlet {
 		String email = bean.getEmail();
 		String indirizzo = request.getParameter("indirizzo");
 		String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
-		String success = null;
 		try {
 			if (action != null) {
 				if (action.equalsIgnoreCase("read")) {
@@ -125,14 +120,15 @@ public class OrderControl extends HttpServlet {
 					CartBean newcart = new CartBean();
 					request.getSession().removeAttribute("cart");
 					request.getSession().setAttribute("cart", newcart);
-				} else if( action.equalsIgnoreCase("purchaseAll")) {
-					Collection <ProductBean> products = new LinkedList<ProductBean>(); 
+				} else if( action.equalsIgnoreCase("purchaseAll")) { 
 					CartBean cart = (CartBean) request.getSession().getAttribute("cart");
 					
 					/* prendo le taglie dei singoli prodotti messi nel carrello */
+					@SuppressWarnings("unchecked")
 					List<String>sizes = (List<String>) request.getSession().getAttribute("sizes");
 					
 					/* prendo le quantità dei singoli prodotti messi nel carrello */
+					@SuppressWarnings("unchecked")
 					List<Integer>qnts = (List<Integer>) request.getSession().getAttribute("qnts");
 					
 					/* devo controllare se ogni prodotto è disponibile per l'acquisto

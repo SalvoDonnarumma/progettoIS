@@ -1,10 +1,8 @@
 package it.unisa;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException; 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,15 +25,10 @@ public class Login extends HttpServlet {
 			
 			IUserDao userDao = null;
 	
-			if (isDriverManager.equals("drivermanager")) {
-				DriverManagerConnectionPool dm = (DriverManagerConnectionPool) getServletContext()
-						.getAttribute("DriverManager");
-		//		productDao = new DaoDriverMan(dm);			
-			} else {
-				DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-				userDao = new UserDaoDataSource(ds);
-			}
-		
+			
+			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+			userDao = new UserDaoDataSource(ds);
+			
 			String username = request.getParameter("email");
 			String password = request.getParameter("password");
 			List<String> errors = new ArrayList<>();

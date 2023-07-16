@@ -1,8 +1,7 @@
 package it.unisa;
 
-import java.io.IOException;  
+import java.io.IOException;   
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,6 @@ import javax.sql.DataSource;
 import it.model.OrderedProduct;
 import it.model.ProductBean;
 import it.model.SizesBean;
-import it.model.UserBean;
 
 public class DaoDataSource implements IProductDao {
 	

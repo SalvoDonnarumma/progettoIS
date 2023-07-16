@@ -1,6 +1,6 @@
 package it.unisa;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,12 +10,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import it.model.CartBean;
 import it.model.OrderBean;
 import it.model.OrderedProduct;
-import it.model.ProductBean;
-import it.model.SizesBean;
-import it.model.UserBean;
 
 public class OrderDaoDataSource implements IOrderDao{
 	private DataSource ds = null;

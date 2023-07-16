@@ -219,7 +219,7 @@
 		<span id="errorEmail"></span> 
 		
 		<label for="cognome">Cognome </label>
-		<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" placeholder="Inserisci il cognome"
+		<input type="text" name="cognome" id="cognome" required pattern="^[A-Za-z]+$" placeholder="Inserisci il cognome"
 		onchange="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
 		<span id="errorLastname"></span>
 		

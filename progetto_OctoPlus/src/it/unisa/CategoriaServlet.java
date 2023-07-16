@@ -47,9 +47,7 @@ public class CategoriaServlet extends HttpServlet {
 			Collections.sort(categorie);
 			out.write(json.toJson(categorie));
 			connection.close();
-		} catch (SQLException e) {
-			/* commento per riempire il blocco*/
-		} catch (IOException e) {
+		} catch (SQLException | IOException e) {
 			/* commento per riempire il blocco*/
 		}
 	}

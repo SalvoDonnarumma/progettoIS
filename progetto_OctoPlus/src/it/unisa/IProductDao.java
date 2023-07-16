@@ -1,12 +1,11 @@
 package it.unisa;
 
-import java.sql.SQLException; 
+import java.sql.SQLException;  
 import java.util.Collection;
-
 import it.model.OrderedProduct;
 import it.model.ProductBean;
 import it.model.SizesBean;
-import it.model.UserBean;
+
 
 public interface IProductDao {
 	
