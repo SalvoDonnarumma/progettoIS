@@ -10,9 +10,10 @@
 }
 
 .title{
-	/* color: #ba8441; */
-	color: #bd8e80;
+	color: #BC2C1A;
 	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 body {  
