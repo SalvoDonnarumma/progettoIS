@@ -106,10 +106,8 @@ img img{
 }
 
 .btn-box{
-	padding-top: 20px;
 	display: flex;
-	margin-top: 20px 0;
-	text-decoration: none; 
+	margin-top: 20px 0; 
 	font-size: 18px;
 	padding: 8px 25px;
 	border: none;
