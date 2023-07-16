@@ -93,8 +93,8 @@ function totaleParziale(){
 	for(let i = 0; i < elementi.length; i++){
 		totParz = 0;
 		
-		var elementoDesiderato = elementi[i]; 
-		var valore = elementoDesiderato.textContent.trim();
+		let elementoDesiderato = elementi[i]; 
+		let valore = elementoDesiderato.textContent.trim();
     	console.log(valore);
     	costo = parseFloat(valore);
 		quantita = parseInt(elem2[i].value)

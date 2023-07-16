@@ -1,14 +1,12 @@
 package it.model;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
-
-import it.unisa.IOrderDao;
 
 public class OrderBean{
 	
 	public OrderBean() {
-		orders = new ArrayList<OrderedProduct>();
+		orders = new ArrayList<>();
 	}
 
 	List<OrderedProduct> orders;

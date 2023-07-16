@@ -43,15 +43,14 @@ public class CartServlet extends HttpServlet {
 		
 		CartBean cart = (CartBean) session.getAttribute("cart");
 		
-		System.out.println("Il mio id e':"+request.getParameter("id"));
 		String id = request.getParameter("id");
-		
 		if(  id!=null && !id.equalsIgnoreCase("null") ) {
-			Integer id_i = Integer.parseInt(request.getParameter("id"));
+			Integer idi = Integer.parseInt(request.getParameter("id"));
 				ProductBean product = null;
 				try {
-					product = productDao.doRetrieveByKey(id_i);
+					product = productDao.doRetrieveByKey(idi);
 				} catch (SQLException e1) {
+					/*commento per riempire il blocco try-catch*/
 				}
 
 				if( cart == null ) {
@@ -65,8 +64,6 @@ public class CartServlet extends HttpServlet {
 				session.removeAttribute("cart");
 				session.setAttribute("cart", cart);
 		}
-		
-		System.out.println("Carrello: "+cart);
 		
 		if(cart == null) {
 			cart = new CartBean();

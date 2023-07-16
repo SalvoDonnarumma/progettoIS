@@ -13,7 +13,11 @@ public class SizesBean {
 	}
 	
 	int idProdotto;
-	int quantitaM, quantitaL, quantitaXL, quantitaXXL;
+	int quantitaM; 
+	int quantitaL;
+	int quantitaXL; 
+	int quantitaXXL;
+	
 	public int getIdProdotto() {
 		return idProdotto;
 	}

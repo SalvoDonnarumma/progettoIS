@@ -32,12 +32,14 @@ function searchAndFilter(){
     console.log("Match col categoria: "+categoryMatches);
 	console.log("Match col prezzo: "+priceMatches);
 	
+	/*
 	if( selectedCategoria.length > 0 )
 		console.log("ATTIVO FILTRO PER CATEGORIA");
 	if( selectedPrice.length > 0 )
 		console.log("ATTIVO FILTRO PER PREZZO");
 	if( filter.length > 0 )
 		console.log("ATTIVO FILTRO PER NOME");		
+	*/
 	
     if (filter && selectedCategoria.length > 0 && selectedPrice.length > 0) {
       // Se è presente una ricerca per nome e filtri attivi, considera solo i prodotti che corrispondono a entrambi

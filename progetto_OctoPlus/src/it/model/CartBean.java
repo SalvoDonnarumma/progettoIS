@@ -10,7 +10,7 @@ public class CartBean {
 	List<ProductBean> cart;
 	
 	public CartBean() {
-		cart = new ArrayList<ProductBean>();
+		cart = new ArrayList<>();
 	}
 	
 	public void removeProduct(int code) {
@@ -53,8 +53,8 @@ public class CartBean {
 		cart.clear();
 	}
 	
-	public Collection<?> getAll() {
-		Collection <ProductBean> products = new LinkedList<ProductBean>();
+	public Collection<ProductBean> getAll() {
+		Collection <ProductBean> products = new LinkedList<>();
 		for( ProductBean bean : this.cart) {
 			products.add(bean);
 		}
@@ -62,9 +62,11 @@ public class CartBean {
 	}
 	
 	public void printAll() {
+		/* Metodo usato solo per debug
 		for(ProductBean prod : cart) {
 			System.out.println(prod);
 		}
+		*/
 	}
 	
 	public List<ProductBean> getAllProduct(){

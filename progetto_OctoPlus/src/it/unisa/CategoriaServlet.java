@@ -1,9 +1,8 @@
 package it.unisa;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +38,6 @@ public class CategoriaServlet extends HttpServlet {
 			String query = "SELECT categoria FROM prodotto";
 			ResultSet rs = s.executeQuery(query);
 			
-
 			/* Aggiunta categorie all'arraylist */
 			while (rs.next()) {
 				String c = rs.getString("nome");
@@ -48,18 +46,11 @@ public class CategoriaServlet extends HttpServlet {
 
 			Collections.sort(categorie);
 			out.write(json.toJson(categorie));
-
+			connection.close();
 		} catch (SQLException e) {
-			;
+			/* commento per riempire il blocco*/
 		} catch (IOException e) {
-			;
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-			;
-			}
+			/* commento per riempire il blocco*/
 		}
 	}
-
 }

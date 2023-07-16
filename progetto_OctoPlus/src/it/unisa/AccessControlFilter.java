@@ -25,11 +25,8 @@ public class AccessControlFilter extends HttpServlet {
 		
 		Boolean isAdmin = (Boolean) httpServletRequest.getSession().getAttribute("isAdmin");
 		String path = httpServletRequest.getServletPath();
-		System.out.println(path);
-		if (path.contains("/common/") && isAdmin==null) {
-			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/Login.jsp");
-			return;
-		} else if (path.contains("/admin/") && (isAdmin==null || !isAdmin)) {
+		
+		if (path.contains("/admin/") && (isAdmin==null || !isAdmin)) {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/Login.jsp");
 			return;
 		}
@@ -38,9 +35,11 @@ public class AccessControlFilter extends HttpServlet {
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {
+		/*Metodo vuoto poichè non realmente utilizzato*/
 	}
 	
     public void destroy() {
+    	/*Metodo vuoto poichè non realmente utilizzato*/
 	}
 
 	private static final long serialVersionUID = 1L;

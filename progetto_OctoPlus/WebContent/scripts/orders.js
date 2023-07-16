@@ -90,7 +90,8 @@ function dynamicOrdersUser(url){
 
 function eliminaRiga(button) {
   let text = "Stai per cancellare l'ordine, procedere con l'operazione?";
-  if (confirm(text) == true) {
+  let result = confirm(text);
+  if ( result ) {
     let row = button.parentNode.parentNode;
   	let idOrdine = button.getAttribute("id");
   	let pathArray = window.location.pathname.split('/');

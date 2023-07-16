@@ -24,8 +24,6 @@ public class DaoDataSource implements IProductDao {
 
 	public DaoDataSource(DataSource ds) {
 		this.ds = ds;
-		
-		System.out.println("DataSource Product Model creation....");
 	}
 	
 	@Override
@@ -333,7 +331,7 @@ public class DaoDataSource implements IProductDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ProductBean> products = new LinkedList<ProductBean>();
+		Collection<ProductBean> products = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM " + DaoDataSource.TABLE_NAME;
 
@@ -347,9 +345,7 @@ public class DaoDataSource implements IProductDao {
 			if (order != null && !order.equals("")) {
 				preparedStatement.setString(1, order);
 			}
-			
-			System.out.println(selectSQL);
-			
+						
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
@@ -380,7 +376,7 @@ public class DaoDataSource implements IProductDao {
 	
 	
 
-	public synchronized static void updatePhoto(String idA, InputStream photo) 
+	public synchronized void updatePhoto(String idA, InputStream photo) 
 			throws SQLException {
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -408,7 +404,7 @@ public class DaoDataSource implements IProductDao {
 		}
 	}
 	
-	public synchronized static byte[] load(String id) throws SQLException {
+	public synchronized byte[] load(String id) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -429,14 +425,14 @@ public class DaoDataSource implements IProductDao {
 			}
 
 		} catch (SQLException sqlException) {
-			System.out.println(sqlException);
+			/*commento per riempire il try-catch*/
 		} 
-			finally {
+		finally {
 			try {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException sqlException) {
-				System.out.println(sqlException);
+				/*commento per riempire il try-catch*/
 			} finally {
 				if (connection != null) 
 					DriverManagerConnectionPool.releaseConnection(connection);
