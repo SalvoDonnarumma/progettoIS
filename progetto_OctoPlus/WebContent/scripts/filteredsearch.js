@@ -9,7 +9,6 @@ function searchAndFilter(){
   const selectedPrice = document.getElementById("prezzo-select").value;
 	
   for (const bean of product) {
-	  
     let textValue = bean.querySelector(".pname").textContent.trim();
     const prodottoCategoria = bean.querySelector(".categoria").textContent.trim();
     const prodottoPrezzo = parseFloat(bean.querySelector(".prezzo").textContent.trim());
@@ -47,19 +46,19 @@ function searchAndFilter(){
         	bean.style.display = "";
       	}else
 			bean.style.display= "none";							
-    } else if( filter && (selectedCategoria.length > 0) && !(selectedPrice.length>0)) { //attivo solo ricerca con nome e filtro categoria
+    } else if( filter && (selectedCategoria.length > 0) && (selectedPrice.length <= 0)) { //attivo solo ricerca con nome e filtro categoria
 		  		if(nameMatches && categoryMatches){
 					  console.log("CASO: SOLO CATEGORIA E SOLO NOME");
 		  			bean.style.display= "";
 		  		}else	
 		  			bean.style.display= "none";	
-	} else if(filter && (selectedPrice.length > 0) && !(selectedCategoria.length > 0)){ //attivo solo ricerca e filtro prezzo
+	} else if(filter && (selectedPrice.length > 0) && (selectedCategoria.length <= 0)){ //attivo solo ricerca e filtro prezzo
 					if(nameMatches && priceMatches){ 
 						console.log("CASO: SOLO PREZZO E SOLO NOME"); 
 		  				bean.style.display= "";
 		  			}else	
 		  				bean.style.display= "none";	
-	} else if (filter && !(selectedCategoria.length>0) && !(selectedPrice.length>0) ) {
+	} else if (filter && (selectedCategoria.length <= 0) && (selectedPrice.length <= 0) ) {
       // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
       	if (nameMatches) {
 			 console.log("CASO: SOLO NOME"); 
@@ -75,14 +74,14 @@ function searchAndFilter(){
       } else { 
         	 bean.style.display = "none";
       }
-	} else if (selectedCategoria.length > 0 && !(selectedPrice.length>0) ) { //solo categoria attivi
+	} else if (selectedCategoria.length > 0 && (selectedPrice.length <= 0) ) { //solo categoria attivi
       		if (categoryMatches) {
 				  console.log("CASO: SOLO CATEGORIA");
         		bean.style.display = "";
       		} else {
         		bean.style.display = "none";
       		}
-    }  else if( selectedPrice.length > 0 && !(selectedCategoria.length>0) ) { //solo prezzo attivi
+    }  else if( selectedPrice.length > 0 && (selectedCategoria.length <= 0) ) { //solo prezzo attivi
 		   if (priceMatches){
 			   console.log("CASO: PREZZO");
         		bean.style.display = "";
@@ -97,7 +96,7 @@ function searchAndFilter(){
 }
 
 function searchAndFilterOrders(){
-  let input, filter, schede;
+  let input, filter, schede, orders;
   input = document.getElementById("search-input");
   filter = input.value.toUpperCase();
   schede = document.getElementById("orders");
@@ -155,19 +154,19 @@ function searchAndFilterOrders(){
         	bean.style.display = "";
       	}else
 			bean.style.display= "none";							
-    } else if( filter && (dateinit.length > 0) && !(dateend.length>0)) { 
+    } else if( filter && (dateinit.length > 0) && (dateend.length <= 0)) { 
 		  		if(nameMatches && dateInfMatches){
 					  console.log("CASO: SOLO CATEGORIA E SOLO NOME");
 		  			bean.style.display= "";
 		  		}else	
 		  			bean.style.display= "none";	
-	} else if(filter && (dateend.length > 0) && !(dateinit.length > 0)){ 
+	} else if(filter && (dateend.length > 0) && (dateinit.length <= 0)){ 
 					if(nameMatches && dateSupMatches){ 
 						console.log("CASO: SOLO PREZZO E SOLO NOME"); 
 		  				bean.style.display= "";
 		  			}else	
 		  				bean.style.display= "none";	
-	} else if (filter && !(dateinit.length>0) && !(dateend.length>0) ) {
+	} else if (filter && (dateinit.length <= 0) && (dateend.length <= 0) ) {
       	if (nameMatches) {
 			 console.log("CASO: SOLO NOME"); 
         	bean.style.display = "";
@@ -182,14 +181,14 @@ function searchAndFilterOrders(){
       } else { 
         	 bean.style.display = "none";
       }
-	} else if (dateinit.length > 0 && !(dateend.length>0) ) { //solo categoria attivi
+	} else if (dateinit.length > 0 && (dateend.length <= 0) ) { //solo categoria attivi
       		if (dateInfMatches) {
 				  console.log("CASO: SOLO CATEGORIA");
         		bean.style.display = "";
       		} else {
         		bean.style.display = "none";
       		}
-    }  else if( dateend > 0 && !(dateinit.length>0) ) { //solo prezzo attivi
+    }  else if( dateend > 0 && (dateinit.length <= 0) ) { //solo prezzo attivi
 		   if (dateSupMatches){
 			   console.log("CASO: PREZZO");
         		bean.style.display = "";

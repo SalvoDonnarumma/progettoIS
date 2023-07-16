@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <%@ page import="java.util.*, it.model.*"%>
+<head>
 <script src="<%=request.getContextPath()%>/scripts/store.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/filteredsearch.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js">
@@ -13,7 +14,6 @@
 		dynamicStore("<%=request.getContextPath()%>/StoreServlet");
 	});	
 </script>
-<head>
 <meta charset="ISO-8859-1">
 	<title>OCTOPLUS</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/store.css">	
