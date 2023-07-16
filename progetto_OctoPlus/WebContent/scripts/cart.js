@@ -19,8 +19,8 @@ function dynamicCart(url){
 				for(const bean of response){
 				  	contenutoHTML += "<tr>";
 		          	contenutoHTML += "<td>"+ bean.name;
-		          	contenutoHTML += "<img style=\"width: 150px\" src='./getPicture?id="+bean.code+"\" onerror=\"this.src='img/nophoto.png'\">"+"</td>";
-		          	contenutoHTML += "<td>"+ bean.categoria +"</td>";
+		          	contenutoHTML += "<img class=\"front\"  src='./getPicture?id="+bean.code+"\" onerror=\"this.src='img/nophoto.png'\">"+"</td>";
+		          	contenutoHTML += "<td  class=\"d-none\">"+ bean.categoria +"</td>";
 		          	contenutoHTML += "<td> <input type=number min=1 max=\"10\" class=quantita onchange=totaleParziale() value=\"1\"> </td>";
 		          	contenutoHTML += "<td> <select class=\"size\">";
 		          	//faccio visualizzare solo le taglie disponibile per ogni specifico prodotto
@@ -33,7 +33,7 @@ function dynamicCart(url){
 					  	if( bean.taglie.quantitaXXL>0)
 					  			contenutoHTML += "<option value=\"XXL\"> XXL </option>";
 				  	contenutoHTML += "</select>";
-		          	contenutoHTML += "<td>"+"<p class=price>"+bean.price.toFixed(2)+"&#8364</p>"+"</td>";
+		          	contenutoHTML += "<td class=\"d-none\">"+"<p class=price>"+bean.price.toFixed(2)+"&#8364</p>"+"</td>";
 		          	contenutoHTML += "<td class=totProd>"+"</td>";
 		          	contenutoHTML += "<td> <button id='" + bean.code + "'onclick=eliminaRiga(this)><i  class='bx bx-trash'></i></button>";
 		         	contenutoHTML += "</tr>"; 

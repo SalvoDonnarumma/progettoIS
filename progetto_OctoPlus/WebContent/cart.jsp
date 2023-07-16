@@ -7,6 +7,7 @@
 <html lang="it">
 <%@ page import="java.util.*,it.model.ProductBean, it.model.SizesBean, it.model.CartBean, it.unisa.DaoDataSource"%>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carrello - OctoPlus</title>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/cart.css">
   <link rel="stylesheet"
@@ -31,12 +32,13 @@
       <thead>
         <tr>
           <th>Prodotto</th>
-          <th>Categoria</th>
+          <th class="d-none">Categoria</th>
           <th>Quantità</th>
           <th>Taglia</th>
-          <th>Prezzo unitario</th>
-          <th>Subtotale</th>
-          <th>Elimina prodotto</th>
+          <th class="d-none">Prezzo unitario</th>
+          <th class="d-none">Subtotale</th>
+          <th class="d-none">Elimina prodotto</th>
+          <th class="d-temp">Elimina</th>
         </tr>
       </thead>
       <tbody id="cart">
