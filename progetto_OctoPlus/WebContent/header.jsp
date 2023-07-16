@@ -10,19 +10,19 @@
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 <style>
     
-    .icon {
+.icon {
 	display: inline-black;
 	margin: 2px;
 	justify-content: flex-end;
 }
 
-.icon {
+.icon{
 	color: #121212;
 	font-size: 24px;
 	margin-left: 15px;
 	border-radius: 50%; /*rende circolare l'icona*/
-  padding: 10px; /* grandezza cerchio */
-  background-color: #fff;
+	padding: 10px; /* grandezza cerchio */
+    background-color: #fff;
 	text-decoration: none;
 }
 
@@ -35,11 +35,8 @@
 </head>
 <body>
 <header>
-	
-	
-		 <img src="<%=request.getContextPath()%>/images/octopus.png" class="logo">
+	<img src="<%=request.getContextPath()%>/images/octopus.png" class="logo" alt="logo sito">
 	<span class="hfont">OctoPlus</span> 
-		
 		 <ul class="links-nav">
 			<%
 			Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
@@ -79,20 +76,29 @@
 					<li class="item"><a href="<%=request.getContextPath()%>/index.jsp"><i class='bx bx-home-heart icon'></i></a>	</li>
 					<li class="item"><a href="<%=request.getContextPath()%>/Logout"><i class='bx bx-log-out-circle icon'></i></a>	</li>
 					<%  } %>	
-	<li class="item">	<a href="<%=request.getContextPath()%>/cart.jsp"><i class='bx bx-cart icon'  ></i></a> </li>
-		
-		</ul>
+					<li class="item"><a href="<%=request.getContextPath()%>/cart.jsp"><i class='bx bx-cart icon'></i></a> </li>	
+			</ul>
 	
 		<button class="hamburger">
 					<div class="bar"></div>
-				</button>
-		 
-		 
+		</button>
+		<!-- Menu hamburger -->
 		<nav class ="mobile-nav" aria-label="menuHamburger">
 		<div class="nav-container">
-			<a href="index.jsp">Home</a>
-			<a href="login.jsp">Login</a>
-			<a href="cart.jsp">Carrello</a>
+		<%  if(isAdmin == null)  {%>
+				<a href="<%=request.getContextPath()%>/login.jsp"> Login </a>
+				<a href="<%=request.getContextPath()%>/index.jsp"> Home </a>
+		<%} else if(isAdmin == true) {//sezione admin %>	
+			 <a href="<%=request.getContextPath()%>/admin/OrderView.jsp"> Sezione Admin</a>
+			 <a href="<%=request.getContextPath()%>/userprofile.jsp"> Profilo </a>
+			 <a href="<%=request.getContextPath()%>/index.jsp"> Home </a>
+			 <a href="<%=request.getContextPath()%>/Logout"> Esci </a>
+		<%} else if(isAdmin == false) {%>
+			 <a href="<%=request.getContextPath()%>/userprofile.jsp"> Profilo </a>
+			 <a href="<%=request.getContextPath()%>/index.jsp"> Home </a>
+			 <a href="<%=request.getContextPath()%>/Logout"> Esci </a>
+		<%} %>	
+			<a href="<%=request.getContextPath()%>/cart.jsp">Carrello</a>
 		</div>
 	</nav>
 	<script>
@@ -101,9 +107,7 @@
 		menu_btn.addEventListener('click', function(){
 			menu_btn.classList.toggle('is-active');
 			mobile_menu.classList.toggle('is-active');
-		});
-		
-		
+		});	
 	</script>
 </header>
 </body>
