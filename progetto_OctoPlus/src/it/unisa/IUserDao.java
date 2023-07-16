@@ -2,6 +2,7 @@ package it.unisa;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import it.model.UserBean;
 
@@ -20,4 +21,6 @@ public interface IUserDao {
 	public  Boolean comparePass(String oldPassHash, String passToBeMatch);
 
 	boolean changePass(String pass, int idUtente) throws SQLException;
+	
+	public List<String> getAllEmails() throws SQLException;
 }

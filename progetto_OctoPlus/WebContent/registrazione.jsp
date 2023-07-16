@@ -36,19 +36,13 @@ function alertLength(){
 	if( pass.value.length < 12)
 		alert("La password deve essere lunga almeno 12 caratteri!");
 }
-</script>
 
-
-<% 
-List<String> errors = (List<String>) request.getAttribute("errors");
-if (errors != null){
-	for (String error: errors){ %>
-		<%=error %>		
-	<%
-	}
+function disattivaErrore(){
+	let error = document.getElementById("error");
+	error.style.display = "none";
 }
-%>
 
+</script>
 <body>
 <jsp:include page="header.jsp" flush="true"/>
 <div class="center">
@@ -57,13 +51,14 @@ if (errors != null){
  	<form action="SignUp" method="post">
  		<div class="txt_field email-field"> <!-- Nome -->
  			<input type="text" name="firstname" id="firstname" required pattern="^[A-Za-z]+$" 
-			 onkeyup="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
+ 			 onkeyup="disattivaErrore();"
+			 onChange="validateFormElem(this, document.getElementById('errorName'), nameOrLastnameErrorMessage)">
 			 <span id="errorName"> </span> <label>Nome</label>
 		</div>
 		
 		<div class="txt_field email-field">
 			<input type="text" name="lastname" id="lastname" required pattern="^[A-Za-z]+$" 
-			 onkeyup="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
+			 onChange="validateFormElem(this, document.getElementById('errorLastname'), nameOrLastnameErrorMessage)">
 			<span id="errorLastname"></span> <label>Cognome</label>
 		</div>
 		
@@ -92,6 +87,17 @@ if (errors != null){
 				<br>
 				<span id="errorPhone0"></span>
 		</div>
+		
+		
+		<% 
+		List<String> errors = (List<String>) request.getAttribute("errors");
+		if (errors != null){
+			for (String error: errors){ %>
+				<h3 id="error" style="color:red"><%=error %></h3>
+			<%
+			}
+		}
+		%>
 		
 		<input type= "submit" onClick="checkPasswords()" value="Registrami" >
 		

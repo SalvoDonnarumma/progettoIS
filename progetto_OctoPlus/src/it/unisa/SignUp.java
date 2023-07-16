@@ -59,14 +59,33 @@ public class SignUp extends HttpServlet {
 			return;
 		}
 		
+        /* Quando un utente si deve registrare, cotrollo se l'email che vuole usare è
+         * già presente e salvata nel database */
+        Boolean result = false;
+        try {
+			List<String> emails = userDao.getAllEmails();
+			for( String email : emails) 
+				if(email.equals(username))
+					result = true;
+		} catch (SQLException e1) {
+			/*commento per riempire il try-catch*/
+		}
+        
+        if( result ) {
+        	errors.add("L'email che hai inserito non è disponibile!");
+        	request.setAttribute("errors", errors);
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("registrazione.jsp");
+        	dispatcherToLoginPage.forward(request, response);
+			return;
+		}
+        
 		UserBean user= new UserBean();
 		try {
 			user.setEmail(username);
 			user.setPassword(password);
 			user.setNome(name);
 			user.setCognome(surname);
-			user.setTelefono(telefono);
-			
+			user.setTelefono(telefono);		
 			userDao.doSaveUser(user);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.sql.DataSource;
 import it.model.UserBean;
@@ -23,10 +25,8 @@ public class UserDaoDataSource implements IUserDao {
 	
 	@Override
 	public synchronized void doSaveAdmin(UserBean admin) throws SQLException {
-
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
 		String insertSQL = "INSERT INTO utente (email, password, cognome, telefono, admin) VALUES (?, ?, ?, ?, ?)";
 		
 		admin.setPassword(toHash(admin.getPassword())); //occorre memorizzare direttamente l'hash della pass nel db
@@ -177,9 +177,7 @@ public class UserDaoDataSource implements IUserDao {
 
 			while (rs.next()) {
 				emailToBeMatch = rs.getString("email"); //prelevo tutte le email dal db
-				hashPasswordToBeMatch = rs.getString("password"); //prelevo tutte le password dal db
-				
-				
+				hashPasswordToBeMatch = rs.getString("password"); //prelevo tutte le password dal db		
 				if(emailToBeMatch.equals(email) && hashPasswordToBeMatch.equals(hashPassword)) {
 					System.out.println(" ***** "+hashPasswordToBeMatch+"--"+hashPassword+"\n");
 					boolean admin = rs.getBoolean("admin"); 
@@ -246,8 +244,7 @@ public class UserDaoDataSource implements IUserDao {
 	@Override
 	public boolean doDeleteUser(String email) throws SQLException {
 		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
+		PreparedStatement preparedStatement = null;	
 		String deleteSQL = "DELETE FROM utente WHERE email = ?";
 		int result = 0;
 		
@@ -255,7 +252,6 @@ public class UserDaoDataSource implements IUserDao {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setString(1, email);
-
 			result = preparedStatement.executeUpdate();
 		} finally {
 			try {
@@ -267,6 +263,32 @@ public class UserDaoDataSource implements IUserDao {
 			}
 		}
 		return (result != 0);
+	}
+	
+	public List<String> getAllEmails() throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;	
+		String selectSQL = "SELECT email FROM utente";
+		List<String> emails = new ArrayList<>();
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				emails.add(rs.getString("email")); 
+			}	
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return emails;
 	}
 
 }

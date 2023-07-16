@@ -9,13 +9,18 @@
 
 <jsp:include page="header.jsp" flush="true"/>
 <script src="scripts/validate.js"></script>
-
+<script>
+function disattivaErrore(){
+	let error = document.getElementById("error");
+	error.style.display = "none";
+}
+</script>
 <body>
 <div class="center">
  <h1>OctoLogin</h1>
    <form action="Login" method="post">
      <div class="txt_field email-field">
-    <input type="email" name="email" required 
+    <input type="email" name="email" required onkeyup="disattivaErrore();"
         onchange="validateFormElem(this, document.getElementById('errorEmail'), emailErrorMessage)" id="email">
     <span id="errorEmail" class="error-text"></span>
     <label>Email</label>
@@ -29,7 +34,7 @@
       List<String> errors = (List<String>) request.getAttribute("errors");
       if (errors != null){
         for (String error: errors){ %>
-          <%=error %>    
+         	<h3 id="error" style="color:red"><%=error %></h3>   
         <%
         }
       }
