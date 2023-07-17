@@ -61,14 +61,6 @@ public class CartBean {
 		return products;
 	}
 	
-	public void printAll() {
-		/* Metodo usato solo per debug
-		for(ProductBean prod : cart) {
-			System.out.println(prod);
-		}
-		*/
-	}
-	
 	public List<ProductBean> getAllProduct(){
 		return cart;
 	}

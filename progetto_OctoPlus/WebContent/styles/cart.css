@@ -46,11 +46,6 @@ table td, table th {
 	border-bottom: 1px solid #ddd;
 }
 
-/* Nascondi le colonne meno importanti su schermi più piccoli */
-table th.d-none, table td.d-none {
-	display: none;
-}
-
 table th {
 	background-color: #f9f9f9;
 }
@@ -121,6 +116,7 @@ img.front {
 		width: 70px;
 	}
 	
+	/* Nascondi le colonne meno importanti su schermi più piccoli */
 	table th.d-none, table td.d-none {
 		display: none;
 	}

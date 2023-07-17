@@ -47,7 +47,6 @@ public class CartServlet extends HttpServlet {
 				}
 				
 				cart.addProduct(product); //aggiungo un prodotto solo se non è già presente nel carrello
-				cart.printAll();
 				
 				session.removeAttribute("cart");
 				session.setAttribute("cart", cart);
