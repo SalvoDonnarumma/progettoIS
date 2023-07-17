@@ -28,7 +28,7 @@ public class OrderServlet extends HttpServlet {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		IOrderDao orderDao = new OrderDaoDataSource(ds);
-		Collection <OrderBean> orders= new LinkedList<OrderBean>(); //creo una lista di ordini
+		Collection <OrderBean> orders= new LinkedList<>(); //creo una lista di ordini
 		
 		String idUtente = request.getParameter("idUtente");
 		if( idUtente == null ) {

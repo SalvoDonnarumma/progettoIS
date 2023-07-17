@@ -90,7 +90,7 @@ public class UserDaoDataSource implements IUserDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<UserBean> users = new LinkedList<UserBean>();
+		Collection<UserBean> users = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM utente" ;
 
@@ -154,7 +154,7 @@ public class UserDaoDataSource implements IUserDao {
 		String hashedpassToBeMatch = this.toHash(passToBeMatch);
 		if( hashedpassToBeMatch == null || hashedpassToBeMatch.equals("null"))
 			return false;
-	//	System.out.println("Le pass sono uguali: "+hashedpassToBeMatch.equals(oldPassHash));
+	/*	System.out.println("Le pass sono uguali: "+hashedpassToBeMatch.equals(oldPassHash)); */
 		return hashedpassToBeMatch.equals(oldPassHash);
 	}
 	

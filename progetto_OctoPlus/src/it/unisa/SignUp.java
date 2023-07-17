@@ -23,15 +23,6 @@ public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		/* controllo se le due password combaciano, in caso contrario blocco la registrazione 
-		 * e segnalo all'utente tramite un alert (presente nel .js della registrazione)*/
-		
-		String isDriverManager = request.getParameter("driver");
-		if(isDriverManager == null || isDriverManager.equals("")) {
-			isDriverManager = "datasource";
-		}
-		
 		IUserDao userDao = null;
 
 		
@@ -42,19 +33,22 @@ public class SignUp extends HttpServlet {
 		String name = request.getParameter("firstname");
 		String surname = request.getParameter("lastname");
 		String password = request.getParameter("password");
-		String conf_password = request.getParameter("conf_password");
+		String confpassword = request.getParameter("conf_password");
 		String telefono = request.getParameter("phone");
 		
 		List<String> errors = new ArrayList<>();
-        if ( !password.equals(conf_password) ) {  //controllo se password e conferma password sono uguali
+		/* controllo se le due password combaciano, in caso contrario blocco la registrazione 
+		 * e segnalo all'utente tramite un alert (presente nel .js della registrazione)*/
+		String registrazione = "registrazione.jsp";
+        if ( !password.equals(confpassword) ) {  //controllo se password e conferma password sono uguali
         	request.setAttribute("errors", errors);
-        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("registrazione.jsp");
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher(registrazione);
         	dispatcherToLoginPage.forward(request, response);
         	return;
         }
         
         if( password.length()<12 ) {
-        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("registrazione.jsp");
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher(registrazione);
         	dispatcherToLoginPage.forward(request, response);
 			return;
 		}
@@ -74,7 +68,7 @@ public class SignUp extends HttpServlet {
         if( result ) {
         	errors.add("L'email che hai inserito non è disponibile!");
         	request.setAttribute("errors", errors);
-        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("registrazione.jsp");
+        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher(registrazione);
         	dispatcherToLoginPage.forward(request, response);
 			return;
 		}

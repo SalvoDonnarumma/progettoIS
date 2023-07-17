@@ -21,16 +21,8 @@ public class ProductControl extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		String isDriverManager = request.getParameter("driver");
-		if(isDriverManager == null || isDriverManager.equals("")) {
-			isDriverManager = "datasource";
-		}
-		
+			throws ServletException, IOException {		
 		IProductDao productDao = null;
-
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		productDao = new DaoDataSource(ds);
 		
@@ -43,7 +35,7 @@ public class ProductControl extends HttpServlet {
 					request.removeAttribute("product");
 					request.setAttribute("product", productDao.doRetrieveByKey(id));
 					
-				} if (action.equalsIgnoreCase("modify"))	{
+				} else if (action.equalsIgnoreCase("modify"))	{
 					
 					String categoria = request.getParameter("categoria");
 					System.out.println("Categoria: "+categoria);
@@ -121,17 +113,17 @@ public class ProductControl extends HttpServlet {
 		System.out.println("Parametro action: "+action);
 		RequestDispatcher dispatcher = null;
 		
-		if( fromStore.equalsIgnoreCase("modify"))
+		if (fromStore.equalsIgnoreCase("modify"))
 			dispatcher = getServletContext().getRequestDispatcher("/admin/modifyproduct.jsp");
-		else if(  fromStore.equalsIgnoreCase("get")) {
+		else if (fromStore.equalsIgnoreCase("get")) {
 			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
-		}else if( fromStore.equalsIgnoreCase("get2")) {
-				dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
-			   }else if ( Boolean.parseBoolean(fromStore) )    
-					dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
-         		else {
-         			dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
-        } 			
+		} else if (fromStore.equalsIgnoreCase("get2")) {
+			dispatcher = getServletContext().getRequestDispatcher("/purchase.jsp");
+		} else if (Boolean.parseBoolean(fromStore))
+			dispatcher = getServletContext().getRequestDispatcher("/store.jsp");
+		else {
+			dispatcher = getServletContext().getRequestDispatcher("/admin/ProductView.jsp");
+		}			
 		dispatcher.forward(request, response);
 	}
 	 

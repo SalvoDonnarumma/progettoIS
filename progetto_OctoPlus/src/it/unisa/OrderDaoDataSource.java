@@ -152,6 +152,7 @@ public class OrderDaoDataSource implements IOrderDao{
 
 		} finally {
 			try {
+				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
 					connection.close();
@@ -195,6 +196,7 @@ public class OrderDaoDataSource implements IOrderDao{
 
 		} finally {
 			try {
+				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
 					connection.close();

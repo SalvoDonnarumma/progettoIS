@@ -45,7 +45,7 @@ public class PhotoControl {
 		return bt;
 	}
 	
-	public synchronized static void updatePhoto(String idA, InputStream photo) 
+	public synchronized void updatePhoto(String idA, InputStream photo) 
 			throws SQLException {
 		Connection con = null;
 		PreparedStatement stmt = null;

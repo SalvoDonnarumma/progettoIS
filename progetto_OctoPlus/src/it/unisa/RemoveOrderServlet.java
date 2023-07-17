@@ -23,11 +23,9 @@ public class RemoveOrderServlet extends HttpServlet {
 		
 		try {
 			orderDao.removeOrder(Integer.parseInt(request.getParameter("idOrdine")));
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		} 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

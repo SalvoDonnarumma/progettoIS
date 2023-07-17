@@ -22,24 +22,15 @@ import it.model.UserBean;
 public class UserControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String isDriverManager = request.getParameter("driver");
-		if(isDriverManager == null || isDriverManager.equals("")) {
-			isDriverManager = "datasource";
-		}
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		IUserDao adminDao = null;
-		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		adminDao = new UserDaoDataSource(ds);
 		
 		String action = request.getParameter("action");
-
 		try {
 			if (action != null) {
-				if (action.equalsIgnoreCase("read")) {
-					;
-				} else if (action.equalsIgnoreCase("delete")) {
+				if (action.equalsIgnoreCase("delete")) {
 					String email = request.getParameter("email");
 					System.out.println("email da cancellare: "+email);
 					adminDao.doDeleteUser(email);
@@ -64,6 +55,7 @@ public class UserControl extends HttpServlet {
 					} catch (SQLException e1) {
 						/*commento per riempire il try-catch*/
 					}
+			     
 			        
 			        if( result ) {
 			        	errors.add("L'email che hai inserito non è disponibile!");
@@ -83,11 +75,9 @@ public class UserControl extends HttpServlet {
 					List<String> errors = new ArrayList<>();
 		        	RequestDispatcher dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 		        	
-		        	
 		        	System.out.println("Le due nuove pass sono uguali: "+newPass.equals(confPass));
 					if( !newPass.equals(confPass) ) {
 						errors.add("La password nuova e la password di conferma non corrispondono!");
-						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 						request.setAttribute("errors", errors);
 						dispatcherChangePassPage.forward(request, response);
 						return;
@@ -95,14 +85,12 @@ public class UserControl extends HttpServlet {
 					
 					if( !adminDao.comparePass(bean.getPassword(), oldPass) ) {
 						errors.add("La vecchia password inserita non &egrave; valida!");
-						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 						request.setAttribute("errors", errors);
 						dispatcherChangePassPage.forward(request, response);
 						return;
 					}
 					
 					if( newPass.length()<12 ) {
-						dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 						dispatcherChangePassPage.forward(request, response);
 						return;
 					}

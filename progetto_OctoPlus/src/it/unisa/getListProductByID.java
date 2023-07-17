@@ -29,7 +29,7 @@ public class getListProductByID extends HttpServlet {
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		IOrderDao orderDao = new OrderDaoDataSource(ds);
-		Collection <OrderedProduct> order= new LinkedList<OrderedProduct>(); //creo una lista di ordini
+		Collection <OrderedProduct> order= new LinkedList<>(); //creo una lista di ordini
 	
 		try {
 			order = orderDao.doRetrieveById(null, Integer.parseInt(idOrdine));
@@ -44,7 +44,6 @@ public class getListProductByID extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -43,7 +43,8 @@ maxRequestSize = 1024 * 1024 * 50) // 50MB
     			String fileName = part.getSubmittedFileName();
     			if (fileName != null && !fileName.equals("")) {
     				try {
-    					PhotoControl.updatePhoto(id, part.getInputStream());
+						PhotoControl photoControl = new PhotoControl();
+						photoControl.updatePhoto(id, part.getInputStream());
     				} catch (SQLException sqlException) {
     					System.out.println(sqlException);
     				}
