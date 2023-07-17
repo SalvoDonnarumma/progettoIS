@@ -31,15 +31,21 @@
 		</div>
 	  
 	  <form action="#" method="get" class="search-form">
-    	  <input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Inserisci l'email di un cliente per cercare il suo ordine..." class="search-input">
+    	  <input type="text" id="search-input" onkeyup="searchAndFilterOrders()" placeholder="Cerca ordine di un cliente via email..." class="search-input">
      	  <button type="submit" onClick="searchAndFilterOrders()" class="search-button"><i class='bx bx-search'></i></button>
   	  </form>
 	</nav>
 	
-  <h1 style="color: #853411;" >Elenco Ordini</h1>
+  <h1 style="color: #853411; text-align:left;" >Elenco Ordini</h1>
   <div class="orders-container" id="orders">   
   </div>
   <div id="bottom">
   </div>
+  <br>
+	<a href="admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
+	<br>
+	<a href="admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
+	<br>
+	<br>
 </body>
 </html>

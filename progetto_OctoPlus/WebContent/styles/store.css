@@ -9,7 +9,6 @@
   color: black;
 }
 
-
 body {  
   background-image: url(../images/catalogo.jpg);
   background-attachment:fixed;
@@ -31,8 +30,7 @@ section {
   overflow-wrap: break-word;
 }
 
-.box1 {
-  flex: 0 0 20%;  
+.box1 { 
   padding: 20px;
   background: #ffffff;
   border-radius: 10px;
@@ -105,6 +103,7 @@ section {
   background-color: #373737;
   overflow: hidden;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 10px;
@@ -128,8 +127,7 @@ section {
   border: none;
   background-color: transparent;
   color: #fff;
-  outline: none;
-  
+  outline: none; 
 }
 
 .dropdown select option {
@@ -195,7 +193,7 @@ section {
 
 .search-input:focus {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  width: 400px;
+  width: 380px;
 }
 
 .search-input:not(:placeholder-shown) + .search-button i::before {
@@ -216,7 +214,5 @@ section {
   .topnav {
    width: 100%;
   }
- 
-  
 }
 

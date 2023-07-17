@@ -35,9 +35,7 @@
 	<br>
 	<a href="./admin/insertProduct.jsp" class="no-border-link" > Inserisci un nuovo prodotto </a>
 	<br>
-	<br>
 	<a href="admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
-	<br>
 	<br>
 	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina Ordini </a>
 	<br>

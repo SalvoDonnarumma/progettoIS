@@ -32,16 +32,6 @@ function dynamicOrdersView(url){
 					contenutoHTML += "	<p> <button id='" + bean.idOrdine + "' onclick=eliminaRiga(this)> Per rimuovere l'ordine clicca qui!</button>";
 					contenutoHTML += "</div>";
 		      }
-
-			  contenutoHTML2 += "<span>";
-			  contenutoHTML2 +=	"<br> Vuoi vedere la pagina della visualizzazione prodotti?";  
-			  contenutoHTML2 +=	"<a href=\"./ProductView.jsp\"> Clicca qui! </a>";
-			  contenutoHTML2 += "</span>";
-
-			  contenutoHTML2 += "<span>";
-			  contenutoHTML2 +=   "Vuoi vedere la pagina della visualizzazione utenti?";
-			  contenutoHTML2 +=   "<a href=\"./UserView.jsp\"> Clicca qui! </a>";
-			  contenutoHTML2 += "</span>";
 		} 
 		$("#orders").empty();
 		$("#orders").append(contenutoHTML);

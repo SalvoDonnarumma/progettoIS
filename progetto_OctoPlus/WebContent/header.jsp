@@ -87,19 +87,19 @@
 		<nav class ="mobile-nav" aria-label="menuHamburger">
 		<div class="nav-container">
 		<%  if(isAdmin == null)  {%>
-				<a href="<%=request.getContextPath()%>/login.jsp"> Login </a>
-				<a href="<%=request.getContextPath()%>/index.jsp"> Home </a>
+				<a href="<%=request.getContextPath()%>/login.jsp">&nbsp;&nbsp;Login </a>
+				<a href="<%=request.getContextPath()%>/index.jsp">&nbsp;&nbsp;Home </a>
 		<%} else if(isAdmin == true) {//sezione admin %>	
-			 <a href="<%=request.getContextPath()%>/admin/OrderView.jsp"> Sezione Admin</a>
-			 <a href="<%=request.getContextPath()%>/userprofile.jsp"> Profilo </a>
-			 <a href="<%=request.getContextPath()%>/index.jsp"> Home </a>
-			 <a href="<%=request.getContextPath()%>/Logout"> Esci </a>
+			 <a href="<%=request.getContextPath()%>/admin/OrderView.jsp">&nbsp;&nbsp;Sezione <br>&nbsp;&nbsp;Admin</a>
+			 <a href="<%=request.getContextPath()%>/userprofile.jsp">&nbsp;&nbsp;Profilo </a>
+			 <a href="<%=request.getContextPath()%>/index.jsp">&nbsp;&nbsp;Home </a>
+			 <a href="<%=request.getContextPath()%>/Logout">&nbsp;&nbsp;Esci </a>
 		<%} else if(isAdmin == false) {%>
-			 <a href="<%=request.getContextPath()%>/userprofile.jsp"> Profilo </a>
-			 <a href="<%=request.getContextPath()%>/index.jsp"> Home </a>
-			 <a href="<%=request.getContextPath()%>/Logout"> Esci </a>
+			 <a href="<%=request.getContextPath()%>/userprofile.jsp">&nbsp;&nbsp;Profilo </a>
+			 <a href="<%=request.getContextPath()%>/index.jsp">&nbsp;&nbsp;Home </a>
+			 <a href="<%=request.getContextPath()%>/Logout">&nbsp;&nbsp;Esci </a>
 		<%} %>	
-			<a href="<%=request.getContextPath()%>/cart.jsp">Carrello</a>
+			<a href="<%=request.getContextPath()%>/cart.jsp">&nbsp;&nbsp;Carrello</a>
 		</div>
 	</nav>
 	<script>

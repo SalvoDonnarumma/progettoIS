@@ -9,7 +9,6 @@ body {
 
 ul{
 	list-style: none;
-	
 }
 
 a:link, a:visited {
@@ -239,7 +238,7 @@ span.hfont::before {
 .mobile-nav a{
 	display: block;
 	min-width: 20%;
-	text-align: center;
+	text-align: left;
 	padding: 2rem 0rem;
 	max-width: 10rem;
 	margin-bottom:16px;
@@ -276,5 +275,9 @@ span.hfont::before {
 		width: 10%;
 		height: 10%;
 		margin-left: 3;
+	}
+	
+	header{
+		width: 100%;
 	}
 }
