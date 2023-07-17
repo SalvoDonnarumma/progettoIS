@@ -10,15 +10,6 @@ function dynamicOrdersView(url){
 
 		if( response.length == 0 ){
 			contenutoHTML +=  "<span>Nessun ordine disponibile</span>";
-			contenutoHTML2 += "<span>";
-			contenutoHTML2 +=	"<br> Vuoi vedere la pagina della visualizzazione prodotti?";  
-			contenutoHTML2 +=	"<a href=\"./ProductView.jsp\"> Clicca qui! </a>";
-		 	contenutoHTML2 += "</span>";
-
-			contenutoHTML2 += "<span>";
-			contenutoHTML2 +=   "Vuoi vedere la pagina della visualizzazione utenti?";
-			contenutoHTML2 +=   "<a href=\"./UserView.jsp\"> Clicca qui! </a>";
-			contenutoHTML2 += "</span>";
 		} else {
 			 for(const bean of response){
 				 	contenutoHTML += "<div class=\"order-card\">";
@@ -37,6 +28,7 @@ function dynamicOrdersView(url){
 		$("#orders").append(contenutoHTML);
 		$("#bottom").empty();
 		$("#bottom").append(contenutoHTML2);
+		visualizeFirstXX();
 	});
 } 
 
@@ -103,4 +95,17 @@ function eliminaRiga(button) {
   	} else {
     	alert("Hai annullato l'operazione!");
   }	
+}
+
+function visualizeFirstXX(){
+	let schede = document.getElementById("orders");
+	console.log(schede);
+	let product = schede.querySelectorAll(".order-card");
+	let cont = 0;
+	
+	for (const bean of product) {
+		cont++;
+		if( cont > 16)
+			bean.style.display = "none";		
+	}	
 }

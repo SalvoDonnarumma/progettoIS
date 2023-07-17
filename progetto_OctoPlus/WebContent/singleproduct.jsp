@@ -41,20 +41,25 @@
 	<div class="flex-box">
 		<div class="left">
 			<div class="img">
-				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" style=" width: 450px;" alt="Immagine prodotto">
+				<img src="./getPicture?id=<%=bean.getCode()%>" onerror="this.src='./images/nophoto.png'" alt="Immagine prodotto">
 			</div>
 		</div>
 		<div class="right">
-			<div class="url"> Home > Store > Product </div>
+			<div class="url"> 
+				<a href="index.jsp"> Home </a> > 
+				<a href="store.jsp"> Store </a> > 
+				<a href="#"> Prodotto </a>
+			</div>
 			<div class="pname"> <%=bean.getNome()%> </div>
 			<br>
-			<h2> <%=bean.getCategoria()%> </h2>
+			<h3 style="padding-left: 20px;"> <%=bean.getCategoria()%> </h3>
 			<br>
-			<div class="price"> <%=bean.getPrice()%> &euro;</div> 
+			<div class="price" style="padding-left: 20px;"> <%=bean.getPrice()%> &euro;</div> 
 			<% if( (sizes.getQuantitaM() == 0 && sizes.getQuantitaM() == 0 && sizes.getQuantitaXL() == 0 && sizes.getQuantitaXXL() == 0) || sizes == null) {
 				nondisponibile = true;%>
 				<p style="color: red"> Prodotto momentaneamente non disponibile! </p>
 			<% } else {%>
+			<div style="padding-left: 20px;">
 			Seleziona taglia:
 			<select id="size" onChange="getSizeValue();">	
 				<% if( sizes.getQuantitaM() > 0 ){ %>
@@ -70,6 +75,7 @@
 					<option value="XXL"> XXL </option>
 				<%} }%>	
 			</select>
+			</div>
 			<br>
 			<br>
 			<% if( nondisponibile ){ %>
@@ -77,7 +83,7 @@
 									   cercando attualmente non è disponibile per l'acquisto, riprova
 									   più tardi!</p>
 			<%} else { %>	
-				<div class="quantiy">	
+				<div class="quantiy" style="padding-left: 20px;">	
 					<p> Quantita': 
 					<input id="quantity" type="number" min="1" max="100" value="1" onChange="getQuantityValue()">
 					</p>
@@ -106,22 +112,23 @@
 				}
 			%>
 			</h3>
+			<div style="padding: 20px;">
 			<h3> Dettagli prodotto</h3>
-			<p id="description">
+			<p id="description" style="text-align: left;">
 			<%=bean.getDescrizione()%>		
 			</p>
 			<h3> Statistiche </h3>
-			<p id="stats" >
+			<p id="stats" style="text-align: right;">
 			<%=bean.getStats()%>
 			</p>
+			</div>
 		</div>
 	</div>
 	<br>
 	<br>
-	<br>
-	<jsp:include page="footer.jsp" flush="true"/>
 	<% if( errors != null)
 			errors.clear();
 	%>	
+	<jsp:include page="footer.jsp" flush="true"/>
 </body>
 </html>

@@ -14,7 +14,7 @@ function dynamicStore(url){
  			contenutoHTML += "</a><h5>Categoria:</h5><h4 class=\"categoria\">"+bean.categoria+"</h4>";
  			contenutoHTML += "<h5>Costo:<h3 class=\"prezzo\">"+bean.price.toFixed(2)+"</h3>&euro;</h5>";
  			if( bean.taglie.quantitaM==0 && bean.taglie.quantitaL==0 && bean.taglie.quantitaXL==0 && bean.taglie.quantitaXXL==0)
-				contenutoHTML += "<h3 style=\"color: red; text-align:center;\"> Prodotto momentaneamente non disponibile! <br> <h3> </div>";
+				contenutoHTML += "<h3 style=\"color: red; text-align:center;\"> Prodotto momentaneamente<br>  non disponibile! <br> <h3> </div>";
 			else{
 				contenutoHTML += "<div class=\"cart\">";
  				contenutoHTML += "<a href=\"cart.jsp?id="+bean.code+"\"><i class='bx bx-cart-add'></i></a> </div> </div>";

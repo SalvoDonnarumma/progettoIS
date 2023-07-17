@@ -194,15 +194,3 @@ function searchAndFilterOrders(){
     }
   }  
 }
-
-function visualizeFirstXX(){
-	let schede = document.getElementById("prodotti");
-	let product = schede.querySelectorAll(".box1");
-	let cont = 0;
-	
-	for (const bean of product) {
-		cont++;
-		if( cont > 15)
-			bean.style.display = "none";		
-	}	
-}

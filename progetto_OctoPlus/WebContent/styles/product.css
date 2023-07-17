@@ -14,8 +14,6 @@ body{
 }
 
 .right{
-	padding-top: 5%;
-	padding-left: 3%;
 	position: relative;
 }
 
@@ -23,24 +21,28 @@ body{
   cursor: pointer;
 }
 
-img img{	
+.img img{	
 	transition: all 0.3 ease;
 	width: 	450px;
 }
 
+.right .url a{
+	color:  #BC2C1A;
+}
 
-.img:hover img{
- transform: scale(1.1); 
+.right .url a:hover{
+	text-decoration: none;
 }
 
 .url{
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 400;
 	color: #BC2C1A;
 }
 
 .pname{
-	font-size: 22px;
+	font-size: 26px;
+	padding-left: 20px;
 	font-weight: 600;
 	margin-top: 50px;
 }
@@ -162,8 +164,8 @@ img img{
     padding: 0;
   }
   
-  img {
-    width: 100%;
+  .img img {
+    width: 300px;
   }
   
   .right {
@@ -179,4 +181,3 @@ img img{
     margin-bottom: 10px;
   }
 }
-
