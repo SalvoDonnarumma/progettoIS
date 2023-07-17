@@ -1,10 +1,10 @@
 <%
-	ProductBean product = (ProductBean) request.getAttribute("product");
 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
 		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
+	ProductBean product = (ProductBean) request.getAttribute("product");
 %>
 <%@page import="it.model.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

@@ -2,6 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
+		return;
+	}
 	Collection<?> products = (Collection<?>) request.getAttribute("products");
 	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(products == null) {
@@ -9,11 +14,6 @@
 		return;
 	}
 	ProductBean product = (ProductBean) request.getAttribute("product");
-	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
-	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
-		response.sendRedirect(request.getContextPath()+"/login.jsp");	
-		return;
-	}
 %>
 <!DOCTYPE html>
 <html lang="it">

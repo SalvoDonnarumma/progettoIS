@@ -42,9 +42,9 @@
   <div id="bottom">
   </div>
   <br>
-	<a href="admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
+	<a href="<%=request.getContextPath()%>/admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
 	<br>
-	<a href="admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
+	<a href="<%=request.getContextPath()%>/admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
 	<br>
 	<br>
 </body>

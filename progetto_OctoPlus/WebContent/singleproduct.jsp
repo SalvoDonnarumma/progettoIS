@@ -28,7 +28,9 @@
 	
 	function addValuesToLink(){
 		var link = document.getElementById("link");	
-		link.href=link.href.substring(0, 80);
+		link.href=link.href.substring(0, 74);
+		console.log(link.href+="&id=");
+		console.log(link.href+=document.getElementById("id").textContent );
 		console.log(link.href+="&qnt0=");
 		console.log(link.href+=document.getElementById("quantity").value);
 		console.log(link.href+="&sz0=");
@@ -50,6 +52,7 @@
 				<a href="store.jsp"> Store </a> > 
 				<a href="#"> Prodotto </a>
 			</div>
+			<div id="id" style="display:none;"><%=bean.getCode()%></div>
 			<div class="pname"> <%=bean.getNome()%> </div>
 			<br>
 			<h3 style="padding-left: 20px;"> <%=bean.getCategoria()%> </h3>
@@ -95,7 +98,7 @@
 				<%	
 					if( isAdmin == null );
 					else if( isAdmin == true ){ %>
-						<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="modify-btn" onClick="functionAlert()"> Modifica </a>
+						<a href="product?action=read&fromStore=modify" class="modify-btn" onClick="functionAlert()"> Modifica </a>
 				<%	}	%>	
 				</div>
 			<% }%>

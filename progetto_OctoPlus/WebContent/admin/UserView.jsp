@@ -2,16 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
+		return;
+	}
 	System.out.println("Benvenuto nella pagina UserView");
 	Collection<?> users = (Collection<?>) request.getAttribute("users");
 	request.getSession().setAttribute("fromStore", Boolean.FALSE);
 	if(users == null) {
 		response.sendRedirect(request.getContextPath()+"/AdminControl?fromStore=false");	
-		return;
-	}
-	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
-	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
-		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
 	UserBean user = (UserBean) request.getSession().getAttribute("logged");

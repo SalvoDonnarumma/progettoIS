@@ -1,13 +1,13 @@
 <%
-	ProductBean bean = (ProductBean) request.getAttribute("product"); 
- 	SizesBean sizes = (SizesBean) bean.getTaglie();
- 	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
- 	System.out.println(bean);
- 	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
+	Boolean isSomeoneLogged = (Boolean) request.getSession().getAttribute("isAdmin");
 	if( (isSomeoneLogged == null) || !isSomeoneLogged ){
 		response.sendRedirect(request.getContextPath()+"/login.jsp");	
 		return;
 	}
+	ProductBean bean = (ProductBean) request.getAttribute("product"); 
+ 	SizesBean sizes = (SizesBean) bean.getTaglie();
+ 	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
+ 	System.out.println(bean);
 %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
