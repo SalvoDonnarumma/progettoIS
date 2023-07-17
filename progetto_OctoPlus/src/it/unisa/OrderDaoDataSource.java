@@ -109,11 +109,9 @@ public class OrderDaoDataSource implements IOrderDao{
 			preparedStatement.executeUpdate();
 		} finally {
 			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
+				preparedStatement.close();
 			} finally {
-				if (connection != null)
-					connection.close();
+				connection.close();
 			}
 		}
 	}
@@ -123,7 +121,7 @@ public class OrderDaoDataSource implements IOrderDao{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		Collection<OrderBean> orders = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM ordine" ;
 
@@ -154,10 +152,8 @@ public class OrderDaoDataSource implements IOrderDao{
 
 		} finally {
 			try {
-				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
-				if (connection != null)
 					connection.close();
 			}
 		}
@@ -168,7 +164,7 @@ public class OrderDaoDataSource implements IOrderDao{
 	public synchronized Collection<OrderedProduct> doRetrieveById(String order, int code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		Collection<OrderedProduct> singleorder = new LinkedList<OrderedProduct>();
+		Collection<OrderedProduct> singleorder = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM articoloordinato WHERE idOrdine = ?" ;
 
@@ -199,10 +195,8 @@ public class OrderDaoDataSource implements IOrderDao{
 
 		} finally {
 			try {
-				if (preparedStatement != null)
 					preparedStatement.close();
 			} finally {
-				if (connection != null)
 					connection.close();
 			}
 		}
@@ -255,10 +249,8 @@ public class OrderDaoDataSource implements IOrderDao{
 				success = preparedStatement.executeUpdate();
 			} finally {
 				try {
-					if (preparedStatement != null)
 						preparedStatement.close();
 				} finally {
-					if (connection != null)
 						connection.close();
 				}
 			}
@@ -271,7 +263,7 @@ public class OrderDaoDataSource implements IOrderDao{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		Collection<OrderBean> orders = new LinkedList<>();
 
 		String selectSQL = "SELECT * FROM ordine WHERE idUtente = ?" ;
 
