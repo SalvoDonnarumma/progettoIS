@@ -96,7 +96,7 @@ function addValuesToLink(){
 				<h4>
 					<label>
 						Descrizione: <br>
-						<textarea  style="width:40%;" cols="100" name="descrizione" maxlength="1000" rows="10" required>
+						<textarea cols="100" name="descrizione" maxlength="1000" rows="10" required>
 						<%=bean.getDescrizione()%>
 						</textarea><br>
 					</label>
@@ -105,7 +105,7 @@ function addValuesToLink(){
 				<h4>
 					<label>
 						Prezzo: 
-						<input style="width:5%;" name="price" type="number" min="0" step="any" value=<%=bean.getPrice()%>  required>&euro;
+						<input style="width:7%;" name="price" type="number" min="0" step="any" value=<%=bean.getPrice()%>  required>&euro;
 					</label>
 				</h4>
 				
@@ -125,7 +125,7 @@ function addValuesToLink(){
 				<h4>
 					<label>
 						Statistiche: <br>
-						<textarea  style="width:40%;" cols="100" name="stats" maxlength="1000" rows="10" required placeholder="enter description">
+						<textarea cols="100" name="stats" maxlength="1000" rows="10" required placeholder="enter description">
 						<%= bean.getStats() %>
 						</textarea><br>
 					</label>
