@@ -22,143 +22,8 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,it.model.ProductBean"%>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles//style.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/productviewstyle.css">
 	<title> Lista Utenti </title>
-	<style>
-	body {
-			background-color: #16425B;
-		}
-
-		.container {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-		}
-
-		table {
-			width: 95%;
-			margin: 0 auto;
-			border-collapse: collapse;
-			background-color: #D9DCD6;
-		}
-
-		th, td {
-			padding: 10px;
-			border: 1px solid black;
-		}
-
-		img {
-			width: 100px;
-			height: 100px;
-		}
-
-		.UploadPhoto {
-			margin: 20px auto;
-			width: 90%;
-			text-align: center;
-		}
-
-		.UploadPhoto form {
-			display: inline-block;
-			text-align: left;
-		}
-
-		.UploadPhoto .file {
-			margin-top: 10px;
-		}
-
-		.UploadPhoto .submit {
-			margin-top: 10px;
-		}
-		a.delete-link,
-		a.edit-link {
-			display: inline-block;
-			padding: 5px 8px;
-			margin-right: 5px;
-			background-color: #85756E;
-			color: #FFFFFF;
-			border-radius: 4px;
-			text-decoration: none;
-			transition: background-color 0.3s, color 0.3s;
-		}
-		
-		a.delete-link:hover,
-		a.edit-link:hover {
-			background-color: #BC2C1A;
-			text-decoration: none;
-			color: #FFFFFF;
-		}
-		
-		a.delete-link, a.edit-link {
-			border: none;
-			outline: none;
-		}
-		
-		a.delete-link:focus, a.edit-link:focus {
-			outline: none;
-		}
-		a.no-border-link {
-			display: inline-block;
-			padding: 5px 8px;
-			margin-right: 10px;
-			background-color: transparent;
-			color: #FFFFFF;
-			text-decoration: none;
-			transition: background-color 0.3s, color 0.3s;
-		}
-		
-		a.no-border-link:hover {
-			
-			color: #BC2C1A;
-			text-decoration: none;
-		}
-		.UploadPhoto form {
-			display: inline-block;
-			text-align: left;
-			background-color: #D9DCD6;
-			border-radius: 8px;
-			box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-			padding: 20px;
-		}
-		
-		.UploadPhoto select,
-		.UploadPhoto option {
-			padding: 5px;
-			border-radius: 4px;
-			border: 1px solid #ccc;
-		}
-		
-		.UploadPhoto select {
-			width: 100%;
-		}
-		
-		.UploadPhoto .file,
-		.UploadPhoto .submit {
-			margin-top: 10px;
-		}
-		
-		.UploadPhoto input[type="submit"],
-		.UploadPhoto input[type="reset"] {
-			padding: 5px 10px;
-			background-color: #85756E;
-			color: #FFFFFF;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-		
-		.UploadPhoto input[type="submit"]:hover,
-		.UploadPhoto input[type="reset"]:hover {
-			background-color: #BC2C1A;
-		}
-		h1 {
-			font-size: 28px;
-			font-weight: bold;
-			color: #BC2C1A;
-			
-		}
-	</style>
 <script src="scripts/validate.js"></script>
 <script type="text/javascript">
 	function confirmAlert(){
@@ -184,9 +49,9 @@
 	<table border="1" title="Tabella utenti">
 	<caption>Tabella utenti</caption>
 		<tr>
-			<th> Email <a href="AdminControl?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
-			<th> Nome <a href="AdminControl?fromStore=false&sort=nome" class="no-border-link">Sort</a></th>
-			<th> Cognome <a href="AdminControl?fromStore=false&sort=prezzo" class="no-border-link">Sort</a></th>
+			<th> Email <a href="AdminControl?fromStore=false&sort=email" class="no-border-link">Sort</a></th>
+			<th> Nome</th>
+			<th> Cognome <a href="AdminControl?fromStore=false&sort=cognome" class="no-border-link">Sort</a></th>
 			<th> Numero telefono </th>
 			<th> Admin </th>
 			<th> Action </th>

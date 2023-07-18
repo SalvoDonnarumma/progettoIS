@@ -23,4 +23,8 @@ public interface IUserDao {
 	boolean changePass(String pass, int idUtente) throws SQLException;
 	
 	public List<String> getAllEmails() throws SQLException;
+
+	Collection<UserBean> sortByEmail(String sort) throws SQLException;
+	
+	Collection<UserBean> sortByName(String sort) throws SQLException;
 }

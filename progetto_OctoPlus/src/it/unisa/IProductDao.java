@@ -22,6 +22,9 @@ public interface IProductDao {
 	void setSizesByKey(int code, SizesBean taglie) throws SQLException;
 
 	public int doRetrieveByName(String nome) throws SQLException;
+	
+	Collection<ProductBean> sortByCategoria(String order) throws SQLException;
+	Collection<ProductBean> sortByName(String order) throws SQLException;
 
 	void doUpdateSizes(int code, SizesBean sizes) throws SQLException;
 

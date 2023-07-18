@@ -120,3 +120,17 @@ h1 {
 	font-weight: bold;
 	color: #BC2C1A;
 }
+
+@media (max-width: 800px) {
+	table {
+		display: block;
+		overflow-x: auto;
+	}
+	th, td {
+		padding: 10px;
+		border: 1px solid black;
+	}
+	img {
+		width: 100px;
+		height: 100px;
+	}}

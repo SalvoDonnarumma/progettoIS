@@ -106,8 +106,16 @@ public class UserControl extends HttpServlet {
 		String sort = request.getParameter("sort");
 		
 		try {
-			request.removeAttribute("users");
-			request.setAttribute("users", adminDao.doRetrieveAllUsers(sort));
+			if (sort == null) {
+				request.removeAttribute("users");
+				request.setAttribute("users", adminDao.doRetrieveAllUsers(sort));
+			} else if (sort.equals("email")) {
+				request.removeAttribute("users");
+				request.setAttribute("users", adminDao.sortByEmail(sort));
+			} else if (sort.equals("cognome")) {
+				request.removeAttribute("users");
+				request.setAttribute("users", adminDao.sortByName(sort));
+			}
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}

@@ -11,6 +11,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import it.model.ProductBean;
+import it.model.SizesBean;
 import it.model.UserBean;
 
 public class UserDaoDataSource implements IUserDao {
@@ -289,6 +292,84 @@ public class UserDaoDataSource implements IUserDao {
 			}
 		}
 		return emails;
+	}
+
+	@Override
+	public Collection<UserBean> sortByEmail(String sort) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<UserBean> users = new LinkedList<>();
+
+		String selectSQL = "SELECT * FROM utente ORDER BY email" ;
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				UserBean bean = new UserBean();
+
+				bean.setId(rs.getInt("idutente"));
+				bean.setEmail(rs.getString("email"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setPassword(rs.getString("password"));
+				bean.setTelefono(rs.getString("telefono"));
+				bean.setAdmin(rs.getBoolean("admin"));
+				users.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return users;
+	}
+
+	@Override
+	public Collection<UserBean> sortByName(String sort) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<UserBean> users = new LinkedList<>();
+
+		String selectSQL = "SELECT * FROM utente ORDER BY cognome" ;
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				UserBean bean = new UserBean();
+
+				bean.setId(rs.getInt("idutente"));
+				bean.setEmail(rs.getString("email"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setPassword(rs.getString("password"));
+				bean.setTelefono(rs.getString("telefono"));
+				bean.setAdmin(rs.getBoolean("admin"));
+				users.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return users;
 	}
 
 }

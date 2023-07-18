@@ -46,10 +46,10 @@
 	<table border="1" title="Tabella prodotti">
 	<caption>Tabella prodotti</caption>
 		<tr>
-			<th>IdProdotto <a href="product?fromStore=false&sort=idProdotto" class="no-border-link">Sort</a></th>
-			<th>Categoria<a href="product?fromStore=false&sort=categoria" class="no-border-link">Sort</a></th>
-			<th>Nome <a href="product?fromStore=false&sort=nome" class="no-border-link">Sort</a></th>
-			<th>Prezzo <a href="product?fromStore=false&sort=prezzo" class="no-border-link">Sort</a></th>
+			<th>IdProdotto</th>
+			<th>Categoria<a href="product?fromStore=false&sort=categoria" class="no-border-link">Ordina</a></th>
+			<th>Nome <a href="product?fromStore=false&sort=nome" class="no-border-link">Ordina</a></th>
+			<th>Prezzo</th>
 			<th>Descrizione</th>
 			<th>Foto</th>
 			<th>Statistiche</th>

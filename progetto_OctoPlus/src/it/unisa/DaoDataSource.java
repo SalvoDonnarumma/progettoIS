@@ -372,6 +372,43 @@ public class DaoDataSource implements IProductDao {
 		return products;
 	}
 	
+	public synchronized Collection<ProductBean> sortByCategoria(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<ProductBean> products = new LinkedList<>();
+
+		String selectSQL = "SELECT * FROM prodotto ORDER BY categoria";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				ProductBean bean = new ProductBean();
+				int code = rs.getInt("idProdotto");
+				bean.setCode(code);
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setNome(rs.getString("NOME"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setPrice(rs.getDouble("PRICE"));
+				bean.setStats(rs.getString("STATS"));
+				SizesBean taglie = this.getSizesByKey(code);
+				bean.setTaglie(taglie);
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return products;
+	}
 	
 
 	public synchronized void updatePhoto(String idA, InputStream photo) 
@@ -437,5 +474,44 @@ public class DaoDataSource implements IProductDao {
 			}
 		}
 		return bt;
+	}
+
+	@Override
+	public Collection<ProductBean> sortByName(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<ProductBean> products = new LinkedList<>();
+
+		String selectSQL = "SELECT * FROM prodotto ORDER BY nome";
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				ProductBean bean = new ProductBean();
+				int code = rs.getInt("idProdotto");
+				bean.setCode(code);
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setNome(rs.getString("NOME"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setPrice(rs.getDouble("PRICE"));
+				bean.setStats(rs.getString("STATS"));
+				SizesBean taglie = this.getSizesByKey(code);
+				bean.setTaglie(taglie);
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return products;
 	}
 }

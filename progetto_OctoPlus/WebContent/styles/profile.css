@@ -48,20 +48,6 @@ th, td {
     border-bottom: 1px solid#ddd;
 }
 
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 24px;
-    }
-    
-    h2 {
-        font-size: 18px;
-    }
-    
-    table {
-        font-size: 14px;
-    }
-}
 h1 {
 	font-size: 28px;
 	font-weight: bold;
@@ -104,4 +90,20 @@ a.no-border-link:hover {
 }
 .password-change p {
     text-align: right;
+}
+
+@media (max-width: 900px) {
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 18px;
+    }
+    
+    table {
+        font-size: 14px;
+        display: block;
+		overflow-x: auto;
+    }
 }

@@ -1,6 +1,8 @@
 package it.unisa;
 import java.io.IOException;  
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +17,6 @@ import it.model.SizesBean;
  */
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-		
-	public ProductControl() {
-		super();
-	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {		
 		IProductDao productDao = null;
@@ -102,15 +99,21 @@ public class ProductControl extends HttpServlet {
 		
 		String sort = request.getParameter("sort");
 			try {
-				request.removeAttribute("products");
-				request.setAttribute("products", productDao.doRetrieveAll(sort));
+				if (sort == null) {
+					request.removeAttribute("products");
+					request.setAttribute("products", productDao.doRetrieveAll(sort));
+				} else if (sort.equals("categoria")) {
+					request.removeAttribute("products");
+					request.setAttribute("products", productDao.sortByCategoria(sort));
+				} else if (sort.equals("nome")) {
+					request.removeAttribute("products");
+					request.setAttribute("products", productDao.sortByName(sort));
+				}
 			} catch (SQLException e) {
 				System.out.println("Error:" + e.getMessage());
 			}
 		
 		String fromStore = request.getParameter("fromStore");
-		System.out.println("Parametro fromstore: "+fromStore);
-		System.out.println("Parametro action: "+action);
 		RequestDispatcher dispatcher = null;
 		
 		if (fromStore.equalsIgnoreCase("modify"))

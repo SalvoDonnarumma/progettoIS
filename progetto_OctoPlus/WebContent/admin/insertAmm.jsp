@@ -44,21 +44,9 @@
 		margin: 0;
 	}
 	
-	/* Impostazioni delle tabelle */
-	table {
-		width: 100%;
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-	
-	th, td {
-		text-align: center;
-		padding: 5px;
-		border: 1px solid black;
-	}
 	/* Stili per il form */
 	form {
-		width: 750px;
+		width: 700px;
 		margin: 70px auto 0;
 		border: 1px solid #ccc;
 		border-radius: 5px;
@@ -114,7 +102,7 @@
 		margin-bottom: 10px;
 		margin-right: 30px;
 		font-family: "Arial", sans-serif; 
-	  color: #606C38;
+	    color: #606C38;
 	}
 	form textarea {
 		width: 100%;
@@ -182,15 +170,15 @@
 	  font-family: "Arial", sans-serif;  /* Cambia il carattere del testo */
 	}
 	
-	/* Stili per la linea decorativa sotto il titolo 
+/* Stili per la linea decorativa sotto il titolo */
 	.form-title::after {
 	  content: "";
 	  display: block;
 	  width: 100px;
 	  height: 3px;
-	  background-color:#91972A;
+	  background-color: #853411;
 	  margin: 10px 0;
-	}*/
+	}
 	 label {
 	    color: #BC2C1A; /* Colore del testo dell'etichetta */
 	  }
@@ -199,6 +187,35 @@
 	    font-family: "Arial", sans-serif; 
 	    color: #BC2C1A; 
 	  }	
+	  
+@media ( max-width : 800px) {
+	input[type="submit"],
+	input[type="reset"] {
+		width: 30%;
+		height: 25%;
+		border: 1px solid;
+		background: #85756E;
+		border-radius: 10px;
+		font-size: 18px;
+		color: #D9DCD6;
+		font-weight: 700;
+		cursor: pointer;
+		outline: none;
+		position: relative;
+	}
+	
+	input[type="submit"]:hover,
+	input[type="reset"]:hover {
+		border-color: #BC2C1A;
+		transition: .5s;
+		color: #D9DCD6;
+		background-color: #BC2C1A;
+	}
+	
+	form {
+		width: 90%;
+	}
+}
 </style>
 
 <script src="<%=request.getContextPath()%>/scripts/validate.js"></script>
