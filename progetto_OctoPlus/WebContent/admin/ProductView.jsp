@@ -32,16 +32,9 @@
 
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
-	<br>
-	<a href="./admin/insertProduct.jsp" class="no-border-link" > Inserisci un nuovo prodotto </a>
-	<br>
-	<a href="admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
-	<br>
-	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina Ordini </a>
-	<br>
-	<br>
+	
 
-	<h1 style="color: #853411;">Elenco prodotti</h1>
+	<br>	
 	<br> <br>
 	<table border="1" title="Tabella prodotti">
 	<caption>Tabella prodotti</caption>
@@ -139,6 +132,14 @@
 	<br>
 </form>
 	</div>
+	<br>
+	<br>
+	<a href="./admin/insertProduct.jsp" class="no-border-link" > Inserisci un nuovo prodotto </a>
+	<br>
+	<a href="admin/UserView.jsp" class="no-border-link"> Pagina visualizzazione utenti </a>
+	<br>
+	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina Ordini </a>
+	<br>
 	<br>
 </body>
 </html>
