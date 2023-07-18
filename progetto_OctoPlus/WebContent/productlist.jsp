@@ -30,8 +30,13 @@
   </div>
   <br>
   <div class="center">
-  	<span> <a href="<%=request.getContextPath()%>/userprofile.jsp"> Torna al profilo </a></span>
-  	<span> <a href="store.jsp" class="modify-btn" onClick="#"> Torna al catalogo </a></span>
+  	<div class="links">
+ 
+    <a class="redirect" href="<%=request.getContextPath()%>/userprofile.jsp">Torna al profilo</a>
+  
+    <a  class="redirect" href="store.jsp" class="modify-btn">Torna al catalogo</a>
+  
+</div>
   </div>
   <br>
   <br>
