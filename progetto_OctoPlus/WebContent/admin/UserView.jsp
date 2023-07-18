@@ -35,19 +35,13 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
 
-	<br>
-	<br>
-		 <a href="admin/insertAmm.jsp" class="no-border-link"> Inserisci nuovo admin </a>
-	<br>
-	<br>
-	<a href="admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
-	<br>
-	<br>
 	
-	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina visualizzazione ordini </a>
-	<h1 style="color: #853411;" >Elenco Utenti</h1>
+	
+	<br>
+<br>
 	<table border="1" title="Tabella utenti">
-	<caption>Tabella utenti</caption>
+	
+	<caption >Tabella utenti</caption>
 		<tr>
 			<th> Email <a href="AdminControl?fromStore=false&sort=email" class="no-border-link">Sort</a></th>
 			<th> Nome</th>
@@ -86,6 +80,15 @@
 			}
 		%>
 	</table>
+	<br>
+	<br>
+	<a href="admin/OrderView.jsp" class="no-border-link"> Pagina visualizzazione ordini </a>
+	<br>
+	<br>
+		 <a href="admin/insertAmm.jsp" class="no-border-link"> Inserisci nuovo admin </a>
+	<br>
+	<br>
+	<a href="admin/ProductView.jsp" class="no-border-link"> Pagina visualizzazione prodotti </a>
 	<br>
 	<br>
 </body>
