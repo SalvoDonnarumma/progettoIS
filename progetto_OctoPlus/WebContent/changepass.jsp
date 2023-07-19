@@ -68,7 +68,7 @@
 		}
       %>
      
-      <button type="submit" onClick="alertLength()" >Cambia password</button>
+      <button type="submit" onClick="alertLength()" >Cambia Password</button>
     </form>
   </div>
 </body>
