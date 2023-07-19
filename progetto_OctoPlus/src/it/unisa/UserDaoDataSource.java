@@ -145,7 +145,7 @@ public class UserDaoDataSource implements IUserDao {
                               ).toLowerCase().substring(1,3);
             }
         } catch (java.security.NoSuchAlgorithmException e) {
-            System.out.println(e);
+            /*commento per riempire il try-catch*/
         }
         return hashString;
     }

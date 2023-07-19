@@ -78,7 +78,6 @@ public class OrderControl extends HttpServlet {
 					String size = request.getParameter("sz");
 					int id = Integer.parseInt(request.getParameter("id"));
 					OrderedProduct product = productDao.doRetrieveByKeyO(id);
-					/*controllo se posso acquistare il prodotto;*/
 					String error = "La quantita' richiesta eccedere quella disponibile!";
 					if( size.equalsIgnoreCase("M") ) {
 						if(quantity > product.getTaglie().getQuantitaM() )
