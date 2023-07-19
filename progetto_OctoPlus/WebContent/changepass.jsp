@@ -38,9 +38,9 @@
 				alert("La password deve essere lunga almeno 12 caratteri!");
 		}
 	</script>
+	<jsp:include page="./header.jsp" flush="true"/>
 </head>
 <body>
-  <jsp:include page="./header.jsp" flush="true"/>
   <br>
   <br>
   <div class="container">

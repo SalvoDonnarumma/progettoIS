@@ -21,9 +21,9 @@
 			dynamicOrdersUser("<%=request.getContextPath()%>/OrderServlet?idUtente=<%=bean.getEmail()%>");
 		});	
   </script> 
+  <jsp:include page="./header.jsp" flush="true"/>
 </head>
 <body>
-	<jsp:include page="./header.jsp" flush="true"/>
 	<br>
   	<br>
     <div class="container_orders">
