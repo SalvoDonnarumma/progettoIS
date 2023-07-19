@@ -31,6 +31,11 @@ public class OrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String isDriverManager = request.getParameter("driver");
+		if(isDriverManager == null || isDriverManager.equals("")) {
+			isDriverManager = "datasource";
+		}
+		
 		IProductDao productDao = null;
 		IOrderDao orderDao = null;
 	
@@ -40,6 +45,7 @@ public class OrderControl extends HttpServlet {
 		
 		List<String> errors = new ArrayList<>();
 		String action = request.getParameter("action");
+		System.out.println("action: "+action);
 		UserBean bean = (UserBean) request.getSession().getAttribute("logged");
 		if( bean == null ){
 			response.sendRedirect("./login.jsp");		
@@ -78,7 +84,7 @@ public class OrderControl extends HttpServlet {
 					String size = request.getParameter("sz");
 					int id = Integer.parseInt(request.getParameter("id"));
 					OrderedProduct product = productDao.doRetrieveByKeyO(id);
-					/*controllo se posso acquistare il prodotto;*/
+					//controllo se posso acquistare il prodotto;
 					String error = "La quantita' richiesta eccedere quella disponibile!";
 					if( size.equalsIgnoreCase("M") ) {
 						if(quantity > product.getTaglie().getQuantitaM() )
@@ -162,6 +168,7 @@ public class OrderControl extends HttpServlet {
 		            	return;
 		            }
 					
+					System.out.println("Tutti i prodotti idonei all'acquisto");
 					OrderBean order = new OrderBean();
 					
 					for(int i = 0; i<cart.getSize(); i++) {
@@ -190,10 +197,13 @@ public class OrderControl extends HttpServlet {
 				}
 			}			
 		} catch (SQLException e) {
-			/*commento per riempire il try-catch*/
+			System.out.println("Error:" + e.getMessage());
 		}
 		
+		
 		String fromStore = request.getParameter("fromStore");
+		System.out.println(fromStore);
+		
 		RequestDispatcher dispatcher = null;
 		
 		if(  fromStore.equalsIgnoreCase("get2")) {

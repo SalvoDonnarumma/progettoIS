@@ -18,6 +18,7 @@ public class OrderDaoDataSource implements IOrderDao{
 
 	public OrderDaoDataSource(DataSource ds) {
 		this.ds = ds;
+		System.out.println("DataSource Product Model creation....");
 	}
 	
 	public int getLastCode() throws SQLException {
@@ -97,6 +98,7 @@ public class OrderDaoDataSource implements IOrderDao{
 			totalprice = totalprice + product.getPrice()*product.getQnt();
 		}
 		bean.setPrezzototale(totalprice);
+		System.out.println("Costo totale ordine "+idOrdine+" :"+totalprice);
 		
 		String insertSQL3 = "UPDATE ordine SET prezzototale=? WHERE idOrdine=?";
 		try {
@@ -311,30 +313,6 @@ public class OrderDaoDataSource implements IOrderDao{
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
 			preparedStatement.setInt(1, idOrdine);
-
-			preparedStatement.executeUpdate();
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-	}
-	
-	@Override
-	public void removeOrderByEmail(String email) throws SQLException {
-
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		String deleteSQL = "DELETE FROM ordine WHERE idUtente = ?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setString(1, email);
 
 			preparedStatement.executeUpdate();
 		} finally {

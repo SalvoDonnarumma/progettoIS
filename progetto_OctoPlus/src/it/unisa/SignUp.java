@@ -82,7 +82,7 @@ public class SignUp extends HttpServlet {
 			user.setTelefono(telefono);		
 			userDao.doSaveUser(user);
 		} catch (SQLException e) {
-			/*commento per riempire il try-catch*/
+			e.printStackTrace();
 		}
 		
 		request.getSession().setAttribute("isAdmin", Boolean.FALSE); //inserisco il token nella sessione

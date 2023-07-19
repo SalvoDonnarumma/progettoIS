@@ -18,6 +18,5 @@ public interface IOrderDao {
 	void removeOrder(int parseInt) throws SQLException;
 	
 	Collection<OrderBean> doRetrieveAllByKey(String email) throws SQLException;
-	
-	void removeOrderByEmail(String email) throws SQLException;
+
 }

@@ -29,14 +29,14 @@ public class PhotoControl {
 			}
 
 		} catch (SQLException sqlException) {
-			/*commento per riempire il try-catch*/
+			System.out.println(sqlException);
 		} 
 			finally {
 			try {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException sqlException) {
-				/*commento per riempire il try-catch*/
+				System.out.println(sqlException);
 			} finally {
 				if (connection != null) 
 					DriverManagerConnectionPool.releaseConnection(connection);
@@ -58,14 +58,14 @@ public class PhotoControl {
 				stmt.executeUpdate();
 				con.commit();
 			} catch (IOException e) {
-				/*commento per riempire il try-catch*/
+				System.out.println(e);
 			}
 		} finally {
 			try {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException sqlException) {
-				/*commento per riempire il try-catch*/
+				System.out.println(sqlException);
 			} finally {
 				if (con != null)
 					DriverManagerConnectionPool.releaseConnection(con);

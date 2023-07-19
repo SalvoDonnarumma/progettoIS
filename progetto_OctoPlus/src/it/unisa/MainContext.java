@@ -33,6 +33,9 @@ public class MainContext implements ServletContextListener {
 		ServletContext context = sce.getServletContext();
 		
 		DataSource ds = (DataSource) context.getAttribute("DataSource");
-		DriverManagerConnectionPool dm = (DriverManagerConnectionPool) context.getAttribute("DriverManager");	
+		System.out.println("DataSource deletion...."+ds.toString());
+		
+		DriverManagerConnectionPool dm = (DriverManagerConnectionPool) context.getAttribute("DriverManager");
+		System.out.println("DriverManager deletion...."+dm.toString());		
 	}
 }

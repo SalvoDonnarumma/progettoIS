@@ -22,6 +22,8 @@ public class UserDaoDataSource implements IUserDao {
 
 	public UserDaoDataSource(DataSource ds) {
 		this.ds = ds;
+		
+		System.out.println("DataSource Product Model creation....");
 	}
 	
 	@Override
@@ -145,7 +147,7 @@ public class UserDaoDataSource implements IUserDao {
                               ).toLowerCase().substring(1,3);
             }
         } catch (java.security.NoSuchAlgorithmException e) {
-        	/*commento per riempire il try-catch*/
+            System.out.println(e);
         }
         return hashString;
     }
@@ -155,6 +157,7 @@ public class UserDaoDataSource implements IUserDao {
 		String hashedpassToBeMatch = this.toHash(passToBeMatch);
 		if( hashedpassToBeMatch == null || hashedpassToBeMatch.equals("null"))
 			return false;
+	/*	System.out.println("Le pass sono uguali: "+hashedpassToBeMatch.equals(oldPassHash)); */
 		return hashedpassToBeMatch.equals(oldPassHash);
 	}
 	
@@ -179,6 +182,7 @@ public class UserDaoDataSource implements IUserDao {
 				emailToBeMatch = rs.getString("email"); //prelevo tutte le email dal db
 				hashPasswordToBeMatch = rs.getString("password"); //prelevo tutte le password dal db		
 				if(emailToBeMatch.equals(email) && hashPasswordToBeMatch.equals(hashPassword)) {
+					System.out.println(" ***** "+hashPasswordToBeMatch+"--"+hashPassword+"\n");
 					boolean admin = rs.getBoolean("admin"); 
 					if(admin) {
 						user.setId(rs.getInt("idutente"));
@@ -197,6 +201,7 @@ public class UserDaoDataSource implements IUserDao {
 						user.setNome(rs.getString("nome"));
 						user.setAdmin(rs.getBoolean("admin"));
 					}
+					System.out.println(user);
 					return user;
 				}
 			}
@@ -260,9 +265,6 @@ public class UserDaoDataSource implements IUserDao {
 					connection.close();
 			}
 		}
-		
-		IOrderDao orderDao = new OrderDaoDataSource(ds);
-		orderDao.removeOrderByEmail(email);
 		return (result != 0);
 	}
 	

@@ -28,7 +28,7 @@ public class GetPictureServlet extends HttpServlet {
 			try {
 				bt = PhotoControl.load(id);
 			} catch (SQLException e) {
-				/*commento per riempire il try-catch*/
+				e.printStackTrace();
 			}
 
 			ServletOutputStream out = response.getOutputStream();

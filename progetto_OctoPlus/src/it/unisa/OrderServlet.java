@@ -35,13 +35,13 @@ public class OrderServlet extends HttpServlet {
 			try {
 				orders = orderDao.doRetrieveAllOrders(null);
 			} catch (SQLException e) {
-				/*commento per riempire il try-catch*/
+				e.printStackTrace();
 			}
 		} else {
 			try {
 				orders = orderDao.doRetrieveAllByKey(idUtente);
 			} catch (SQLException e) {
-				/*commento per riempire il try-catch*/
+				e.printStackTrace();
 			}
 		}
 			

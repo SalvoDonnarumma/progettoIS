@@ -19,10 +19,12 @@ public class RemoveOrderServlet extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		IOrderDao orderDao = new OrderDaoDataSource(ds);
 		
+		System.out.println("Id ordine e':"+request.getParameter("idOrdine"));
+		
 		try {
 			orderDao.removeOrder(Integer.parseInt(request.getParameter("idOrdine")));
 		} catch (NumberFormatException | SQLException e) {
-			/*commento per riempire il try-catch*/
+			e.printStackTrace();
 		} 
 	}
 

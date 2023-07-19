@@ -28,7 +28,7 @@ public class StoreServlet extends HttpServlet {
 		try {
 			products = productDao.doRetrieveAll(null);
 		} catch (SQLException e) {
-			/*commento per riempire il try-catch*/
+			e.printStackTrace();
 		}
 		PrintWriter out = response.getWriter();
 		out.write(json.toJson(products));

@@ -34,7 +34,7 @@ public class getListProductByID extends HttpServlet {
 		try {
 			order = orderDao.doRetrieveById(null, Integer.parseInt(idOrdine));
 		} catch (SQLException e) {
-			/*commento per riempire il try-catch*/
+			e.printStackTrace();
 		}
 	
 			
