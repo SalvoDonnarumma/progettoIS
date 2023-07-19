@@ -125,7 +125,7 @@ caption {
 	font-weight: bold;
 	color: #BC2C1A;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 	table {
 		display: block;
 		overflow-x: auto;

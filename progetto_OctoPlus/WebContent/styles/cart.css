@@ -111,7 +111,13 @@ img.front {
 	}
 }
 
-@media ( max-width : 767px) {
+@media ( max-width : 900px) {
+	
+	table {
+		display: block;
+		overflow-x: auto;
+	}
+	
 	tbody .front{
 		width: 70px;
 	}
@@ -132,8 +138,5 @@ img.front {
 	.container {
 		margin: 0 auto;
 		padding: 3px;
-	}
-	table th.temp {
-		display: block;
 	}
 }

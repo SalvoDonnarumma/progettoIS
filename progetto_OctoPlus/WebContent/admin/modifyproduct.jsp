@@ -28,10 +28,9 @@ function addValuesToLink(){
 	console.log(link.href+=document.getElementById("category").value);
 }
 </script>
-
+<jsp:include page="../header.jsp" flush="true"/>
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="true"/>
 	<div class="big_container">
 	<br>
 		<div class="col-25">  
@@ -105,7 +104,7 @@ function addValuesToLink(){
 				<h4>
 					<label>
 						Prezzo: 
-						<input style="width:7%;" name="price" type="number" min="0" step="any" value=<%=bean.getPrice()%>  required>&euro;
+						<input style="width:8%;" name="price" type="number" min="0" step="any" value=<%=bean.getPrice()%>  required>&euro;
 					</label>
 				</h4>
 				
@@ -114,10 +113,10 @@ function addValuesToLink(){
 					<label>
 						Quantit&aacute;: <br>
 						<h5>
-						Taglia M: <input style="width:5%;" name="tagliaM" type="number" min="0" value=<%=bean.getTaglie().getQuantitaM()%> ><br>
-						Taglia L: <input style="width:5%;" name="tagliaL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaL()%>><br>
-						Taglia XL: <input style="width:5%;" name="tagliaXL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaXL()%>><br>
-						Taglia XXL: <input style="width:5%;" name="tagliaXXL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaXXL()%>><br>
+						Taglia M: <input style="width:7%;" name="tagliaM" type="number" min="0" value=<%=bean.getTaglie().getQuantitaM()%> ><br>
+						Taglia L: <input style="width:7%;" name="tagliaL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaL()%>><br>
+						Taglia XL: <input style="width:7%;" name="tagliaXL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaXL()%>><br>
+						Taglia XXL: <input style="width:7%;" name="tagliaXXL" type="number" min="0" value=<%=bean.getTaglie().getQuantitaXXL()%>><br>
 						</h5>
 					</label>
 				</h4>
