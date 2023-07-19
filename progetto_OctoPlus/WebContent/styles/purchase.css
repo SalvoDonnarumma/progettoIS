@@ -20,11 +20,14 @@ body {
 
 .col-25 {
   display: flex;
+  flex-wrap: wrap;
+	
 }
 
 .col-50 {
   -ms-flex: 50%; /* IE10 */
   flex: 50%;
+
 }
 
 .col-75 {
@@ -106,13 +109,16 @@ span.price {
 }
 
 .box1 {
-  flex: 0 0 30%;  
+     flex: 0 0 calc(30% - 20px);
+     margin-right: 20px; 
+  margin-bottom: 20px;
   padding: 30px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all .35s ease;
   position: relative;
+
 }
 
 .box1 img {
@@ -132,11 +138,15 @@ span.price {
   margin-bottom: 20px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .row {
     flex-direction: column-reverse;
   }
   .col-25 {
     margin-bottom: 20px;
+  }
+  .box1 {
+  
+    margin-right: 0; 
   }
 }
