@@ -46,7 +46,7 @@ maxRequestSize = 1024 * 1024 * 50) // 50MB
 						PhotoControl photoControl = new PhotoControl();
 						photoControl.updatePhoto(id, part.getInputStream());
     				} catch (SQLException sqlException) {
-    					System.out.println(sqlException);
+    					/*commento per riempire il try-catch*/
     				}
     			}
     		}

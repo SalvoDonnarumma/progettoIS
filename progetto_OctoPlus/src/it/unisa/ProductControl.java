@@ -35,7 +35,6 @@ public class ProductControl extends HttpServlet {
 				} else if (action.equalsIgnoreCase("modify"))	{
 					
 					String categoria = request.getParameter("categoria");
-					System.out.println("Categoria: "+categoria);
 					String nome = request.getParameter("nome");
 					String descrizione = request.getParameter("descrizione");
 					Double price = Double.parseDouble(request.getParameter("price"));
@@ -94,7 +93,7 @@ public class ProductControl extends HttpServlet {
 						}
 			}			
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			/*commento per riempire il try-catch*/
 		}
 		
 		String sort = request.getParameter("sort");
@@ -110,7 +109,7 @@ public class ProductControl extends HttpServlet {
 					request.setAttribute("products", productDao.sortByName(sort));
 				}
 			} catch (SQLException e) {
-				System.out.println("Error:" + e.getMessage());
+				/*commento per riempire il try-catch*/
 			}
 		
 		String fromStore = request.getParameter("fromStore");

@@ -424,14 +424,14 @@ public class DaoDataSource implements IProductDao {
 				stmt.executeUpdate();
 				con.commit();
 			} catch (IOException e) {
-				System.out.println(e);
+				/*commento per riempire il try-catch*/
 			}
 		} finally {
 			try {
 				if (stmt != null)
 					stmt.close();
 			} catch (SQLException sqlException) {
-				System.out.println(sqlException);
+				/*Commento per riempire il try-catch*/
 			} finally {
 				if (con != null)
 					DriverManagerConnectionPool.releaseConnection(con);

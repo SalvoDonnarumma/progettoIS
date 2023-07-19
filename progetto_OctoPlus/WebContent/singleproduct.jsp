@@ -94,11 +94,11 @@
 				<br>
 				<div class="btn-box">
 					<a href="cart.jsp?id=<%=bean.getCode()%>" class="cart-btn"> Aggiungi al Carrello </a>
-					<a id="link" onClick="addValuesToLink();" href="OrderControl?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
+					<a id="link" onClick="addValuesToLink();" href="OrderControl?action=read&fromStore=get2" class="buy-btn"> Compra adesso </a>
 				<%	
 					if( isAdmin == null );
 					else if( isAdmin == true ){ %>
-						<a href="product?action=read&fromStore=modify" class="modify-btn" onClick="functionAlert()"> Modifica </a>
+						<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="modify-btn" onClick="functionAlert()"> Modifica </a>
 				<%	}	%>	
 				</div>
 			<% }%>

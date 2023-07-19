@@ -32,7 +32,6 @@ public class UserControl extends HttpServlet {
 			if (action != null) {
 				if (action.equalsIgnoreCase("delete")) {
 					String email = request.getParameter("email");
-					System.out.println("email da cancellare: "+email);
 					adminDao.doDeleteUser(email);
 				} else if (action.equalsIgnoreCase("insert")) {
 					String email = request.getParameter("email");
@@ -75,7 +74,6 @@ public class UserControl extends HttpServlet {
 					List<String> errors = new ArrayList<>();
 		        	RequestDispatcher dispatcherChangePassPage = request.getRequestDispatcher("changepass.jsp");
 		        	
-		        	System.out.println("Le due nuove pass sono uguali: "+newPass.equals(confPass));
 					if( !newPass.equals(confPass) ) {
 						errors.add("La password nuova e la password di conferma non corrispondono!");
 						request.setAttribute("errors", errors);
@@ -95,12 +93,11 @@ public class UserControl extends HttpServlet {
 						return;
 					}
 					
-					if(adminDao.changePass(confPass, bean.getId()))
-							System.out.println("Password cambiata con successo!");
+					adminDao.changePass(confPass, bean.getId());
 				}
 			}			
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			/*commento per riempire il try-catch*/
 		}
 		
 		String sort = request.getParameter("sort");
@@ -117,7 +114,7 @@ public class UserControl extends HttpServlet {
 				request.setAttribute("users", adminDao.sortByName(sort));
 			}
 		} catch (SQLException e) {
-			System.out.println("Error:" + e.getMessage());
+			/*commento per riempire il try-catch*/
 		}
 
 		String fromStore = request.getParameter("fromStore");
@@ -125,7 +122,7 @@ public class UserControl extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		
 		if( fromStore.equalsIgnoreCase("cgpass")) {
-			dispatcher = getServletContext().getRequestDispatcher("/userprofile.jsp");
+			dispatcher = getServletContext().getRequestDispatcher("/Logout");
 		} else if(  fromStore.equalsIgnoreCase("get")) {
 			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
 		} else if ( Boolean.parseBoolean(fromStore) )    
