@@ -18,7 +18,6 @@ public class OrderDaoDataSource implements IOrderDao{
 
 	public OrderDaoDataSource(DataSource ds) {
 		this.ds = ds;
-		System.out.println("DataSource Product Model creation....");
 	}
 	
 	public int getLastCode() throws SQLException {
@@ -98,8 +97,6 @@ public class OrderDaoDataSource implements IOrderDao{
 			totalprice = totalprice + product.getPrice()*product.getQnt();
 		}
 		bean.setPrezzototale(totalprice);
-		System.out.println("Costo totale ordine "+idOrdine+" :"+totalprice);
-		
 		String insertSQL3 = "UPDATE ordine SET prezzototale=? WHERE idOrdine=?";
 		try {
 			connection = ds.getConnection();

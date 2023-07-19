@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 			try {
 				match=userDao.loginUserOrAdmin(username, password);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				/*commento per riempire il try-catch*/
 			}
 			
 			if( match==null ) {
