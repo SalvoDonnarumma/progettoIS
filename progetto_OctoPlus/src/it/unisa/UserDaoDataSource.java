@@ -259,6 +259,9 @@ public class UserDaoDataSource implements IUserDao {
 					connection.close();
 			}
 		}
+		
+		IOrderDao orderDao = new OrderDaoDataSource(ds);
+		orderDao.removeOrderByEmail(email);
 		return (result != 0);
 	}
 	

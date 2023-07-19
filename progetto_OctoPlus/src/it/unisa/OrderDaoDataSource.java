@@ -322,4 +322,28 @@ public class OrderDaoDataSource implements IOrderDao{
 			}
 		}
 	}
+	
+	@Override
+	public void removeOrderByEmail(String email) throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		String deleteSQL = "DELETE FROM ordine WHERE idUtente = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setString(1, email);
+
+			preparedStatement.executeUpdate();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}
 }
