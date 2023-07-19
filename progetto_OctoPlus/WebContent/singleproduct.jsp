@@ -37,9 +37,9 @@
 		console.log(link.href+=document.getElementById("size").value);
 	}
 </script>
+	<jsp:include page="./header.jsp" flush="true"/>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"/>
 	<div class="flex-box">
 		<div class="left">
 			<div class="img">
@@ -76,9 +76,9 @@
 				<%} %>	
 				<% if( sizes.getQuantitaXXL()>0 ){ %>
 					<option value="XXL"> XXL </option>
-				<%} }%>	
 			</select>
-			</div>
+			</div>	
+				<%} }%>	
 			<br>
 			<br>
 			<% if( nondisponibile ){ %>
@@ -95,13 +95,13 @@
 				<div class="btn-box">
 					<a href="cart.jsp?id=<%=bean.getCode()%>" class="cart-btn"> Aggiungi al Carrello </a>
 					<a id="link" onClick="addValuesToLink();" href="OrderControl?action=read&fromStore=get2&id=<%=bean.getCode()%>" class="buy-btn"> Compra adesso </a>
+				</div>
 				<%	
 					if( isAdmin == null );
 					else if( isAdmin == true ){ %>
-						<a href="product?action=read&fromStore=modify" class="modify-btn" onClick="functionAlert()"> Modifica </a>
-				<%	}	%>	
-				</div>
-			<% }%>
+						<a href="product?action=read&fromStore=modify&id=<%=bean.getCode()%>" class="modify-btn" onClick="functionAlert()"> Modifica </a>
+				<%	} 
+				}	%>	
 			<br>
 			
 			<h3 style="color: red;">
