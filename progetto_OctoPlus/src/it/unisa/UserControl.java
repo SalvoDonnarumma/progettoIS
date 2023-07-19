@@ -122,7 +122,7 @@ public class UserControl extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		
 		if( fromStore.equalsIgnoreCase("cgpass")) {
-			dispatcher = getServletContext().getRequestDispatcher("/userprofile.jsp");
+			dispatcher = getServletContext().getRequestDispatcher("/Logout");
 		} else if(  fromStore.equalsIgnoreCase("get")) {
 			dispatcher = getServletContext().getRequestDispatcher("/singleproduct.jsp");
 		} else if ( Boolean.parseBoolean(fromStore) )    
